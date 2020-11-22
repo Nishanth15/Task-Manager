@@ -1,102 +1,25 @@
 {
   "version": 2,
-  "dgSpecHash": "osWcPGRJBMZslV0Av0R2RtbnOy3V2xKcnee/quc8qSd2hzm9ZJxh2hO2EJmbUTzVDpX2a58vDpW9flQJExMHLQ==",
-  "success": false,
-  "projectFilePath": "A:\\Task Manager\\Task-Manager\\TaskManager.API\\TaskManager.API.csproj",
+  "dgSpecHash": "ijHynO/HpXxh0dm26geabSDMKEGSTi+H52kMduzP3iZ+rvQhl9bPtrgYUuEpapvkf/ow1bp/4zE4mkzG87S44w==",
+  "success": true,
+  "projectFilePath": "A:\\Task Manager\\Task-Manager\\API\\TaskManager.API\\TaskManager.API.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.1.0\\microsoft.aspnetcore.authentication.abstractions.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.1.0\\microsoft.aspnetcore.authentication.core.2.1.0.nupkg.sha512",
     "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.0\\microsoft.aspnetcore.authentication.jwtbearer.5.0.0.nupkg.sha512",
     "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.authentication.openidconnect\\5.0.0\\microsoft.aspnetcore.authentication.openidconnect.5.0.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.1.0\\microsoft.aspnetcore.authorization.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.authorization.policy\\2.1.0\\microsoft.aspnetcore.authorization.policy.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.hosting.abstractions\\2.1.0\\microsoft.aspnetcore.hosting.abstractions.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.hosting.server.abstractions\\2.1.0\\microsoft.aspnetcore.hosting.server.abstractions.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.http\\2.1.0\\microsoft.aspnetcore.http.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.1.0\\microsoft.aspnetcore.http.abstractions.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.http.extensions\\2.1.0\\microsoft.aspnetcore.http.extensions.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.1.0\\microsoft.aspnetcore.http.features.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.mvc.abstractions\\2.1.0\\microsoft.aspnetcore.mvc.abstractions.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.mvc.apiexplorer\\2.1.0\\microsoft.aspnetcore.mvc.apiexplorer.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.mvc.core\\2.1.0\\microsoft.aspnetcore.mvc.core.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.mvc.dataannotations\\2.1.0\\microsoft.aspnetcore.mvc.dataannotations.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.responsecaching.abstractions\\2.1.0\\microsoft.aspnetcore.responsecaching.abstractions.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.routing\\2.1.0\\microsoft.aspnetcore.routing.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.routing.abstractions\\2.1.0\\microsoft.aspnetcore.routing.abstractions.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.staticfiles\\2.1.0\\microsoft.aspnetcore.staticfiles.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.1.0\\microsoft.aspnetcore.webutilities.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.0.0\\microsoft.bcl.asyncinterfaces.1.0.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.dotnet.platformabstractions\\2.1.0\\microsoft.dotnet.platformabstractions.2.1.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\nisha\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\2.1.0\\microsoft.extensions.configuration.abstractions.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\2.1.0\\microsoft.extensions.dependencyinjection.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.extensions.dependencymodel\\2.1.0\\microsoft.extensions.dependencymodel.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\2.1.0\\microsoft.extensions.fileproviders.abstractions.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.extensions.fileproviders.embedded\\2.1.0\\microsoft.extensions.fileproviders.embedded.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\2.1.0\\microsoft.extensions.hosting.abstractions.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.extensions.localization\\2.1.0\\microsoft.extensions.localization.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.extensions.localization.abstractions\\2.1.0\\microsoft.extensions.localization.abstractions.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.1.0\\microsoft.extensions.logging.abstractions.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.extensions.objectpool\\2.1.0\\microsoft.extensions.objectpool.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.extensions.options\\2.1.0\\microsoft.extensions.options.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.extensions.primitives\\2.1.0\\microsoft.extensions.primitives.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.extensions.webencoders\\2.1.0\\microsoft.extensions.webencoders.2.1.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.net.http.headers\\2.1.0\\microsoft.net.http.headers.2.1.0.nupkg.sha512",
+    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\6.7.1\\microsoft.identitymodel.jsonwebtokens.6.7.1.nupkg.sha512",
+    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.identitymodel.logging\\6.7.1\\microsoft.identitymodel.logging.6.7.1.nupkg.sha512",
+    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.7.1\\microsoft.identitymodel.protocols.6.7.1.nupkg.sha512",
+    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.7.1\\microsoft.identitymodel.protocols.openidconnect.6.7.1.nupkg.sha512",
+    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.7.1\\microsoft.identitymodel.tokens.6.7.1.nupkg.sha512",
     "C:\\Users\\nisha\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
     "C:\\Users\\nisha\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "C:\\Users\\nisha\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
     "C:\\Users\\nisha\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
     "C:\\Users\\nisha\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.componentmodel.annotations\\4.5.0\\system.componentmodel.annotations.4.5.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.5.0\\system.diagnostics.diagnosticsource.4.5.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.runtime.interopservices.runtimeinformation\\4.0.0\\system.runtime.interopservices.runtimeinformation.4.0.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\system.text.encodings.web\\4.6.0\\system.text.encodings.web.4.6.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\system.text.json\\4.6.0\\system.text.json.4.6.0.nupkg.sha512",
-    "C:\\Users\\nisha\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.2\\system.threading.tasks.extensions.4.5.2.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512"
+    "C:\\Users\\nisha\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.7.1\\system.identitymodel.tokens.jwt.6.7.1.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1202",
-      "level": "Error",
-      "message": "Package Microsoft.AspNetCore.Authentication.JwtBearer 5.0.0 is not compatible with net50 (.NETFramework,Version=v5.0). Package Microsoft.AspNetCore.Authentication.JwtBearer 5.0.0 supports: net5.0 (.NETCoreApp,Version=v5.0)",
-      "libraryId": "Microsoft.AspNetCore.Authentication.JwtBearer",
-      "targetGraphs": [
-        ".NETFramework,Version=v5.0"
-      ]
-    },
-    {
-      "code": "NU1202",
-      "level": "Error",
-      "message": "Package Microsoft.AspNetCore.Authentication.OpenIdConnect 5.0.0 is not compatible with net50 (.NETFramework,Version=v5.0). Package Microsoft.AspNetCore.Authentication.OpenIdConnect 5.0.0 supports: net5.0 (.NETCoreApp,Version=v5.0)",
-      "libraryId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
-      "targetGraphs": [
-        ".NETFramework,Version=v5.0"
-      ]
-    },
-    {
-      "code": "NU1202",
-      "level": "Error",
-      "message": "Package Microsoft.AspNetCore.Authentication.JwtBearer 5.0.0 is not compatible with net50 (.NETFramework,Version=v5.0) / win7-x86. Package Microsoft.AspNetCore.Authentication.JwtBearer 5.0.0 supports: net5.0 (.NETCoreApp,Version=v5.0)",
-      "libraryId": "Microsoft.AspNetCore.Authentication.JwtBearer",
-      "targetGraphs": [
-        ".NETFramework,Version=v5.0/win7-x86"
-      ]
-    },
-    {
-      "code": "NU1202",
-      "level": "Error",
-      "message": "Package Microsoft.AspNetCore.Authentication.OpenIdConnect 5.0.0 is not compatible with net50 (.NETFramework,Version=v5.0) / win7-x86. Package Microsoft.AspNetCore.Authentication.OpenIdConnect 5.0.0 supports: net5.0 (.NETCoreApp,Version=v5.0)",
-      "libraryId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
-      "targetGraphs": [
-        ".NETFramework,Version=v5.0/win7-x86"
-      ]
-    }
-  ]
+  "logs": []
 }
