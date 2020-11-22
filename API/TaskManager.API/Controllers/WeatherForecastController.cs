@@ -13,7 +13,7 @@ namespace TaskManager.API.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-            "Summer", "Winter", "Autumn", "Spring"
+            "Summer", "Winter", "Autumn", "Spring", "Hot"
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
