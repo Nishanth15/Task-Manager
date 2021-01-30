@@ -9,3 +9,5 @@ bin/
 obj/
 *.suo
 *.user
+
+.vs/
