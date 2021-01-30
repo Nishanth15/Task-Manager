@@ -11,6 +11,12 @@ namespace TaskManager.API.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
+        public WeatherForecastController()
+        {
+            
+        }
+
+
         //private static readonly string[] Summaries = new[]
         //{
         //    "Winter", "Autumn", "Spring", "Cold", "Hot"
