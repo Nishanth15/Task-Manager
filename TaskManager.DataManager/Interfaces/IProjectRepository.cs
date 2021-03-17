@@ -11,7 +11,7 @@ namespace TaskManager.DataManager.Interfaces
         Task<IEnumerable<Project>> GetProjectsAsync();
         Task<Project> GetProjectAsync(Guid id);
         Task<Project> AddProjectAsync(Project project);
-        Task<Project> UpdateProjectAsync(Guid id, Project project);
+        Task<Project> UpdateProjectAsync(Project project);
         Task<Project> RemoveProjectAsync(Guid id);
 
     }

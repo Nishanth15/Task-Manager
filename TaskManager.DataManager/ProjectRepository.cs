@@ -36,7 +36,7 @@ namespace TaskManager.DataManager
 
         }
         
-        public async Task<Project> UpdateProjectAsync(Guid id, Project project)
+        public async Task<Project> UpdateProjectAsync(Project project)
         {
             _userDbContext.Projects.Update(project);
             await _userDbContext.SaveChangesAsync();

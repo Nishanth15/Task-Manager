@@ -40,13 +40,21 @@ namespace TaskManager.API.Services
         public async Task<ProjectResponseDTO> GetProjectAsync(Guid id)
         {
             var project = await _projectRepo.GetProjectAsync(id);
-            var projectResponse = new ProjectResponseDTO()
+            var projectResponse = new ProjectResponseDTO();
+
+            if (project == null)
             {
-                Id = project.Id,
-                Name = project.Name,
-                Color = project.Color,
-                ViewType = project.ViewType
-            };
+                projectResponse.Status = true;
+                //projectResponse.Message = Constant.ProjectNotFound;
+            }
+            else
+            {
+                projectResponse.Status = true;
+                projectResponse.Id = project.Id;
+                projectResponse.Name = project.Name;
+                projectResponse.Color = project.Color;
+                projectResponse.ViewType = project.ViewType;
+            }
             return projectResponse;
         }
 
@@ -74,11 +82,12 @@ namespace TaskManager.API.Services
         {
             var project = new Project()
             {
+                Id = id,
                 Name = projectRequest.Name,
                 Color = projectRequest.Color,
                 ViewType = projectRequest.ViewType
             };
-            var projectFromDb = await _projectRepo.UpdateProjectAsync(id, project);
+            var projectFromDb = await _projectRepo.UpdateProjectAsync(project);
             var projectResponse = new ProjectResponseDTO()
             {
                 Id = projectFromDb.Id,
