@@ -4,10 +4,6 @@
 
 /.vs/TaskManager/v16
 /API/TaskManager.API/.vs/TaskManager.API/DesignTimeBuild
-bin/
-obj/
-*.suo
-*.user
 .vs
 
 
