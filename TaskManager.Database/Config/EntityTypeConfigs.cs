@@ -17,4 +17,14 @@ namespace TaskManager.Database.Config
             builder.Property(p => p.ViewType).IsRequired();
         }
     }
+
+    public class SectionConfiguration : IEntityTypeConfiguration<Section>
+    {
+        public void Configure(EntityTypeBuilder<Section> builder)
+        {
+            builder.Property(s => s.Id).IsRequired();
+            builder.Property(s => s.Name).IsRequired().HasMaxLength(100);
+            builder.Property(s => s.ProjectId).IsRequired();
+        }
+    }
 }

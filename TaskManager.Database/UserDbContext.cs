@@ -13,6 +13,8 @@ namespace TaskManager.Database
 
         public DbSet<Project> Projects { get; set; }
 
+        public DbSet<Section> Sections { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

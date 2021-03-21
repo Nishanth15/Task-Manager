@@ -12,13 +12,11 @@ namespace TaskManager.API.Services
 {
     public class ProjectService : IProjectService
     {
-        private readonly IProjectRepository _projectRepo;
         private readonly IGenericRepository<Project> _genericRepo;
         private readonly IMapper _mapper;
 
-        public ProjectService(IProjectRepository projectRepo, IGenericRepository<Project> genericRepo, IMapper mapper)
+        public ProjectService(IGenericRepository<Project> genericRepo, IMapper mapper)
         {
-            _projectRepo = projectRepo;
             _genericRepo = genericRepo;
             _mapper = mapper;
         }
