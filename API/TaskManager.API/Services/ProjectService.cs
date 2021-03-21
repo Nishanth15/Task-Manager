@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,35 +13,36 @@ namespace TaskManager.API.Services
     public class ProjectService : IProjectService
     {
         private readonly IProjectRepository _projectRepo;
+        private readonly IGenericRepository<Project> _genericRepo;
+        private readonly IMapper _mapper;
 
-        public ProjectService(IProjectRepository projectRepo)
+        public ProjectService(IProjectRepository projectRepo, IGenericRepository<Project> genericRepo, IMapper mapper)
         {
             _projectRepo = projectRepo;
+            _genericRepo = genericRepo;
+            _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ProjectResponseDTO>> GetProjectsAsync()
+        public async Task<IEnumerable<ProjectResponse>> GetProjectsAsync()
         {
-            var projectList = await _projectRepo.GetProjectsAsync();
-            var projectResponseList = new List<ProjectResponseDTO>();
+            var projectList = await _genericRepo.GetAllAsync();
+            var projectResponseList = new List<ProjectResponse>();
             projectList.ToList().ForEach(project =>
             {
-                var projectResponseDTO = new ProjectResponseDTO()
-                {
-                    Id = project.Id,
-                    Name = project.Name,
-                    Color = project.Color,
-                    ViewType = project.ViewType
-                };
-                projectResponseList.Add(projectResponseDTO);
+                var projectResponse = _mapper.Map<Project, ProjectResponse>(project);
+
+                if(project.Order == 0)
+                    projectResponse.IsInbox = true;
+                projectResponseList.Add(projectResponse);
             });
             
             return projectResponseList;
         }
 
-        public async Task<ProjectResponseDTO> GetProjectAsync(Guid id)
+        public async Task<ProjectResponse> GetProjectAsync(Guid id)
         {
-            var project = await _projectRepo.GetProjectAsync(id);
-            var projectResponse = new ProjectResponseDTO();
+            var project = await _genericRepo.GetAsync(id);
+            var projectResponse = new ProjectResponse();
 
             if (project == null)
             {
@@ -49,68 +51,85 @@ namespace TaskManager.API.Services
             }
             else
             {
-                projectResponse.Status = true;
-                projectResponse.Id = project.Id;
-                projectResponse.Name = project.Name;
-                projectResponse.Color = project.Color;
-                projectResponse.ViewType = project.ViewType;
+                projectResponse = _mapper.Map<Project, ProjectResponse>(project);
+
             }
             return projectResponse;
         }
 
-        public async Task<ProjectResponseDTO> AddProjectAsync(ProjectRequestDTO projectRequest)
+        public async Task<ProjectResponse> AddProjectAsync(ProjectRequest projectRequest)
         {
-            var project = new Project()
-            {
-                Name = projectRequest.Name,
-                Color = projectRequest.Color,
-                ViewType = projectRequest.ViewType
-            };
-            var projectFromDb = await _projectRepo.AddProjectAsync(project);
-            var projectResponse = new ProjectResponseDTO()
-            {
-                Id = projectFromDb.Id,
-                Name = projectFromDb.Name,
-                Color = projectFromDb.Color,
-                ViewType = projectFromDb.ViewType
-            };
+
+            var project = _mapper.Map<ProjectRequest, Project>(projectRequest);
+            project.IsArchived = false;
+            project.IsDeleted = false;
+            project.CreatedAt = DateTime.Now;
+            project.Modified = DateTime.Now;
+            project.ParentId = projectRequest.ParentId;
+
+            project = await _genericRepo.AddAsync(project);
+
+            var projectResponse = _mapper.Map<Project, ProjectResponse>(project);
+
             return projectResponse;
 
         }
 
-        public async Task<ProjectResponseDTO> UpdateProjectAsync(Guid id, ProjectRequestDTO projectRequest)
+        public async Task<ProjectResponse> UpdateProjectAsync(Guid id, ProjectRequest projectRequest)
         {
-            var project = new Project()
-            {
-                Id = id,
-                Name = projectRequest.Name,
-                Color = projectRequest.Color,
-                ViewType = projectRequest.ViewType
-            };
-            var projectFromDb = await _projectRepo.UpdateProjectAsync(project);
-            var projectResponse = new ProjectResponseDTO()
-            {
-                Id = projectFromDb.Id,
-                Name = projectFromDb.Name,
-                Color = projectFromDb.Color,
-                ViewType = projectFromDb.ViewType
-            };
+            var project = _mapper.Map<ProjectRequest, Project>(projectRequest);
+            project.Modified = DateTime.Now;
+
+            project = await _genericRepo.UpdateAsync(project);
+            var projectResponse = _mapper.Map<Project, ProjectResponse>(project);
+
             return projectResponse;
             
         }
 
-        public async Task<ProjectResponseDTO> RemoveProjectAsync(Guid id)
+        public async Task<BaseResponse> RemoveProjectAsync(Guid id)
         {
-            var project = await _projectRepo.RemoveProjectAsync(id);
-            var projectResponse = new ProjectResponseDTO()
+            var projectResponse = new BaseResponse()
             {
-                Id = project.Id,
-                Name = project.Name,
-                Color = project.Color,
-                ViewType = project.ViewType
+                Status = false
             };
+
+            if (await IsInboxExistOrNot(id))
+            {
+                projectResponse.Message = "Inbox cannot be deleted!!!";
+                return projectResponse;
+            }
+
+            bool isDeleted = await MarkProjectAsDeleted(id);
+
+            if (isDeleted)
+            {
+                projectResponse.Status = true;
+                projectResponse.Message = "Project deleted successfully!!!";
+            }
             return projectResponse;
             
         }
+
+        private async Task<bool> MarkProjectAsDeleted(Guid id)
+        {
+            var project = await _genericRepo.GetAsync(id);
+            project.IsDeleted = true;
+
+            project = await _genericRepo.UpdateAsync(project);
+            if (project == null)
+                return false;
+            else
+                return true;
+        }
+
+        public async Task<bool> IsInboxExistOrNot(Guid id)
+        {
+            return await _genericRepo.IsInboxExistOrNot(id);
+        }
+
+
+
+
     }
 }

@@ -9,10 +9,11 @@ namespace TaskManager.API.Services.Interfaces
 {
     public interface IProjectService
     {
-        Task<IEnumerable<ProjectResponseDTO>> GetProjectsAsync();
-        Task<ProjectResponseDTO> GetProjectAsync(Guid id);
-        Task<ProjectResponseDTO> AddProjectAsync(ProjectRequestDTO project);
-        Task<ProjectResponseDTO> UpdateProjectAsync(Guid id, ProjectRequestDTO project);
-        Task<ProjectResponseDTO> RemoveProjectAsync(Guid id);
+        Task<IEnumerable<ProjectResponse>> GetProjectsAsync();
+        Task<ProjectResponse> GetProjectAsync(Guid id);
+        Task<ProjectResponse> AddProjectAsync(ProjectRequest project);
+        Task<ProjectResponse> UpdateProjectAsync(Guid id, ProjectRequest project);
+        Task<BaseResponse> RemoveProjectAsync(Guid id);
+
     }
 }
