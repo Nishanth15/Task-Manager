@@ -67,21 +67,19 @@ namespace TaskManager.API.Services
 
             project = await _repo.AddAsync(project);
 
-            var projectResponse = _mapper.Map<Project, ProjectResponse>(project);
-
-            return projectResponse;
+            return _mapper.Map<Project, ProjectResponse>(project);
 
         }
 
         public async Task<ProjectResponse> UpdateProjectAsync(Guid id, ProjectRequest projectRequest)
         {
             var project = _mapper.Map<ProjectRequest, Project>(projectRequest);
+            project.Id = id;
             project.Modified = DateTime.Now;
 
             project = await _repo.UpdateAsync(project);
-            var projectResponse = _mapper.Map<Project, ProjectResponse>(project);
 
-            return projectResponse;
+            return _mapper.Map<Project, ProjectResponse>(project);
             
         }
 

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace TaskManager.API.DTOs
 {
@@ -12,7 +9,7 @@ namespace TaskManager.API.DTOs
         public string ProjectId { get; set; }
     }
 
-    public class SectionResponse : BaseResponse
+    public class SectionResponse : BaseDTO
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -20,9 +17,6 @@ namespace TaskManager.API.DTOs
         public string ProjectId { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsArchived { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime Modified { get; set; }
-        public DateTime DateArchived { get; set; }
     }
 
 
