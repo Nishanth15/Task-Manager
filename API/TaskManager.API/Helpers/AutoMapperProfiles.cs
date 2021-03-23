@@ -9,12 +9,10 @@ namespace TaskManager.API.Helpers
     {
         public AutoMapperProfiles()
         {
-            CreateMap<Project, ProjectResponse>()
-                .ForMember(dest => dest.ParentId, opt => opt.MapFrom(src => Guid.Parse(src.ParentId)));
-            CreateMap<ProjectRequest, Project>()
-                .ForMember(dest => dest.ParentId, opt => opt.MapFrom(src => src.ParentId.ToString()));
-            CreateMap<Section, SectionResponse>()
-                .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => Guid.Parse(src.ProjectId)));
+            CreateMap<Project, ProjectResponse>();
+            CreateMap<ProjectRequest, Project>();
+            CreateMap<Section, SectionResponse>();
+            CreateMap<SectionRequest, Section>();
         }
     }
 }
