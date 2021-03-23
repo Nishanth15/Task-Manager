@@ -32,7 +32,6 @@ namespace TaskManager.API
 
 
             // Repositories
-            services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IGenericRepository<Project>, GenericRepository<Project>>();
 
 

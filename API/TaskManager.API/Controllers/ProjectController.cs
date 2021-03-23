@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using TaskManager.API.DTOs;
 using TaskManager.API.Services.Interfaces;
-using TaskManager.Model;
 
 namespace TaskManager.API.Controllers
 {

@@ -12,20 +12,18 @@ namespace TaskManager.API.Services
 {
     public class ProjectService : IProjectService
     {
-        private readonly IProjectRepository _projectRepo;
-        private readonly IGenericRepository<Project> _genericRepo;
+        private readonly IGenericRepository<Project> _repo;
         private readonly IMapper _mapper;
 
-        public ProjectService(IProjectRepository projectRepo, IGenericRepository<Project> genericRepo, IMapper mapper)
+        public ProjectService(IGenericRepository<Project> repo, IMapper mapper)
         {
-            _projectRepo = projectRepo;
-            _genericRepo = genericRepo;
+            _repo = repo;
             _mapper = mapper;
         }
 
         public async Task<IEnumerable<ProjectResponse>> GetProjectsAsync()
         {
-            var projectList = await _genericRepo.GetAllAsync();
+            var projectList = await _repo.GetAllAsync();
             var projectResponseList = new List<ProjectResponse>();
             projectList.ToList().ForEach(project =>
             {
@@ -41,7 +39,7 @@ namespace TaskManager.API.Services
 
         public async Task<ProjectResponse> GetProjectAsync(Guid id)
         {
-            var project = await _genericRepo.GetAsync(id);
+            var project = await _repo.GetAsync(id);
             var projectResponse = new ProjectResponse();
 
             if (project == null)
@@ -67,7 +65,7 @@ namespace TaskManager.API.Services
             project.Modified = DateTime.Now;
             project.ParentId = projectRequest.ParentId;
 
-            project = await _genericRepo.AddAsync(project);
+            project = await _repo.AddAsync(project);
 
             var projectResponse = _mapper.Map<Project, ProjectResponse>(project);
 
@@ -80,16 +78,16 @@ namespace TaskManager.API.Services
             var project = _mapper.Map<ProjectRequest, Project>(projectRequest);
             project.Modified = DateTime.Now;
 
-            project = await _genericRepo.UpdateAsync(project);
+            project = await _repo.UpdateAsync(project);
             var projectResponse = _mapper.Map<Project, ProjectResponse>(project);
 
             return projectResponse;
             
         }
 
-        public async Task<BaseResponse> RemoveProjectAsync(Guid id)
+        public async Task<BaseDTO> RemoveProjectAsync(Guid id)
         {
-            var projectResponse = new BaseResponse()
+            var projectResponse = new BaseDTO()
             {
                 Status = false
             };
@@ -113,10 +111,10 @@ namespace TaskManager.API.Services
 
         private async Task<bool> MarkProjectAsDeleted(Guid id)
         {
-            var project = await _genericRepo.GetAsync(id);
+            var project = await _repo.GetAsync(id);
             project.IsDeleted = true;
 
-            project = await _genericRepo.UpdateAsync(project);
+            project = await _repo.UpdateAsync(project);
             if (project == null)
                 return false;
             else
@@ -125,7 +123,7 @@ namespace TaskManager.API.Services
 
         public async Task<bool> IsInboxExistOrNot(Guid id)
         {
-            return await _genericRepo.IsInboxExistOrNot(id);
+            return await _repo.IsInboxExistOrNot(id);
         }
 
 

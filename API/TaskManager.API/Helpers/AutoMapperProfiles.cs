@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TaskManager.API.DTOs;
 using TaskManager.Model;
 
@@ -16,6 +13,8 @@ namespace TaskManager.API.Helpers
                 .ForMember(dest => dest.ParentId, opt => opt.MapFrom(src => Guid.Parse(src.ParentId)));
             CreateMap<ProjectRequest, Project>()
                 .ForMember(dest => dest.ParentId, opt => opt.MapFrom(src => src.ParentId.ToString()));
+            CreateMap<Section, SectionResponse>()
+                .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => Guid.Parse(src.ProjectId)));
         }
     }
 }
