@@ -12,7 +12,7 @@ namespace TaskManager.API.DTOs
     }
 
 
-    public class ProjectResponse : BaseResponse
+    public class ProjectResponse : BaseDTO
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
