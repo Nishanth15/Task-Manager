@@ -24,4 +24,17 @@ namespace TaskManager.Database.Config
             builder.Property(s => s.ProjectId).IsRequired();
         }
     }
+
+    public class TaskConfiguration : IEntityTypeConfiguration<Task>
+    {
+        public void Configure(EntityTypeBuilder<Task> builder)
+        {
+            builder.Property(t => t.Id).IsRequired();
+            builder.Property(t => t.Content).IsRequired();
+            builder.Property(t => t.UserId).IsRequired();
+            builder.Property(t => t.ProjectId).IsRequired();
+            builder.Property(t => t.AddedBy).IsRequired();
+
+        }
+    }
 }
