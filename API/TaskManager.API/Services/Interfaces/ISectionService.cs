@@ -11,7 +11,7 @@ namespace TaskManager.API.Services.Interfaces
         Task<SectionResponse> GetSectionAsync(Guid id);
         Task<SectionResponse> AddSectionAsync(SectionRequest sectionRequest);
         Task<SectionResponse> UpdateSectionAsync(Guid id, SectionRequest sectionRequest);
-        Task<BaseDTO> RemoveSectionAsync(Guid id);
+        Task<BaseResponse> RemoveSectionAsync(Guid id);
 
     }
 }

@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TaskManager.Database.Migrations
 {
-    public partial class TaskCreated : Migration
+    public partial class ItemCreated : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Tasks",
+                name: "Items",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -33,14 +33,14 @@ namespace TaskManager.Database.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tasks", x => x.Id);
+                    table.PrimaryKey("PK_Items", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Tasks");
+                name: "Items");
         }
     }
 }

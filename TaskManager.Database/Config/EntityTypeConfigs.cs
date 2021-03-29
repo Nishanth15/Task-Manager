@@ -25,15 +25,15 @@ namespace TaskManager.Database.Config
         }
     }
 
-    public class TaskConfiguration : IEntityTypeConfiguration<Task>
+    public class ItemConfiguration : IEntityTypeConfiguration<Item>
     {
-        public void Configure(EntityTypeBuilder<Task> builder)
+        public void Configure(EntityTypeBuilder<Item> builder)
         {
-            builder.Property(t => t.Id).IsRequired();
-            builder.Property(t => t.Content).IsRequired();
-            builder.Property(t => t.UserId).IsRequired();
-            builder.Property(t => t.ProjectId).IsRequired();
-            builder.Property(t => t.AddedBy).IsRequired();
+            builder.Property(i => i.Id).IsRequired();
+            builder.Property(i => i.Content).IsRequired();
+            builder.Property(i => i.UserId).IsRequired();
+            builder.Property(i => i.ProjectId).IsRequired();
+            builder.Property(i => i.AddedBy).IsRequired();
 
         }
     }

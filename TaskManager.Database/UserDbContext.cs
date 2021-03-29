@@ -12,7 +12,7 @@ namespace TaskManager.Database
 
         public DbSet<Section> Sections { get; set; }
 
-        public DbSet<Task> Tasks { get; set; }
+        public DbSet<Item> Items { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

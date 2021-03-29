@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using TaskManager.API.Common.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,7 @@ namespace TaskManager.API.Services
             if(section ==  null)
             {
                 sectionResponse.Status = true;
+                sectionResponse.Message = Constants.SectionNotFound;
             }
             else
             {
@@ -64,7 +66,10 @@ namespace TaskManager.API.Services
 
             section = await _repo.AddAsync(section);
 
-            return _mapper.Map<Section, SectionResponse>(section);
+            var sectionResponse = _mapper.Map<Section, SectionResponse>(section);
+            sectionResponse.Message = Constants.SectionAddedSuccessfully;
+
+            return sectionResponse;
         }
 
         public async Task<SectionResponse> UpdateSectionAsync(Guid id, SectionRequest sectionRequest)
@@ -78,16 +83,16 @@ namespace TaskManager.API.Services
             return _mapper.Map<Section, SectionResponse>(section);
         }
 
-        public async Task<BaseDTO> RemoveSectionAsync(Guid id)
+        public async Task<BaseResponse> RemoveSectionAsync(Guid id)
         {
-            var sectionResponse = new BaseDTO();
+            var sectionResponse = new BaseResponse();
 
             bool isDeleted = await MarkSectionAsDeleted(id);
 
             if (isDeleted)
             {
                 sectionResponse.Status = true;
-                sectionResponse.Message = "Section deleted successfully!!!";
+                sectionResponse.Message = Constants.SectionDeletedSuccessfully;
             }
             return sectionResponse;
         }

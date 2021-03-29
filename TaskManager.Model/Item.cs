@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TaskManager.Model
 {
-    public class Task : BaseModel
+    public class Item : BaseModel
     {
         public string UserId { get; set; }
         public string Content { get; set; }

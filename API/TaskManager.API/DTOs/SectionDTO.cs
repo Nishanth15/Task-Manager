@@ -9,7 +9,7 @@ namespace TaskManager.API.DTOs
         public string ProjectId { get; set; }
     }
 
-    public class SectionResponse : BaseDTO
+    public class SectionResponse : BaseResponse
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

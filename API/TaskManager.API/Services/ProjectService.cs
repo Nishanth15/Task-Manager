@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TaskManager.API.Common.Constants;
 using TaskManager.API.DTOs;
 using TaskManager.API.Services.Interfaces;
 using TaskManager.DataManager.Interfaces;
@@ -45,7 +46,7 @@ namespace TaskManager.API.Services
             if (project == null)
             {
                 projectResponse.Status = true;
-                //projectResponse.Message = Constant.ProjectNotFound;
+                projectResponse.Message = Constants.ProjectNotFound;
             }
             else
             {
@@ -83,16 +84,17 @@ namespace TaskManager.API.Services
             
         }
 
-        public async Task<BaseDTO> RemoveProjectAsync(Guid id)
+        public async Task<BaseResponse> RemoveProjectAsync(Guid id)
         {
-            var projectResponse = new BaseDTO()
+            var projectResponse = new BaseResponse()
             {
                 Status = false
             };
 
             if (await IsInboxExistOrNot(id))
             {
-                projectResponse.Message = "Inbox cannot be deleted!!!";
+                projectResponse.Status = true;
+                projectResponse.Message = Constants.InboxCannotBeDeleted;
                 return projectResponse;
             }
 
@@ -101,7 +103,7 @@ namespace TaskManager.API.Services
             if (isDeleted)
             {
                 projectResponse.Status = true;
-                projectResponse.Message = "Project deleted successfully!!!";
+                projectResponse.Message = Constants.ProjectDeletedSuccessfully;
             }
             return projectResponse;
             

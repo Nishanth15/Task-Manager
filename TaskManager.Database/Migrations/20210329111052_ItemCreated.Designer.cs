@@ -10,8 +10,8 @@ using TaskManager.Database;
 namespace TaskManager.Database.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20210327173238_TaskCreated")]
-    partial class TaskCreated
+    [Migration("20210329111052_ItemCreated")]
+    partial class ItemCreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,75 @@ namespace TaskManager.Database.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("TaskManager.Model.Item", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AddedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AssignedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Checked")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CompletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Due")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("InHistory")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ParentId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProjectId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ResponsibleTo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SectionId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Items");
+                });
 
             modelBuilder.Entity("TaskManager.Model.Project", b =>
                 {
@@ -100,75 +169,6 @@ namespace TaskManager.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sections");
-                });
-
-            modelBuilder.Entity("TaskManager.Model.Task", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AddedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AssignedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Checked")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("CompletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DayOrder")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Due")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("InHistory")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("Modified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ParentId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Priority")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProjectId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ResponsibleTo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SectionId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tasks");
                 });
 #pragma warning restore 612, 618
         }
