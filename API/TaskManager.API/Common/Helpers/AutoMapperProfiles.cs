@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using System;
 using TaskManager.API.DTOs;
 using TaskManager.Model;
 
@@ -13,6 +12,9 @@ namespace TaskManager.API.Helpers
             CreateMap<ProjectRequest, Project>();
             CreateMap<Section, SectionResponse>();
             CreateMap<SectionRequest, Section>();
+            CreateMap<Item, ItemResponse>();
+            CreateMap<ItemRequest, Item>();
+
         }
     }
 }

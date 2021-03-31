@@ -21,8 +21,8 @@ namespace TaskManager.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProjectResponse>>> Get()
         {
-            var project = await _service.GetProjectsAsync();
-            return Ok(project);
+            var projects = await _service.GetProjectsAsync();
+            return Ok(projects);
         }
 
         [HttpGet("{id}")]
@@ -47,7 +47,7 @@ namespace TaskManager.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ProjectResponse>> Delete(Guid id)
+        public async Task<ActionResult<BaseResponse>> Delete(Guid id)
         {
             var project = await _service.RemoveProjectAsync(id);
             return Ok(project);

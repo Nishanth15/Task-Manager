@@ -11,7 +11,7 @@ namespace TaskManager.API.Services.Interfaces
         Task<ProjectResponse> GetProjectAsync(Guid id);
         Task<ProjectResponse> AddProjectAsync(ProjectRequest projectRequest);
         Task<ProjectResponse> UpdateProjectAsync(Guid id, ProjectRequest projectRequest);
-        Task<BaseDTO> RemoveProjectAsync(Guid id);
+        Task<BaseResponse> RemoveProjectAsync(Guid id);
 
     }
 }

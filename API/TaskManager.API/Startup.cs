@@ -10,7 +10,6 @@ using TaskManager.API.Services;
 using TaskManager.API.Services.Interfaces;
 using TaskManager.DataManager;
 using TaskManager.DataManager.Interfaces;
-using TaskManager.Model;
 using TaskManager.API.Helpers;
 
 namespace TaskManager.API
@@ -37,7 +36,7 @@ namespace TaskManager.API
             // Services
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<ISectionService, SectionService>();
-
+            services.AddScoped<IItemService, ItemService>();
 
             services.AddSwaggerGen(c =>
             {

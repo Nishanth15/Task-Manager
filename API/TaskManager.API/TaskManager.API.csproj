@@ -25,4 +25,19 @@
     <ProjectReference Include="..\..\TaskManager.Model\TaskManager.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Common\Constants\Constants.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Constants.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Common\Constants\Constants.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Constants.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

@@ -22,36 +22,36 @@ namespace TaskManager.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SectionResponse>>> Get()
         {
-            var project = await _service.GetSectionsAsync();
-            return Ok(project);
+            var sections = await _service.GetSectionsAsync();
+            return Ok(sections);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<SectionResponse>> Get(Guid id)
         {
-            var project = await _service.GetSectionAsync(id);
-            return Ok(project);
+            var section = await _service.GetSectionAsync(id);
+            return Ok(section);
         }
 
         [HttpPost]
         public async Task<ActionResult<SectionResponse>> Post(SectionRequest sectionRequest)
         {
-            var project = await _service.AddSectionAsync(sectionRequest);
-            return Ok(project);
+            var section = await _service.AddSectionAsync(sectionRequest);
+            return Ok(section);
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<SectionResponse>> Put(Guid id, SectionRequest sectionRequest)
         {
-            var project = await _service.UpdateSectionAsync(id, sectionRequest);
-            return Ok(project);
+            var section = await _service.UpdateSectionAsync(id, sectionRequest);
+            return Ok(section);
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<SectionResponse>> Delete(Guid id)
+        public async Task<ActionResult<BaseResponse>> Delete(Guid id)
         {
-            var project = await _service.RemoveSectionAsync(id);
-            return Ok(project);
+            var section = await _service.RemoveSectionAsync(id);
+            return Ok(section);
         }
     }
 }
