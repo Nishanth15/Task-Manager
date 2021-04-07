@@ -27,14 +27,31 @@ namespace TaskManager.DataManager
 
         public async Task<T> GetAsync(Guid id)
         {
-            return await _userDbContext.Set<T>().Where(p => p.Id == id).SingleOrDefaultAsync();
+            try
+            {
+                return await _userDbContext.Set<T>().Where(obj => obj.Id == id).SingleOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public async Task<T> AddAsync(T obj)
         {
-            await _userDbContext.Set<T>().AddAsync(obj);
-            await _userDbContext.SaveChangesAsync();
-            return obj;
+            try
+            {
+                await _userDbContext.Set<T>().AddAsync(obj);
+                await _userDbContext.SaveChangesAsync();
+                return obj;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            
 
         }
 
@@ -43,8 +60,24 @@ namespace TaskManager.DataManager
             _userDbContext.Set<T>().Update(obj);
             await _userDbContext.SaveChangesAsync();
             return obj;
+        }
 
-
+        public async Task<T> UpdateCollapseAsync(T obj)
+        {
+            try
+            {
+                _userDbContext.Set<T>().Attach(obj);
+                _userDbContext.Entry(obj).Property("Collapsed").IsModified = true;
+                await _userDbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                obj = null;
+                return obj;
+            }
+           
+            return obj;
         }
 
         public async Task<bool> RemoveAsync(Guid id)
@@ -63,6 +96,12 @@ namespace TaskManager.DataManager
         }
 
         #endregion
+        
+        #region Item
+        #endregion
+        
+        #region Section
 
+        #endregion
     }
 }

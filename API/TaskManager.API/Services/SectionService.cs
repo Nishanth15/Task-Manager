@@ -83,6 +83,20 @@ namespace TaskManager.API.Services
             return _mapper.Map<Section, SectionResponse>(section);
         }
 
+        public async Task<SectionResponse> CollapseSectionAsync(Guid id, int Collapsed)
+        {
+            var Section = await _repo.GetAsync(id);
+            Section.Id = id;
+            Section.Collapsed = Collapsed;
+
+            Section = await _repo.UpdateCollapseAsync(Section);
+
+            var sectionResponse = _mapper.Map<Section, SectionResponse>(Section);
+            sectionResponse.Status = true;
+
+            return sectionResponse;
+        }
+
         public async Task<BaseResponse> RemoveSectionAsync(Guid id)
         {
             var sectionResponse = new BaseResponse();

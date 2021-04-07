@@ -11,8 +11,8 @@ namespace TaskManager.DataManager.Interfaces
         Task<T> GetAsync(Guid id);
         Task<T> AddAsync(T model);
         Task<T> UpdateAsync(T model);
+        Task<T> UpdateCollapseAsync(T obj);
         Task<bool> RemoveAsync(Guid id);
-
 
         #region Project
         Task<bool> IsInboxExistOrNot(Guid Id);

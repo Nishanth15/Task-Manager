@@ -37,5 +37,7 @@ namespace TaskManager.API.DTOs
         public string ResponsibleTo { get; set; }
         public DateTime Due { get; set; }
         public DateTime CompletedAt { get; set; }
+        public int Collapsed { get; set; }
+
     }
 }
