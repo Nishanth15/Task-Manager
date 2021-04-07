@@ -14,8 +14,7 @@ namespace TaskManager.Model
         public bool IsFavorite { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime Modified { get; set; }
-
-
+        public int Collapsed { get; set; }
     }
 
    

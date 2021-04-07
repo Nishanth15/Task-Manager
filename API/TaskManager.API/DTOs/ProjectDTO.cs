@@ -21,6 +21,8 @@ namespace TaskManager.API.DTOs
         public string ParentId { get; set; }
         public int Order { get; set; }
         public bool IsInbox { get; set; }
+        public int Collapsed { get; set; }
+
     }
 
     public enum ViewType

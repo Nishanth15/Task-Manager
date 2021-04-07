@@ -17,6 +17,8 @@ namespace TaskManager.API.DTOs
         public string ProjectId { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsArchived { get; set; }
+        public int Collapsed { get; set; }
+
     }
 
 

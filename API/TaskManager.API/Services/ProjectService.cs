@@ -80,8 +80,21 @@ namespace TaskManager.API.Services
 
             project = await _repo.UpdateAsync(project);
 
-            return _mapper.Map<Project, ProjectResponse>(project);
+            return _mapper.Map<Project, ProjectResponse>(project); 
+        }
+
+        public async Task<ProjectResponse> CollapseProjectAsync(Guid id, int Collapsed)
+        {
+            var project = await _repo.GetAsync(id);
+            project.Id = id;
+            project.Collapsed = Collapsed;
             
+            project = await _repo.UpdateCollapseAsync(project);
+
+            var projectResponse = _mapper.Map<Project, ProjectResponse>(project);
+            projectResponse.Status = true;
+
+            return projectResponse;
         }
 
         public async Task<BaseResponse> RemoveProjectAsync(Guid id)
@@ -125,9 +138,5 @@ namespace TaskManager.API.Services
         {
             return await _repo.IsInboxExistOrNot(id);
         }
-
-
-
-
     }
 }
