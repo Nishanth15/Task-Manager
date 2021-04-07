@@ -18,6 +18,7 @@ namespace TaskManager.Model
         public string AddedBy { get; set; }
         public string AssignedBy { get; set; }
         public string ResponsibleTo { get; set; }
+        public int Collapsed { get; set; }
         public DateTime Due { get; set; }
         public DateTime CompletedAt{ get; set; }
         public DateTime CreatedAt { get; set; }
