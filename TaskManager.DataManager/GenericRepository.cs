@@ -31,7 +31,7 @@ namespace TaskManager.DataManager
             {
                 return await _userDbContext.Set<T>().Where(obj => obj.Id == id).SingleOrDefaultAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw;
@@ -46,7 +46,7 @@ namespace TaskManager.DataManager
                 await _userDbContext.SaveChangesAsync();
                 return obj;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw;
