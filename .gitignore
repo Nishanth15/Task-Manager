@@ -22,6 +22,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+appsettings.json
+appsettings.Development.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -383,8 +385,5 @@ obj/
 # Common node modules locations
 /node_modules
 /wwwroot/node_modules
-
-appsettings.json
-appsettings.Development.json
 
 # End of https://www.toptal.com/developers/gitignore/api/csharp,dotnetcore
