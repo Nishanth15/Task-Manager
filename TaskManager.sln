@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{C8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Database", "TaskManager.Database\TaskManager.Database.csproj", "{BB791373-ADA0-4DB1-99B8-2B61BF0BC1D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.DataManager", "TaskManager.DataManager\TaskManager.DataManager.csproj", "{8F0D8258-209D-49F3-9D2E-DFD4C668B985}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.DataManager", "TaskManager.DataManager\TaskManager.DataManager.csproj", "{8F0D8258-209D-49F3-9D2E-DFD4C668B985}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
