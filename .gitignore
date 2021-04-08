@@ -22,9 +22,6 @@
 *.user
 *.userosscache
 *.sln.docstates
-appsettings.json
-appsettings.Development.json
-
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -379,7 +376,8 @@ FodyWeavers.xsd
 # .NET Core build folders
 bin/
 obj/
-
+appsettings.json
+appsettings.Development.json
 
 
 # Common node modules locations
