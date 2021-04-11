@@ -1,0 +1,9 @@
+//Layout colors
+$primary: #2a8cff;
+$layout_background: #edf5ff;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '../styles/layout.module.scss';
