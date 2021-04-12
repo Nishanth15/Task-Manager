@@ -1,23 +1,23 @@
 .layout {
     height: 100vh;
-    background-color: $layout_background; 
+    background-color: $layout_background;
 }
 
-.header {
-    position: absolute;
-    width: 100vw;
-    left: 0px;
-    background: #ffffff;
-    box-shadow: 0px -5px 26px 10px rgba(191, 213, 255, 0.57);
-}
+// .header {
+//     position: absolute;
+//     width: 100vw;
+//     left: 0px;
+//     background: #ffffff;
+//     box-shadow: 0px -5px 26px 10px #bfd5ff91;
+// }
 
 .sidebar {
-    @apply bg-white w-64 h-screen;
+    transition: left 0.2s;
+    @apply bg-white fixed w-64 h-screen;
 }
 
-
-@media (max-width: 768px) { 
-    .sidebar{
-        @apply w-0;
+@media (max-width: 768px) {
+    .sidebar {
+        left: -16rem;
     }
- }
+}
