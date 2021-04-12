@@ -1,14 +1,12 @@
 import Head from 'next/head';
-import TopBar from '../components/TopBar.js';
-export default function Home() {
+
+export default function App() {
     return (
         <div>
             <Head>
-                <title>TaskManager</title>
+                <title>Task Manager</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
-            <TopBar></TopBar>
         </div>
     );
 }
