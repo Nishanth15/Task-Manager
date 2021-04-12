@@ -12,12 +12,12 @@
 // }
 
 .sidebar {
-    transition: left 0.2s;
-    @apply bg-white fixed w-64 h-screen;
+    transition: left 0.4s;
+    @apply bg-white fixed left-0 w-64 h-screen;
 }
 
 @media (max-width: 768px) {
     .sidebar {
-        left: -16rem;
+        left: -18rem;
     }
 }
