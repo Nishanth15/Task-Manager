@@ -1,9 +1,12 @@
-//Layout colors
-$primary: #2a8cff;
-$layout_background: #edf5ff;
+$main_font: 'Roboto', sans-serif;
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+body {
+    font-family: $main_font;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import '../styles/layout.module.scss';

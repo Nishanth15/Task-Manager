@@ -1,6 +1,5 @@
 .layout {
-    height: 100vh;
-    background-color: $layout_background;
+    @apply h-screen bg-layout_background;
 }
 
 // .header {
@@ -12,12 +11,24 @@
 // }
 
 .sidebar {
-    transition: left 0.2s;
-    @apply bg-white fixed w-64 h-screen;
+    transition: left 0.4s;
+    @apply p-3 bg-white fixed left-0 w-64 h-screen;
 }
 
 @media (max-width: 768px) {
     .sidebar {
         left: -16rem;
     }
+}
+
+.sidebar .sidebar_list {
+    @apply mt-10;
+}
+
+.sidebar .sidebar_list .item {
+    @apply cursor-pointer text-sidebar_text flex items-center space-x-2 text-sm font-semibold rounded-md m-3 hover:text-primary px-3 py-2 transition-colors duration-75 relative;
+}
+
+.sidebar .sidebar_list .active {
+    @apply bg-sidebar_active text-primary;
 }
