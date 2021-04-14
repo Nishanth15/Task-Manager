@@ -3,32 +3,37 @@
 }
 
 // .header {
-//     position: absolute;
-//     width: 100vw;
-//     left: 0px;
-//     background: #ffffff;
-//     box-shadow: 0px -5px 26px 10px #bfd5ff91;
+//     @apply sticky w-full z-10 left-0 bg-white shadow-topbar;
 // }
 
 .sidebar {
-    transition: left 0.4s;
-    @apply p-3 bg-white fixed left-0 w-64 h-screen;
+    @apply p-3 bg-white fixed w-64 h-screen duration-500 z-10;
 }
 
-@media (max-width: 768px) {
-    .sidebar {
-        left: -16rem;
-    }
+.sidebar.sidebar_show {
+    @apply left-0;
 }
 
-.sidebar .sidebar_list {
+.sidebar.sidebar_hide {
+    @apply -left-64;
+}
+
+.sidebar.sidebar_show .sidebar .sidebar_list {
     @apply mt-10;
 }
 
 .sidebar .sidebar_list .item {
-    @apply cursor-pointer text-sidebar_text flex items-center space-x-2 text-sm font-semibold rounded-md m-3 hover:text-primary px-3 py-2 transition-colors duration-75 relative;
+    @apply cursor-pointer text-sidebar_text tracking-wider flex items-center space-x-2 text-sm font-semibold rounded-md m-3 hover:text-primary px-3 py-2 transition-colors duration-75 relative;
 }
 
 .sidebar .sidebar_list .active {
     @apply bg-sidebar_active text-primary;
+}
+
+.sidebar_switch {
+    @apply absolute text-white cursor-pointer p-2 -top-5 -right-10;
+}
+
+.sidebar.sidebar_hide .sidebar_switch {
+    @apply -right-10;
 }

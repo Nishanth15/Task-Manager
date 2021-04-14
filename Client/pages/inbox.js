@@ -1,14 +1,13 @@
-import Link from 'next/link';
 import Head from 'next/head';
 
-function Project() {
+function Inbox() {
     return (
         <div>
             <Head>
-                <title>Project</title>
+                <title>Inbox</title>
             </Head>
         </div>
     );
 }
 
-export default Project;
+export default Inbox;
