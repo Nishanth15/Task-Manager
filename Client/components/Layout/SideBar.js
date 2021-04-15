@@ -3,9 +3,8 @@ import { useRouter } from 'next/router';
 
 function SideBar() {
     const router = useRouter();
-
     return (
-        <div className="sidebar">
+        <div>
             <img
                 className="logo pt-5 mx-auto"
                 src="/logo.svg"
@@ -14,10 +13,10 @@ function SideBar() {
             />
             <div className="sidebar_list">
                 <ul>
-                    <Link href="/">
+                    <Link href="/inbox">
                         <li
                             className={`item ${
-                                router.pathname === '/' ? 'active' : ''
+                                router.pathname === '/inbox' ? 'active' : ''
                             }`}
                         >
                             <svg
@@ -84,8 +83,21 @@ function SideBar() {
                                     d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
                                 />
                             </svg>
-
-                            <p>Projects</p>
+                            <div className="pl-1 w-full flex justify-between">
+                                <p>Projects</p>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-5 w-5 "
+                                    viewBox="0 0 20 20"
+                                    fill="grey"
+                                >
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clipRule="evenodd"
+                                    />
+                                </svg>
+                            </div>
                         </li>
                     </Link>
 
