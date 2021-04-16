@@ -1,45 +1,115 @@
+// Layout
 .layout {
     @apply h-screen bg-layout_background;
 }
 
-.sidebar {
-    @apply p-3 bg-white fixed w-64 h-screen duration-500 z-10;
-}
-
-.sidebar.sidebar_show {
-    @apply left-0 -md:-left-64;
-}
-
-.sidebar.sidebar_hide {
-    @apply -left-64 -md:left-0;
-}
-
-.sidebar .sidebar_list {
-    @apply mt-10;
-}
-
-.sidebar .sidebar_list .item {
-    @apply cursor-pointer text-sidebar_text tracking-wider flex items-center 
-        space-x-2 text-sm font-semibold rounded-md m-3 hover:text-primary px-3 
-        py-2 transition-colors duration-75;
-}
-
-.sidebar .sidebar_list .active {
-    @apply bg-sidebar_active text-primary;
-}
-
-.sidebar_switch {
-    @apply absolute text-white cursor-pointer p-2 -top-5 left-54;
-}
-
+// Layout main content
 .layout_main {
     @apply p-10 ml-0 fixed h-screen duration-500;
 }
 
+// Layout main content shrink and expand
 .layout_main.layout_main_expand {
     @apply ml-64 -md:ml-0;
 }
 
 .layout_main.layout_main_shrink {
     @apply ml-0 -md:ml-64;
+}
+
+// Sidebar
+.sidebar {
+    @apply p-3 bg-white fixed w-64 h-screen duration-500 z-10;
+
+    // Sidebar logo
+    .logo {
+        @apply pt-5 mx-auto;
+    }
+
+    //Sidebar list
+    .sidebar_list {
+        @apply mt-10;
+
+        // Sidebar each single item
+        .item {
+            @apply cursor-pointer text-sidebar_text tracking-wide flex items-center 
+        space-x-2 text-base font-medium rounded-md m-2 hover:text-primary px-3 
+        py-1 transition-colors duration-75;
+        }
+
+        .item.active {
+            @apply bg-sidebar_active text-primary;
+        }
+
+        // Sidebar each expandable item
+        .item_expansion_panel {
+            @apply cursor-pointer text-sidebar_text tracking-wide flex items-center 
+        space-x-2 text-base font-medium rounded-md m-2 hover:text-primary px-3 
+        py-1 transition-colors duration-75;
+
+            .collapes_key {
+                @apply hover:bg-sidebar_active rounded-full duration-200;
+            }
+
+            .expansion_panel_header {
+                @apply pl-1 w-full flex justify-between;
+            }
+
+            .active {
+                @apply transform -rotate-90;
+            }
+        }
+
+        // Sidebar each expandable item list
+        .expansion_panel_list {
+            @apply ml-10 text-sidebar_text text-sm h-56 hidden overflow-hidden hover:overflow-y-scroll;
+        }
+
+        .expansion_panel_list::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            @apply bg-gray-50;
+        }
+
+        .expansion_panel_list::-webkit-scrollbar {
+            @apply w-1.5 bg-gray-300;
+        }
+
+        .expansion_panel_list::-webkit-scrollbar-thumb {
+            @apply bg-gray-400;
+        }
+
+        // Sidebar each expandable item list of each item
+        .expansion_panel_list .expansion_panel_list_item {
+            @apply cursor-pointer text-sidebar_text tracking-wider flex items-center 
+        space-x-2 rounded-md font-normal  hover:text-primary py-2 pl-4  transition-colors duration-75;
+        }
+
+        .expansion_panel_list.active {
+            @apply block;
+        }
+
+        .expansion_panel_list .expansion_panel_list_item.active {
+            @apply bg-sidebar_active text-primary;
+        }
+
+        // Sidebar each expandable item list of each item colors
+
+        .expansion_panel_list .expansion_panel_list_item .projects_color {
+            @apply w-2 h-2 rounded-full bg-red-600 mr-2;
+        }
+    }
+
+    // Sidebar switch
+    .sidebar_switch {
+        @apply absolute text-white cursor-pointer p-2 -top-5 left-54;
+    }
+}
+
+// Sidebar toggle
+.sidebar.sidebar_show {
+    @apply left-0 -md:-left-64;
+}
+
+.sidebar.sidebar_hide {
+    @apply -left-64 -md:left-0;
 }

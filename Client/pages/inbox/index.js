@@ -6,7 +6,7 @@ function Inbox() {
             <Head>
                 <title>Inbox</title>
             </Head>
-            <h1 className="text-5xl">Hello</h1>
+            <h1 className="text-5xl">Inbox</h1>
         </div>
     );
 }

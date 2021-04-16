@@ -11,10 +11,11 @@ function Layout({ children }) {
     return (
         <div className="layout">
             {/* <TopBar /> */}
+
             <div
-                className={`sidebar ${
-                    switchKey ? 'sidebar_show' : 'sidebar_hide'
-                }`}
+                className={
+                    'sidebar ' + (switchKey ? 'sidebar_show' : 'sidebar_hide')
+                }
             >
                 <SideNav />
                 <div className="sidebar_switch" onClick={switch_sideBar}>
@@ -39,11 +40,11 @@ function Layout({ children }) {
                     </svg>
                 </div>
             </div>
-
             <div
-                className={`layout_main ${
-                    switchKey ? 'layout_main_expand' : 'layout_main_shrink'
-                }`}
+                className={
+                    'layout_main ' +
+                    (switchKey ? 'layout_main_expand' : 'layout_main_shrink')
+                }
             >
                 {children}
             </div>

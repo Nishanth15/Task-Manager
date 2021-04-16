@@ -1,12 +1,35 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+
+const url = 'http://localhost:5000/api/project';
 
 function SideBar() {
     const router = useRouter();
+
+    const [projectCollapse, setProjectCollapse] = useState(false);
+    const [labelCollapse, setLabelCollapse] = useState(false);
+    const [projects, setProjects] = useState([]);
+
+    const switch_labelCollapse = () => {
+        setLabelCollapse(labelCollapse ? false : true);
+    };
+    const switch_projectCollapse = () => {
+        setProjectCollapse(projectCollapse ? false : true);
+    };
+    const getProjects = async () => {
+        fetch(url)
+            .then((response) => response.json())
+            .then((data) => setProjects(data));
+    };
+    useEffect(() => {
+        getProjects();
+    }, []);
+
     return (
         <div>
             <img
-                className="logo pt-5 mx-auto"
+                className="logo"
                 src="/logo.svg"
                 alt="taskManager"
                 width="200"
@@ -15,9 +38,10 @@ function SideBar() {
                 <ul>
                     <Link href="/inbox">
                         <li
-                            className={`item ${
-                                router.pathname === '/inbox' ? 'active' : ''
-                            }`}
+                            className={
+                                'item ' +
+                                (router.asPath === '/inbox' ? 'active' : '')
+                            }
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -40,9 +64,10 @@ function SideBar() {
 
                     <Link href="/calender">
                         <li
-                            className={`item ${
-                                router.pathname === '/calender' ? 'active' : ''
-                            }`}
+                            className={
+                                'item ' +
+                                (router.asPath === '/calender' ? 'active' : '')
+                            }
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -63,11 +88,10 @@ function SideBar() {
                         </li>
                     </Link>
 
-                    <Link href="/project">
+                    <div className="item_panel">
                         <li
-                            className={`item ${
-                                router.pathname === '/project' ? 'active' : ''
-                            }`}
+                            className={'item_expansion_panel '}
+                            onClick={switch_projectCollapse}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -83,29 +107,59 @@ function SideBar() {
                                     d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
                                 />
                             </svg>
-                            <div className="pl-1 w-full flex justify-between">
+                            <div className="expansion_panel_header">
                                 <p>Projects</p>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    className="h-5 w-5 "
+                                    className={
+                                        'h-5 w-5 collapes_key ' +
+                                        (projectCollapse ? 'active' : '')
+                                    }
                                     viewBox="0 0 20 20"
-                                    fill="grey"
+                                    fill="currentColor"
                                 >
                                     <path
                                         fillRule="evenodd"
-                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
                                         clipRule="evenodd"
                                     />
                                 </svg>
                             </div>
                         </li>
-                    </Link>
+                        <ul
+                            className={
+                                'expansion_panel_list ' +
+                                (projectCollapse ? 'active' : '')
+                            }
+                        >
+                            {projects.map((project) => {
+                                return (
+                                    <Link
+                                        href={`/project/${project.id}`}
+                                        key={project.id}
+                                    >
+                                        <li
+                                            className={
+                                                'expansion_panel_list_item ' +
+                                                (router.asPath ===
+                                                '/project/' + project.id
+                                                    ? 'active'
+                                                    : '')
+                                            }
+                                        >
+                                            <div className="projects_color"></div>
+                                            <p>{project.name}</p>
+                                        </li>
+                                    </Link>
+                                );
+                            })}
+                        </ul>
+                    </div>
 
                     <Link href="/label">
                         <li
-                            className={`item ${
-                                router.pathname === '/label' ? 'active' : ''
-                            }`}
+                            className={'item_expansion_panel '}
+                            onClick={switch_labelCollapse}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +176,25 @@ function SideBar() {
                                 />
                             </svg>
 
-                            <p>Label</p>
+                            <div className="expansion_panel_header">
+                                <p>Label</p>
+
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className={
+                                        'h-5 w-5 collapes_key ' +
+                                        (labelCollapse ? 'active' : '')
+                                    }
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                        clipRule="evenodd"
+                                    />
+                                </svg>
+                            </div>
                         </li>
                     </Link>
                 </ul>
