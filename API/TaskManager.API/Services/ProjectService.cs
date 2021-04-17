@@ -87,7 +87,7 @@ namespace TaskManager.API.Services
         {
             var project = await _repo.GetAsync(id);
             project.Id = id;
-            project.Collapsed = Collapsed;
+            //project.Collapsed = Collapsed;
             
             project = await _repo.UpdateCollapseAsync(project);
 
