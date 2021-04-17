@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import Head from 'next/head';
 
 function PId() {
     const [project, setProject] = useState([]);
@@ -20,9 +21,15 @@ function PId() {
 
     const { name, parentId } = project;
     return (
-        <div>
-            <h5>Project Name: {name}</h5>
-            <p>ParentId: {parentId}</p>
+        <div className="project">
+            <Head>
+                <title>{name}</title>
+            </Head>
+            <div>
+                <h1 className="text-5xl">Project</h1>
+                <h5>Name: {name}</h5>
+                <p>ParentId: {parentId}</p>
+            </div>
         </div>
     );
 }

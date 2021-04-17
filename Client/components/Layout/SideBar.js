@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
@@ -138,7 +139,7 @@ function SideBar() {
                                         href={`/project/${project.id}`}
                                         key={project.id}
                                     >
-                                        <li
+                                        <div
                                             className={
                                                 'expansion_panel_list_item ' +
                                                 (router.asPath ===
@@ -147,9 +148,11 @@ function SideBar() {
                                                     : '')
                                             }
                                         >
-                                            <div className="projects_color"></div>
-                                            <p>{project.name}</p>
-                                        </li>
+                                            <span>
+                                                <div className="projects_color"></div>
+                                            </span>
+                                            <span>{project.name}</span>
+                                        </div>
                                     </Link>
                                 );
                             })}
@@ -198,6 +201,12 @@ function SideBar() {
                         </li>
                     </Link>
                 </ul>
+            </div>
+            <div className="user_menu">
+                <div className="user_icon">
+                    <Image src="/user.png" width={100} height={100}></Image>
+                </div>
+                <h5 className="user_name">Nishanth</h5>
             </div>
         </div>
     );
