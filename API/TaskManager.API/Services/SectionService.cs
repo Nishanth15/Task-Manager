@@ -45,7 +45,7 @@ namespace TaskManager.API.Services
 
             if(section ==  null)
             {
-                sectionResponse.Status = true;
+                sectionResponse.Success = true;
                 sectionResponse.Message = Constants.SectionNotFound;
             }
             else
@@ -92,7 +92,7 @@ namespace TaskManager.API.Services
             Section = await _repo.UpdateCollapseAsync(Section);
 
             var sectionResponse = _mapper.Map<Section, SectionResponse>(Section);
-            sectionResponse.Status = true;
+            sectionResponse.Success = true;
 
             return sectionResponse;
         }
@@ -105,7 +105,7 @@ namespace TaskManager.API.Services
 
             if (isDeleted)
             {
-                sectionResponse.Status = true;
+                sectionResponse.Success = true;
                 sectionResponse.Message = Constants.SectionDeletedSuccessfully;
             }
             return sectionResponse;

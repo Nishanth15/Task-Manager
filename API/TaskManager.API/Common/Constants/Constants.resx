@@ -147,4 +147,22 @@
   <data name="SectionNotFound" xml:space="preserve">
     <value>Section not found!!!</value>
   </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>Internal Server Error!!!</value>
+  </data>
+  <data name="UserAlreadyRegistered" xml:space="preserve">
+    <value>User already registered!!!</value>
+  </data>
+  <data name="UserAuthenticatedSuccessfully" xml:space="preserve">
+    <value>User authenticated successfully!!!</value>
+  </data>
+  <data name="UserCreatedSuccessfully" xml:space="preserve">
+    <value>User created successfully!!!</value>
+  </data>
+  <data name="UserNotActivated" xml:space="preserve">
+    <value>User is not activated!!!</value>
+  </data>
+  <data name="UserNotRegistered" xml:space="preserve">
+    <value>User is not registered!!!</value>
+  </data>
 </root>

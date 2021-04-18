@@ -45,7 +45,7 @@ namespace TaskManager.API.Services
 
             if (project == null)
             {
-                projectResponse.Status = true;
+                projectResponse.Success = true;
                 projectResponse.Message = Constants.ProjectNotFound;
             }
             else
@@ -92,7 +92,7 @@ namespace TaskManager.API.Services
             project = await _repo.UpdateCollapseAsync(project);
 
             var projectResponse = _mapper.Map<Project, ProjectResponse>(project);
-            projectResponse.Status = true;
+            projectResponse.Success = true;
 
             return projectResponse;
         }
@@ -101,12 +101,12 @@ namespace TaskManager.API.Services
         {
             var projectResponse = new BaseResponse()
             {
-                Status = false
+                Success = false
             };
 
             if (await IsInboxExistOrNot(id))
             {
-                projectResponse.Status = true;
+                projectResponse.Success = true;
                 projectResponse.Message = Constants.InboxCannotBeDeleted;
                 return projectResponse;
             }
@@ -115,7 +115,7 @@ namespace TaskManager.API.Services
 
             if (isDeleted)
             {
-                projectResponse.Status = true;
+                projectResponse.Success = true;
                 projectResponse.Message = Constants.ProjectDeletedSuccessfully;
             }
             return projectResponse;

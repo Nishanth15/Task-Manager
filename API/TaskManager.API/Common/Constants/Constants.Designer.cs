@@ -149,5 +149,59 @@ namespace TaskManager.API.Common.Constants {
                 return ResourceManager.GetString("SectionNotFound", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Internal Server Error!!!.
+        /// </summary>
+        public static string ServerError {
+            get {
+                return ResourceManager.GetString("ServerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User already registered!!!.
+        /// </summary>
+        public static string UserAlreadyRegistered {
+            get {
+                return ResourceManager.GetString("UserAlreadyRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User authenticated successfully!!!.
+        /// </summary>
+        public static string UserAuthenticatedSuccessfully {
+            get {
+                return ResourceManager.GetString("UserAuthenticatedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User created successfully!!!.
+        /// </summary>
+        public static string UserCreatedSuccessfully {
+            get {
+                return ResourceManager.GetString("UserCreatedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User is not activated!!!.
+        /// </summary>
+        public static string UserNotActivated {
+            get {
+                return ResourceManager.GetString("UserNotActivated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User is not registered!!!.
+        /// </summary>
+        public static string UserNotRegistered {
+            get {
+                return ResourceManager.GetString("UserNotRegistered", resourceCulture);
+            }
+        }
     }
 }

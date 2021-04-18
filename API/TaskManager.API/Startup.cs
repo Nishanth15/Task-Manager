@@ -32,11 +32,14 @@ namespace TaskManager.API
 
             // Repositories
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<ICoreRepository, CoreRepository>();
 
             // Services
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<ISectionService, SectionService>();
             services.AddScoped<IItemService, ItemService>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddSwaggerGen(c =>
             {
