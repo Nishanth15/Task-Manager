@@ -97,6 +97,9 @@ namespace TaskManager.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Collapsed")
+                        .HasColumnType("int");
+
                     b.Property<int>("Color")
                         .HasColumnType("int");
 
@@ -218,10 +221,9 @@ namespace TaskManager.Database.Migrations
 
             modelBuilder.Entity("TaskManager.Model.UserPassword", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Salt")
                         .HasColumnType("nvarchar(max)");

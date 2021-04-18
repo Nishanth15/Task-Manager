@@ -41,10 +41,21 @@ namespace TaskManager.API.Services.Interfaces
             user.CreatedAt = DateTime.UtcNow;
             user.ResetPassword = (int)ResetPasswordStatus.Requested;
             user.ActivationStatus = (int)ActivationStatus.Created;
-            user.HashedPassword = await StoreUserPasswordAsync(user.Id,signUpRequest.Password);
+
+            HashWithSaltResult hashWithSaltResult = await GetHashWithSaltResult(signUpRequest.Password);
+            user.HashedPassword = hashWithSaltResult.Digest;
+
             user = await _coreRepo.AddUser(user);
+
             if (user != null && user.Id != Guid.Empty)
             {
+                var userPassword = new UserPassword
+                {
+                    Id = Guid.NewGuid(),
+                    Salt = hashWithSaltResult.Salt,
+                    UserId = user.Id
+                };
+                await _coreRepo.AddUserPassword(userPassword);
                 //var result = SendActivationEmailAsync(signUpRequest.EmailId, userId, signUpRequest.BaseUrl);
                 response.Success = true;
                 response.Message = Constants.UserCreatedSuccessfully;
@@ -58,26 +69,21 @@ namespace TaskManager.API.Services.Interfaces
             return response;
         }
 
-        private async Task<string> StoreUserPasswordAsync(Guid userId, string password)
+        private async Task<HashWithSaltResult> GetHashWithSaltResult(string password)
         {
             PasswordHelper passwordHelper = new PasswordHelper();
 
             //Hash Password
-            var base64EncodedBytes = Convert.FromBase64String(password.PadRight(password.Length + (password.Length * 3) % 4, '='));
+            byte[] data = Encoding.UTF8.GetBytes(password);
+            string base64String = Convert.ToBase64String(data);
+
+            var base64EncodedBytes = Convert.FromBase64String(base64String);
             password = Encoding.UTF8.GetString(base64EncodedBytes);
 
             byte[] saltbyte = passwordHelper.GenerateRandomCryptographicBytes(16);
             HashWithSaltResult hashWithSaltResult = passwordHelper.HashWithSalt(password, Convert.ToBase64String(saltbyte), SHA256.Create());
 
-            var userPassword = new UserPassword
-            {
-                Salt = hashWithSaltResult.Salt,
-                UserId = userId
-            };
-
-            await _coreRepo.AddUserPassword(userPassword);
-
-            return hashWithSaltResult.Digest;
+            return hashWithSaltResult;
         }
     }
 }
