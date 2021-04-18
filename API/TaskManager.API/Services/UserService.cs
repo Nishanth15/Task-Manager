@@ -73,10 +73,10 @@ namespace TaskManager.API.Services.Interfaces
         {
             PasswordHelper passwordHelper = new PasswordHelper();
 
-            //Hash Password
+            //To be commented
             byte[] data = Encoding.UTF8.GetBytes(password);
             string base64String = Convert.ToBase64String(data);
-
+            //Hash Password
             var base64EncodedBytes = Convert.FromBase64String(base64String);
             password = Encoding.UTF8.GetString(base64EncodedBytes);
 

@@ -11,6 +11,7 @@ using TaskManager.API.Services.Interfaces;
 using TaskManager.DataManager;
 using TaskManager.DataManager.Interfaces;
 using TaskManager.API.Helpers;
+using TaskManager.API.DTOs;
 
 namespace TaskManager.API
 {
@@ -28,6 +29,10 @@ namespace TaskManager.API
             services.AddAutoMapper(typeof(AutoMapperProfiles));
 
             services.AddControllers();
+
+
+            //AppSettings
+            services.Configure<JWTTokenValues>(Configuration.GetSection("JWTTokenValues"));
 
 
             // Repositories

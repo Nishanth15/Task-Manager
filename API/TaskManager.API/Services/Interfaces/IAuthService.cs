@@ -6,8 +6,8 @@ using TaskManager.API.DTOs;
 
 namespace TaskManager.API.Services.Interfaces
 {
-    interface IAuthService
+    public interface IAuthService
     {
-        //Task<TokenResponse> GenerateToken(TokenRequest tokenRequest);
+        Task<TokenResponse> GenerateToken(TokenRequest tokenRequest);
     }
 }

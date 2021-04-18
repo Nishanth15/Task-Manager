@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,19 @@ namespace TaskManager.DataManager
             }
         }
 
+        public async Task<User> GetUserByEmailIdAsync(string emailId)
+        {
+            try
+            {
+                return await _userDbContext.Set<User>().Where<User>(obj => obj.EmailId == emailId).SingleOrDefaultAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public async Task<UserPassword> AddUserPassword(UserPassword userPassword)
         {
             try
@@ -39,6 +53,20 @@ namespace TaskManager.DataManager
                 await _userDbContext.Set<UserPassword>().AddAsync(userPassword);
                 await _userDbContext.SaveChangesAsync();
                 return userPassword;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        public async Task<UserPassword> GetUserPasswordByUserId(Guid userId)
+        {
+            try
+            {
+                return await _userDbContext.Set<UserPassword>().Where(obj => obj.UserId == userId).SingleOrDefaultAsync();
             }
             catch (Exception)
             {
