@@ -19,17 +19,58 @@ function PId() {
         getProjects();
     }, [pid]);
 
+    const section = [
+        {
+            name: 'Section1',
+            task: ['task1', 'task2'],
+        },
+        {
+            name: 'Section2',
+            task: ['task3', 'task4'],
+        },
+        {
+            name: 'Section3',
+            task: ['task5', 'task6'],
+        },
+    ];
+
     const { name, parentId } = project;
     return (
         <div className="project">
             <Head>
                 <title>{name}</title>
             </Head>
+
             <div>
-                <h1 className="text-5xl">Project</h1>
-                <h5>Name: {name}</h5>
-                <p>ParentId: {parentId}</p>
+                <h1 className="project_title">{name}</h1>
             </div>
+
+            <ul className="section_list">
+                <div className="section_item">
+                    <div className="section_name">Todo</div>
+                    <div className="task">
+                        Lorem ipsum dolor sit as amet consectetur adipisicing
+                        elit. Facilis, asperiores ullam?
+                    </div>
+                </div>
+                <div className="section_item">
+                    <div className="section_name">On going</div>
+                    <div className="task">
+                        Minima magnam quas ab adipisci, quisquam cumque repellat
+                        nulla exercitationem.
+                    </div>
+                </div>
+                <div className="section_item">
+                    <div className="section_name">Done</div>
+                    <div className="task">
+                        Doloribus tempore eum vae laboriosam nisi ad nemo omnis,
+                        corporis soluta velit!
+                    </div>
+                </div>
+                {/* <div className="section_item">
+                    <div className="section_name">Additional</div>
+                </div> */}
+            </ul>
         </div>
     );
 }

@@ -89,8 +89,8 @@ function SideBar() {
                         </li>
                     </Link>
 
-                    <div className="item_panel">
-                        <li
+                    <div className="collapse_item">
+                        <div
                             className={'item_expansion_panel '}
                             onClick={switch_projectCollapse}
                         >
@@ -126,37 +126,53 @@ function SideBar() {
                                     />
                                 </svg>
                             </div>
-                        </li>
-                        <ul
+                        </div>
+                        <div
                             className={
                                 'expansion_panel_list ' +
                                 (projectCollapse ? 'active' : '')
                             }
                         >
-                            {projects.map((project) => {
-                                return (
-                                    <Link
-                                        href={`/project/${project.id}`}
-                                        key={project.id}
-                                    >
-                                        <div
-                                            className={
-                                                'expansion_panel_list_item ' +
-                                                (router.asPath ===
-                                                '/project/' + project.id
-                                                    ? 'active'
-                                                    : '')
-                                            }
+                            <ul className="projects_list">
+                                {projects.map((project) => {
+                                    return (
+                                        <Link
+                                            href={`/project/${project.id}`}
+                                            key={project.id}
                                         >
-                                            <span>
-                                                <div className="projects_color"></div>
-                                            </span>
-                                            <span>{project.name}</span>
-                                        </div>
-                                    </Link>
-                                );
-                            })}
-                        </ul>
+                                            <li
+                                                className={
+                                                    'project_list_item ' +
+                                                    (router.asPath ===
+                                                    '/project/' + project.id
+                                                        ? 'active'
+                                                        : '')
+                                                }
+                                            >
+                                                <div>
+                                                    <div className="projects_color"></div>
+                                                </div>
+                                                <div className="projects_button">
+                                                    <div className="item_name">
+                                                        {project.name}
+                                                    </div>
+                                                    <div className="item_setting">
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            className="h-5 w-5"
+                                                            viewBox="0 0 20 20"
+                                                            fill="currentColor"
+                                                        >
+                                                            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </Link>
+                                    );
+                                })}
+                            </ul>
+                        </div>
                     </div>
 
                     <Link href="/label">
@@ -202,6 +218,7 @@ function SideBar() {
                     </Link>
                 </ul>
             </div>
+
             <div className="user_menu">
                 <div className="user_icon">
                     <Image src="/user.png" width={100} height={100}></Image>

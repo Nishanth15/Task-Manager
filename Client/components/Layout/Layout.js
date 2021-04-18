@@ -1,5 +1,5 @@
-import TopBar from './TopBar';
-import SideBar from './SideBar';
+import TopBar from '../NavigationBar/TopBar';
+import SideBar from '../NavigationBar/SideBar';
 import React, { useState } from 'react';
 
 function Layout({ children }) {
