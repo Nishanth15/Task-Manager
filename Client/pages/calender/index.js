@@ -6,7 +6,7 @@ function Calender() {
             <Head>
                 <title>Calender</title>
             </Head>
-            <h1 className="text-5xl">Calender</h1>
+            <h2 className="text-5xl">Calender</h2>
         </div>
     );
 }

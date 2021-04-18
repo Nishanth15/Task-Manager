@@ -1,5 +1,5 @@
 import TopBar from './TopBar';
-import SideNav from './SideBar';
+import SideBar from './SideBar';
 import React, { useState } from 'react';
 
 function Layout({ children }) {
@@ -17,7 +17,7 @@ function Layout({ children }) {
                     'sidebar ' + (switchKey ? 'sidebar_show' : 'sidebar_hide')
                 }
             >
-                <SideNav />
+                <SideBar />
                 <div className="sidebar_switch" onClick={switch_sideBar}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -42,8 +42,8 @@ function Layout({ children }) {
             </div>
             <div
                 className={
-                    'layout_main ' +
-                    (switchKey ? 'layout_main_expand' : 'layout_main_shrink')
+                    'main_content ' +
+                    (switchKey ? 'main_content_expand' : 'main_content_shrink')
                 }
             >
                 {children}
