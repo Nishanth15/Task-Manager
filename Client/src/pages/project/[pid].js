@@ -48,28 +48,27 @@ function PId() {
             <ul className="section_list">
                 <div className="section_item">
                     <div className="section_name">Todo</div>
+                    <div className="task">Lorem ipsum dolor sit</div>
                     <div className="task">
-                        Lorem ipsum dolor sit as amet consectetur adipisicing
-                        elit. Facilis, asperiores ullam?
+                        As amet consectetur adipisicing elit.
                     </div>
+                    <div className="task">Facilis, asperiores ullam?</div>
                 </div>
                 <div className="section_item">
                     <div className="section_name">On going</div>
+                    <div className="task">Minima magnam quas ab adipisci</div>
                     <div className="task">
-                        Minima magnam quas ab adipisci, quisquam cumque repellat
-                        nulla exercitationem.
+                        Quisquam cumque repellat nulla exercitationem.
                     </div>
                 </div>
                 <div className="section_item">
                     <div className="section_name">Done</div>
-                    <div className="task">
-                        Doloribus tempore eum vae laboriosam nisi ad nemo omnis,
-                        corporis soluta velit!
-                    </div>
+                    <div className="task">Doloribus tempore eum.</div>
                 </div>
-                {/* <div className="section_item">
+                <div className="section_item">
                     <div className="section_name">Additional</div>
-                </div> */}
+                    <div className="task"></div>
+                </div>
             </ul>
         </div>
     );

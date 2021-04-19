@@ -40,13 +40,12 @@ function SideBar() {
                     <Link href="/inbox">
                         <li
                             className={
-                                'item ' +
+                                'item inbox ' +
                                 (router.asPath === '/inbox' ? 'active' : '')
                             }
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="h-6 w-6"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -66,13 +65,12 @@ function SideBar() {
                     <Link href="/calender">
                         <li
                             className={
-                                'item ' +
+                                'item calender ' +
                                 (router.asPath === '/calender' ? 'active' : '')
                             }
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="h-6 w-6"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -91,12 +89,11 @@ function SideBar() {
 
                     <div className="collapse_item">
                         <div
-                            className={'item_expansion_panel '}
+                            className={'item projects'}
                             onClick={switch_projectCollapse}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="h-6 w-6"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -113,7 +110,7 @@ function SideBar() {
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     className={
-                                        'h-5 w-5 collapes_key ' +
+                                        'collapes_key ' +
                                         (projectCollapse ? 'active' : '')
                                     }
                                     viewBox="0 0 20 20"
@@ -127,6 +124,7 @@ function SideBar() {
                                 </svg>
                             </div>
                         </div>
+
                         <div
                             className={
                                 'expansion_panel_list ' +
@@ -159,7 +157,6 @@ function SideBar() {
                                                     <div className="item_setting">
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"
-                                                            className="h-5 w-5"
                                                             viewBox="0 0 20 20"
                                                             fill="currentColor"
                                                         >
@@ -177,12 +174,11 @@ function SideBar() {
 
                     <Link href="/label">
                         <li
-                            className={'item_expansion_panel '}
+                            className={'item labels'}
                             onClick={switch_labelCollapse}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="h-6 w-6"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -201,7 +197,7 @@ function SideBar() {
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     className={
-                                        'h-5 w-5 collapes_key ' +
+                                        'collapes_key ' +
                                         (labelCollapse ? 'active' : '')
                                     }
                                     viewBox="0 0 20 20"
