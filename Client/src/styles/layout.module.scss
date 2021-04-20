@@ -4,7 +4,7 @@
 
     // Sidebar
     .sidebar {
-        @apply fixed w-64 h-[95%] bg-white rounded-2xl duration-500 shadow;
+        @apply fixed w-64 max-h-[95%] h-full bg-white rounded-2xl duration-500 shadow;
 
         // Sidebar toggle
         &.sidebar_show {
@@ -23,7 +23,6 @@
         // Sidebar list
         .sidebar_list {
             @apply mt-2 p-3;
-
             // Sidebar each single item
             .item {
                 @apply cursor-pointer text-sidebar_text tracking-wide flex items-center 
@@ -53,7 +52,7 @@
 
             // Sidebar each expandable item list
             .expansion_panel_list {
-                @apply ml-6 text-sidebar_text text-sm hidden h-56 overflow-hidden hover:overflow-y-scroll;
+                @apply ml-6 text-sidebar_text text-sm hidden max-h-56 overflow-hidden hover:overflow-y-scroll;
 
                 &::-webkit-scrollbar {
                     @apply w-1.5 bg-none;
@@ -98,7 +97,7 @@
 
         // Sidebar switch
         .sidebar_switch {
-            @apply absolute cursor-pointer p-2 top-5 left-54;
+            @apply absolute cursor-pointer pl-2 top-5 left-54;
         }
 
         // User menu
