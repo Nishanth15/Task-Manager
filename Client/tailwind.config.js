@@ -27,6 +27,9 @@ module.exports = {
                 54: '13.5rem',
                 58: '14.5rem',
             },
+            container: {
+                center: true,
+            },
         },
     },
     variants: {

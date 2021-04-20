@@ -1,7 +1,7 @@
 import Layout from '../components/Layout/Layout';
 import '../styles/global.scss';
 
-function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }) => {
     return (
         <>
             <Layout>
@@ -9,6 +9,6 @@ function MyApp({ Component, pageProps }) {
             </Layout>
         </>
     );
-}
+};
 
 export default MyApp;

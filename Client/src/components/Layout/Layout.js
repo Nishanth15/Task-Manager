@@ -1,5 +1,5 @@
-import TopBar from './TopBar';
-import SideBar from './SideBar';
+import TopBar from '../NavigationBar/TopBar';
+import SideBar from '../NavigationBar/SideBar';
 import React, { useState } from 'react';
 
 function Layout({ children }) {
@@ -22,7 +22,7 @@ function Layout({ children }) {
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="64"
-                        height="119"
+                        height="110"
                         viewBox="0 0 64 119"
                         fill="none"
                     >
