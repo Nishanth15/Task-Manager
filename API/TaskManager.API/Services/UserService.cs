@@ -23,6 +23,8 @@ namespace TaskManager.API.Services.Interfaces
             _coreRepo = coreRepo;
             _mapper = mapper;
         }
+
+        //User Registration
         public async Task<SignUpResponse> SignUp(SignUpRequest signUpRequest)
         {
             SignUpResponse response = new SignUpResponse
@@ -42,7 +44,7 @@ namespace TaskManager.API.Services.Interfaces
             user.ResetPassword = (int)ResetPasswordStatus.Requested;
             user.ActivationStatus = (int)ActivationStatus.Created;
 
-            HashWithSaltResult hashWithSaltResult = await GetHashWithSaltResult(signUpRequest.Password);
+            HashWithSaltResult hashWithSaltResult = GetHashWithSaltResult(signUpRequest.Password);
             user.HashedPassword = hashWithSaltResult.Digest;
 
             user = await _coreRepo.AddUser(user);
@@ -68,8 +70,7 @@ namespace TaskManager.API.Services.Interfaces
             }
             return response;
         }
-
-        private async Task<HashWithSaltResult> GetHashWithSaltResult(string password)
+        private HashWithSaltResult GetHashWithSaltResult(string password)
         {
             PasswordHelper passwordHelper = new PasswordHelper();
 
@@ -84,6 +85,22 @@ namespace TaskManager.API.Services.Interfaces
             HashWithSaltResult hashWithSaltResult = passwordHelper.HashWithSalt(password, Convert.ToBase64String(saltbyte), SHA256.Create());
 
             return hashWithSaltResult;
+        }
+        //Manage Users
+        public UserDetails GetUserById(Guid userId)
+        {
+            return new UserDetails()
+            {
+                FirstName = "Nishanth",
+                Id = Guid.NewGuid(),
+                LastName = "Prabhakaran",
+                ActivationStatus = ActivationStatus.Activated,
+                EmailId = "nishanthprabhakaran1998@gmail.com",
+                FullName = "Nishanth Prabhakaran",
+                PhoneNo = "9787222002",
+                ResetPassword = ResetPasswordStatus.Requested,
+                LastLoggedIn = DateTime.UtcNow
+            };
         }
     }
 }
