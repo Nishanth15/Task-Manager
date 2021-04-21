@@ -12,6 +12,7 @@ using TaskManager.DataManager;
 using TaskManager.DataManager.Interfaces;
 using TaskManager.API.Helpers;
 using TaskManager.API.DTOs;
+using TaskManager.API.Common.Helpers;
 
 namespace TaskManager.API
 {
@@ -29,7 +30,6 @@ namespace TaskManager.API
             services.AddAutoMapper(typeof(AutoMapperProfiles));
 
             services.AddControllers();
-
 
             //AppSettings
             services.Configure<JWTTokenValues>(Configuration.GetSection("JWTTokenValues"));
@@ -76,9 +76,15 @@ namespace TaskManager.API
 
             app.UseRouting();
 
+          
+
             app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
+            app.UseAuthentication();
+
+            // custom jwt auth middleware
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
