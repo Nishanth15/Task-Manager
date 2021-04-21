@@ -1,0 +1,134 @@
+.sidebar {
+    @apply fixed w-64 h-full bg-white duration-500 shadow;
+
+    // Sidebar toggle
+    &.sidebar_show {
+        @apply left-0 -md:-left-64;
+    }
+
+    &.sidebar_hide {
+        @apply -left-64 -md:left-0;
+    }
+
+    // Sidebar logo
+    .logo {
+        @apply mt-8 mx-auto;
+    }
+
+    // Sidebar list
+    .sidebar_list {
+        @apply mt-2 p-3;
+
+        // Sidebar each single item
+        .item {
+            @apply cursor-pointer tracking-wide flex items-center 
+                    space-x-2 text-base font-medium rounded-md mt-2 hover:text-primary 
+                    px-3 py-2 transition-colors duration-75;
+
+            svg {
+                @apply h-6 w-6;
+            }
+
+            &.active {
+                @apply bg-sidebar_active text-primary;
+            }
+
+            .collapes_key {
+                @apply h-5 w-5 hover:bg-sidebar_active rounded-full duration-200;
+            }
+
+            .expansion_panel_header {
+                @apply p-1 w-full flex justify-between;
+
+                .active {
+                    @apply transform -rotate-90;
+                }
+            }
+        }
+
+        // Sidebar each expandable item list
+        .expansion_panel_list {
+            @apply ml-6 text-sm hidden max-h-56 overflow-hidden 
+                hover:overflow-y-scroll;
+
+            &::-webkit-scrollbar {
+                @apply w-1.5 bg-none;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                @apply bg-gray-400 rounded-md;
+            }
+
+            // Sidebar each expandable item list of each item
+            .project_list_item {
+                @apply cursor-pointer tracking-wider flex 
+                    items-center w-44 space-x-2 rounded-md font-normal 
+                    hover:text-primary p-2 transition-colors duration-75;
+
+                // Sidebar each expandable item list of each item colors
+                .projects_color {
+                    @apply w-2 h-2 rounded-full bg-red-600 mr-2;
+                }
+
+                .projects_button {
+                    @apply flex w-full justify-between;
+
+                    .item_setting {
+                        @apply h-6 w-6 opacity-0;
+                    }
+                }
+
+                &:hover .projects_button .item_setting {
+                    @apply opacity-100;
+                }
+
+                &.active {
+                    @apply bg-sidebar_active text-primary;
+                }
+            }
+
+            &.active {
+                @apply block;
+            }
+        }
+    }
+
+    // Sidebar switch
+    .sidebar_switch {
+        @apply absolute overflow-hidden w-10 h-24 top-10 left-64;
+
+        .arrow-right {
+            @apply absolute cursor-pointer w-20 h-20 right-5 bg-white transform rotate-135 rounded-lg shadow;
+
+            .menu_icon {
+                @apply absolute h-5 w-5 transform rotate-45 top-2 left-2;
+            }
+        }
+    }
+
+    // User menu
+    .user_menu {
+        @apply absolute bottom-0 h-14 w-full p-5 bg-white border-t 
+                flex items-center justify-start;
+
+        .user_icon {
+            @apply w-10 h-10 rounded-full;
+        }
+
+        .user_button {
+            @apply flex w-full justify-between;
+
+            .user_name {
+                @apply pl-2;
+            }
+
+            .collapes_key {
+                @apply h-5 w-5 hover:bg-sidebar_active rounded-full duration-200;
+
+                &.active {
+                    @apply transform -rotate-90;
+                }
+            }
+        }
+    }
+}

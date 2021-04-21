@@ -125,51 +125,54 @@ function SideBar() {
                             </div>
                         </div>
 
-                        <div
+                        <ul
                             className={
                                 'expansion_panel_list ' +
                                 (projectCollapse ? 'active' : '')
                             }
                         >
-                            <ul className="projects_list">
-                                {projects.map((project) => {
-                                    return (
-                                        <Link
-                                            href={`/project/${project.id}`}
-                                            key={project.id}
+                            {projects.map((project) => {
+                                return (
+                                    <Link
+                                        href={`/project/${project.id}`}
+                                        key={project.id}
+                                    >
+                                        <li
+                                            className={
+                                                'project_list_item ' +
+                                                (router.asPath ===
+                                                '/project/' + project.id
+                                                    ? 'active'
+                                                    : '')
+                                            }
                                         >
-                                            <li
-                                                className={
-                                                    'project_list_item ' +
-                                                    (router.asPath ===
-                                                    '/project/' + project.id
-                                                        ? 'active'
-                                                        : '')
-                                                }
-                                            >
-                                                <div>
-                                                    <div className="projects_color"></div>
+                                            <div>
+                                                <div className="projects_color"></div>
+                                            </div>
+                                            <div className="projects_button">
+                                                <div className="item_name">
+                                                    {project.name}
                                                 </div>
-                                                <div className="projects_button">
-                                                    <div className="item_name">
-                                                        {project.name}
-                                                    </div>
-                                                    <div className="item_setting">
-                                                        <svg
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            viewBox="0 0 20 20"
-                                                            fill="currentColor"
-                                                        >
-                                                            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </Link>
-                                    );
-                                })}
-                            </ul>
-                        </div>
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="item_setting"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth={2}
+                                                        d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                                                    />
+                                                </svg>
+                                            </div>
+                                        </li>
+                                    </Link>
+                                );
+                            })}
+                        </ul>
                     </div>
 
                     <Link href="/label">
@@ -219,7 +222,31 @@ function SideBar() {
                 <div className="user_icon">
                     <Image src="/user.png" width={100} height={100}></Image>
                 </div>
-                <h5 className="user_name">Nishanth</h5>
+                <div className="user_button">
+                    <div className="user_name">Nishanth</div>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className={
+                            'collapes_key ' + (projectCollapse ? 'active' : '')
+                        }
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                        />
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                    </svg>
+                </div>
             </div>
         </div>
     );

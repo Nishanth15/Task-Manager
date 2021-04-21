@@ -6,13 +6,13 @@
     }
 
     .section_list {
-        @apply p-3 h-[80vh] w-full mt-2 rounded-md flex items-start gap-5;
+        @apply p-3  h-[80vh] w-full mt-2 rounded-md flex items-start gap-5;
 
         .section_item {
-            @apply py-2 px-2 min-w-[260px] w-64 flex flex-col h-auto duration-150 transform;
+            @apply py-2 bg-white rounded-lg px-2 min-w-[260px] w-64 flex flex-col h-auto duration-150 transform;
 
             .section_name {
-                @apply p-1 text-lg font-semibold text-primary;
+                @apply p-1 text-lg font-semibold;
 
                 &::before {
                     content: '';
@@ -25,7 +25,7 @@
             }
 
             .task {
-                @apply mt-2 border-gray-300 border p-3 rounded-md text-left text-sm hover:shadow-md;
+                @apply mt-2 border-gray-300 shadow-sm border p-3 rounded-md text-left text-sm hover:shadow-md;
             }
         }
     }

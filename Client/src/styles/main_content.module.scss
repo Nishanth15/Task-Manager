@@ -1,0 +1,20 @@
+.main_content {
+    @apply fixed p-10 w-screen h-[95vh] rounded-2xl duration-500  overflow-y-hidden;
+
+    &::-webkit-scrollbar {
+        @apply h-2 w-1.5 bg-none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        @apply bg-gray-400 rounded-lg;
+    }
+
+    // Main content shrink and expand
+    &.main_content_expand {
+        @apply ml-72 -md:ml-5 -md:w-[90vw] w-[77vw];
+    }
+
+    &.main_content_shrink {
+        @apply ml-5 -md:ml-72 w-[95vw];
+    }
+}
