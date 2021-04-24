@@ -10,7 +10,7 @@ namespace TaskManager.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SectionController : ControllerBase
+    public class SectionController : BaseController
     {
         private readonly ISectionService _service;
 

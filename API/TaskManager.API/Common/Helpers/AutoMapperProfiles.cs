@@ -14,7 +14,8 @@ namespace TaskManager.API.Helpers
             CreateMap<SectionRequest, Section>();
             CreateMap<Item, ItemResponse>();
             CreateMap<ItemRequest, Item>();
-
+            CreateMap<SignUpRequest, User>();
+            CreateMap<User, UserDetails>();
         }
     }
 }

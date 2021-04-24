@@ -10,7 +10,7 @@ module.exports = {
             colors: {
                 primary: '#2a8cff',
                 layout_background: '#edf5ff',
-                sidebar_text: '#2e5284',
+                text_color: '#2e5284',
                 sidebar_active: '#F1F6FE',
             },
             boxShadow: {
@@ -26,6 +26,20 @@ module.exports = {
             inset: {
                 54: '13.5rem',
                 58: '14.5rem',
+            },
+            container: {
+                center: true,
+            },
+            rotate: {
+                '-180': '-180deg',
+                '-90': '-90deg',
+                '-45': '-45deg',
+                0: '0',
+                45: '45deg',
+                90: '90deg',
+                135: '135deg',
+                180: '180deg',
+                270: '270deg',
             },
         },
     },

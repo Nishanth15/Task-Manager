@@ -44,7 +44,7 @@ namespace TaskManager.API.Services
 
             if (item == null)
             {
-                itemResponse.Status = true;
+                itemResponse.Success = true;
                 itemResponse.Message = Constants.ItemNotFound;
             }
             else
@@ -94,7 +94,7 @@ namespace TaskManager.API.Services
             item = await _repo.UpdateCollapseAsync(item);
 
             var itemResponse = _mapper.Map<Item, ItemResponse>(item);
-            itemResponse.Status = true;
+            itemResponse.Success = true;
 
             return itemResponse;
         }
@@ -107,7 +107,7 @@ namespace TaskManager.API.Services
 
             if (isDeleted)
             {
-                itemResponse.Status = true;
+                itemResponse.Success = true;
                 itemResponse.Message = Constants.ItemDeletedSuccessfully;
             }
             return itemResponse;

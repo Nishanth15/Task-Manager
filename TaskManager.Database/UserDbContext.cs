@@ -9,10 +9,11 @@ namespace TaskManager.Database
         public UserDbContext(DbContextOptions<UserDbContext> options) : base(options){}
 
         public DbSet<Project> Projects { get; set; }
-
+        public DbSet<LK_Project_User> LK_Project_User { get; set; }
         public DbSet<Section> Sections { get; set; }
-
         public DbSet<Item> Items { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserPassword> UserPasswords { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
