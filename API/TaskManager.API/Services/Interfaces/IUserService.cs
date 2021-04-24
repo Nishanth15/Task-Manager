@@ -9,7 +9,7 @@ namespace TaskManager.API.Services.Interfaces
     public interface IUserService
     {
         Task<SignUpResponse> SignUp(SignUpRequest signUpRequest);
-        UserDetails GetUserById(Guid userId);
+        Task<UserDetails> GetUserById(Guid userId);
 
     }
 }

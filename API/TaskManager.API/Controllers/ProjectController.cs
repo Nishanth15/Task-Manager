@@ -10,7 +10,7 @@ namespace TaskManager.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProjectController : ControllerBase
+    public class ProjectController : BaseController
     {
         private readonly IProjectService _service;
 
@@ -22,7 +22,7 @@ namespace TaskManager.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProjectResponse>>> Get()
         {
-            var projects = await _service.GetProjectsAsync();
+            var projects = await _service.GetProjectsAsync(CurrentUser.Id);
             return Ok(projects);
         }
 
@@ -32,11 +32,10 @@ namespace TaskManager.API.Controllers
             var project = await _service.GetProjectAsync(id);
             return Ok(project);
         }
-
         [HttpPost]
         public async Task<ActionResult<ProjectResponse>> Post(ProjectRequest projectRequest)
         {
-            var project = await _service.AddProjectAsync(projectRequest);
+            var project = await _service.AddProjectAsync(projectRequest, CurrentUser.Id);
             return Ok(project);
         }
 

@@ -87,20 +87,11 @@ namespace TaskManager.API.Services.Interfaces
             return hashWithSaltResult;
         }
         //Manage Users
-        public UserDetails GetUserById(Guid userId)
+        public async Task<UserDetails> GetUserById(Guid userId)
         {
-            return new UserDetails()
-            {
-                FirstName = "Nishanth",
-                Id = Guid.NewGuid(),
-                LastName = "Prabhakaran",
-                ActivationStatus = ActivationStatus.Activated,
-                EmailId = "nishanthprabhakaran1998@gmail.com",
-                FullName = "Nishanth Prabhakaran",
-                PhoneNo = "9787222002",
-                ResetPassword = ResetPasswordStatus.Requested,
-                LastLoggedIn = DateTime.UtcNow
-            };
+            var user = await _coreRepo.GetUserById(userId);
+            var userDetails = _mapper.Map<User, UserDetails>(user);
+            return userDetails;
         }
     }
 }

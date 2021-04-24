@@ -14,25 +14,30 @@ namespace TaskManager.API.Services
     public class ProjectService : IProjectService
     {
         private readonly IGenericRepository<Project> _repo;
+        private readonly ICoreRepository _coreRepo;
         private readonly IMapper _mapper;
 
-        public ProjectService(IGenericRepository<Project> repo, IMapper mapper)
+        public ProjectService(IGenericRepository<Project> repo, ICoreRepository coreRepo,IMapper mapper)
         {
             _repo = repo;
+            _coreRepo = coreRepo;
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ProjectResponse>> GetProjectsAsync()
+        public async Task<IEnumerable<ProjectResponse>> GetProjectsAsync(Guid userId)
         {
-            var projectList = await _repo.GetAllAsync();
+            var projectList = await _repo.GetProjectsByUserId(userId);
             var projectResponseList = new List<ProjectResponse>();
             projectList.ToList().ForEach(project =>
             {
-                var projectResponse = _mapper.Map<Project, ProjectResponse>(project);
+                if (project != null)
+                {
+                    var projectResponse = _mapper.Map<Project, ProjectResponse>(project);
 
-                if(project.Order == 0)
-                    projectResponse.IsInbox = true;
-                projectResponseList.Add(projectResponse);
+                    if (project.Order == 0)
+                        projectResponse.IsInbox = true;
+                    projectResponseList.Add(projectResponse);
+                }
             });
             
             return projectResponseList;
@@ -56,7 +61,7 @@ namespace TaskManager.API.Services
             return projectResponse;
         }
 
-        public async Task<ProjectResponse> AddProjectAsync(ProjectRequest projectRequest)
+        public async Task<ProjectResponse> AddProjectAsync(ProjectRequest projectRequest, Guid userId)
         {
 
             var project = _mapper.Map<ProjectRequest, Project>(projectRequest);
@@ -67,6 +72,19 @@ namespace TaskManager.API.Services
             project.ParentId = projectRequest.ParentId;
 
             project = await _repo.AddAsync(project);
+
+            if (project != null)
+            {
+                LK_Project_User projectUserLookup = new LK_Project_User()
+                {
+                    Id = Guid.NewGuid(),
+                    ProjectId = project.Id,
+                    UserId = userId,
+                    IsAuthor = true
+                };
+               await _repo.AddProjectUserLookupAsync(projectUserLookup);
+
+            }
 
             return _mapper.Map<Project, ProjectResponse>(project);
 

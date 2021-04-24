@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TaskManager.Database.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class IntialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -101,6 +101,26 @@ namespace TaskManager.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "LK_Project_User",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsAuthor = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LK_Project_User", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_LK_Project_User_Users_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserPasswords",
                 columns: table => new
                 {
@@ -120,6 +140,11 @@ namespace TaskManager.Database.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_LK_Project_User_ProjectId",
+                table: "LK_Project_User",
+                column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserPasswords_UserId",
                 table: "UserPasswords",
                 column: "UserId");
@@ -129,6 +154,9 @@ namespace TaskManager.Database.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Items");
+
+            migrationBuilder.DropTable(
+                name: "LK_Project_User");
 
             migrationBuilder.DropTable(
                 name: "Projects");

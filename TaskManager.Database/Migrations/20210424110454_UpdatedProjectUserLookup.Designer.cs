@@ -10,8 +10,8 @@ using TaskManager.Database;
 namespace TaskManager.Database.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20210418091138_Initial Create")]
-    partial class InitialCreate
+    [Migration("20210424110454_UpdatedProjectUserLookup")]
+    partial class UpdatedProjectUserLookup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -91,6 +91,28 @@ namespace TaskManager.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("TaskManager.Model.LK_Project_User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsAuthor")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("ProjectId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("LK_Project_User");
                 });
 
             modelBuilder.Entity("TaskManager.Model.Project", b =>
@@ -238,6 +260,17 @@ namespace TaskManager.Database.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserPasswords");
+                });
+
+            modelBuilder.Entity("TaskManager.Model.LK_Project_User", b =>
+                {
+                    b.HasOne("TaskManager.Model.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("TaskManager.Model.UserPassword", b =>

@@ -53,7 +53,7 @@ namespace TaskManager.API.Common.Helpers
                 var userId = Guid.Parse(jwtToken.Claims.First(x => x.Type == "aud").Value);
 
                 // attach user to context on successful jwt validation
-                context.Items["User"] = userService.GetUserById(userId);
+                context.Items["currentUser"] = userService.GetUserById(userId).GetAwaiter().GetResult();
             }
             catch(Exception ex)
             {

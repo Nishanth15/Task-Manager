@@ -13,11 +13,14 @@ namespace TaskManager.API.Common.Helpers
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            var user = (UserDetails)context.HttpContext.Items["User"];
+            var user = (UserDetails)context.HttpContext.Items["currentUser"];
             if (user == null)
             {
-                // not logged in
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            }
+            else
+            {
+                context.HttpContext.Items["currentUser"] = user;
             }
         }
     }

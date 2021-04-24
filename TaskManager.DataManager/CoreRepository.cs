@@ -17,6 +17,7 @@ namespace TaskManager.DataManager
         {
             _userDbContext = userDbContext;
         }
+        #region User
         public async Task<User> AddUser(User user)
         {
 
@@ -46,6 +47,18 @@ namespace TaskManager.DataManager
             }
         }
 
+        public async Task<User> GetUserById(Guid userId)
+        {
+            try
+            {
+                return await _userDbContext.Set<User>().Where<User>(obj => obj.Id == userId).SingleOrDefaultAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         public async Task<UserPassword> AddUserPassword(UserPassword userPassword)
         {
             try
@@ -74,5 +87,8 @@ namespace TaskManager.DataManager
                 throw;
             }
         }
+        #endregion
+
+   
     }
 }

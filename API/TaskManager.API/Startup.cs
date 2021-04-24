@@ -40,6 +40,7 @@ namespace TaskManager.API
             services.AddScoped<ICoreRepository, CoreRepository>();
 
             // Services
+            services.AddHttpContextAccessor();
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<ISectionService, SectionService>();
             services.AddScoped<IItemService, ItemService>();

@@ -51,8 +51,6 @@ namespace TaskManager.DataManager
 
                 throw;
             }
-            
-
         }
 
         public async Task<T> UpdateAsync(T obj)
@@ -86,7 +84,6 @@ namespace TaskManager.DataManager
             _userDbContext.Set<T>().Remove(obj);
             return await _userDbContext.SaveChangesAsync() > 0;
         }
-
         #endregion
 
         #region Project
@@ -95,11 +92,40 @@ namespace TaskManager.DataManager
             return await _userDbContext.Projects.AnyAsync(project => project.Id == Id && project.Order == 0);
         }
 
+        public async Task<Guid> AddProjectUserLookupAsync(LK_Project_User projectUserLookup)
+        {
+            try
+            {
+                await _userDbContext.Set<LK_Project_User>().AddAsync(projectUserLookup);
+                await _userDbContext.SaveChangesAsync();
+                return projectUserLookup.Id;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
+        public async Task<IEnumerable<T>> GetProjectsByUserId(Guid userId)
+        {
+            var projectUserLookUps = _userDbContext.Set<LK_Project_User>().Where(lk => lk.UserId == userId);
+
+            IList<T> projects = new List<T>();
+
+            await projectUserLookUps.ForEachAsync(lk => {
+                var project = GetAsync(lk.ProjectId).GetAwaiter().GetResult();
+                projects.Add(project);
+            });
+
+            return projects;
+        }
         #endregion
-        
+
         #region Item
         #endregion
-        
+
         #region Section
 
         #endregion
