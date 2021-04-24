@@ -1,31 +1,24 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const url = 'http://localhost:5000/api/project';
 
-function SideBar() {
+function SideBar({ handleSwitchKey, projects }) {
+    // State
     const router = useRouter();
 
     const [projectCollapse, setProjectCollapse] = useState(false);
     const [labelCollapse, setLabelCollapse] = useState(false);
-    const [projects, setProjects] = useState([]);
 
-    const switch_labelCollapse = () => {
-        setLabelCollapse(labelCollapse ? false : true);
-    };
+    // Methods
     const switch_projectCollapse = () => {
         setProjectCollapse(projectCollapse ? false : true);
     };
-    const getProjects = async () => {
-        fetch(url)
-            .then((response) => response.json())
-            .then((data) => setProjects(data));
+    const switch_labelCollapse = () => {
+        setLabelCollapse(labelCollapse ? false : true);
     };
-    useEffect(() => {
-        getProjects();
-    }, []);
 
     return (
         <div>
@@ -46,6 +39,7 @@ function SideBar() {
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
+                                className="sidebar_list_item_svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -71,6 +65,7 @@ function SideBar() {
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
+                                className="sidebar_list_item_svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -94,6 +89,7 @@ function SideBar() {
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
+                                className="sidebar_list_item_svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -182,6 +178,7 @@ function SideBar() {
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
+                                className="sidebar_list_item_svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -218,6 +215,25 @@ function SideBar() {
                 </ul>
             </div>
 
+            <div className="sidebar_switch" onClick={handleSwitchKey}>
+                <div className="arrow-right">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="menu_icon"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M4 6h16M4 12h16M4 18h16"
+                        />
+                    </svg>
+                </div>
+            </div>
+
             <div className="user_menu">
                 <div className="user_icon">
                     <Image src="/user.png" width={100} height={100}></Image>
@@ -225,6 +241,7 @@ function SideBar() {
                 <div className="user_button">
                     <div className="user_name">Nishanth</div>
                     <svg
+                        onClick={switch_projectCollapse}
                         xmlns="http://www.w3.org/2000/svg"
                         className={
                             'collapes_key ' + (projectCollapse ? 'active' : '')

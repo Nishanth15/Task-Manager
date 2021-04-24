@@ -25,7 +25,7 @@
                     space-x-2 text-base font-medium rounded-md mt-2 hover:text-primary 
                     px-3 py-2 transition-colors duration-75;
 
-            svg {
+            .sidebar_list_item_svg {
                 @apply h-6 w-6;
             }
 
@@ -63,7 +63,7 @@
             .project_list_item {
                 @apply cursor-pointer tracking-wider flex 
                     items-center w-44 space-x-2 rounded-md font-normal 
-                    hover:text-primary p-2 transition-colors duration-75;
+                    hover:text-primary p-1.5 pl-3 transition-colors duration-75;
 
                 // Sidebar each expandable item list of each item colors
                 .projects_color {
@@ -74,7 +74,7 @@
                     @apply flex w-full justify-between;
 
                     .item_setting {
-                        @apply h-6 w-6 opacity-0;
+                        @apply h-5 w-5 opacity-0;
                     }
                 }
 
@@ -95,7 +95,7 @@
 
     // Sidebar switch
     .sidebar_switch {
-        @apply absolute overflow-hidden w-10 h-24 top-10 left-64;
+        @apply absolute overflow-hidden w-10 h-24 top-10 left-64 text-primary;
 
         .arrow-right {
             @apply absolute cursor-pointer w-20 h-20 right-5 bg-white transform rotate-135 rounded-lg shadow;
@@ -123,10 +123,10 @@
             }
 
             .collapes_key {
-                @apply h-5 w-5 hover:bg-sidebar_active rounded-full duration-200;
+                @apply h-5 w-5 hover:bg-sidebar_active rounded-full duration-500;
 
                 &.active {
-                    @apply transform -rotate-90;
+                    @apply transform rotate-90;
                 }
             }
         }

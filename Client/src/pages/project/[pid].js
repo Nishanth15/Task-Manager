@@ -3,73 +3,76 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 
 function PId() {
-    const [project, setProject] = useState([]);
     const router = useRouter();
     const { pid } = router.query;
-    const url = 'http://localhost:5000/api/project/' + pid;
+    const projectURL = 'http://localhost:5000/api/project/' + pid;
+    const sectionURL = 'http://localhost:5000/api/section/';
+    const taskURL = 'http://localhost:5000/api/item/';
+
+    const [project, setProject] = useState([]);
+    const [sections, setSections] = useState([]);
+    const [tasks, setTasks] = useState([]);
+
+    useEffect(() => {
+        getProjects();
+        getSections();
+        getTasks();
+    }, [projectURL]);
+
     const getProjects = () => {
         if (pid !== undefined) {
-            fetch(url)
+            fetch(projectURL)
                 .then((response) => response.json())
                 .then((data) => setProject(data));
         }
     };
 
-    useEffect(() => {
-        getProjects();
-    }, [pid]);
+    const getSections = () => {
+        if (pid !== undefined) {
+            fetch(sectionURL)
+                .then((response) => response.json())
+                .then((data) => setSections(data));
+        }
+    };
 
-    const section = [
-        {
-            name: 'Section1',
-            task: ['task1', 'task2'],
-        },
-        {
-            name: 'Section2',
-            task: ['task3', 'task4'],
-        },
-        {
-            name: 'Section3',
-            task: ['task5', 'task6'],
-        },
-    ];
+    const getTasks = () => {
+        if (pid !== undefined) {
+            fetch(taskURL)
+                .then((response) => response.json())
+                .then((data) => setTasks(data));
+        }
+    };
 
-    const { name, parentId } = project;
+    // console.log(sections);
+    console.log(tasks);
     return (
         <div className="project">
             <Head>
-                <title>{name}</title>
+                <title>{project.name}</title>
             </Head>
 
             <div>
-                <h1 className="project_title">{name}</h1>
+                <h1 className="project_title">{project.name}</h1>
             </div>
 
-            <ul className="section_list">
-                <div className="section_item">
-                    <div className="section_name">Todo</div>
-                    <div className="task">Lorem ipsum dolor sit</div>
-                    <div className="task">
-                        As amet consectetur adipisicing elit.
-                    </div>
-                    <div className="task">Facilis, asperiores ullam?</div>
-                </div>
-                <div className="section_item">
-                    <div className="section_name">On going</div>
-                    <div className="task">Minima magnam quas ab adipisci</div>
-                    <div className="task">
-                        Quisquam cumque repellat nulla exercitationem.
-                    </div>
-                </div>
-                <div className="section_item">
-                    <div className="section_name">Done</div>
-                    <div className="task">Doloribus tempore eum.</div>
-                </div>
-                <div className="section_item">
-                    <div className="section_name">Additional</div>
-                    <div className="task"></div>
-                </div>
-            </ul>
+            <div className="section_list">
+                {sections.map((section) => {
+                    return (
+                        <div className="section_item" key={section.id}>
+                            <div className="section_name">{section.name}</div>
+                            {tasks.map((task) => {
+                                return (
+                                    <div key={task.id}>
+                                        <div className="task">
+                                            {task.content}
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    );
+                })}
+            </div>
         </div>
     );
 }
