@@ -14,13 +14,15 @@ namespace TaskManager.API.Services
     public class ProjectService : IProjectService
     {
         private readonly IGenericRepository<Project> _repo;
-        private readonly ICoreRepository _coreRepo;
+        private readonly IItemService _itemService;
+        private readonly ISectionService _sectionService;
         private readonly IMapper _mapper;
 
-        public ProjectService(IGenericRepository<Project> repo, ICoreRepository coreRepo,IMapper mapper)
+        public ProjectService(IGenericRepository<Project> repo, IItemService itemService, ISectionService sectionService, IMapper mapper)
         {
             _repo = repo;
-            _coreRepo = coreRepo;
+            _itemService = itemService;
+            _sectionService = sectionService;          
             _mapper = mapper;
         }
 
@@ -61,6 +63,12 @@ namespace TaskManager.API.Services
             return projectResponse;
         }
 
+        public async Task<ProjectData> GetProjectDataByProjectIdAsync(Guid projectId)
+        {
+            
+            return null;
+        }
+
         public async Task<ProjectResponse> AddProjectAsync(ProjectRequest projectRequest, Guid userId)
         {
 
@@ -83,7 +91,6 @@ namespace TaskManager.API.Services
                     IsAuthor = true
                 };
                await _repo.AddProjectUserLookupAsync(projectUserLookup);
-
             }
 
             return _mapper.Map<Project, ProjectResponse>(project);

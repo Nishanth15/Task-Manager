@@ -12,7 +12,6 @@ namespace TaskManager.DataManager
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseModel
     {
         private readonly UserDbContext _userDbContext;
-
         public GenericRepository(UserDbContext userDbContext)
         {
             _userDbContext = userDbContext;
@@ -91,7 +90,6 @@ namespace TaskManager.DataManager
         {
             return await _userDbContext.Projects.AnyAsync(project => project.Id == Id && project.Order == 0);
         }
-
         public async Task<Guid> AddProjectUserLookupAsync(LK_Project_User projectUserLookup)
         {
             try
@@ -124,10 +122,18 @@ namespace TaskManager.DataManager
         #endregion
 
         #region Item
+
+        public Task<IEnumerable<T>> GetItemsBySectionIdAsync(Guid sectionId)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Section
-
+        public Task<IEnumerable<T>> GetSectionsByProjectId(Guid projectId)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }
