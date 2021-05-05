@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TaskManager.API.DTOs
 {
@@ -23,6 +24,12 @@ namespace TaskManager.API.DTOs
         public bool IsInbox { get; set; }
         public int Collapsed { get; set; }
 
+    }
+
+    public class ProjectData
+    {
+        public List<SectionResponse> Sections { get; set; }
+        public List<ItemResponse> Items { get; set; }
     }
 
     public enum ViewType

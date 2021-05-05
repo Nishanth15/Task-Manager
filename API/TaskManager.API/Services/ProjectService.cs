@@ -14,13 +14,15 @@ namespace TaskManager.API.Services
     public class ProjectService : IProjectService
     {
         private readonly IGenericRepository<Project> _repo;
-        private readonly ICoreRepository _coreRepo;
+        private readonly IItemService _itemService;
+        private readonly ISectionService _sectionService;
         private readonly IMapper _mapper;
 
-        public ProjectService(IGenericRepository<Project> repo, ICoreRepository coreRepo,IMapper mapper)
+        public ProjectService(IGenericRepository<Project> repo, IItemService itemService, ISectionService sectionService, IMapper mapper)
         {
             _repo = repo;
-            _coreRepo = coreRepo;
+            _itemService = itemService;
+            _sectionService = sectionService;          
             _mapper = mapper;
         }
 
@@ -61,6 +63,12 @@ namespace TaskManager.API.Services
             return projectResponse;
         }
 
+        public async Task<ProjectData> GetProjectDataByProjectIdAsync(Guid projectId)
+        {
+            
+            return null;
+        }
+
         public async Task<ProjectResponse> AddProjectAsync(ProjectRequest projectRequest, Guid userId)
         {
 
@@ -73,6 +81,19 @@ namespace TaskManager.API.Services
 
             project = await _repo.AddAsync(project);
 
+<<<<<<< HEAD
+            if (project != null)
+            {
+                LK_Project_User projectUserLookup = new LK_Project_User()
+                {
+                    Id = Guid.NewGuid(),
+                    ProjectId = project.Id,
+                    UserId = userId,
+                    IsAuthor = true
+                };
+               await _repo.AddProjectUserLookupAsync(projectUserLookup);
+            }
+=======
             //if (project != null)
             //{
             //    LK_Project_User projectUserLookup = new LK_Project_User()
@@ -85,6 +106,7 @@ namespace TaskManager.API.Services
             //   await _repo.AddProjectUserLookupAsync(projectUserLookup);
 
             //}
+>>>>>>> 7520bbeee28686bd0cf56f34b804dd372dc303a5
 
             return _mapper.Map<Project, ProjectResponse>(project);
 
