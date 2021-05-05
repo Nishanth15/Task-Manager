@@ -1,6 +1,7 @@
 import TopBar from '../NavigationBar/TopBar';
 import SideBar from '../NavigationBar/SideBar';
 import React, { useState, useEffect } from 'react';
+import withAuth from '../../_helpers/ProtectedRoute';
 
 const url = 'http://localhost:5000/api/project';
 
@@ -29,7 +30,6 @@ function Layout({ children }) {
     return (
         <div className="layout">
             {/* <TopBar /> */}
-
             <div
                 className={
                     'sidebar ' + (switchKey ? 'sidebar_show' : 'sidebar_hide')

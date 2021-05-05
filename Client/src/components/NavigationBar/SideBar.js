@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-const url = 'http://localhost:5000/api/project';
+const url = 'http://localhost:44373/api/project';
 
 function SideBar({ handleSwitchKey, projects }) {
     // State

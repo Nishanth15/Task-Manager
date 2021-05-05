@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import withAuth from '../../_helpers/ProtectedRoute';
 
 function Inbox() {
     return (
