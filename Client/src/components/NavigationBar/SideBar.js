@@ -3,11 +3,7 @@ import { useState } from 'react';
 import AddProjectModal from './AddProjectModal';
 import { Dropdown } from 'semantic-ui-react';
 
-<<<<<<< HEAD
-const url = 'http://localhost:44373/api/project';
-=======
 // const url = 'http://localhost:5000/api/project';
->>>>>>> 7520bbeee28686bd0cf56f34b804dd372dc303a5
 
 function SideBar({ handleSwitchKey, projects }) {
     // State
