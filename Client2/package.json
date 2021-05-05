@@ -1,0 +1,26 @@
+{
+    "name": "Client",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.35",
+        "@fortawesome/free-solid-svg-icons": "^5.15.3",
+        "@fortawesome/react-fontawesome": "^0.1.14",
+        "react": "17.0.2",
+        "react-dom": "17.0.2",
+        "sass": "^1.32.8",
+        "semantic-ui-css": "^2.4.1",
+        "semantic-ui-react": "^2.0.3"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.2.5",
+        "postcss": "^8.2.9",
+        "tailwindcss": "^2.1.1"
+    }
+}

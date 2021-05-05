@@ -1,0 +1,123 @@
+.ui.mini.modal {
+    @apply max-w-md -md:max-w-sm;
+}
+
+.ui.modal button {
+    outline: none !important;
+}
+.project_modal_header h1 {
+    @apply m-0 py-4 font-bold flex-grow;
+}
+
+.project_modal_header {
+    @apply border-solid border-b flex rounded-t-xl items-center py-0 px-6;
+}
+
+.project_modal_form {
+    @apply flex flex-col overflow-auto;
+}
+
+.project_modal_form_section {
+    @apply box-border flex flex-col flex-grow rounded-xl h-full overflow-hidden py-5 px-6 w-full;
+}
+
+.form_field {
+    @apply flex flex-col mb-5;
+}
+
+.form_field label,
+.form_field p {
+    @apply flex font-bold text-base mx-0 mt-0 mb-2;
+}
+
+.form_control {
+    @apply rounded border-gray-300 border-solid border text-sm outline-none p-3 text-black w-full;
+}
+
+.color_dropdown {
+    @apply flex;
+}
+
+.radio_group {
+    @apply flex;
+}
+
+.radio_option {
+    @apply cursor-pointer flex items-center w-24;
+}
+
+.radio_button {
+    @apply pr-3;
+}
+
+.task_checkbox {
+    @apply cursor-pointer h-6 w-6;
+}
+
+.task_checkbox,
+.task_checkbox .task_checkbox_circle {
+    @apply border-gray-300 border-solid rounded-full border flex items-center justify-center h-4 w-4;
+}
+
+.task_checkbox .task_checkbox_circle svg {
+    @apply border-transparent border-solid border inline-block h-6 w-6 opacity-0 transition-opacity pointer-events-none;
+}
+
+.task_checkbox.checked .task_checkbox_circle {
+    @apply border-2 h-5 w-5 bg-primary border-primary;
+}
+
+.task_checkbox.checked .task_checkbox_circle svg {
+    @apply text-white;
+}
+
+.task_checkbox.checked svg,
+.task_checkbox:hover svg,
+.radio_option:hover svg {
+    @apply opacity-100;
+}
+
+.favorite_switch {
+    @apply cursor-pointer bg-gray-400 rounded-xl inline-block h-5 mr-2 mb-12 overflow-visible p-2 relative w-8;
+}
+
+.favorite_switch.active {
+    @apply bg-primary;
+}
+
+.favorite_switch .favorite_switch_circle {
+    @apply bg-white block top-1 left-1 rounded-full h-3 p-0 absolute w-3;
+    transition: left 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.favorite_switch.active .favorite_switch_circle {
+    @apply left-4;
+}
+
+.project_modal_footer {
+    @apply border-solid border-t flex rounded-b-xl  items-center justify-end py-4 px-6;
+}
+
+button:disabled {
+    @apply opacity-30;
+}
+
+button:active {
+    @apply transform translate-y-1;
+}
+
+.project_modal_footer button {
+    @apply ml-2 px-3 pt-2 pb-2;
+}
+
+.footer_button,
+.footer_button:visited {
+    @apply border-solid border-gray-300 border rounded-xl font-semibold 
+        text-xs leading-4 px-3 pt-2 pb-2 text-black text-center no-underline 
+        bg-gray-200 whitespace-nowrap;
+}
+
+.footer_button_blue,
+.footer_button_blue:visited {
+    @apply border-transparent bg-primary border-solid border text-white;
+}

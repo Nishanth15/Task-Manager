@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 
-function PId() {
+function Project() {
     const router = useRouter();
     const { pid } = router.query;
     const projectURL = 'http://localhost:5000/api/project/' + pid;
@@ -77,4 +77,4 @@ function PId() {
     );
 }
 
-export default PId;
+export default Project;

@@ -1,7 +1,12 @@
+import { useRouter } from 'next/router';
 import Layout from '../components/Layout/Layout';
-import '../styles/global.scss';
+
+import Signin from './signin';
 
 const MyApp = ({ Component, pageProps }) => {
+    const router = useRouter();
+    if (router.asPath === '/signin') return <Signin />;
+
     return (
         <>
             <Layout>

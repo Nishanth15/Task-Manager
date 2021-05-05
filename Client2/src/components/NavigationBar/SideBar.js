@@ -1,14 +1,15 @@
-import { useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import AddProjectModal from './AddProjectModal';
 import { Dropdown } from 'semantic-ui-react';
 
-// const url = 'http://localhost:5000/api/project';
+const url = 'http://localhost:5000/api/project';
 
 function SideBar({ handleSwitchKey, projects }) {
     // State
-    const router = useLocation();
-    console.log(router.pathname);
+    const router = useRouter();
     const [projectCollapse, setProjectCollapse] = useState(false);
     const [labelCollapse, setLabelCollapse] = useState(false);
     const [openModal, setOpenModal] = useState(false);
@@ -27,7 +28,7 @@ function SideBar({ handleSwitchKey, projects }) {
     const trigger = (
         <span>
             <div className="user_icon">
-                <img src="/user.png" alt="" width={100} height={100}></img>
+                <Image src="/user.png" width={100} height={100}></Image>
             </div>
             <div className="user_button">
                 <div className="user_name">Nishanth</div>
@@ -77,16 +78,17 @@ function SideBar({ handleSwitchKey, projects }) {
             {/* List */}
             <div className="sidebar_list">
                 <ul>
-                    <a href="/inbox">
+                    {/* Inbox */}
+                    <Link href="/inbox">
                         <li
                             className={
                                 'item inbox ' +
-                                (router.pathname === '/inbox' ? 'active' : '')
+                                (router.asPath === '/inbox' ? 'active' : '')
                             }
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="sidebar_list_item_svg h-6 w-6"
+                                className="sidebar_list_item_svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -101,15 +103,14 @@ function SideBar({ handleSwitchKey, projects }) {
 
                             <p>Inbox</p>
                         </li>
-                    </a>
+                    </Link>
 
-                    <a href="/calender">
+                    {/* Calender */}
+                    <Link href="/calender">
                         <li
                             className={
                                 'item calender ' +
-                                (router.pathname === '/calender'
-                                    ? 'active'
-                                    : '')
+                                (router.asPath === '/calender' ? 'active' : '')
                             }
                         >
                             <svg
@@ -129,9 +130,10 @@ function SideBar({ handleSwitchKey, projects }) {
 
                             <p>Calender</p>
                         </li>
-                    </a>
+                    </Link>
                 </ul>
 
+                {/* Projects */}
                 <div className={'item projects'}>
                     <div className="expansion_panel_header">
                         <svg
@@ -197,14 +199,14 @@ function SideBar({ handleSwitchKey, projects }) {
                     >
                         {projects.map((project) => {
                             return (
-                                <a
+                                <Link
                                     href={`/project/${project.id}`}
                                     key={project.id}
                                 >
                                     <li
                                         className={
                                             'project_list_item ' +
-                                            (router.pathname ===
+                                            (router.asPath ===
                                             '/project/' + project.id
                                                 ? 'active'
                                                 : '')
@@ -233,12 +235,13 @@ function SideBar({ handleSwitchKey, projects }) {
                                             </svg>
                                         </div>
                                     </li>
-                                </a>
+                                </Link>
                             );
                         })}
                     </ul>
                 </div>
 
+                {/* Labels */}
                 <div className={'item labels'}>
                     <div className="expansion_panel_header">
                         <svg
@@ -301,47 +304,47 @@ function SideBar({ handleSwitchKey, projects }) {
                             (labelCollapse ? 'active' : '')
                         }
                     >
-                        {projects.map((project) => {
-                            return (
-                                <a
-                                    href={`/project/${project.id}`}
-                                    key={project.id}
-                                >
-                                    <li
-                                        className={
-                                            'project_list_item ' +
-                                            (router.pathname ===
-                                            '/project/' + project.id
-                                                ? 'active'
-                                                : '')
-                                        }
+                        {/* {projects.map((project) => {
+                                return (
+                                    <Link
+                                        href={`/project/${project.id}`}
+                                        key={project.id}
                                     >
-                                        <div>
-                                            <div className="projects_color"></div>
-                                        </div>
-                                        <div className="projects_button">
-                                            <div className="item_name">
-                                                {project.name}
+                                        <li
+                                            className={
+                                                'project_list_item ' +
+                                                (router.asPath ===
+                                                '/project/' + project.id
+                                                    ? 'active'
+                                                    : '')
+                                            }
+                                        >
+                                            <div>
+                                                <div className="projects_color"></div>
                                             </div>
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="item_setting"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth={2}
-                                                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                                                />
-                                            </svg>
-                                        </div>
-                                    </li>
-                                </a>
-                            );
-                        })}
+                                            <div className="projects_button">
+                                                <div className="item_name">
+                                                    {project.name}
+                                                </div>
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="item_setting"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth={2}
+                                                        d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                                                    />
+                                                </svg>
+                                            </div>
+                                        </li>
+                                    </Link>
+                                ); 
+                            {/* })} */}
                     </ul>
                 </div>
             </div>
@@ -371,19 +374,14 @@ function SideBar({ handleSwitchKey, projects }) {
 
             {/* User Menu */}
             <div className="user_menu">
-                <Dropdown
+                {/* <Dropdown
                     trigger={trigger}
                     options={options}
                     pointing="top left"
                     icon={null}
-                />
-                {/* <div className="user_icon">
-                    <img
-                        src="../../../public/user.png"
-                        alt=""
-                        width={100}
-                        height={100}
-                    />
+                /> */}
+                <div className="user_icon">
+                    <Image src="/user.png" width={100} height={100}></Image>
                 </div>
                 <div className="user_button">
                     <div className="user_name">Nishanth</div>
@@ -410,7 +408,7 @@ function SideBar({ handleSwitchKey, projects }) {
                             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                         />
                     </svg>
-                </div> */}
+                </div>
             </div>
         </div>
     );

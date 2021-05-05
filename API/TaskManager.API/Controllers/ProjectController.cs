@@ -22,7 +22,7 @@ namespace TaskManager.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProjectResponse>>> Get()
         {
-            var projects = await _service.GetProjectsAsync(CurrentUser.Id);
+            var projects = await _service.GetProjectsAsync(Guid.Parse("FB7A0BD1-10C1-4608-AA4C-E83959B3F2FB"));
             return Ok(projects);
         }
 
@@ -53,12 +53,12 @@ namespace TaskManager.API.Controllers
             return Ok(project);
         }
 
-        //[Route("Collapse")]
-        //[HttpPut]
-        //public async Task<ActionResult<ProjectResponse>> CollapseProject(Guid id, int Collapsed)
-        //{
-        //    var project = await _service.CollapseProjectAsync(id, Collapsed);
-        //    return Ok(project);
-        //}
+        [Route("Collapse")]
+        [HttpPut]
+        public async Task<ActionResult<ProjectResponse>> CollapseProject(Guid id, int Collapsed)
+        {
+            var project = await _service.CollapseProjectAsync(id, Collapsed);
+            return Ok(project);
+        }
     }
 }
