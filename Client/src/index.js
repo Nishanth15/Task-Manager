@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/global.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 ReactDOM.render(
+    <>
     <Router>
         <App />
-    </Router>,
+    </Router>
+    </>,
     document.getElementById('root')
 );
 

@@ -28,7 +28,7 @@ function SideBar({ handleSwitchKey, projects }) {
         <span>
             <div className="user_icon">
                 <img
-                    src="../../assets/user.png"
+                    src="src\assets\user.png"
                     alt=""
                     width={100}
                     height={100}
@@ -74,7 +74,7 @@ function SideBar({ handleSwitchKey, projects }) {
             {/* logo */}
             <img
                 className="logo"
-                src="../../assets/logo.svg"
+                src="../assets/logo.svg"
                 alt="taskManager"
                 width="200"
             />
