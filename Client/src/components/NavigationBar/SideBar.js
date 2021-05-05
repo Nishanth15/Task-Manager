@@ -27,7 +27,12 @@ function SideBar({ handleSwitchKey, projects }) {
     const trigger = (
         <span>
             <div className="user_icon">
-                <img src="/user.png" alt="" width={100} height={100}></img>
+                <img
+                    src="../../assets/user.png"
+                    alt=""
+                    width={100}
+                    height={100}
+                ></img>
             </div>
             <div className="user_button">
                 <div className="user_name">Nishanth</div>
@@ -69,7 +74,7 @@ function SideBar({ handleSwitchKey, projects }) {
             {/* logo */}
             <img
                 className="logo"
-                src="/logo.svg"
+                src="../../assets/logo.svg"
                 alt="taskManager"
                 width="200"
             />
