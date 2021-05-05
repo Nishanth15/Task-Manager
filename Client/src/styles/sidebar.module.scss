@@ -22,7 +22,7 @@
         // Sidebar each single item
         .item {
             @apply cursor-pointer tracking-wide flex items-center 
-                    space-x-2 text-base font-medium rounded-md mt-2 hover:text-primary 
+                    space-x-2 text-sm font-semibold rounded-md mt-2 hover:text-primary 
                     px-3 py-2 transition-colors duration-75;
 
             .sidebar_list_item_svg {
@@ -33,64 +33,92 @@
                 @apply bg-sidebar_active text-primary;
             }
 
-            .collapes_key {
-                @apply h-5 w-5 hover:bg-sidebar_active rounded-full duration-200;
-            }
+            .collapse_key {
+                @apply h-5 w-5 duration-200;
 
-            .expansion_panel_header {
-                @apply p-1 w-full flex justify-between;
-
-                .active {
+                &.active {
                     @apply transform -rotate-90;
                 }
             }
-        }
 
-        // Sidebar each expandable item list
-        .expansion_panel_list {
-            @apply ml-6 text-sm hidden max-h-56 overflow-hidden 
-                hover:overflow-y-scroll;
+            &.projects,
+            &.labels {
+                @apply hover:text-text_color flex flex-col;
 
-            &::-webkit-scrollbar {
-                @apply w-1.5 bg-none;
-            }
+                .expansion_panel_header {
+                    @apply w-full flex items-center;
 
-            &::-webkit-scrollbar-thumb {
-                @apply bg-gray-400 rounded-md;
-            }
+                    .sidebar_list_item_svg {
+                        @apply h-10 w-10;
+                    }
 
-            // Sidebar each expandable item list of each item
-            .project_list_item {
-                @apply cursor-pointer tracking-wider flex 
-                    items-center w-44 space-x-2 rounded-md font-normal 
-                    hover:text-primary p-1.5 pl-3 transition-colors duration-75;
+                    .header_name {
+                        @apply px-3 w-full;
+                    }
 
-                // Sidebar each expandable item list of each item colors
-                .projects_color {
-                    @apply w-2 h-2 rounded-full bg-red-600 mr-2;
-                }
+                    .keys {
+                        @apply flex flex-row space-x-2;
 
-                .projects_button {
-                    @apply flex w-full justify-between;
-
-                    .item_setting {
-                        @apply h-5 w-5 opacity-0;
+                        .add_project,
+                        .add_label {
+                            @apply h-5 w-5 opacity-0 hover:bg-sidebar_active rounded-full 
+                            duration-500;
+                        }
                     }
                 }
 
-                &:hover .projects_button .item_setting {
-                    @apply opacity-100;
-                }
+                // Sidebar each expandable item list
+                .expansion_panel_list {
+                    @apply ml-12 mt-2 text-sm hidden w-full max-h-56 overflow-hidden 
+                        hover:overflow-y-scroll;
 
-                &.active {
-                    @apply bg-sidebar_active text-primary;
-                }
-            }
+                    &::-webkit-scrollbar {
+                        @apply w-1.5 bg-none;
+                    }
 
-            &.active {
-                @apply block;
+                    &::-webkit-scrollbar-thumb {
+                        @apply bg-gray-400 rounded-md;
+                    }
+
+                    // Sidebar each expandable item list of each item
+                    .project_list_item {
+                        @apply cursor-pointer tracking-wide flex 
+                            items-center w-44 space-x-2 rounded-md font-normal 
+                            hover:text-primary p-1.5 pl-3 transition-colors duration-75;
+
+                        // Sidebar each expandable item list of each item colors
+                        .projects_color {
+                            @apply w-2 h-2 rounded-full bg-red-600 mr-1;
+                        }
+
+                        .projects_button {
+                            @apply flex w-full justify-between;
+
+                            .item_setting {
+                                @apply h-5 w-5 opacity-0;
+                            }
+                        }
+
+                        &:hover .projects_button .item_setting {
+                            @apply opacity-100;
+                        }
+
+                        &.active {
+                            @apply bg-sidebar_active text-primary;
+                        }
+                    }
+
+                    &.active {
+                        @apply block;
+                    }
+                }
             }
         }
+    }
+
+    &:hover .sidebar_list .item.projects .keys .add_project,
+    &:hover .sidebar_list .item.labels .keys .add_label {
+        @apply opacity-100;
     }
 
     // Sidebar switch
@@ -110,23 +138,28 @@
     .user_menu {
         @apply absolute bottom-0 h-14 w-full p-5 bg-white border-t 
                 flex items-center justify-start;
+        .ui.dropdown {
+            @apply w-full;
+            span {
+                @apply flex items-center;
+                .user_icon {
+                    @apply w-10 h-10 rounded-full;
+                }
 
-        .user_icon {
-            @apply w-10 h-10 rounded-full;
-        }
+                .user_button {
+                    @apply flex w-full justify-between;
 
-        .user_button {
-            @apply flex w-full justify-between;
+                    .user_name {
+                        @apply pl-2;
+                    }
 
-            .user_name {
-                @apply pl-2;
-            }
+                    .collapse_key {
+                        @apply h-5 w-5 hover:bg-sidebar_active rounded-full duration-500;
 
-            .collapes_key {
-                @apply h-5 w-5 hover:bg-sidebar_active rounded-full duration-500;
-
-                &.active {
-                    @apply transform rotate-90;
+                        &.active {
+                            @apply transform rotate-90;
+                        }
+                    }
                 }
             }
         }

@@ -81,6 +81,7 @@ namespace TaskManager.API.Services
 
             project = await _repo.AddAsync(project);
 
+<<<<<<< HEAD
             if (project != null)
             {
                 LK_Project_User projectUserLookup = new LK_Project_User()
@@ -92,6 +93,20 @@ namespace TaskManager.API.Services
                 };
                await _repo.AddProjectUserLookupAsync(projectUserLookup);
             }
+=======
+            //if (project != null)
+            //{
+            //    LK_Project_User projectUserLookup = new LK_Project_User()
+            //    {
+            //        Id = Guid.NewGuid(),
+            //        ProjectId = project.Id,
+            //        UserId = userId,
+            //        IsAuthor = true
+            //    };
+            //   await _repo.AddProjectUserLookupAsync(projectUserLookup);
+
+            //}
+>>>>>>> 7520bbeee28686bd0cf56f34b804dd372dc303a5
 
             return _mapper.Map<Project, ProjectResponse>(project);
 

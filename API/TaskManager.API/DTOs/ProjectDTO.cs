@@ -40,10 +40,14 @@ namespace TaskManager.API.DTOs
 
     public enum ProjectColor
     {
-        Black,
-        Blue,
         Red,
-        Green
+        Blue,
+        Green,
+        Black,
+        Purple,
+        Orange,
+        Yellow,
+        Pink
     }
 
 }

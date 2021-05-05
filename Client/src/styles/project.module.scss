@@ -1,5 +1,5 @@
 .project {
-    @apply h-full w-full;
+    @apply h-full w-full box-border;
 
     .project_title {
         @apply text-2xl font-bold uppercase;
@@ -16,7 +16,7 @@
 
                 &::before {
                     content: '';
-                    @apply fixed top-0 left-0 right-0 bottom-0 pointer-events-none;
+                    @apply fixed inset-0 pointer-events-none;
                 }
 
                 &:hover::before {
