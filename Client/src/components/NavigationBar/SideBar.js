@@ -1,11 +1,13 @@
 import { useLocation } from 'react-router-dom';
+import logo from '../../assets/logo.svg';
+import user_icon from '../../assets/user.png';
 import { useState } from 'react';
 import AddProjectModal from './AddProjectModal';
 import { Dropdown } from 'semantic-ui-react';
 
 // const url = 'http://localhost:5000/api/project';
 
-function SideBar({ handleSwitchKey, projects }) {
+function SideBar({ handleSwitchKey, projects }) {    
     // State
     const router = useLocation();
     console.log(router.pathname);
@@ -28,7 +30,7 @@ function SideBar({ handleSwitchKey, projects }) {
         <span>
             <div className="user_icon">
                 <img
-                    src="src\assets\user.png"
+                    src={user_icon}
                     alt=""
                     width={100}
                     height={100}
@@ -74,7 +76,7 @@ function SideBar({ handleSwitchKey, projects }) {
             {/* logo */}
             <img
                 className="logo"
-                src="../assets/logo.svg"
+                src={logo}
                 alt="taskManager"
                 width="200"
             />
