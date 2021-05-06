@@ -7,10 +7,9 @@ import { Dropdown } from 'semantic-ui-react';
 
 // const url = 'http://localhost:5000/api/project';
 
-function SideBar({ handleSwitchKey, projects }) {    
+function SideBar({ handleSwitchKey, projects }) {
     // State
     const router = useLocation();
-    console.log(router.pathname);
     const [projectCollapse, setProjectCollapse] = useState(false);
     const [labelCollapse, setLabelCollapse] = useState(false);
     const [openModal, setOpenModal] = useState(false);
@@ -29,12 +28,7 @@ function SideBar({ handleSwitchKey, projects }) {
     const trigger = (
         <span>
             <div className="user_icon">
-                <img
-                    src={user_icon}
-                    alt=""
-                    width={100}
-                    height={100}
-                ></img>
+                <img src={user_icon} alt="" width={100} height={100}></img>
             </div>
             <div className="user_button">
                 <div className="user_name">Nishanth</div>
@@ -74,12 +68,7 @@ function SideBar({ handleSwitchKey, projects }) {
     return (
         <div>
             {/* logo */}
-            <img
-                className="logo"
-                src={logo}
-                alt="taskManager"
-                width="200"
-            />
+            <img className="logo" src={logo} alt="taskManager" width="200" />
 
             {/* List */}
             <div className="sidebar_list">
