@@ -1,13 +1,13 @@
-import { useLocation } from 'react-router-dom';
-import logo from '../../assets/logo.svg';
-import user_icon from '../../assets/user.png';
+import { Link, useLocation } from 'react-router-dom';
+import logo from '../../../assets/logo.svg';
+import user_icon from '../../../assets/user.png';
 import { useState } from 'react';
-import AddProjectModal from './AddProjectModal';
+import AddProjectModal from '../Modal/AddProjectModal';
 import { Dropdown } from 'semantic-ui-react';
 
 // const url = 'http://localhost:5000/api/project';
 
-function SideBar({ handleSwitchKey, projects }) {
+const SideBar = ({ handleSwitchKey, projects }) => {
     // State
     const router = useLocation();
     const [projectCollapse, setProjectCollapse] = useState(false);
@@ -73,7 +73,7 @@ function SideBar({ handleSwitchKey, projects }) {
             {/* List */}
             <div className="sidebar_list">
                 <ul>
-                    <a href="/inbox">
+                    <Link to="/inbox">
                         <li
                             className={
                                 'item inbox ' +
@@ -95,11 +95,11 @@ function SideBar({ handleSwitchKey, projects }) {
                                 />
                             </svg>
 
-                            <p>Inbox</p>
+                            <p className="header_name">Inbox</p>
                         </li>
-                    </a>
+                    </Link>
 
-                    <a href="/calender">
+                    <Link to="/calender">
                         <li
                             className={
                                 'item calender ' +
@@ -123,9 +123,9 @@ function SideBar({ handleSwitchKey, projects }) {
                                 />
                             </svg>
 
-                            <p>Calender</p>
+                            <p className="header_name">Calender</p>
                         </li>
-                    </a>
+                    </Link>
                 </ul>
 
                 <div className={'item projects'}>
@@ -193,8 +193,8 @@ function SideBar({ handleSwitchKey, projects }) {
                     >
                         {projects.map((project) => {
                             return (
-                                <a
-                                    href={`/project/${project.id}`}
+                                <Link
+                                    to={`/project/${project.id}`}
                                     key={project.id}
                                 >
                                     <li
@@ -229,7 +229,7 @@ function SideBar({ handleSwitchKey, projects }) {
                                             </svg>
                                         </div>
                                     </li>
-                                </a>
+                                </Link>
                             );
                         })}
                     </ul>
@@ -299,8 +299,8 @@ function SideBar({ handleSwitchKey, projects }) {
                     >
                         {projects.map((project) => {
                             return (
-                                <a
-                                    href={`/project/${project.id}`}
+                                <Link
+                                    to={`/project/${project.id}`}
                                     key={project.id}
                                 >
                                     <li
@@ -335,7 +335,7 @@ function SideBar({ handleSwitchKey, projects }) {
                                             </svg>
                                         </div>
                                     </li>
-                                </a>
+                                </Link>
                             );
                         })}
                     </ul>
@@ -373,43 +373,9 @@ function SideBar({ handleSwitchKey, projects }) {
                     pointing="top left"
                     icon={null}
                 />
-                {/* <div className="user_icon">
-                    <img
-                        src="../../../public/user.png"
-                        alt=""
-                        width={100}
-                        height={100}
-                    />
-                </div>
-                <div className="user_button">
-                    <div className="user_name">Nishanth</div>
-                    <svg
-                        onClick={switch_projectCollapse}
-                        xmlns="http://www.w3.org/2000/svg"
-                        className={
-                            'collapse_key ' + (projectCollapse ? 'active' : '')
-                        }
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                        />
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                    </svg>
-                </div> */}
             </div>
         </div>
     );
-}
+};
 
 export default SideBar;

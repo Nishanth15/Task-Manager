@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const url = 'http://localhost:5000/api/project';
 
-function Layout({ children }) {
+const Layout = ({ children }) => {
     // State
     const [switchKey, setSwitchKey] = useState(true);
     const [projects, setProjects] = useState([]);
@@ -44,6 +44,6 @@ function Layout({ children }) {
             </div>
         </div>
     );
-}
+};
 
 export default Layout;

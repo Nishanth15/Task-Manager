@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Dropdown, Modal } from 'semantic-ui-react';
 
-function AddProjectModal({ open, close }) {
+const AddProjectModal = ({ open, close }) => {
     const initialProjectData = {
         name: '',
         color: 'Important',
@@ -102,16 +102,16 @@ function AddProjectModal({ open, close }) {
     ];
     return (
         <div>
-            <Modal open={open} size="mini" closeOnDimmerClick={false}>
+            <Modal open={open} size="tiny" closeOnDimmerClick={false}>
                 <div className="modal">
                     {/* header */}
-                    <header className="project_modal_header">
+                    <header className="modal_header">
                         <h1>Add Project</h1>
                     </header>
 
                     {/* body */}
-                    <form className="project_modal_form">
-                        <section className="project_modal_form_section">
+                    <form className="modal_form">
+                        <section className="modal_form_section">
                             <div className="form_field">
                                 <label>Name</label>
                                 <input
@@ -233,7 +233,7 @@ function AddProjectModal({ open, close }) {
                         </section>
 
                         {/* footer */}
-                        <footer className="project_modal_footer">
+                        <footer className="modal_footer">
                             <button
                                 type="button"
                                 className="footer_button"
@@ -256,6 +256,6 @@ function AddProjectModal({ open, close }) {
             </Modal>
         </div>
     );
-}
+};
 
 export default AddProjectModal;

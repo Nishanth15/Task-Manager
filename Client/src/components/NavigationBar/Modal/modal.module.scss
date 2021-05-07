@@ -1,23 +1,24 @@
-.ui.mini.modal {
+.ui.tiny.modal {
     @apply max-w-md -md:max-w-sm;
 }
 
 .ui.modal button {
     outline: none !important;
 }
-.project_modal_header h1 {
-    @apply m-0 py-4 font-bold flex-grow;
-}
 
-.project_modal_header {
+.modal_header {
     @apply border-solid border-b flex rounded-t-xl items-center py-0 px-6;
 }
 
-.project_modal_form {
+.modal_header h1 {
+    @apply m-0 py-4 font-bold flex-grow;
+}
+
+.modal_form {
     @apply flex flex-col overflow-auto;
 }
 
-.project_modal_form_section {
+.modal_form_section {
     @apply box-border flex flex-col flex-grow rounded-xl h-full overflow-hidden py-5 px-6 w-full;
 }
 
@@ -78,7 +79,7 @@
 }
 
 .favorite_switch {
-    @apply cursor-pointer bg-gray-400 rounded-xl inline-block h-5 mr-2 mb-12 overflow-visible p-2 relative w-8;
+    @apply cursor-pointer bg-gray-400 rounded-xl inline-block h-5 mr-2 mb-24 overflow-visible p-2 relative w-8;
 }
 
 .favorite_switch.active {
@@ -94,8 +95,12 @@
     @apply left-4;
 }
 
-.project_modal_footer {
+.modal_footer {
     @apply border-solid border-t flex rounded-b-xl  items-center justify-end py-4 px-6;
+}
+
+.modal_footer button {
+    @apply ml-2 px-3 pt-2 pb-2;
 }
 
 button:disabled {
@@ -104,10 +109,6 @@ button:disabled {
 
 button:active {
     @apply transform translate-y-1;
-}
-
-.project_modal_footer button {
-    @apply ml-2 px-3 pt-2 pb-2;
 }
 
 .footer_button,

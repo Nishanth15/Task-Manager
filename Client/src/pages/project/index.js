@@ -1,51 +1,51 @@
-import { useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-function Project() {
-    const router = useLocation();
-    const { pid } = router.query;
-    const projectURL = 'http://localhost:5000/api/project/' + pid;
-    const sectionURL = 'http://localhost:5000/api/section/';
-    const taskURL = 'http://localhost:5000/api/item/';
+// import { useLocation, useParams } from 'react-router-dom';
+// import { useState, useEffect } from 'react';
+const Project = () => {
+    // const router = useLocation();
+    // const { id } = useParams();
+    // const projectURL = 'http://localhost:5000/api/project/' + id;
+    // const sectionURL = 'http://localhost:5000/api/section/';
+    // const taskURL = 'http://localhost:5000/api/item/';
 
-    const [project, setProject] = useState([]);
-    const [sections, setSections] = useState([]);
-    const [tasks, setTasks] = useState([]);
+    // const [project, setProject] = useState([]);
+    // const [sections, setSections] = useState([]);
+    // const [tasks, setTasks] = useState([]);
 
-    useEffect(() => {
-        getProjects();
-        getSections();
-        getTasks();
-    }, [projectURL]);
+    // useEffect(() => {
+    //     getProjects();
+    //     getSections();
+    //     getTasks();
+    // }, [projectURL]);
 
-    const getProjects = () => {
-        if (pid !== undefined) {
-            fetch(projectURL)
-                .then((response) => response.json())
-                .then((data) => setProject(data));
-        }
-    };
+    // const getProjects = () => {
+    //     if (id !== undefined) {
+    //         fetch(projectURL)
+    //             .then((response) => response.json())
+    //             .then((data) => setProject(data));
+    //     }
+    // };
 
-    const getSections = () => {
-        if (pid !== undefined) {
-            fetch(sectionURL)
-                .then((response) => response.json())
-                .then((data) => setSections(data));
-        }
-    };
+    // const getSections = () => {
+    //     if (id !== undefined) {
+    //         fetch(sectionURL)
+    //             .then((response) => response.json())
+    //             .then((data) => setSections(data));
+    //     }
+    // };
 
-    const getTasks = () => {
-        if (pid !== undefined) {
-            fetch(taskURL)
-                .then((response) => response.json())
-                .then((data) => setTasks(data));
-        }
-    };
+    // const getTasks = () => {
+    //     if (id !== undefined) {
+    //         fetch(taskURL)
+    //             .then((response) => response.json())
+    //             .then((data) => setTasks(data));
+    //     }
+    // };
 
     // console.log(sections);
-    console.log(tasks);
+    // console.log(tasks);
     return (
         <div className="project">
-            <div>
+            {/* <div>
                 <h1 className="project_title">{project.name}</h1>
             </div>
 
@@ -66,9 +66,9 @@ function Project() {
                         </div>
                     );
                 })}
-            </div>
+            </div> */}
         </div>
     );
-}
+};
 
 export default Project;

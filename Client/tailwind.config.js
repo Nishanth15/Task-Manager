@@ -20,6 +20,9 @@ module.exports = {
                 '-xl': { max: '1279px' },
                 '-2xl': { max: '1535px' },
             },
+            margin: {
+                88: '22rem',
+            },
             inset: {
                 54: '13.5rem',
                 58: '14.5rem',

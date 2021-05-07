@@ -1,13 +1,13 @@
 .sidebar {
-    @apply fixed w-64 h-full bg-white duration-500 shadow;
+    @apply fixed w-80 h-full bg-white duration-500 shadow;
 
     // Sidebar toggle
     &.sidebar_show {
-        @apply left-0 -md:-left-64;
+        @apply left-0 -md:-left-80;
     }
 
     &.sidebar_hide {
-        @apply -left-64 -md:left-0;
+        @apply -left-80 -md:left-0;
     }
 
     // Sidebar logo
@@ -31,6 +31,10 @@
 
             &.active {
                 @apply bg-sidebar_active text-primary;
+            }
+
+            .header_name {
+                @apply px-2 w-full;
             }
 
             .collapse_key {
@@ -69,7 +73,7 @@
 
                 // Sidebar each expandable item list
                 .expansion_panel_list {
-                    @apply ml-12 mt-2 text-sm hidden w-full max-h-56 overflow-hidden 
+                    @apply ml-5 mt-2 text-sm hidden w-64 max-h-56 overflow-hidden 
                         hover:overflow-y-scroll;
 
                     &::-webkit-scrollbar {
@@ -83,8 +87,8 @@
                     // Sidebar each expandable item list of each item
                     .project_list_item {
                         @apply cursor-pointer tracking-wide flex 
-                            items-center w-44 space-x-2 rounded-md font-normal 
-                            hover:text-primary p-1.5 pl-3 transition-colors duration-75;
+                            items-center w-56 space-x-2 rounded-md font-normal 
+                            hover:text-primary p-2 pl-3 transition-colors duration-75;
 
                         // Sidebar each expandable item list of each item colors
                         .projects_color {
@@ -123,7 +127,7 @@
 
     // Sidebar switch
     .sidebar_switch {
-        @apply absolute overflow-hidden w-10 h-24 top-10 left-64 text-primary;
+        @apply absolute overflow-hidden w-10 h-24 top-10 left-80 text-primary;
 
         .arrow-right {
             @apply absolute cursor-pointer w-20 h-20 right-5 bg-white transform rotate-135 rounded-lg shadow;
@@ -161,6 +165,9 @@
                         }
                     }
                 }
+            }
+            .menu .item {
+                @apply flex;
             }
         }
     }
