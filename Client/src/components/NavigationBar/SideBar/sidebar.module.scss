@@ -22,11 +22,11 @@
         // Sidebar each single item
         .item {
             @apply cursor-pointer tracking-wide flex items-center 
-                    space-x-2 text-sm font-semibold rounded-md mt-2 hover:text-primary 
+                    space-x-2 text-base font-semibold rounded-md mt-2 hover:text-primary 
                     px-3 py-2 transition-colors duration-75;
 
             .sidebar_list_item_svg {
-                @apply h-6 w-6;
+                @apply h-8 w-8;
             }
 
             &.active {
@@ -74,7 +74,7 @@
                 // Sidebar each expandable item list
                 .expansion_panel_list {
                     @apply ml-5 mt-2 text-sm hidden w-64 max-h-56 overflow-hidden 
-                        hover:overflow-y-scroll;
+                        hover:overflow-auto;
 
                     &::-webkit-scrollbar {
                         @apply w-1.5 bg-none;
@@ -85,25 +85,28 @@
                     }
 
                     // Sidebar each expandable item list of each item
-                    .project_list_item {
-                        @apply cursor-pointer tracking-wide flex 
-                            items-center w-56 space-x-2 rounded-md font-normal 
+                    .expansion_panel_list_item {
+                        @apply cursor-pointer tracking-wide flex
+                            items-center w-56 h-10 space-x-2 rounded-md font-normal 
                             hover:text-primary p-2 pl-3 transition-colors duration-75;
 
                         // Sidebar each expandable item list of each item colors
-                        .projects_color {
-                            @apply w-2 h-2 rounded-full bg-red-600 mr-1;
-                        }
-
-                        .projects_button {
-                            @apply flex w-full justify-between;
-
-                            .item_setting {
-                                @apply h-5 w-5 opacity-0;
+                        .div_color {
+                            @apply w-5 h-5 flex justify-center items-center;
+                            .item_color {
+                                @apply w-2.5 h-2.5 rounded-full bg-red-600;
                             }
                         }
 
-                        &:hover .projects_button .item_setting {
+                        .item_name {
+                            @apply w-full;
+                        }
+
+                        .item_menu {
+                            @apply h-8 w-8 opacity-0;
+                        }
+
+                        &:hover .item_menu {
                             @apply opacity-100;
                         }
 
