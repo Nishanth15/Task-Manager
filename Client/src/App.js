@@ -1,7 +1,6 @@
 import Layout from './components/Layout';
-import Inbox from '../src/pages/Inbox/index';
-import Calender from '../src/pages/Calender/index';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import routes from './router/';
 
 const App = () => {
     return (
