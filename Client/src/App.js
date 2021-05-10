@@ -1,18 +1,24 @@
 import Layout from './components/Layout';
-import Inbox from '../src/pages/Inbox';
-import Calender from '../src/pages/Calender';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import routes from './router/';
 
 const App = () => {
     return (
         <div>
-            <Layout>
-                <Router>
-                    <Route path="/inbox" component={Inbox} />
-                    <Route path="/calender" component={Calender} />
-                    {/* <Route path="/project" component={Project}></Route> */}
-                </Router>
-            </Layout>
+            <Router>
+                <Layout>
+                    <Switch>
+                        {routes.map((route, index) => (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                component={route.component}
+                                exact
+                            />
+                        ))}
+                    </Switch>
+                </Layout>
+            </Router>
         </div>
     );
 };

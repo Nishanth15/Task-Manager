@@ -1,5 +1,5 @@
 .sidebar {
-    @apply fixed w-80 h-full bg-white duration-500 shadow;
+    @apply fixed w-80 h-full bg-white duration-500;
 
     // Sidebar toggle
     &.sidebar_show {
@@ -133,7 +133,7 @@
         @apply absolute overflow-hidden w-10 h-24 top-10 left-80 text-primary;
 
         .arrow-right {
-            @apply absolute cursor-pointer w-20 h-20 right-5 bg-white transform rotate-135 rounded-lg shadow;
+            @apply absolute cursor-pointer w-20 h-20 right-5 bg-white transform rotate-135 rounded-lg;
 
             .menu_icon {
                 @apply absolute h-5 w-5 transform rotate-45 top-2 left-2;
