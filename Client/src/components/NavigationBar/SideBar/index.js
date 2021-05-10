@@ -199,35 +199,33 @@ const SideBar = ({ handleSwitchKey, projects }) => {
                                 >
                                     <li
                                         className={
-                                            'project_list_item ' +
+                                            'expansion_panel_list_item ' +
                                             (router.pathname ===
                                             '/project/' + project.id
                                                 ? 'active'
                                                 : '')
                                         }
                                     >
-                                        <div>
-                                            <div className="projects_color"></div>
+                                        <div className="div_color">
+                                            <div className="item_color"></div>
                                         </div>
-                                        <div className="projects_button">
-                                            <div className="item_name">
-                                                {project.name}
-                                            </div>
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="item_setting"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth={2}
-                                                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                                                />
-                                            </svg>
+                                        <div className="item_name">
+                                            {project.name}
                                         </div>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="item_menu"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                                            />
+                                        </svg>
                                     </li>
                                 </Link>
                             );
@@ -305,35 +303,33 @@ const SideBar = ({ handleSwitchKey, projects }) => {
                                 >
                                     <li
                                         className={
-                                            'project_list_item ' +
+                                            'expansion_panel_list_item ' +
                                             (router.pathname ===
                                             '/project/' + project.id
                                                 ? 'active'
                                                 : '')
                                         }
                                     >
-                                        <div>
-                                            <div className="projects_color"></div>
+                                        <div className="div_color">
+                                            <div className="item_color"></div>
                                         </div>
-                                        <div className="projects_button">
-                                            <div className="item_name">
-                                                {project.name}
-                                            </div>
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="item_setting"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth={2}
-                                                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                                                />
-                                            </svg>
+                                        <div className="item_name">
+                                            {project.name}
                                         </div>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="item_menu"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                                            />
+                                        </svg>
                                     </li>
                                 </Link>
                             );

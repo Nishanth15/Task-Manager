@@ -1,29 +1,52 @@
-// import { useLocation, useParams } from 'react-router-dom';
-// import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 const Project = () => {
     // const router = useLocation();
-    // const { id } = useParams();
-    // const projectURL = 'http://localhost:5000/api/project/' + id;
+    const { id } = useParams();
+    const projectURL = 'http://localhost:5000/api/project/' + id;
+    // const sectionURL = 'http://localhost:5000/api/section/';
     // const sectionURL = 'http://localhost:5000/api/section/';
     // const taskURL = 'http://localhost:5000/api/item/';
 
-    // const [project, setProject] = useState([]);
-    // const [sections, setSections] = useState([]);
-    // const [tasks, setTasks] = useState([]);
+    const [project, setProject] = useState([]);
+    const [sections, setSections] = useState([
+        {
+            id: 23412314,
+            name: 'Welcome',
+        },
+    ]);
+    const [tasks, setTasks] = useState([
+        {
+            id: 32232,
+            content: 'Todo',
+        },
+        {
+            id: 32233,
+            content: 'Barge',
+        },
+        {
+            id: 32234,
+            content: 'Katang',
+        },
+        {
+            id: 32236,
+            content: 'Rabukya',
+        },
+    ]);
 
-    // useEffect(() => {
-    //     getProjects();
-    //     getSections();
-    //     getTasks();
-    // }, [projectURL]);
+    useEffect(() => {
+        getProjects();
+        // getSections();
+        // getTasks();
+    }, []);
 
-    // const getProjects = () => {
-    //     if (id !== undefined) {
-    //         fetch(projectURL)
-    //             .then((response) => response.json())
-    //             .then((data) => setProject(data));
-    //     }
-    // };
+    const getProjects = () => {
+        if (id !== undefined) {
+            fetch(projectURL)
+                .then((response) => response.json())
+                .then((data) => setProject(data));
+        }
+    };
 
     // const getSections = () => {
     //     if (id !== undefined) {
@@ -45,7 +68,7 @@ const Project = () => {
     // console.log(tasks);
     return (
         <div className="project">
-            {/* <div>
+            <div>
                 <h1 className="project_title">{project.name}</h1>
             </div>
 
@@ -66,7 +89,7 @@ const Project = () => {
                         </div>
                     );
                 })}
-            </div> */}
+            </div>
         </div>
     );
 };
