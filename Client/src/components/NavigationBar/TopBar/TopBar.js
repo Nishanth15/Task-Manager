@@ -1,6 +1,6 @@
 const TopBar = () => {
     return (
-        <div className="p-3 container-fluid header">
+        <div className="p-3 header">
             <div className="row"></div>
         </div>
     );

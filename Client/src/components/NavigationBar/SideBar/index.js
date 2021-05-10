@@ -10,6 +10,7 @@ import { Dropdown } from 'semantic-ui-react';
 const SideBar = ({ handleSwitchKey, projects }) => {
     // State
     const router = useLocation();
+
     const [projectCollapse, setProjectCollapse] = useState(false);
     const [labelCollapse, setLabelCollapse] = useState(false);
     const [openModal, setOpenModal] = useState(false);

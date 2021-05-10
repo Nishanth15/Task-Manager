@@ -17,7 +17,6 @@ const Layout = ({ children }) => {
     const switchSideBar = () => {
         setSwitchKey(switchKey ? false : true);
     };
-
     const getProjects = async () => {
         fetch(url)
             .then((response) => response.json())

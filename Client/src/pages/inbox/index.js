@@ -1,7 +1,7 @@
 const Inbox = () => {
     return (
         <div>
-            <h1 className="text-5xl">Inbox</h1>
+            <h1 className="text-2xl">Inbox</h1>
         </div>
     );
 };

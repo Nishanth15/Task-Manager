@@ -100,6 +100,7 @@ const AddProjectModal = ({ open, close }) => {
             label: { color: 'pink', empty: true, circular: true },
         },
     ];
+
     return (
         <div>
             <Modal open={open} size="tiny" closeOnDimmerClick={false}>
