@@ -1,6 +1,6 @@
-import Calender from '../pages/calender';
-import Inbox from '../pages/inbox';
-import Project from '../pages/project';
+import Calender from '../pages/Calender';
+import Inbox from '../pages/Inbox';
+import Project from '../pages/Project';
 
 const routes = [
     {
