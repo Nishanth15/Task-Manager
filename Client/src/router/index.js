@@ -1,18 +1,9 @@
 import Calender from '../pages/Calender';
 import Inbox from '../pages/Inbox';
+import SignUp from '../pages/Onboard/sign-up';
 import Project from '../pages/Project';
 
 const routes = [
-    {
-        path: '/register',
-        title: 'Register',
-        component: Inbox,
-    },
-    {
-        path: '/login',
-        title: 'Login',
-        component: Inbox,
-    },
     {
         path: '/',
         title: 'Inbox',
