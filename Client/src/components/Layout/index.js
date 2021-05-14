@@ -2,10 +2,9 @@ import SideBar from '../NavigationBar/SideBar';
 import React, { useState, useEffect } from 'react';
 
 //Services
-import {projectService} from '../../services/project.service';
+import { projectService } from '../../services/project.service';
 
-
-// const url = 'http://localhost:5000/api/project';
+const url = 'http://localhost:5000/api/project';
 
 const Layout = ({ children }) => {
     // State
@@ -14,18 +13,19 @@ const Layout = ({ children }) => {
 
     // LifeCycle Hooks
     useEffect(() => {
-        projectService.getProjects().then((data) => setProjects(data));
+        // projectService.getProjects().then((data) => setProjects(data));
+        getProjects();
     }, []);
 
     // Methods
     const switchSideBar = () => {
         setSwitchKey(switchKey ? false : true);
     };
-    // const getProjects = async () => {
-    //     fetch(url)
-    //         .then((response) => response.json())
-    //         .then((data) => setProjects(data));
-    // };
+    const getProjects = async () => {
+        fetch(url)
+            .then((response) => response.json())
+            .then((data) => setProjects(data));
+    };
 
     return (
         <div className="layout">
