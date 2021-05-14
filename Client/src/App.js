@@ -1,5 +1,10 @@
 import Layout from './components/Layout';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Redirect,
+    Route,
+    Switch,
+} from 'react-router-dom';
 import routes from './router/';
 import SignUp from './pages/Onboard/sign-up';
 import SignIn from './pages/Onboard/sign-in';
@@ -9,11 +14,12 @@ const App = () => {
         <div>
             <Router>
                 <Switch>
-                <Route path='/sign-in' component={SignIn} />
-                <Route path='/sign-up' component={SignUp} />
-                <Route path='/' component={Layout}>
-                <Layout>
-                    <Switch>
+                    <Route path="/signin" component={SignIn} />
+                    <Route path="/signup" component={SignUp} />
+                    <Layout>
+                        <Route path="/">
+                            <Redirect to="/inbox"></Redirect>
+                        </Route>
                         {routes.map((route, index) => (
                             <Route
                                 key={index}
@@ -22,11 +28,8 @@ const App = () => {
                                 exact
                             />
                         ))}
-                    </Switch>
-                </Layout>
-                </Route>
+                    </Layout>
                 </Switch>
-              
             </Router>
         </div>
     );

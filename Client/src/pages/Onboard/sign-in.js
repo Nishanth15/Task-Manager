@@ -1,7 +1,6 @@
 import React from "react";
 import validate from "./validate";
 import { useFormik } from "formik";
-import {authenticationService} from '../../services/auth.service';
 
 function SignIn() {
   const formik = useFormik({
@@ -9,10 +8,9 @@ function SignIn() {
       email: "",
       password: "",
     },
-    // validate,
+    validate,
     onSubmit: (values) => {
       console.log(values);
-      authenticationService.login(values.email,values.password);
     },
   });
   return (
@@ -32,56 +30,56 @@ function SignIn() {
               <div>{formik.errors.email}</div>
             ) : null}
 
-            <input
-              type="password"
-              className="block border border-grey-light w-full p-3 rounded mb-4"
-              name="password"
-              placeholder="Password (5 characters and above)"
-              {...formik.getFieldProps("password")}
-            />
-            {formik.touched.password && formik.errors.password ? (
-              <div>{formik.errors.password}</div>
-            ) : null}
+                        <input
+                            type="password"
+                            className="block border border-grey-light w-full p-3 rounded mb-4"
+                            name="password"
+                            placeholder="Password (5 characters and above)"
+                            {...formik.getFieldProps('password')}
+                        />
+                        {formik.touched.password && formik.errors.password ? (
+                            <div>{formik.errors.password}</div>
+                        ) : null}
 
-            <button
-              type="submit"
-              className="w-full text-center py-3 rounded bg-green-600 text-white hover:bg-green-dark focus:outline-none my-1"
-            >
-              Sign in 🚀
-            </button>
+                        <button
+                            type="submit"
+                            className="w-full text-center py-3 rounded bg-green-600 text-white hover:bg-green-dark focus:outline-none my-1"
+                        >
+                            Sign in 🚀
+                        </button>
 
-            <div className="text-center text-sm text-grey-dark mt-4">
-              By signing up, you agree to the
-              <a
-                className="no-underline border-b border-grey-dark text-grey-dark"
-                href="#"
-              >
-                Terms of Service
-              </a>{" "}
-              and{" "}
-              <a
-                className="no-underline border-b border-grey-dark text-grey-dark"
-                href="#"
-              >
-                Privacy Policy
-              </a>
+                        <div className="text-center text-sm text-grey-dark mt-4">
+                            By signing up, you agree to the
+                            <a
+                                className="no-underline border-b border-grey-dark text-grey-dark"
+                                href="/"
+                            >
+                                Terms of Service
+                            </a>
+                            and
+                            <a
+                                className="no-underline border-b border-grey-dark text-grey-dark"
+                                href="/"
+                            >
+                                Privacy Policy
+                            </a>
+                        </div>
+                    </div>
+
+                    <div className="text-grey-dark mt-6">
+                        Don't you have an account?
+                        <a
+                            className="no-underline border-b border-blue text-blue"
+                            href="/register"
+                        >
+                            Sign Up
+                        </a>
+                        .
+                    </div>
+                </div>
             </div>
-          </div>
-
-          <div className="text-grey-dark mt-6">
-            Don't you have an account?
-            <a
-              className="no-underline border-b border-blue text-blue"
-              href="/register"
-            >
-              Sign Up
-            </a>
-            .
-          </div>
-        </div>
-      </div>
-    </form>
-  );
+        </form>
+    );
 }
 
 export default SignIn;
