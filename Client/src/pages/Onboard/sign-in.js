@@ -1,6 +1,7 @@
 import React from "react";
 import validate from "./validate";
 import { useFormik } from "formik";
+import {authenticationService} from '../../services/auth.service';
 
 function SignIn() {
   const formik = useFormik({
@@ -8,9 +9,10 @@ function SignIn() {
       email: "",
       password: "",
     },
-    validate,
+    // validate,
     onSubmit: (values) => {
       console.log(values);
+      authenticationService.login(values.email,values.password);
     },
   });
   return (

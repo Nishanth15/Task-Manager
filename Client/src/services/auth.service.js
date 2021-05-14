@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { handleResponse } from '../helpers/handle-response';
 
 
-const url = "http://localhost:5000/api/";
+const url = "https://localhost:44373/api/";
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 
 export const authenticationService = {
@@ -15,13 +15,20 @@ export const authenticationService = {
 };
 
 function login(username, password) {
+    const utcDate = new Date(Date.UTC(96, 1, 2, 3, 4, 5));
+    var data = {
+        "emailId": username,
+        "password": password,
+        "grantType": 'Password',
+        "refreshToken": ''
+      }
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify(data)
     };
 
-    return fetch(`${url}/auth/Token`, requestOptions)
+    return fetch(`${url}Auth/Token`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
