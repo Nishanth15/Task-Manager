@@ -1,9 +1,33 @@
-import React from "react";
+import React,{useEffect} from "react";
 import validate from "./validate";
 import { useFormik } from "formik";
 import {authenticationService} from '../../services/auth.service';
+import { useHistory } from "react-router-dom";
+
+
 
 function SignIn() {
+  let history = useHistory();
+
+useEffect(() => {
+  checkAvailability();
+})
+
+
+function checkAvailability()
+{
+  if (localStorage.getItem('accessToken') !== '' && localStorage.getItem('accessToken') != null) {
+    let tokenExpiresAt = new Date(localStorage.getItem('tokenExpiresAt'));
+    let currentTime = new Date(Date.now());
+    if (tokenExpiresAt <= currentTime) {
+     history.push('/sign-in');
+    }
+    else {
+      history.push('/inbox');
+    }
+  }
+}
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -11,8 +35,14 @@ function SignIn() {
     },
     // validate,
     onSubmit: (values) => {
-      console.log(values);
-      authenticationService.login(values.email,values.password);
+      authenticationService.login(values.email,values.password).then(
+        (response) => {
+          if(response.success)
+          {
+            history.push('/inbox');
+          }
+        }
+      );
     },
   });
   return (

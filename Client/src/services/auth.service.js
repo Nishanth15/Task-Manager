@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-
+import {useEffect, useHistory} from 'react';
 // import config from 'config';
 import { handleResponse } from '../helpers/handle-response';
 
@@ -15,7 +15,6 @@ export const authenticationService = {
 };
 
 function login(username, password) {
-    const utcDate = new Date(Date.UTC(96, 1, 2, 3, 4, 5));
     var data = {
         "emailId": username,
         "password": password,
@@ -30,17 +29,19 @@ function login(username, password) {
 
     return fetch(`${url}Auth/Token`, requestOptions)
         .then(handleResponse)
-        .then(user => {
+        .then(token => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            currentUserSubject.next(user);
+            localStorage.setItem('accessToken', token.accessToken);
+            localStorage.setItem('refreshToken', token.refreshToken);
+            localStorage.setItem('tokenExpiresAt', token.expiresAt)
+            currentUserSubject.next(token);
 
-            return user;
+            return token;
         });
 }
 
 function logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    localStorage.clear();
     currentUserSubject.next(null);
 }

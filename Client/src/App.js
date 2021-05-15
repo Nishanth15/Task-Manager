@@ -14,8 +14,8 @@ const App = () => {
         <div>
             <Router>
                 <Switch>
-                    <Route path="/signin" component={SignIn} />
-                    <Route path="/signup" component={SignUp} />
+                    <Route path="/sign-in" component={SignIn} />
+                    <Route path="/sign-up" component={SignUp} />
                     <Layout>
                         <Route path="/">
                             <Redirect to="/inbox"></Redirect>

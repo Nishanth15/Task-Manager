@@ -18,11 +18,11 @@ namespace TaskManager.API.Controllers
         {
             _service = service;
         }
-
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProjectResponse>>> Get()
         {
-            var projects = await _service.GetProjectsAsync(Guid.Parse("FB7A0BD1-10C1-4608-AA4C-E83959B3F2FB"));
+            var projects = await _service.GetProjectsAsync(CurrentUser.Id);
             return Ok(projects);
         }
 

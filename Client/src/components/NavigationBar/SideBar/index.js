@@ -10,12 +10,17 @@ import { Dropdown } from 'semantic-ui-react';
 const SideBar = ({ handleSwitchKey, projects }) => {
     // State
     const router = useLocation();
+    const [value,setMenuValue] = useState('');
 
     const [projectCollapse, setProjectCollapse] = useState(false);
     const [labelCollapse, setLabelCollapse] = useState(false);
     const [openModal, setOpenModal] = useState(false);
 
     // Methods
+    const handleChange = (e,{value}) =>{
+        setMenuValue({value});
+console.log(e.target.value);
+    };
     const onOpenModal = () => setOpenModal(true);
     const onCloseModal = () => {
         setOpenModal(false);
@@ -61,9 +66,9 @@ const SideBar = ({ handleSwitchKey, projects }) => {
     );
 
     const options = [
-        { key: 'user', text: 'Account', icon: 'user' },
-        { key: 'settings', text: 'Settings', icon: 'settings' },
-        { key: 'sign-out', text: 'Sign Out', icon: 'sign out' },
+        { key: 'user', text: 'Account', icon: 'user', value:'user' },
+        { key: 'settings', text: 'Settings', icon: 'settings', value:'settings' },
+        { key: 'sign-out', text: 'Sign Out', icon: 'sign out', value:'sign-out' },
     ];
 
     return (
@@ -192,7 +197,7 @@ const SideBar = ({ handleSwitchKey, projects }) => {
                             (projectCollapse ? 'active' : '')
                         }
                     >
-                        {projects.map((project) => {
+                        {projects && projects.map((project) => {
                             return (
                                 <Link
                                     to={`/project/${project.id}`}
@@ -365,10 +370,12 @@ const SideBar = ({ handleSwitchKey, projects }) => {
             {/* User Menu */}
             <div className="user_menu">
                 <Dropdown
+                    onChange={handleChange}
                     trigger={trigger}
                     options={options}
                     pointing="top left"
                     icon={null}
+                    value={value}
                 />
             </div>
         </div>
