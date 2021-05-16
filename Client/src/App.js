@@ -15,8 +15,8 @@ const App = () => {
         <div>
             <Router>
                 <Switch>
-                    <Route path="/sign-in" component={SignIn} />
-                    <Route path="/sign-up" component={SignUp} />
+                    <Route path="/signin" component={SignIn} />
+                    <Route path="/signup" component={SignUp} />
                     <ProtectedRoute component={Layout}>
                         <Redirect path="/" to="/inbox" />
                         {routes.map((route, index) => (
