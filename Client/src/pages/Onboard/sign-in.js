@@ -1,66 +1,66 @@
-import React,{useEffect} from "react";
-import validate from "./validate";
-import { useFormik } from "formik";
-import {authenticationService} from '../../services/auth.service';
-import { useHistory } from "react-router-dom";
-
-
+import React, { useEffect } from 'react';
+import validate from './validate';
+import { Link } from 'react-router-dom';
+import { useFormik } from 'formik';
+import { authenticationService } from '../../services/auth.service';
+import { useHistory } from 'react-router-dom';
 
 function SignIn() {
-  let history = useHistory();
+    let history = useHistory();
 
-useEffect(() => {
-  checkAvailability();
-})
+    useEffect(() => {
+        checkAvailability();
+    });
 
-
-function checkAvailability()
-{
-  if (localStorage.getItem('accessToken') !== '' && localStorage.getItem('accessToken') != null) {
-    let tokenExpiresAt = new Date(localStorage.getItem('tokenExpiresAt'));
-    let currentTime = new Date(Date.now());
-    if (tokenExpiresAt <= currentTime) {
-     history.push('/sign-in');
-    }
-    else {
-      history.push('/inbox');
-    }
-  }
-}
-
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    // validate,
-    onSubmit: (values) => {
-      authenticationService.login(values.email,values.password).then(
-        (response) => {
-          if(response.success)
-          {
-            history.push('/inbox');
-          }
+    function checkAvailability() {
+        if (
+            localStorage.getItem('accessToken') !== '' &&
+            localStorage.getItem('accessToken') != null
+        ) {
+            let tokenExpiresAt = new Date(
+                localStorage.getItem('tokenExpiresAt')
+            );
+            let currentTime = new Date(Date.now());
+            if (tokenExpiresAt <= currentTime) {
+                history.push('/sign-in');
+            }
         }
-      );
-    },
-  });
-  return (
-    <form onSubmit={formik.handleSubmit}>
-      <div className="bg-grey-lighter min-h-screen flex flex-col">
-        <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-          <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-            <h1 className="mb-8 text-3xl text-center">Sign in to Task Manager 🚀</h1>
-            <input
-              type="text"
-              className="block border border-grey-light w-full p-3 rounded mb-4"
-              name="email"
-              placeholder="Email"
-              {...formik.getFieldProps("email")}
-            />
-            {formik.touched.email && formik.errors.email ? (
-              <div>{formik.errors.email}</div>
-            ) : null}
+    }
+
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+        },
+        // validate,
+        onSubmit: (values) => {
+            authenticationService
+                .login(values.email, values.password)
+                .then((response) => {
+                    if (response.success) {
+                        history.push('/inbox');
+                    }
+                });
+        },
+    });
+    return (
+        <form onSubmit={formik.handleSubmit}>
+            <div className="bg-grey-lighter min-h-screen flex flex-col">
+                <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+                    <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+                        <h1 className="mb-8 text-3xl text-center">
+                            Sign in to Task Manager 🚀
+                        </h1>
+                        <input
+                            type="text"
+                            className="block border border-grey-light w-full p-3 rounded mb-4"
+                            name="email"
+                            placeholder="Email"
+                            {...formik.getFieldProps('email')}
+                        />
+                        {formik.touched.email && formik.errors.email ? (
+                            <div>{formik.errors.email}</div>
+                        ) : null}
 
                         <input
                             type="password"
@@ -99,13 +99,13 @@ function checkAvailability()
                     </div>
 
                     <div className="text-grey-dark mt-6">
-                        Don't you have an account?
-                        <a
+                        Don't you have an account?{' '}
+                        <Link
                             className="no-underline border-b border-blue text-blue"
-                            href="/signup"
+                            to="/signup"
                         >
                             Sign Up
-                        </a>
+                        </Link>
                         .
                     </div>
                 </div>

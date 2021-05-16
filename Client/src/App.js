@@ -8,15 +8,17 @@ import {
 import routes from './router/';
 import SignUp from './pages/Onboard/sign-up';
 import SignIn from './pages/Onboard/sign-in';
+import ProtectedRoute from './helpers/ProtectedRoute';
 
 const App = () => {
     return (
         <div>
             <Router>
                 <Switch>
-                    <Route path="/signin" component={SignIn} />
-                    <Route path="/signup" component={SignUp} />
-                    <Layout>
+                    <Route path="/sign-in" component={SignIn} />
+                    <Route path="/sign-up" component={SignUp} />
+                    <ProtectedRoute component={Layout}>
+                        <Redirect path="/" to="/inbox" />
                         {routes.map((route, index) => (
                             <Switch key={index}>
                                 <Route path="/">
@@ -29,7 +31,7 @@ const App = () => {
                                 />
                             </Switch>
                         ))}
-                    </Layout>
+                    </ProtectedRoute>
                 </Switch>
             </Router>
         </div>

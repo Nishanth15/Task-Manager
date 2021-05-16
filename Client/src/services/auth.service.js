@@ -1,5 +1,4 @@
 import { BehaviorSubject } from 'rxjs';
-import { useEffect, useHistory } from 'react';
 // import config from 'config';
 import { handleResponse } from '../helpers/handle-response';
 
@@ -11,9 +10,13 @@ const currentUserSubject = new BehaviorSubject(
 export const authenticationService = {
     login,
     logout,
+    register,
     currentUser: currentUserSubject.asObservable(),
     get currentUserValue() {
         return currentUserSubject.value;
+    },
+    get accessToken() {
+        return localStorage.getItem('accessToken');
     },
 };
 
@@ -47,4 +50,18 @@ function logout() {
     // remove user from local storage to log user out
     localStorage.clear();
     currentUserSubject.next(null);
+}
+
+function register(registerDetails) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(registerDetails),
+    };
+
+    return fetch(`${url}User/Register`, requestOptions)
+        .then(handleResponse)
+        .then((response) => {
+            return response;
+        });
 }

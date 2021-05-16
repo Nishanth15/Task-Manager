@@ -1,20 +1,17 @@
-// import React from 'react';
-// import { useEffect, useState } from 'react'
-// import { useRouter } from 'next/router';
+import React,{useHistory} from 'react-router-dom';
+import { authenticationService } from '../services/auth.service';
 
 
-// function ProtectedRoute({component:Component,...rest}) {
-//     const router = useRouter();
-//     const [verified, setVerified] = useState(false);
+function ProtectedRoute({component:Component,...rest}) {
+    const history = useHistory();
+    let accessToken = authenticationService.accessToken;
 
-//     if (!verified) {
-//       useEffect(() => {
-//         router.push('/unauthorized', undefined, { shallow: true });
-//       }, []);
-//     }
-//     return(
-//       <Component {...rest} />
-//     );
-// }
+    if (accessToken === '' || accessToken === null ) {
+        history.push('/sign-in');
+    }
+    return(
+      <Component {...rest} />
+    );
+}
 
-// export default ProtectedRoute
+export default ProtectedRoute

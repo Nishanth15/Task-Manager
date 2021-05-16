@@ -1,6 +1,6 @@
 import SideBar from '../NavigationBar/SideBar';
 import React, { useState, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 //Services
 import { projectService } from '../../services/project.service';
@@ -8,7 +8,7 @@ import { projectService } from '../../services/project.service';
 const Layout = ({ children }) => {
 
     let history = useHistory();
-
+    let location = useLocation();
     // State
     const [switchKey, setSwitchKey] = useState(true);
     const [projects, setProjects] = useState([]);
@@ -19,6 +19,11 @@ const Layout = ({ children }) => {
         projectService.getProjects().then((data) => {
         setProjects(data);
         });
+
+        return ()=>{
+            setSwitchKey({});
+            setProjects({});
+        };
     }, []);
 
     // Methods
@@ -28,9 +33,6 @@ const Layout = ({ children }) => {
             let currentTime = new Date(Date.now());
             if (tokenExpiresAt <= currentTime) {
                 history.push('/sign-in');
-            }
-            else {
-                history.push('/inbox');
             }
         }
     }
