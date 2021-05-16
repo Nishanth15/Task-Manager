@@ -1,17 +1,6 @@
-.ui.tiny.modal {
-    @apply max-w-md -md:max-w-sm;
-}
-
-.ui.modal button {
-    outline: none !important;
-}
-
-.modal_header {
-    @apply border-solid border-b flex rounded-t-xl items-center py-0 px-6;
-}
-
-.modal_header h1 {
-    @apply m-0 py-4 font-bold flex-grow;
+.ant-modal-content,
+.ant-modal-header {
+    border-radius: 10px;
 }
 
 .modal_form {
@@ -19,7 +8,7 @@
 }
 
 .modal_form_section {
-    @apply box-border flex flex-col flex-grow rounded-xl h-full overflow-hidden py-5 px-6 w-full;
+    @apply box-border flex flex-col flex-grow rounded-xl h-full overflow-hidden;
 }
 
 .form_field {
@@ -40,7 +29,7 @@
 }
 
 .radio_group {
-    @apply flex;
+    @apply flex ml-2;
 }
 
 .radio_option {
@@ -93,32 +82,4 @@
 
 .favorite_switch.active .favorite_switch_circle {
     @apply left-4;
-}
-
-.modal_footer {
-    @apply border-solid border-t flex rounded-b-xl  items-center justify-end py-4 px-6;
-}
-
-.modal_footer button {
-    @apply ml-2 px-3 pt-2 pb-2;
-}
-
-button:disabled {
-    @apply opacity-30;
-}
-
-button:active {
-    @apply transform translate-y-1;
-}
-
-.footer_button,
-.footer_button:visited {
-    @apply border-solid border-gray-300 border rounded-xl font-semibold 
-        text-xs leading-4 px-3 pt-2 pb-2 text-black text-center no-underline 
-        bg-gray-200 whitespace-nowrap;
-}
-
-.footer_button_blue,
-.footer_button_blue:visited {
-    @apply border-transparent bg-primary border-solid border text-white;
 }

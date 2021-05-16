@@ -102,7 +102,7 @@ function checkAvailability()
                         Don't you have an account?
                         <a
                             className="no-underline border-b border-blue text-blue"
-                            href="/register"
+                            href="/signup"
                         >
                             Sign Up
                         </a>

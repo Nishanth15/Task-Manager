@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 const Project = () => {
     // const router = useLocation();
     const { id } = useParams();
-    const projectURL = 'http://localhost:5000/api/project/' + id;
+    const projectURL = 'http://localhost:5000/api/Project/' + id;
     // const sectionURL = 'http://localhost:5000/api/section/';
     // const sectionURL = 'http://localhost:5000/api/section/';
     // const taskURL = 'http://localhost:5000/api/item/';

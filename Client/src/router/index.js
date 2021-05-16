@@ -1,7 +1,5 @@
 import Calender from '../pages/Calender';
 import Inbox from '../pages/Inbox';
-import SignUp from '../pages/Onboard/sign-up';
-import LogIn from '../pages/Onboard/sign-in';
 import Project from '../pages/Project';
 
 const routes = [

@@ -3,34 +3,67 @@ import logo from '../../../assets/logo.svg';
 import user_icon from '../../../assets/user.png';
 import { useState } from 'react';
 import AddProjectModal from '../Modal/AddProjectModal';
-import { Dropdown } from 'semantic-ui-react';
+import { Menu, Dropdown, Button } from 'antd';
 
 // const url = 'http://localhost:5000/api/project';
 
 const SideBar = ({ handleSwitchKey, projects }) => {
     // State
     const router = useLocation();
-    const [value,setMenuValue] = useState('');
+    const [value, setMenuValue] = useState('');
 
     const [projectCollapse, setProjectCollapse] = useState(false);
     const [labelCollapse, setLabelCollapse] = useState(false);
     const [openModal, setOpenModal] = useState(false);
 
     // Methods
-    const handleChange = (e,{value}) =>{
-        setMenuValue({value});
-console.log(e.target.value);
+    const handleChange = (e, { value }) => {
+        setMenuValue({ value });
+        console.log(e.target.value);
     };
     const onOpenModal = () => setOpenModal(true);
     const onCloseModal = () => {
         setOpenModal(false);
     };
+
     const switch_projectCollapse = () => {
         setProjectCollapse(projectCollapse ? false : true);
     };
     const switch_labelCollapse = () => {
         setLabelCollapse(labelCollapse ? false : true);
     };
+
+    const menu = (
+        <Menu>
+            <Menu.Item>
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.antgroup.com"
+                >
+                    1st menu item
+                </a>
+            </Menu.Item>
+            <Menu.Item>
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.aliyun.com"
+                >
+                    2nd menu item
+                </a>
+            </Menu.Item>
+            <Menu.Item>
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.luohanacademy.com"
+                >
+                    3rd menu item
+                </a>
+            </Menu.Item>
+        </Menu>
+    );
     const trigger = (
         <span>
             <div className="user_icon">
@@ -66,9 +99,19 @@ console.log(e.target.value);
     );
 
     const options = [
-        { key: 'user', text: 'Account', icon: 'user', value:'user' },
-        { key: 'settings', text: 'Settings', icon: 'settings', value:'settings' },
-        { key: 'sign-out', text: 'Sign Out', icon: 'sign out', value:'sign-out' },
+        { key: 'user', text: 'Account', icon: 'user', value: 'user' },
+        {
+            key: 'settings',
+            text: 'Settings',
+            icon: 'settings',
+            value: 'settings',
+        },
+        {
+            key: 'sign-out',
+            text: 'Sign Out',
+            icon: 'sign out',
+            value: 'sign-out',
+        },
     ];
 
     return (
@@ -197,45 +240,46 @@ console.log(e.target.value);
                             (projectCollapse ? 'active' : '')
                         }
                     >
-                        {projects && projects.map((project) => {
-                            return (
-                                <Link
-                                    to={`/project/${project.id}`}
-                                    key={project.id}
-                                >
-                                    <li
-                                        className={
-                                            'expansion_panel_list_item ' +
-                                            (router.pathname ===
-                                            '/project/' + project.id
-                                                ? 'active'
-                                                : '')
-                                        }
+                        {projects &&
+                            projects.map((project) => {
+                                return (
+                                    <Link
+                                        to={`/project/${project.id}`}
+                                        key={project.id}
                                     >
-                                        <div className="div_color">
-                                            <div className="item_color"></div>
-                                        </div>
-                                        <div className="item_name">
-                                            {project.name}
-                                        </div>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="item_menu"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
+                                        <li
+                                            className={
+                                                'expansion_panel_list_item ' +
+                                                (router.pathname ===
+                                                '/project/' + project.id
+                                                    ? 'active'
+                                                    : '')
+                                            }
                                         >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                                            />
-                                        </svg>
-                                    </li>
-                                </Link>
-                            );
-                        })}
+                                            <div className="div_color">
+                                                <div className="item_color"></div>
+                                            </div>
+                                            <div className="item_name">
+                                                {project.name}
+                                            </div>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="item_menu"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                                                />
+                                            </svg>
+                                        </li>
+                                    </Link>
+                                );
+                            })}
                     </ul>
                 </div>
 
@@ -369,14 +413,9 @@ console.log(e.target.value);
 
             {/* User Menu */}
             <div className="user_menu">
-                <Dropdown
-                    onChange={handleChange}
-                    trigger={trigger}
-                    options={options}
-                    pointing="top left"
-                    icon={null}
-                    value={value}
-                />
+                <Dropdown overlay={menu} placement="topCenter" arrow>
+                    <Button>topCenter</Button>
+                </Dropdown>
             </div>
         </div>
     );

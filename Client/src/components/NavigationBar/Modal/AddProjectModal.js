@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Dropdown, Modal } from 'semantic-ui-react';
+import { Button, Modal, Select } from 'antd';
 
 const AddProjectModal = ({ open, close }) => {
     const initialProjectData = {
@@ -11,9 +11,11 @@ const AddProjectModal = ({ open, close }) => {
         },
         isFavorite: false,
     };
+    const { Option } = Select;
 
     const [projectModal, setProjectModal] = useState(initialProjectData);
     const [favorite, setFavorite] = useState(projectModal.isFavorite);
+    const [confirmLoading, setConfirmLoading] = useState(false);
 
     const switch_list_view = () => {
         setProjectModal({
@@ -42,13 +44,18 @@ const AddProjectModal = ({ open, close }) => {
         close();
     };
 
-    // const addProjectData = () => {
-    //     setProjectModal({
-    //         projectModal: {
-    //             name: projectName,
-    //         },
-    //     });
-    // };
+    const handleOk = () => {
+        // setModalText('The modal will be closed after two seconds');
+        setConfirmLoading(true);
+        setTimeout(() => {
+            close();
+            setConfirmLoading(false);
+        }, 2000);
+    };
+
+    function handleChange(value) {
+        console.log(`selected ${value}`);
+    }
 
     const tagOptions = [
         {
@@ -103,14 +110,28 @@ const AddProjectModal = ({ open, close }) => {
 
     return (
         <div>
-            <Modal open={open} size="tiny" closeOnDimmerClick={false}>
+            {/* <Modal open={open} size="tiny" closeOnDimmerClick={false}>
+                
+            </Modal> */}
+            <Modal
+                title="Add Project"
+                visible={open}
+                style={{ borderRadius: '10px' }}
+                confirmLoading={confirmLoading}
+                onOk={handleOk}
+                onCancel={resetForm}
+                okButtonProps={{ disabled: projectModal.name.length < 1 }}
+                width={450}
+                footer={[
+                    <Button key="back" onClick={resetForm}>
+                        Cancel
+                    </Button>,
+                    <Button key="submit" type="primary" onClick={handleOk}>
+                        Add
+                    </Button>,
+                ]}
+            >
                 <div className="modal">
-                    {/* header */}
-                    <header className="modal_header">
-                        <h1>Add Project</h1>
-                    </header>
-
-                    {/* body */}
                     <form className="modal_form">
                         <section className="modal_form_section">
                             <div className="form_field">
@@ -130,7 +151,30 @@ const AddProjectModal = ({ open, close }) => {
                             </div>
                             <div className="form_field">
                                 <label>Color</label>
-                                <Dropdown
+                                <Select
+                                    style={{ width: '100%' }}
+                                    placeholder="select one color"
+                                    defaultValue={tagOptions[0].value}
+                                    onChange={handleChange}
+                                    optionLabelProp="label"
+                                >
+                                    {tagOptions.map((options) => {
+                                        return (
+                                            <Option
+                                                key={options.key}
+                                                value={options.value}
+                                                label={options.label.color}
+                                            >
+                                                <div className="demo-option-label-item">
+                                                    <span className="h-3 w-3 bg-black"></span>
+                                                    {options.text}
+                                                </div>
+                                            </Option>
+                                        );
+                                    })}
+                                </Select>
+
+                                {/* <Dropdown
                                     placeholder="Select Color"
                                     selection
                                     floating
@@ -143,7 +187,7 @@ const AddProjectModal = ({ open, close }) => {
                                             color: event.target.value,
                                         })
                                     }
-                                ></Dropdown>
+                                ></Dropdown> */}
                             </div>
                             <div className="form_field">
                                 <label>View</label>
@@ -233,8 +277,7 @@ const AddProjectModal = ({ open, close }) => {
                             </div>
                         </section>
 
-                        {/* footer */}
-                        <footer className="modal_footer">
+                        {/* <footer className="modal_footer">
                             <button
                                 type="button"
                                 className="footer_button"
@@ -251,7 +294,7 @@ const AddProjectModal = ({ open, close }) => {
                             >
                                 Add
                             </button>
-                        </footer>
+                        </footer> */}
                     </form>
                 </div>
             </Modal>

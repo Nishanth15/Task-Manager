@@ -108,7 +108,7 @@ function SignUp() {
                         Already have an account?
                         <a
                             className="no-underline border-b border-blue text-blue"
-                            href="../login/"
+                            href="/signin"
                         >
                             Log in
                         </a>
