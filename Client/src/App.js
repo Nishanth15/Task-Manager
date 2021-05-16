@@ -8,6 +8,7 @@ import {
 import routes from './router/';
 import SignUp from './pages/Onboard/sign-up';
 import SignIn from './pages/Onboard/sign-in';
+import ProtectedRoute from './helpers/ProtectedRoute';
 
 const App = () => {
     return (
@@ -16,10 +17,8 @@ const App = () => {
                 <Switch>
                     <Route path="/sign-in" component={SignIn} />
                     <Route path="/sign-up" component={SignUp} />
-                    <Layout>
-                        <Route path="/">
-                            <Redirect to="/inbox"></Redirect>
-                        </Route>
+                    <ProtectedRoute component={Layout}>
+                    <Redirect path='/' to="/inbox" />
                         {routes.map((route, index) => (
                             <Route
                                 key={index}
@@ -28,7 +27,7 @@ const App = () => {
                                 exact
                             />
                         ))}
-                    </Layout>
+                    </ProtectedRoute>
                 </Switch>
             </Router>
         </div>

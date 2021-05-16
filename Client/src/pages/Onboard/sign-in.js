@@ -1,5 +1,6 @@
 import React,{useEffect} from "react";
 import validate from "./validate";
+import {Link} from 'react-router-dom';
 import { useFormik } from "formik";
 import {authenticationService} from '../../services/auth.service';
 import { useHistory } from "react-router-dom";
@@ -7,7 +8,7 @@ import { useHistory } from "react-router-dom";
 
 
 function SignIn() {
-  let history = useHistory();
+let history = useHistory();
 
 useEffect(() => {
   checkAvailability();
@@ -21,9 +22,6 @@ function checkAvailability()
     let currentTime = new Date(Date.now());
     if (tokenExpiresAt <= currentTime) {
      history.push('/sign-in');
-    }
-    else {
-      history.push('/inbox');
     }
   }
 }
@@ -99,13 +97,13 @@ function checkAvailability()
                     </div>
 
                     <div className="text-grey-dark mt-6">
-                        Don't you have an account?
-                        <a
+                        Don't you have an account? {' '}
+                        <Link
                             className="no-underline border-b border-blue text-blue"
-                            href="/register"
+                            to="/sign-up"
                         >
                             Sign Up
-                        </a>
+                        </Link>
                         .
                     </div>
                 </div>

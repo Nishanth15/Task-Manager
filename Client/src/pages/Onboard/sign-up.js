@@ -1,8 +1,11 @@
 import React from 'react';
 import validate from './validate';
 import { useFormik } from 'formik';
+import {Link, useHistory} from 'react-router-dom';
+import { authenticationService } from '../../services/auth.service';
 
 function SignUp() {
+    let history = useHistory();
     const formik = useFormik({
         initialValues: {
             firstName: '',
@@ -10,11 +13,25 @@ function SignUp() {
             email: '',
             password: '',
             Vpassword: '',
+            phoneNo:'',
         },
-        validate,
         onSubmit: (values) => {
             console.log(values);
+            var registerDetails = {
+            firstName: values.firstName,
+            lastName: values.lastName,
+            emailId: values.email,
+            password: values.password,
+            phoneNo:values.phoneNo,
+            }
+            authenticationService.register(registerDetails).then(response =>{
+                if(response.success)
+                    history.push('/sign-in');
+                else
+                    console.log(response.message);
+            });
         },
+        // validate
     });
     return (
         <form onSubmit={formik.handleSubmit}>
@@ -105,13 +122,13 @@ function SignUp() {
                     </div>
 
                     <div className="text-grey-dark mt-6">
-                        Already have an account?
-                        <a
+                        Already have an account? {' '}
+                        <Link
                             className="no-underline border-b border-blue text-blue"
-                            href="../login/"
+                            to='/sign-in'
                         >
-                            Log in
-                        </a>
+                            Sign In
+                        </Link>
                         .
                     </div>
                 </div>

@@ -1,26 +1,27 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import logo from '../../../assets/logo.svg';
 import user_icon from '../../../assets/user.png';
 import { useState } from 'react';
 import AddProjectModal from '../Modal/AddProjectModal';
 import { Dropdown } from 'semantic-ui-react';
+import { authenticationService } from '../../../services/auth.service';
 
 // const url = 'http://localhost:5000/api/project';
 
 const SideBar = ({ handleSwitchKey, projects }) => {
     // State
     const router = useLocation();
-    const [value,setMenuValue] = useState('');
+    const history = useHistory();
 
     const [projectCollapse, setProjectCollapse] = useState(false);
     const [labelCollapse, setLabelCollapse] = useState(false);
     const [openModal, setOpenModal] = useState(false);
 
     // Methods
-    const handleChange = (e,{value}) =>{
-        setMenuValue({value});
-console.log(e.target.value);
-    };
+   const logout = () =>{
+    authenticationService.logout();
+    history.push('/sign-in');
+   };
     const onOpenModal = () => setOpenModal(true);
     const onCloseModal = () => {
         setOpenModal(false);
@@ -39,7 +40,7 @@ console.log(e.target.value);
             <div className="user_button">
                 <div className="user_name">Nishanth</div>
                 <svg
-                    onClick={switch_projectCollapse}
+                    onClick={logout}
                     xmlns="http://www.w3.org/2000/svg"
                     className={
                         'collapse_key ' + (projectCollapse ? 'active' : '')
@@ -370,12 +371,10 @@ console.log(e.target.value);
             {/* User Menu */}
             <div className="user_menu">
                 <Dropdown
-                    onChange={handleChange}
                     trigger={trigger}
                     options={options}
                     pointing="top left"
                     icon={null}
-                    value={value}
                 />
             </div>
         </div>
