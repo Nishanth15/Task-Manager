@@ -1,10 +1,19 @@
 .ant-modal-content,
 .ant-modal-header {
-    border-radius: 10px;
+    @apply rounded-lg;
 }
 
-button:disabled {
-    @apply bg-primary;
+.ant-modal-title {
+    @apply font-bold;
+}
+
+.ant-btn {
+    @apply rounded-full shadow-sm text-xs;
+}
+
+.ant-btn[disabled],
+.ant-btn[disabled]:hover {
+    @apply bg-primary text-white opacity-50;
 }
 
 .modal_form {
@@ -21,7 +30,7 @@ button:disabled {
 
 .form_field label,
 .form_field p {
-    @apply flex font-bold text-base mx-0 mt-0 mb-2;
+    @apply flex font-semibold text-base mx-0 mt-0 mb-2;
 }
 
 .form_control {
@@ -58,7 +67,7 @@ button:disabled {
 }
 
 .task_checkbox.checked .task_checkbox_circle {
-    @apply border-2 h-5 w-5 bg-primary border-primary;
+    @apply border-2 h-4 w-4 bg-primary border-primary;
 }
 
 .task_checkbox.checked .task_checkbox_circle svg {

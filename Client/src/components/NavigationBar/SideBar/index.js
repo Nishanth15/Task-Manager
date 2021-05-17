@@ -380,6 +380,7 @@ const SideBar = ({ handleSwitchKey, projects }) => {
                                     'collapse_key ' +
                                     (projectCollapse ? 'active' : '')
                                 }
+                                onClick={switch_projectCollapse}
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"

@@ -20,7 +20,7 @@ const App = () => {
                     <ProtectedRoute component={Layout}>
                         {routes.map((route, index) => (
                             <Switch key={index}>
-                                <Redirect path="/" to="/inbox" />
+                                <Redirect exact path="/" to="/inbox" />
                                 <Route
                                     path={route.path}
                                     component={route.component}

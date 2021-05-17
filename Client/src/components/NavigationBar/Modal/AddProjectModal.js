@@ -62,7 +62,6 @@ const AddProjectModal = ({ open, close }) => {
     const { Option } = Select;
 
     const [projectModal, setProjectModal] = useState(initialProjectData);
-    const [confirmLoading, setConfirmLoading] = useState(false);
 
     const switch_view = () => {
         setProjectModal({
@@ -84,11 +83,9 @@ const AddProjectModal = ({ open, close }) => {
     };
 
     const handleOk = () => {
-        setConfirmLoading(true);
         setTimeout(() => {
             console.log(projectModal);
             close();
-            setConfirmLoading(false);
         }, 2000);
     };
 
@@ -97,11 +94,9 @@ const AddProjectModal = ({ open, close }) => {
             <Modal
                 title="Add Project"
                 visible={open}
-                style={{ borderRadius: '10px' }}
-                confirmLoading={confirmLoading}
                 onOk={handleOk}
                 closable={false}
-                width={450}
+                width={400}
                 footer={[
                     <Button key="back" onClick={resetForm}>
                         Cancel
@@ -245,7 +240,6 @@ const AddProjectModal = ({ open, close }) => {
                                 </div>
                             </div>
                             <div className="form_field">
-                                <label>Favorite</label>
                                 <label>
                                     <div
                                         className={
