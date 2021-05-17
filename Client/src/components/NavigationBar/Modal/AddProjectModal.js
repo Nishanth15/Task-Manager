@@ -1,132 +1,117 @@
 import { useState } from 'react';
-import { Button, Modal, Select } from 'antd';
+import { Button, Modal, Select, Input } from 'antd';
+
+const tagOptions = [
+    {
+        key: '0',
+        text: 'Red',
+        value: 'Red',
+        label: { color: 'red', empty: true, circular: true },
+    },
+    {
+        key: '1',
+        text: 'Blue',
+        value: 'Blue',
+        label: { color: 'blue', empty: true, circular: true },
+    },
+    {
+        key: '2',
+        text: 'Green',
+        value: 'Green',
+        label: { color: 'green', empty: true, circular: true },
+    },
+    {
+        key: '3',
+        text: 'Black',
+        value: 'Black',
+        label: { color: 'black', empty: true, circular: true },
+    },
+    {
+        key: '4',
+        text: 'Purple',
+        value: 'Purple',
+        label: { color: 'purple', empty: true, circular: true },
+    },
+    {
+        key: '5',
+        text: 'Orange',
+        value: 'Orange',
+        label: { color: 'orange', empty: true, circular: true },
+    },
+    {
+        key: '6',
+        text: 'Yellow',
+        value: 'Yellow',
+        label: { color: 'yellow', empty: true, circular: true },
+    },
+    {
+        key: '7',
+        text: 'Pink',
+        value: 'Pink',
+        label: { color: 'pink', empty: true, circular: true },
+    },
+];
 
 const AddProjectModal = ({ open, close }) => {
     const initialProjectData = {
         name: '',
-        color: 'Important',
-        view: {
-            listView: true,
-            boardView: false,
-        },
+        color: tagOptions[0].value,
+        view: 'list',
         isFavorite: false,
     };
     const { Option } = Select;
 
     const [projectModal, setProjectModal] = useState(initialProjectData);
-    const [favorite, setFavorite] = useState(projectModal.isFavorite);
     const [confirmLoading, setConfirmLoading] = useState(false);
 
-    const switch_list_view = () => {
+    const switch_view = () => {
         setProjectModal({
             ...projectModal,
-            view: {
-                listView: true,
-                boardView: false,
-            },
-        });
-    };
-    const switch_board_view = () => {
-        setProjectModal({
-            ...projectModal,
-            view: {
-                listView: false,
-                boardView: true,
-            },
+            view: projectModal.view === 'list' ? 'board' : 'list',
         });
     };
     const switch_favorites = () => {
-        setFavorite(favorite ? false : true);
+        setProjectModal({
+            ...projectModal,
+            isFavorite: projectModal.isFavorite ? false : true,
+        });
     };
 
-    const resetForm = () => {
+    const resetForm = async () => {
+        console.log(projectModal);
         setProjectModal(initialProjectData);
         close();
     };
 
     const handleOk = () => {
-        // setModalText('The modal will be closed after two seconds');
         setConfirmLoading(true);
         setTimeout(() => {
+            console.log(projectModal);
             close();
             setConfirmLoading(false);
         }, 2000);
     };
 
-    function handleChange(value) {
-        console.log(`selected ${value}`);
-    }
-
-    const tagOptions = [
-        {
-            key: '0',
-            text: 'Red',
-            value: 'Red',
-            label: { color: 'red', empty: true, circular: true },
-        },
-        {
-            key: '1',
-            text: 'Blue',
-            value: 'Blue',
-            label: { color: 'blue', empty: true, circular: true },
-        },
-        {
-            key: '2',
-            text: 'Green',
-            value: 'Green',
-            label: { color: 'green', empty: true, circular: true },
-        },
-        {
-            key: '3',
-            text: 'Black',
-            value: 'Black',
-            label: { color: 'black', empty: true, circular: true },
-        },
-        {
-            key: '4',
-            text: 'Purple',
-            value: 'Purple',
-            label: { color: 'purple', empty: true, circular: true },
-        },
-        {
-            key: '5',
-            text: 'Orange',
-            value: 'Orange',
-            label: { color: 'orange', empty: true, circular: true },
-        },
-        {
-            key: '6',
-            text: 'Yellow',
-            value: 'Yellow',
-            label: { color: 'yellow', empty: true, circular: true },
-        },
-        {
-            key: '7',
-            text: 'Pink',
-            value: 'Pink',
-            label: { color: 'pink', empty: true, circular: true },
-        },
-    ];
-
     return (
         <div>
-            {/* <Modal open={open} size="tiny" closeOnDimmerClick={false}>
-                
-            </Modal> */}
             <Modal
                 title="Add Project"
                 visible={open}
                 style={{ borderRadius: '10px' }}
                 confirmLoading={confirmLoading}
                 onOk={handleOk}
-                onCancel={resetForm}
-                okButtonProps={{ disabled: projectModal.name.length < 1 }}
+                closable={false}
                 width={450}
                 footer={[
                     <Button key="back" onClick={resetForm}>
                         Cancel
                     </Button>,
-                    <Button key="submit" type="primary" onClick={handleOk}>
+                    <Button
+                        key="submit"
+                        disabled={projectModal.name.length < 1}
+                        type="primary"
+                        onClick={handleOk}
+                    >
                         Add
                     </Button>,
                 ]}
@@ -136,7 +121,7 @@ const AddProjectModal = ({ open, close }) => {
                         <section className="modal_form_section">
                             <div className="form_field">
                                 <label>Name</label>
-                                <input
+                                <Input
                                     className="form_control"
                                     maxLength={120}
                                     name="name"
@@ -152,55 +137,53 @@ const AddProjectModal = ({ open, close }) => {
                             <div className="form_field">
                                 <label>Color</label>
                                 <Select
-                                    style={{ width: '100%' }}
-                                    placeholder="select one color"
-                                    defaultValue={tagOptions[0].value}
-                                    onChange={handleChange}
-                                    optionLabelProp="label"
+                                    style={{
+                                        width: '100%',
+                                    }}
+                                    showArrow={false}
+                                    placeholder="Select one color"
+                                    value={projectModal.color}
+                                    onChange={(value) => {
+                                        setProjectModal({
+                                            ...projectModal,
+                                            color: value,
+                                        });
+                                    }}
                                 >
-                                    {tagOptions.map((options) => {
+                                    {tagOptions.map((option) => {
                                         return (
                                             <Option
-                                                key={options.key}
-                                                value={options.value}
-                                                label={options.label.color}
+                                                key={option.key}
+                                                value={option.value}
+                                                label={option.value}
                                             >
-                                                <div className="demo-option-label-item">
-                                                    <span className="h-3 w-3 bg-black"></span>
-                                                    {options.text}
+                                                <div className="demo-option-label-item flex items-center">
+                                                    <div
+                                                        className="h-2.5 w-2.5 rounded-full mr-2"
+                                                        style={{
+                                                            background: `${option.label.color}`,
+                                                        }}
+                                                    ></div>
+                                                    <div>{option.text}</div>
                                                 </div>
                                             </Option>
                                         );
                                     })}
                                 </Select>
-
-                                {/* <Dropdown
-                                    placeholder="Select Color"
-                                    selection
-                                    floating
-                                    icon=""
-                                    options={tagOptions}
-                                    defaultValue={tagOptions[0].value}
-                                    onChange={(event) =>
-                                        setProjectModal({
-                                            ...projectModal,
-                                            color: event.target.value,
-                                        })
-                                    }
-                                ></Dropdown> */}
                             </div>
                             <div className="form_field">
                                 <label>View</label>
                                 <div className="radio_group">
                                     <div
                                         className="radio_option"
-                                        onClick={switch_list_view}
+                                        onClick={switch_view}
                                     >
                                         <span className="radio_button">
                                             <div
                                                 className={
                                                     'task_checkbox ' +
-                                                    (projectModal.view.listView
+                                                    (projectModal.view ===
+                                                    'list'
                                                         ? 'checked'
                                                         : '')
                                                 }
@@ -227,13 +210,14 @@ const AddProjectModal = ({ open, close }) => {
                                     </div>
                                     <div
                                         className="radio_option"
-                                        onClick={switch_board_view}
+                                        onClick={switch_view}
                                     >
                                         <span className="radio_button">
                                             <div
                                                 className={
                                                     'task_checkbox ' +
-                                                    (projectModal.view.boardView
+                                                    (projectModal.view ===
+                                                    'board'
                                                         ? 'checked'
                                                         : '')
                                                 }
@@ -266,7 +250,9 @@ const AddProjectModal = ({ open, close }) => {
                                     <div
                                         className={
                                             'favorite_switch ' +
-                                            (favorite ? 'active' : '')
+                                            (projectModal.isFavorite
+                                                ? 'active'
+                                                : '')
                                         }
                                         onClick={switch_favorites}
                                     >
@@ -276,25 +262,6 @@ const AddProjectModal = ({ open, close }) => {
                                 </label>
                             </div>
                         </section>
-
-                        {/* <footer className="modal_footer">
-                            <button
-                                type="button"
-                                className="footer_button"
-                                onClick={resetForm}
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                type="submit"
-                                disabled={projectModal.name.length < 1}
-                                className="footer_button footer_button_blue"
-                                aria-disabled="true"
-                                // onClick={addProjectData}
-                            >
-                                Add
-                            </button>
-                        </footer> */}
                     </form>
                 </div>
             </Modal>

@@ -1,13 +1,13 @@
 .sidebar {
-    @apply fixed w-80 h-full bg-white duration-500;
+    @apply fixed w-72 h-full bg-white duration-500;
 
     // Sidebar toggle
     &.sidebar_show {
-        @apply left-0 -md:-left-80;
+        @apply left-0 -md:-left-72;
     }
 
     &.sidebar_hide {
-        @apply -left-80 -md:left-0;
+        @apply -left-72 -md:left-0;
     }
 
     // Sidebar logo
@@ -130,7 +130,7 @@
 
     // Sidebar switch
     .sidebar_switch {
-        @apply absolute overflow-hidden w-10 h-24 top-10 left-80 text-primary;
+        @apply absolute overflow-hidden w-10 h-24 top-10 left-72 text-primary;
 
         .arrow-right {
             @apply absolute cursor-pointer w-20 h-20 right-5 bg-white transform rotate-135 rounded-lg;
@@ -145,33 +145,30 @@
     .user_menu {
         @apply absolute bottom-0 h-14 w-full p-5 bg-white border-t 
                 flex items-center justify-start;
-        .ui.dropdown {
-            @apply w-full;
-            span {
-                @apply flex items-center;
-                .user_icon {
-                    @apply w-10 h-10 rounded-full;
+        span {
+            @apply w-full flex items-center;
+            .user_icon {
+                @apply w-10 h-10 rounded-full;
+            }
+
+            .user_button {
+                @apply flex w-full justify-between;
+
+                .user_name {
+                    @apply pl-2;
                 }
 
-                .user_button {
-                    @apply flex w-full justify-between;
+                .collapse_key {
+                    @apply h-5 w-5 hover:bg-sidebar_active rounded-full duration-500;
 
-                    .user_name {
-                        @apply pl-2;
-                    }
-
-                    .collapse_key {
-                        @apply h-5 w-5 hover:bg-sidebar_active rounded-full duration-500;
-
-                        &.active {
-                            @apply transform rotate-90;
-                        }
+                    &.active {
+                        @apply transform rotate-90;
                     }
                 }
             }
-            .menu .item {
-                @apply flex;
-            }
+        }
+        .menu .item {
+            @apply flex;
         }
     }
 }

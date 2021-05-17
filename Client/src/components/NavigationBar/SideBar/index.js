@@ -3,7 +3,7 @@ import logo from '../../../assets/logo.svg';
 import user_icon from '../../../assets/user.png';
 import { useState } from 'react';
 import AddProjectModal from '../Modal/AddProjectModal';
-import { Menu, Dropdown, Button } from 'antd';
+import { Menu, Dropdown } from 'antd';
 import { authenticationService } from '../../../services/auth.service';
 
 // const url = 'http://localhost:5000/api/project';
@@ -20,7 +20,7 @@ const SideBar = ({ handleSwitchKey, projects }) => {
     // Methods
     const logout = () => {
         authenticationService.logout();
-        history.push('/sign-in');
+        history.push('/signin');
     };
     const onOpenModal = () => setOpenModal(true);
     const onCloseModal = () => {
@@ -37,83 +37,26 @@ const SideBar = ({ handleSwitchKey, projects }) => {
     const menu = (
         <Menu>
             <Menu.Item>
-                <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.antgroup.com"
-                >
-                    1st menu item
-                </a>
-            </Menu.Item>
-            <Menu.Item>
-                <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.aliyun.com"
-                >
-                    2nd menu item
-                </a>
-            </Menu.Item>
-            <Menu.Item>
-                <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.luohanacademy.com"
-                >
-                    3rd menu item
-                </a>
+                <div className="flex" onClick={logout}>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 mr-3"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                        />
+                    </svg>
+                    <span>Log Out</span>
+                </div>
             </Menu.Item>
         </Menu>
     );
-    const trigger = (
-        <span>
-            <div className="user_icon">
-                <img src={user_icon} alt="" width={100} height={100}></img>
-            </div>
-            <div className="user_button">
-                <div className="user_name">Nishanth</div>
-                <svg
-                    onClick={logout}
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={
-                        'collapse_key ' + (projectCollapse ? 'active' : '')
-                    }
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                    />
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                </svg>
-            </div>
-        </span>
-    );
-
-    const options = [
-        { key: 'user', text: 'Account', icon: 'user', value: 'user' },
-        {
-            key: 'settings',
-            text: 'Settings',
-            icon: 'settings',
-            value: 'settings',
-        },
-        {
-            key: 'sign-out',
-            text: 'Sign Out',
-            icon: 'sign out',
-            value: 'sign-out',
-        },
-    ];
 
     return (
         <div>
@@ -414,9 +357,49 @@ const SideBar = ({ handleSwitchKey, projects }) => {
 
             {/* User Menu */}
             <div className="user_menu">
-                <Dropdown overlay={menu} placement="topCenter" arrow>
-                    <Button>topCenter</Button>
-                </Dropdown>
+                <span>
+                    <div className="user_icon">
+                        <img
+                            src={user_icon}
+                            alt=""
+                            width={100}
+                            height={100}
+                        ></img>
+                    </div>
+                    <div className="user_button">
+                        <div className="user_name">Nishanth</div>
+                        <Dropdown
+                            overlay={menu}
+                            trigger={['click']}
+                            placement="topCenter"
+                            arrow
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className={
+                                    'collapse_key ' +
+                                    (projectCollapse ? 'active' : '')
+                                }
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                                />
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                />
+                            </svg>
+                        </Dropdown>
+                    </div>
+                </span>
             </div>
         </div>
     );

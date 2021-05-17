@@ -1,35 +1,38 @@
 import SideBar from '../NavigationBar/SideBar';
 import React, { useState, useEffect } from 'react';
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 //Services
 import { projectService } from '../../services/project.service';
 
 const Layout = ({ children }) => {
-
     let history = useHistory();
-    let location = useLocation();
     // State
     const [switchKey, setSwitchKey] = useState(true);
     const [projects, setProjects] = useState([]);
 
     // LifeCycle Hooks
     useEffect(() => {
-        checkTokenAvailability()
+        checkTokenAvailability();
         projectService.getProjects().then((data) => {
-        setProjects(data);
+            setProjects(data);
         });
 
-        return ()=>{
+        return () => {
             setSwitchKey({});
             setProjects({});
         };
     }, []);
 
     // Methods
-    function checkTokenAvailability(){
-        if (localStorage.getItem('accessToken') !== '' && localStorage.getItem('accessToken') != null) {
-            let tokenExpiresAt = new Date(localStorage.getItem('tokenExpiresAt'));
+    function checkTokenAvailability() {
+        if (
+            localStorage.getItem('accessToken') !== '' &&
+            localStorage.getItem('accessToken') != null
+        ) {
+            let tokenExpiresAt = new Date(
+                localStorage.getItem('tokenExpiresAt')
+            );
             let currentTime = new Date(Date.now());
             if (tokenExpiresAt <= currentTime) {
                 history.push('/sign-in');

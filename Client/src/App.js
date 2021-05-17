@@ -18,12 +18,9 @@ const App = () => {
                     <Route path="/signin" component={SignIn} />
                     <Route path="/signup" component={SignUp} />
                     <ProtectedRoute component={Layout}>
-                        <Redirect path="/" to="/inbox" />
                         {routes.map((route, index) => (
                             <Switch key={index}>
-                                <Route path="/">
-                                    <Redirect to="/inbox"></Redirect>
-                                </Route>
+                                <Redirect path="/" to="/inbox" />
                                 <Route
                                     path={route.path}
                                     component={route.component}

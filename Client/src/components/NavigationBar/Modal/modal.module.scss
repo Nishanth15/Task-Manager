@@ -3,6 +3,10 @@
     border-radius: 10px;
 }
 
+button:disabled {
+    @apply bg-primary;
+}
+
 .modal_form {
     @apply flex flex-col overflow-auto;
 }
@@ -21,7 +25,7 @@
 }
 
 .form_control {
-    @apply rounded border-gray-300 border-solid border text-sm outline-none p-3 text-black w-full;
+    @apply rounded text-sm p-1 px-3 w-full;
 }
 
 .color_dropdown {
@@ -68,7 +72,7 @@
 }
 
 .favorite_switch {
-    @apply cursor-pointer bg-gray-400 rounded-xl inline-block h-5 mr-2 mb-24 overflow-visible p-2 relative w-8;
+    @apply cursor-pointer bg-gray-300 rounded-xl inline-block h-5 mr-2 mb-24 overflow-visible p-2 relative w-8;
 }
 
 .favorite_switch.active {
@@ -76,7 +80,7 @@
 }
 
 .favorite_switch .favorite_switch_circle {
-    @apply bg-white block top-1 left-1 rounded-full h-3 p-0 absolute w-3;
+    @apply bg-white block top-1 left-1 rounded-full h-3 p-0 absolute w-3 shadow-2xl;
     transition: left 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
