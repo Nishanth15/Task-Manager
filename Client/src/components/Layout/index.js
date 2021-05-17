@@ -1,35 +1,51 @@
-import TopBar from '../NavigationBar/TopBar';
 import SideBar from '../NavigationBar/SideBar';
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
-const url = 'http://localhost:5000/api/project';
+//Services
+import { projectService } from '../../services/project.service';
 
-function Layout({ children }) {
+const Layout = ({ children }) => {
+    let history = useHistory();
     // State
     const [switchKey, setSwitchKey] = useState(true);
     const [projects, setProjects] = useState([]);
 
     // LifeCycle Hooks
     useEffect(() => {
-        getProjects();
+        checkTokenAvailability();
+        projectService.getProjects().then((data) => {
+            setProjects(data);
+        });
+
+        return () => {
+            setSwitchKey({});
+            setProjects({});
+        };
     }, []);
 
     // Methods
-    const switchSideBar = () => {
-        console.log(switchKey);
-        setSwitchKey(switchKey ? false : true);
-    };
+    function checkTokenAvailability() {
+        if (
+            localStorage.getItem('accessToken') !== '' &&
+            localStorage.getItem('accessToken') != null
+        ) {
+            let tokenExpiresAt = new Date(
+                localStorage.getItem('tokenExpiresAt')
+            );
+            let currentTime = new Date(Date.now());
+            if (tokenExpiresAt <= currentTime) {
+                history.push('/sign-in');
+            }
+        }
+    }
 
-    const getProjects = async () => {
-        fetch(url)
-            .then((response) => response.json())
-            .then((data) => setProjects(data));
+    const switchSideBar = () => {
+        setSwitchKey(switchKey ? false : true);
     };
 
     return (
         <div className="layout">
-            {/* <TopBar /> */}
-
             <div
                 className={
                     'sidebar ' + (switchKey ? 'sidebar_show' : 'sidebar_hide')
@@ -48,6 +64,6 @@ function Layout({ children }) {
             </div>
         </div>
     );
-}
+};
 
 export default Layout;

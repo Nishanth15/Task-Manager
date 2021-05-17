@@ -31,13 +31,13 @@ namespace TaskManager.API.Services.Interfaces
             {
                 Success = false
             };
-            //var user = await _coreRepo.GetUserByEmailId(signUpRequest.EmailId);
-            //if (user.EmailId != null)
-            //{
-            //    response.Message = Constants.UserAlreadyRegistered;
-            //    return response;
-            //}
-            var user = _mapper.Map<SignUpRequest, User>(signUpRequest);
+            var user = await _coreRepo.GetUserByEmailIdAsync(signUpRequest.EmailId);
+            if (user.Id != Guid.Empty)
+            {
+                response.Message = Constants.UserAlreadyRegistered;
+                return response;
+            }
+            user = _mapper.Map<SignUpRequest, User>(signUpRequest);
             user.FullName = signUpRequest.FirstName + ' ' + signUpRequest.LastName;
             user.Id = Guid.NewGuid();
             user.CreatedAt = DateTime.UtcNow;

@@ -18,7 +18,7 @@ namespace TaskManager.API.Controllers
         {
             _service = service;
         }
-
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProjectResponse>>> Get()
         {
@@ -53,12 +53,12 @@ namespace TaskManager.API.Controllers
             return Ok(project);
         }
 
-        //[Route("Collapse")]
-        //[HttpPut]
-        //public async Task<ActionResult<ProjectResponse>> CollapseProject(Guid id, int Collapsed)
-        //{
-        //    var project = await _service.CollapseProjectAsync(id, Collapsed);
-        //    return Ok(project);
-        //}
+        [Route("Collapse")]
+        [HttpPut]
+        public async Task<ActionResult<ProjectResponse>> CollapseProject(Guid id, int Collapsed)
+        {
+            var project = await _service.CollapseProjectAsync(id, Collapsed);
+            return Ok(project);
+        }
     }
 }
