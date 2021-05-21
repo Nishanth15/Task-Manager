@@ -118,8 +118,8 @@ const AddProjectModal = ({ open, close }) => {
                                 <label>Name</label>
                                 <Input
                                     className="form_control"
-                                    maxLength={120}
                                     name="name"
+                                    autoComplete="off"
                                     value={projectModal.name}
                                     onChange={(event) => {
                                         setProjectModal({
@@ -132,9 +132,7 @@ const AddProjectModal = ({ open, close }) => {
                             <div className="form_field">
                                 <label>Color</label>
                                 <Select
-                                    style={{
-                                        width: '100%',
-                                    }}
+                                    className="form_control"
                                     showArrow={false}
                                     placeholder="Select one color"
                                     value={projectModal.color}

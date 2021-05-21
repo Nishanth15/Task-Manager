@@ -1,0 +1,52 @@
+.onboard {
+    @apply bg-gray-100 min-h-screen flex flex-col;
+
+    .onboard_frame {
+        @apply container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center;
+
+        .onboard_form {
+            @apply bg-white px-6 py-8 rounded shadow-md text-black w-full;
+
+            .heading {
+                @apply mb-8 text-3xl text-center;
+            }
+
+            .form_field {
+                @apply flex flex-col mb-3;
+            }
+
+            .form_field label,
+            .form_field p {
+                @apply flex font-semibold text-sm mx-2 my-1;
+            }
+
+            .form_control {
+                @apply block border border-gray-300 w-full p-2 rounded;
+            }
+
+            .form_button {
+                @apply mt-3 w-full text-center py-3 rounded bg-primary 
+                    text-white hover:bg-blue-500 transform active:translate-y-0.5;
+            }
+
+            .terms {
+                @apply text-center text-sm text-gray-500 mt-4;
+
+                .link {
+                    @apply mx-1 hover:underline text-blue-500;
+                }
+            }
+        }
+        .change_onboard {
+            @apply mt-3;
+
+            .terms {
+                @apply text-center text-sm text-gray-500 mt-4;
+
+                .link {
+                    @apply mx-1 hover:underline text-blue-500;
+                }
+            }
+        }
+    }
+}
