@@ -159,7 +159,7 @@
                 }
 
                 .collapse_key {
-                    @apply h-5 w-5 hover:bg-sidebar_active rounded-full duration-500;
+                    @apply cursor-pointer h-5 w-5 hover:bg-sidebar_active rounded-full duration-500;
 
                     &.active {
                         @apply transform rotate-90;
