@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { projectService } from '../../services/project.service';
 const Project = () => {
     const { id } = useParams();
     const projectURL = 'http://localhost:5000/api/Project/' + id;
@@ -33,18 +34,17 @@ const Project = () => {
     ]);
 
     useEffect(() => {
-        getProjects();
+        getProject(id);
         // getSections();
         // getTasks();
-    });
+    },[]);
 
-    const getProjects = () => {
-        if (id !== undefined) {
-            fetch(projectURL)
-                .then((response) => response.json())
-                .then((data) => setProject(data));
-        }
-    };
+    const getProject = (id) => {
+        projectService.getProject(id).then((data) => {
+            setProject(data);
+            console.log(data);
+        });
+        };
 
     // const getSections = () => {
     //     if (id !== undefined) {

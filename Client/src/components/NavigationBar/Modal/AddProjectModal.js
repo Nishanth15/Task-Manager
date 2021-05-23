@@ -58,7 +58,6 @@ const AddProjectModal = ({ open, close }) => {
         name: '',
         color: tagOptions[0].value,
         viewType: 0,
-        parentId: null,
         isFavorite: false,
     };
     const { Option } = Select;

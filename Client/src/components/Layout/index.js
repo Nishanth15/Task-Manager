@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 //Services
 import { projectService } from '../../services/project.service';
+import { authenticationService } from '../../services/auth.service';
 
 const Layout = ({ children }) => {
     let history = useHistory();
@@ -37,6 +38,10 @@ const Layout = ({ children }) => {
             if (tokenExpiresAt <= currentTime) {
                 history.push('/login');
             }
+        }
+        else
+        {
+            authenticationService.logout();
         }
     }
 
