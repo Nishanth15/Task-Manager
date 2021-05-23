@@ -1,54 +1,55 @@
 import { useState } from 'react';
 import { Button, Modal, Select, Input } from 'antd';
+import { projectService } from '../../../services/project.service';
 
 const tagOptions = [
     {
         key: '0',
-        text: 'Red',
-        value: 'Red',
-        label: { color: 'red', empty: true, circular: true },
+        label: 'Red',
+        value: 0,
+        color: 'red',
     },
     {
         key: '1',
-        text: 'Blue',
-        value: 'Blue',
-        label: { color: 'blue', empty: true, circular: true },
+        label: 'Blue',
+        value: 1,
+        color: 'blue',
     },
     {
         key: '2',
-        text: 'Green',
-        value: 'Green',
-        label: { color: 'green', empty: true, circular: true },
+        label: 'Green',
+        value: 2,
+        color: 'green',
     },
     {
         key: '3',
-        text: 'Black',
-        value: 'Black',
-        label: { color: 'black', empty: true, circular: true },
+        label: 'Black',
+        value: 3,
+        color: 'black',
     },
     {
         key: '4',
-        text: 'Purple',
-        value: 'Purple',
-        label: { color: 'purple', empty: true, circular: true },
+        label: 'Purple',
+        value: 4,
+        color: 'purple',
     },
     {
         key: '5',
-        text: 'Orange',
-        value: 'Orange',
-        label: { color: 'orange', empty: true, circular: true },
+        label: 'Orange',
+        value: 5,
+        color: 'orange',
     },
     {
         key: '6',
-        text: 'Yellow',
-        value: 'Yellow',
-        label: { color: 'yellow', empty: true, circular: true },
+        label: 'Yellow',
+        value: 6,
+        color: 'yellow',
     },
     {
         key: '7',
-        text: 'Pink',
-        value: 'Pink',
-        label: { color: 'pink', empty: true, circular: true },
+        label: 'Pink',
+        value: 7,
+        color: 'pink',
     },
 ];
 
@@ -56,7 +57,8 @@ const AddProjectModal = ({ open, close }) => {
     const initialProjectData = {
         name: '',
         color: tagOptions[0].value,
-        view: 'list',
+        viewType: 0,
+        parentId: null,
         isFavorite: false,
     };
     const { Option } = Select;
@@ -66,7 +68,7 @@ const AddProjectModal = ({ open, close }) => {
     const switch_view = (viewType) => {
         setProjectModal({
             ...projectModal,
-            view: viewType,
+            viewType: viewType,
         });
     };
     const switch_favorites = () => {
@@ -77,16 +79,15 @@ const AddProjectModal = ({ open, close }) => {
     };
 
     const resetForm = async () => {
-        console.log(projectModal);
+        // console.log(projectModal);
         setProjectModal(initialProjectData);
         close();
     };
 
     const handleOk = () => {
-        setTimeout(() => {
-            console.log(projectModal);
-            close();
-        }, 2000);
+        console.log(projectModal);
+        projectService.addProject(projectModal);
+        close();
     };
 
     return (
@@ -147,16 +148,16 @@ const AddProjectModal = ({ open, close }) => {
                                         <Option
                                             key={option.key}
                                             value={option.value}
-                                            label={option.value}
+                                            label={open.label}
                                         >
                                             <div className="flex items-center">
                                                 <div
                                                     className="h-2.5 w-2.5 rounded-full mr-2"
                                                     style={{
-                                                        background: `${option.label.color}`,
+                                                        background: `${option.color}`,
                                                     }}
                                                 ></div>
-                                                <div>{option.text}</div>
+                                                <div>{option.label}</div>
                                             </div>
                                         </Option>
                                     );
@@ -168,13 +169,13 @@ const AddProjectModal = ({ open, close }) => {
                             <div className="radio_group">
                                 <div
                                     className="radio_option"
-                                    onClick={() => switch_view('list')}
+                                    onClick={() => switch_view(0)}
                                 >
                                     <span className="radio_button">
                                         <div
                                             className={
                                                 'task_checkbox ' +
-                                                (projectModal.view === 'list'
+                                                (projectModal.viewType === 0
                                                     ? 'checked'
                                                     : '')
                                             }
@@ -200,13 +201,13 @@ const AddProjectModal = ({ open, close }) => {
                                 </div>
                                 <div
                                     className="radio_option"
-                                    onClick={() => switch_view('board')}
+                                    onClick={() => switch_view(1)}
                                 >
                                     <span className="radio_button">
                                         <div
                                             className={
                                                 'task_checkbox ' +
-                                                (projectModal.view === 'board'
+                                                (projectModal.viewType === 1
                                                     ? 'checked'
                                                     : '')
                                             }

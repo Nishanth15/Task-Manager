@@ -6,8 +6,6 @@ import AddProjectModal from '../Modal/AddProjectModal';
 import { Menu, Dropdown } from 'antd';
 import { authenticationService } from '../../../services/auth.service';
 
-// const url = 'http://localhost:5000/api/project';
-
 const SideBar = ({ handleSwitchKey, projects }) => {
     // State
     const router = useLocation();

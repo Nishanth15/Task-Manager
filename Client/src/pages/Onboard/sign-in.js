@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import validate from './validate';
+// import validate from './validate';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { authenticationService } from '../../services/auth.service';
