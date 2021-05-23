@@ -9,6 +9,7 @@ namespace TaskManager.API.Services.Interfaces
     {
         Task<IEnumerable<ProjectResponse>> GetProjectsAsync(Guid userId);
         Task<ProjectResponse> GetProjectAsync(Guid id, Guid userId);
+        Task<ProjectDataResponse> GetProjectDataAsync(Guid projectId, Guid userId);
         Task<ProjectResponse> AddProjectAsync(ProjectRequest projectRequest, Guid userId);
         Task<ProjectResponse> UpdateProjectAsync(Guid id, ProjectRequest projectRequest);
         Task<BaseResponse> RemoveProjectAsync(Guid id);

@@ -4,12 +4,12 @@ namespace TaskManager.Model
 {
     public class Item : BaseModel
     {
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
         public string Content { get; set; }
         public int Order { get; set; }
-        public string ProjectId { get; set; }
-        public string SectionId { get; set; }
-        public string ParentId { get; set; }
+        public Guid ProjectId { get; set; }
+        public Guid SectionId { get; set; }
+        public Guid ParentId { get; set; }
         public int Priority { get; set; }
         public int DayOrder { get; set; }
         public bool Checked { get; set; }

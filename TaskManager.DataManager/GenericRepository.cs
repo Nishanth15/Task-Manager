@@ -128,16 +128,34 @@ namespace TaskManager.DataManager
 
         #region Item
 
-        public Task<IEnumerable<T>> GetItemsBySectionIdAsync(Guid sectionId)
+        public async Task<IEnumerable<Item>> GetItemsByProjectIdAsync(Guid projectId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return null;
+                    //await _userDbContext.Set<Item>().Where(obj => obj.ProjectId == projectId).SingleOrDefaultAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         #endregion
 
         #region Section
-        public Task<IEnumerable<T>> GetSectionsByProjectId(Guid projectId)
+        public async Task<IEnumerable<Section>> GetSectionsByProjectId(Guid projectId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return null; 
+                    //await _userDbContext.Set<Section>().Where(obj => obj.ProjectId == projectId).SingleOrDefaultAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         #endregion
     }

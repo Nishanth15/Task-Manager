@@ -24,11 +24,11 @@ namespace TaskManager.DataManager.Interfaces
         #endregion
 
         #region Items
-        Task<IEnumerable<T>> GetItemsBySectionIdAsync(Guid sectionId);
+        Task<IEnumerable<Item>> GetItemsByProjectIdAsync(Guid projectId);
         #endregion
 
         #region Section
-        Task<IEnumerable<T>> GetSectionsByProjectId(Guid projectId);
+        Task<IEnumerable<Section>> GetSectionsByProjectId(Guid projectId);
         #endregion
     }
 }

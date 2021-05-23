@@ -64,7 +64,7 @@ namespace TaskManager.API.Services
             }
             item.IsDeleted = false;
             item.AddedBy = "Vasanth";
-            item.UserId = "1009";
+            item.UserId = itemRequest.UserId;
             item.CreatedAt = DateTime.Now;
             item.Modified = DateTime.Now;
 

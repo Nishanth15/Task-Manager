@@ -69,6 +69,42 @@ namespace TaskManager.API.Services
             return projectResponse;
         }
 
+        public async Task<ProjectDataResponse> GetProjectDataAsync(Guid projectId, Guid userId)
+        {
+            ProjectDataResponse projectDataResponse = new ProjectDataResponse()
+            {
+                Success = false
+            };
+            if (!isValidUserForProject(projectId, userId))
+            {
+                projectDataResponse.Message = Constants.ProjectNotFound;
+                projectDataResponse.Success = true;
+            }
+
+            ProjectData projectData = new ProjectData();
+            var sections = await _repo.GetSectionsByProjectId(projectId);
+            projectData.Sections = new List<SectionResponse>();
+            sections.ToList().ForEach(section => {
+                if (section != null)
+                {
+                    var sectionResponse = _mapper.Map<Section, SectionResponse>(section);
+                    projectData.Sections.Add(sectionResponse);
+                }
+            });
+
+            var items = await _repo.GetItemsByProjectIdAsync(projectId);
+            projectData.Items = new List<ItemResponse>();
+            items.ToList().ForEach(item => {
+                if (item != null)
+                {
+                    var itemResponse = _mapper.Map<Item, ItemResponse>(item);
+                    projectData.Items.Add(itemResponse);
+                }
+            });
+
+            return null;
+        }
+
         private bool isValidUserForProject(Guid projectId, Guid userId)
         {
             bool isValidUser = false;
@@ -79,12 +115,6 @@ namespace TaskManager.API.Services
                 isValidUser = false;
 
             return isValidUser;
-        }
-
-        public async Task<ProjectData> GetProjectDataByProjectIdAsync(Guid projectId)
-        {
-            
-            return null;
         }
 
         public async Task<ProjectResponse> AddProjectAsync(ProjectRequest projectRequest, Guid userId)
