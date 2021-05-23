@@ -1,8 +1,8 @@
 .onboard {
-    @apply bg-gray-100 min-h-screen flex flex-col;
+    @apply bg-gray-100 min-h-screen flex flex-col  items-center justify-center;
 
     .onboard_frame {
-        @apply container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center;
+        @apply container max-w-sm mx-auto;
 
         .onboard_form {
             @apply bg-white px-6 py-8 rounded shadow-md text-black w-full;

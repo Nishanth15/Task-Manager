@@ -1,8 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
-// import config from 'config';
 import { handleResponse } from '../helpers/handle-response';
+import http from '../services/http-client';
 
-const url = 'http://localhost:5000/api/';
 const currentUserSubject = new BehaviorSubject(
     JSON.parse(localStorage.getItem('currentUser'))
 );
@@ -27,23 +26,16 @@ function login(username, password) {
         grantType: 'Password',
         refreshToken: '',
     };
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-    };
 
-    return fetch(`${url}Auth/Token`, requestOptions)
-        .then(handleResponse)
-        .then((token) => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('accessToken', token.accessToken);
-            localStorage.setItem('refreshToken', token.refreshToken);
-            localStorage.setItem('tokenExpiresAt', token.expiresAt);
-            currentUserSubject.next(token);
+    return http.post('/Auth/Token', data).then((response) => {
+        var token = response.data;
+        localStorage.setItem('accessToken', token.accessToken);
+        localStorage.setItem('refreshToken', token.refreshToken);
+        localStorage.setItem('tokenExpiresAt', token.expiresAt);
+        currentUserSubject.next(token);
 
-            return token;
-        });
+        return token;
+    });
 }
 
 function logout() {
@@ -53,15 +45,7 @@ function logout() {
 }
 
 function register(registerDetails) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(registerDetails),
-    };
-
-    return fetch(`${url}User/Register`, requestOptions)
-        .then(handleResponse)
-        .then((response) => {
-            return response;
-        });
+    return http.post(`/User/Register`, registerDetails).then((response) => {
+        return response.data;
+    });
 }

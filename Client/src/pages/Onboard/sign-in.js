@@ -22,7 +22,7 @@ function SignIn() {
             );
             let currentTime = new Date(Date.now());
             if (tokenExpiresAt <= currentTime) {
-                history.push('/signin');
+                history.push('/login');
             }
         }
     }
@@ -44,11 +44,15 @@ function SignIn() {
         },
     });
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <div className="onboard">
-                <div className="onboard_frame">
+        <div className="onboard">
+            <div className="onboard_frame">
+                <form onSubmit={formik.handleSubmit}>
                     <div className="onboard_form">
-                        <h1 className="heading">Sign in to Task Manager 🚀</h1>
+                        <h1 className="heading">
+                            <span>Log In</span>
+                            <br />
+                            <span>Task Manager</span>
+                        </h1>
                         <div className="form_field">
                             <label>Email</label>
                             <input
@@ -97,14 +101,13 @@ function SignIn() {
                         <div className="terms">
                             Don't you have an account?
                             <Link className="link" to="/signup">
-                                Sign Up
+                                Sign up now!
                             </Link>
-                            .
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-        </form>
+        </div>
     );
 }
 

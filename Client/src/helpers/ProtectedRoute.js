@@ -6,7 +6,7 @@ function ProtectedRoute({ component: Component, ...rest }) {
     let accessToken = authenticationService.accessToken;
 
     if (accessToken === '' || accessToken === null) {
-        history.push('/signin');
+        history.push('/login');
     }
     return <Component {...rest} />;
 }

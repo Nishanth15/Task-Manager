@@ -25,16 +25,16 @@ function SignUp() {
                 phoneNo: values.phoneNo,
             };
             authenticationService.register(registerDetails).then((response) => {
-                if (response.success) history.push('/signin');
+                if (response.success) history.push('/login');
                 else console.log(response.message);
             });
         },
         // validate
     });
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <div className="onboard">
-                <div className="onboard_frame">
+        <div className="onboard">
+            <div className="onboard_frame">
+                <form onSubmit={formik.handleSubmit}>
                     <div className="onboard_form">
                         <h1 className="heading">Registration 🚀</h1>
                         <div className="form_field">
@@ -122,15 +122,14 @@ function SignUp() {
                     <div className="change_onboard">
                         <div className="terms">
                             Already have an account?
-                            <Link className="link" to="/signin">
-                                Sign In
+                            <Link className="link" to="/login">
+                                Log In
                             </Link>
-                            .
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-        </form>
+        </div>
     );
 }
 

@@ -1,11 +1,11 @@
 import { authHeader } from '../helpers/auth-header';
 import { handleResponse } from '../helpers/handle-response';
-
-const url = 'http://localhost:5000/api/Project';
+import http from '../services/http-client';
 
 const getProjects = async () => {
-    const requestOptions = { method: 'GET', headers: authHeader() };
-    return fetch(url, requestOptions).then((response) => response.json());
+    return http
+        .get('/Project', { headers: authHeader() })
+        .then((response) => response.data);
 };
 
 export const projectService = {
