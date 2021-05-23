@@ -1,17 +1,14 @@
-import React,{useHistory} from 'react-router-dom';
+import React, { useHistory } from 'react-router-dom';
 import { authenticationService } from '../services/auth.service';
 
-
-function ProtectedRoute({component:Component,...rest}) {
+function ProtectedRoute({ component: Component, ...rest }) {
     const history = useHistory();
     let accessToken = authenticationService.accessToken;
 
-    if (accessToken === '' || accessToken === null ) {
-        history.push('/sign-in');
+    if (accessToken === '' || accessToken === null) {
+        history.push('/login');
     }
-    return(
-      <Component {...rest} />
-    );
+    return <Component {...rest} />;
 }
 
-export default ProtectedRoute
+export default ProtectedRoute;

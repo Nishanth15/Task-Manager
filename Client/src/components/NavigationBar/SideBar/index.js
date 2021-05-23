@@ -6,8 +6,6 @@ import AddProjectModal from '../Modal/AddProjectModal';
 import { Menu, Dropdown } from 'antd';
 import { authenticationService } from '../../../services/auth.service';
 
-// const url = 'http://localhost:5000/api/project';
-
 const SideBar = ({ handleSwitchKey, projects }) => {
     // State
     const router = useLocation();
@@ -15,6 +13,7 @@ const SideBar = ({ handleSwitchKey, projects }) => {
 
     const [projectCollapse, setProjectCollapse] = useState(false);
     const [labelCollapse, setLabelCollapse] = useState(false);
+    const [userCollapse, setUserCollapse] = useState(false);
     const [openModal, setOpenModal] = useState(false);
 
     // Methods
@@ -378,7 +377,10 @@ const SideBar = ({ handleSwitchKey, projects }) => {
                                 xmlns="http://www.w3.org/2000/svg"
                                 className={
                                     'collapse_key ' +
-                                    (projectCollapse ? 'active' : '')
+                                    (userCollapse ? 'active' : '')
+                                }
+                                onClick={() =>
+                                    setUserCollapse(userCollapse ? false : true)
                                 }
                                 fill="none"
                                 viewBox="0 0 24 24"

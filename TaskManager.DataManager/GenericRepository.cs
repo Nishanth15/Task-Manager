@@ -119,20 +119,43 @@ namespace TaskManager.DataManager
 
             return projects;
         }
+        public LK_Project_User IsValidUserForProject(Guid projectId, Guid userId)
+        {
+            LK_Project_User lK_Project_User = new LK_Project_User();
+            return _userDbContext.Set<LK_Project_User>().Where(lk => (lk.ProjectId == projectId && lk.UserId == userId)).SingleOrDefault();
+        }
         #endregion
 
         #region Item
 
-        public Task<IEnumerable<T>> GetItemsBySectionIdAsync(Guid sectionId)
+        public async Task<IEnumerable<Item>> GetItemsByProjectIdAsync(Guid projectId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return null;
+                    //await _userDbContext.Set<Item>().Where(obj => obj.ProjectId == projectId).SingleOrDefaultAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         #endregion
 
         #region Section
-        public Task<IEnumerable<T>> GetSectionsByProjectId(Guid projectId)
+        public async Task<IEnumerable<Section>> GetSectionsByProjectId(Guid projectId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return null; 
+                    //await _userDbContext.Set<Section>().Where(obj => obj.ProjectId == projectId).SingleOrDefaultAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         #endregion
     }

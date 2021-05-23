@@ -1,54 +1,55 @@
 import { useState } from 'react';
 import { Button, Modal, Select, Input } from 'antd';
+import { projectService } from '../../../services/project.service';
 
 const tagOptions = [
     {
         key: '0',
-        text: 'Red',
-        value: 'Red',
-        label: { color: 'red', empty: true, circular: true },
+        label: 'Red',
+        value: 0,
+        color: 'red',
     },
     {
         key: '1',
-        text: 'Blue',
-        value: 'Blue',
-        label: { color: 'blue', empty: true, circular: true },
+        label: 'Blue',
+        value: 1,
+        color: 'blue',
     },
     {
         key: '2',
-        text: 'Green',
-        value: 'Green',
-        label: { color: 'green', empty: true, circular: true },
+        label: 'Green',
+        value: 2,
+        color: 'green',
     },
     {
         key: '3',
-        text: 'Black',
-        value: 'Black',
-        label: { color: 'black', empty: true, circular: true },
+        label: 'Black',
+        value: 3,
+        color: 'black',
     },
     {
         key: '4',
-        text: 'Purple',
-        value: 'Purple',
-        label: { color: 'purple', empty: true, circular: true },
+        label: 'Purple',
+        value: 4,
+        color: 'purple',
     },
     {
         key: '5',
-        text: 'Orange',
-        value: 'Orange',
-        label: { color: 'orange', empty: true, circular: true },
+        label: 'Orange',
+        value: 5,
+        color: 'orange',
     },
     {
         key: '6',
-        text: 'Yellow',
-        value: 'Yellow',
-        label: { color: 'yellow', empty: true, circular: true },
+        label: 'Yellow',
+        value: 6,
+        color: 'yellow',
     },
     {
         key: '7',
-        text: 'Pink',
-        value: 'Pink',
-        label: { color: 'pink', empty: true, circular: true },
+        label: 'Pink',
+        value: 7,
+        color: 'pink',
     },
 ];
 
@@ -56,18 +57,17 @@ const AddProjectModal = ({ open, close }) => {
     const initialProjectData = {
         name: '',
         color: tagOptions[0].value,
-        view: 'list',
+        viewType: 0,
         isFavorite: false,
     };
     const { Option } = Select;
 
     const [projectModal, setProjectModal] = useState(initialProjectData);
-    const [confirmLoading, setConfirmLoading] = useState(false);
 
-    const switch_view = () => {
+    const switch_view = (viewType) => {
         setProjectModal({
             ...projectModal,
-            view: projectModal.view === 'list' ? 'board' : 'list',
+            viewType: viewType,
         });
     };
     const switch_favorites = () => {
@@ -78,18 +78,15 @@ const AddProjectModal = ({ open, close }) => {
     };
 
     const resetForm = async () => {
-        console.log(projectModal);
+        // console.log(projectModal);
         setProjectModal(initialProjectData);
         close();
     };
 
     const handleOk = () => {
-        setConfirmLoading(true);
-        setTimeout(() => {
-            console.log(projectModal);
-            close();
-            setConfirmLoading(false);
-        }, 2000);
+        console.log(projectModal);
+        projectService.addProject(projectModal);
+        close();
     };
 
     return (
@@ -97,11 +94,9 @@ const AddProjectModal = ({ open, close }) => {
             <Modal
                 title="Add Project"
                 visible={open}
-                style={{ borderRadius: '10px' }}
-                confirmLoading={confirmLoading}
                 onOk={handleOk}
                 closable={false}
-                width={450}
+                width={400}
                 footer={[
                     <Button key="back" onClick={resetForm}>
                         Cancel
@@ -116,154 +111,146 @@ const AddProjectModal = ({ open, close }) => {
                     </Button>,
                 ]}
             >
-                <div className="modal">
-                    <form className="modal_form">
-                        <section className="modal_form_section">
-                            <div className="form_field">
-                                <label>Name</label>
-                                <Input
-                                    className="form_control"
-                                    maxLength={120}
-                                    name="name"
-                                    value={projectModal.name}
-                                    onChange={(event) => {
-                                        setProjectModal({
-                                            ...projectModal,
-                                            name: event.target.value,
-                                        });
-                                    }}
-                                />
-                            </div>
-                            <div className="form_field">
-                                <label>Color</label>
-                                <Select
-                                    style={{
-                                        width: '100%',
-                                    }}
-                                    showArrow={false}
-                                    placeholder="Select one color"
-                                    value={projectModal.color}
-                                    onChange={(value) => {
-                                        setProjectModal({
-                                            ...projectModal,
-                                            color: value,
-                                        });
-                                    }}
+                <form className="modal_form">
+                    <section className="modal_form_section">
+                        <div className="form_field">
+                            <label>Name</label>
+                            <Input
+                                className="form_control"
+                                name="name"
+                                autoComplete="off"
+                                value={projectModal.name}
+                                onChange={(event) => {
+                                    setProjectModal({
+                                        ...projectModal,
+                                        name: event.target.value,
+                                    });
+                                }}
+                            />
+                        </div>
+                        <div className="form_field">
+                            <label>Color</label>
+                            <Select
+                                className="form_control"
+                                showArrow={false}
+                                placeholder="Select one color"
+                                value={projectModal.color}
+                                onChange={(value) => {
+                                    setProjectModal({
+                                        ...projectModal,
+                                        color: value,
+                                    });
+                                }}
+                            >
+                                {tagOptions.map((option) => {
+                                    return (
+                                        <Option
+                                            key={option.key}
+                                            value={option.value}
+                                            label={open.label}
+                                        >
+                                            <div className="flex items-center">
+                                                <div
+                                                    className="h-2.5 w-2.5 rounded-full mr-2"
+                                                    style={{
+                                                        background: `${option.color}`,
+                                                    }}
+                                                ></div>
+                                                <div>{option.label}</div>
+                                            </div>
+                                        </Option>
+                                    );
+                                })}
+                            </Select>
+                        </div>
+                        <div className="form_field">
+                            <label>View</label>
+                            <div className="radio_group">
+                                <div
+                                    className="radio_option"
+                                    onClick={() => switch_view(0)}
                                 >
-                                    {tagOptions.map((option) => {
-                                        return (
-                                            <Option
-                                                key={option.key}
-                                                value={option.value}
-                                                label={option.value}
-                                            >
-                                                <div className="demo-option-label-item flex items-center">
-                                                    <div
-                                                        className="h-2.5 w-2.5 rounded-full mr-2"
-                                                        style={{
-                                                            background: `${option.label.color}`,
-                                                        }}
-                                                    ></div>
-                                                    <div>{option.text}</div>
-                                                </div>
-                                            </Option>
-                                        );
-                                    })}
-                                </Select>
-                            </div>
-                            <div className="form_field">
-                                <label>View</label>
-                                <div className="radio_group">
-                                    <div
-                                        className="radio_option"
-                                        onClick={switch_view}
-                                    >
-                                        <span className="radio_button">
-                                            <div
-                                                className={
-                                                    'task_checkbox ' +
-                                                    (projectModal.view ===
-                                                    'list'
-                                                        ? 'checked'
-                                                        : '')
-                                                }
-                                            >
-                                                <div className="task_checkbox_circle">
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        className="h-6 w-6"
-                                                        fill="none"
-                                                        viewBox="0 0 24 24"
-                                                        stroke="currentColor"
-                                                    >
-                                                        <path
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            strokeWidth={2}
-                                                            d="M5 13l4 4L19 7"
-                                                        />
-                                                    </svg>
-                                                </div>
+                                    <span className="radio_button">
+                                        <div
+                                            className={
+                                                'task_checkbox ' +
+                                                (projectModal.viewType === 0
+                                                    ? 'checked'
+                                                    : '')
+                                            }
+                                        >
+                                            <div className="task_checkbox_circle">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth={2}
+                                                        d="M5 13l4 4L19 7"
+                                                    />
+                                                </svg>
                                             </div>
-                                        </span>
-                                        List
-                                    </div>
-                                    <div
-                                        className="radio_option"
-                                        onClick={switch_view}
-                                    >
-                                        <span className="radio_button">
-                                            <div
-                                                className={
-                                                    'task_checkbox ' +
-                                                    (projectModal.view ===
-                                                    'board'
-                                                        ? 'checked'
-                                                        : '')
-                                                }
-                                            >
-                                                <div className="task_checkbox_circle">
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        className="h-6 w-6"
-                                                        fill="none"
-                                                        viewBox="0 0 24 24"
-                                                        stroke="currentColor"
-                                                    >
-                                                        <path
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            strokeWidth={2}
-                                                            d="M5 13l4 4L19 7"
-                                                        />
-                                                    </svg>
-                                                </div>
+                                        </div>
+                                    </span>
+                                    List
+                                </div>
+                                <div
+                                    className="radio_option"
+                                    onClick={() => switch_view(1)}
+                                >
+                                    <span className="radio_button">
+                                        <div
+                                            className={
+                                                'task_checkbox ' +
+                                                (projectModal.viewType === 1
+                                                    ? 'checked'
+                                                    : '')
+                                            }
+                                        >
+                                            <div className="task_checkbox_circle">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="h-6 w-6"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth={2}
+                                                        d="M5 13l4 4L19 7"
+                                                    />
+                                                </svg>
                                             </div>
-                                        </span>
-                                        Board
-                                    </div>
+                                        </div>
+                                    </span>
+                                    Board
                                 </div>
                             </div>
-                            <div className="form_field">
-                                <label>Favorite</label>
-                                <label>
-                                    <div
-                                        className={
-                                            'favorite_switch ' +
-                                            (projectModal.isFavorite
-                                                ? 'active'
-                                                : '')
-                                        }
-                                        onClick={switch_favorites}
-                                    >
-                                        <span className="favorite_switch_circle" />
-                                    </div>
-                                    Add to favorites
-                                </label>
-                            </div>
-                        </section>
-                    </form>
-                </div>
+                        </div>
+                        <div className="form_field">
+                            <label>
+                                <div
+                                    className={
+                                        'favorite_switch ' +
+                                        (projectModal.isFavorite
+                                            ? 'active'
+                                            : '')
+                                    }
+                                    onClick={switch_favorites}
+                                >
+                                    <span className="favorite_switch_circle" />
+                                </div>
+                                Add to favorites
+                            </label>
+                        </div>
+                    </section>
+                </form>
             </Modal>
         </div>
     );

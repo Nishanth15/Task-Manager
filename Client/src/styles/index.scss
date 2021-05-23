@@ -18,9 +18,11 @@ button {
 
 @import 'antd/dist/antd.css';
 
-@import '../components/Layout/layout.module.scss';
+@import './onboard.scss';
 
-@import '../components/NavigationBar/SideBar/sidebar.module.scss';
-@import '../components/NavigationBar/Modal/modal.module.scss';
+@import '../components/Layout/layout.scss';
 
-@import './project.module.scss';
+@import '../components/NavigationBar/SideBar/sidebar.scss';
+@import '../components/NavigationBar/Modal/modal.scss';
+
+@import './project.scss';

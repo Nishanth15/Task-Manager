@@ -45,10 +45,16 @@ namespace TaskManager.API.Services
             return projectResponseList;
         }
 
-        public async Task<ProjectResponse> GetProjectAsync(Guid id)
+        public async Task<ProjectResponse> GetProjectAsync(Guid id, Guid userId)
         {
-            var project = await _repo.GetAsync(id);
             var projectResponse = new ProjectResponse();
+            if (!isValidUserForProject(id, userId))
+            {
+                projectResponse.Message = Constants.ProjectNotFound;
+                projectResponse.Success = true;
+            }
+
+            var project = await _repo.GetAsync(id);
 
             if (project == null)
             {
@@ -63,10 +69,52 @@ namespace TaskManager.API.Services
             return projectResponse;
         }
 
-        public async Task<ProjectData> GetProjectDataByProjectIdAsync(Guid projectId)
+        public async Task<ProjectDataResponse> GetProjectDataAsync(Guid projectId, Guid userId)
         {
-            
+            ProjectDataResponse projectDataResponse = new ProjectDataResponse()
+            {
+                Success = false
+            };
+            if (!isValidUserForProject(projectId, userId))
+            {
+                projectDataResponse.Message = Constants.ProjectNotFound;
+                projectDataResponse.Success = true;
+            }
+
+            ProjectData projectData = new ProjectData();
+            var sections = await _repo.GetSectionsByProjectId(projectId);
+            projectData.Sections = new List<SectionResponse>();
+            sections.ToList().ForEach(section => {
+                if (section != null)
+                {
+                    var sectionResponse = _mapper.Map<Section, SectionResponse>(section);
+                    projectData.Sections.Add(sectionResponse);
+                }
+            });
+
+            var items = await _repo.GetItemsByProjectIdAsync(projectId);
+            projectData.Items = new List<ItemResponse>();
+            items.ToList().ForEach(item => {
+                if (item != null)
+                {
+                    var itemResponse = _mapper.Map<Item, ItemResponse>(item);
+                    projectData.Items.Add(itemResponse);
+                }
+            });
+
             return null;
+        }
+
+        private bool isValidUserForProject(Guid projectId, Guid userId)
+        {
+            bool isValidUser = false;
+            LK_Project_User lk_Project_User = _repo.IsValidUserForProject(projectId, userId);
+            if (lk_Project_User != null && lk_Project_User.Id != Guid.Empty)
+                isValidUser = true;
+            else
+                isValidUser = false;
+
+            return isValidUser;
         }
 
         public async Task<ProjectResponse> AddProjectAsync(ProjectRequest projectRequest, Guid userId)

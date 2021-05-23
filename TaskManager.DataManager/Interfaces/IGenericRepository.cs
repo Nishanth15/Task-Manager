@@ -20,14 +20,15 @@ namespace TaskManager.DataManager.Interfaces
         Task<bool> IsInboxExistOrNot(Guid Id);
         Task<Guid> AddProjectUserLookupAsync(LK_Project_User projectUserLookup);
         Task<IEnumerable<T>> GetProjectsByUserId(Guid userId);
+        LK_Project_User IsValidUserForProject(Guid projectId, Guid userId);
         #endregion
 
         #region Items
-        Task<IEnumerable<T>> GetItemsBySectionIdAsync(Guid sectionId);
+        Task<IEnumerable<Item>> GetItemsByProjectIdAsync(Guid projectId);
         #endregion
 
         #region Section
-        Task<IEnumerable<T>> GetSectionsByProjectId(Guid projectId);
+        Task<IEnumerable<Section>> GetSectionsByProjectId(Guid projectId);
         #endregion
     }
 }

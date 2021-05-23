@@ -32,7 +32,7 @@ namespace TaskManager.API.Services.Interfaces
                 Success = false
             };
             var user = await _coreRepo.GetUserByEmailIdAsync(signUpRequest.EmailId);
-            if (user.Id != Guid.Empty)
+            if (user != null && user.Id != Guid.Empty)
             {
                 response.Message = Constants.UserAlreadyRegistered;
                 return response;
