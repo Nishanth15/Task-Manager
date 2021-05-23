@@ -20,6 +20,7 @@ namespace TaskManager.DataManager.Interfaces
         Task<bool> IsInboxExistOrNot(Guid Id);
         Task<Guid> AddProjectUserLookupAsync(LK_Project_User projectUserLookup);
         Task<IEnumerable<T>> GetProjectsByUserId(Guid userId);
+        LK_Project_User IsValidUserForProject(Guid projectId, Guid userId);
         #endregion
 
         #region Items

@@ -8,6 +8,15 @@ const getProjects = async () => {
         .then((response) => response.data);
 };
 
+
+const getProject = (id) => {
+    if (id !== undefined) {
+        http.get('/Project/'+id,{headers:authHeader()})
+            .then((response) => response.data);
+    }
+};
+
 export const projectService = {
     getProjects,
+    getProject
 };

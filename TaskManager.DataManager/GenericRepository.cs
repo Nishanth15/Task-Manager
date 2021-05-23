@@ -119,6 +119,11 @@ namespace TaskManager.DataManager
 
             return projects;
         }
+        public LK_Project_User IsValidUserForProject(Guid projectId, Guid userId)
+        {
+            LK_Project_User lK_Project_User = new LK_Project_User();
+            return _userDbContext.Set<LK_Project_User>().Where(lk => (lk.ProjectId == projectId && lk.UserId == userId)).SingleOrDefault();
+        }
         #endregion
 
         #region Item

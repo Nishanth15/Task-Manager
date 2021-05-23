@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import {projectService} from '../../services/project.service';
 const Project = () => {
     // const router = useLocation();
     const { id } = useParams();
@@ -35,18 +36,21 @@ const Project = () => {
     ]);
 
     useEffect(() => {
-        getProjects();
+        var project = projectService.getProject(id);
+        console.log(project);
+        if(project!=null)
+        setProject(project);
         // getSections();
         // getTasks();
     }, []);
 
-    const getProjects = () => {
-        if (id !== undefined) {
-            fetch(projectURL)
-                .then((response) => response.json())
-                .then((data) => setProject(data));
-        }
-    };
+    // const getProjects = () => {
+    //     if (id !== undefined) {
+    //         fetch(projectURL)
+    //             .then((response) => response.json())
+    //             .then((data) => setProject(data));
+    //     }
+    // };
 
     // const getSections = () => {
     //     if (id !== undefined) {

@@ -29,7 +29,7 @@ namespace TaskManager.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ProjectResponse>> Get(Guid id)
         {
-            var project = await _service.GetProjectAsync(id);
+            var project = await _service.GetProjectAsync(id, CurrentUser.Id);
             return Ok(project);
         }
         [HttpPost]
