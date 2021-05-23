@@ -1,5 +1,5 @@
 import { authHeader } from '../helpers/auth-header';
-import { handleResponse } from '../helpers/handle-response';
+// import { handleResponse } from '../helpers/handle-response';
 import http from '../services/http-client';
 
 const getProjects = async () => {
@@ -8,15 +8,22 @@ const getProjects = async () => {
         .then((response) => response.data);
 };
 
-
 const getProject = (id) => {
     if (id !== undefined) {
-        http.get('/Project/'+id,{headers:authHeader()})
+        return http
+            .get('/Project/' + id, { headers: authHeader() })
             .then((response) => response.data);
     }
 };
 
+const addProject = (project) => {
+    http.post('/Project/', project, { headers: authHeader() }).then(
+        (response) => console.log(response.data)
+    );
+};
+
 export const projectService = {
     getProjects,
-    getProject
+    getProject,
+    addProject,
 };

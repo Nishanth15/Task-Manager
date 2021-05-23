@@ -35,7 +35,7 @@ const Layout = ({ children }) => {
             );
             let currentTime = new Date(Date.now());
             if (tokenExpiresAt <= currentTime) {
-                history.push('/sign-in');
+                history.push('/login');
             }
         }
     }

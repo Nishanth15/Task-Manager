@@ -1,5 +1,5 @@
 import React from 'react';
-import validate from './validate';
+// import validate from './validate';
 import { useFormik } from 'formik';
 import { Link, useHistory } from 'react-router-dom';
 import { authenticationService } from '../../services/auth.service';
