@@ -1,11 +1,15 @@
 import { authHeader } from '../helpers/auth-header';
-// import { handleResponse } from '../helpers/handle-response';
+import { handleResponse } from '../helpers/handle-response';
 import http from '../services/http-client';
 
+const state = {
+    projects: [],
+};
+
 const getProjects = async () => {
-    return http
+    return await http
         .get('/Project', { headers: authHeader() })
-        .then((response) => response.data);
+        .then((response) => (state.projects = response.data));
 };
 
 const getProject = (id) => {
@@ -18,7 +22,7 @@ const getProject = (id) => {
 
 const addProject = (project) => {
     http.post('/Project/', project, { headers: authHeader() }).then(
-        (response) => console.log(response.data)
+        (response) => state.projects.push(response)
     );
 };
 
@@ -26,4 +30,7 @@ export const projectService = {
     getProjects,
     getProject,
     addProject,
+    get projects() {
+        return state.projects;
+    },
 };

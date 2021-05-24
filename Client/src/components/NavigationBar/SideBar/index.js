@@ -2,7 +2,7 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import logo from '../../../assets/logo.svg';
 import user_icon from '../../../assets/user.png';
 import { useState } from 'react';
-import AddProjectModal from '../Modal/AddProjectModal';
+import AddProjectModal from '../../Modal/AddProjectModal';
 import { Menu, Dropdown } from 'antd';
 import { authenticationService } from '../../../services/auth.service';
 

@@ -11,12 +11,12 @@ const Layout = ({ children }) => {
     // State
     const [switchKey, setSwitchKey] = useState(true);
     const [projects, setProjects] = useState([]);
+    checkTokenAvailability();
 
     // LifeCycle Hooks
     useEffect(() => {
-        checkTokenAvailability();
-        projectService.getProjects().then((data) => {
-            setProjects(data);
+        projectService.getProjects().then(() => {
+            setProjects(projectService.projects);
         });
 
         return () => {
@@ -24,6 +24,10 @@ const Layout = ({ children }) => {
             setProjects({});
         };
     }, []);
+
+    useEffect(() => {
+        setProjects(projectService.projects);
+    }, [projects]);
 
     // Methods
     function checkTokenAvailability() {
@@ -38,9 +42,7 @@ const Layout = ({ children }) => {
             if (tokenExpiresAt <= currentTime) {
                 history.push('/login');
             }
-        }
-        else
-        {
+        } else {
             authenticationService.logout();
         }
     }

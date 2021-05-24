@@ -3,9 +3,6 @@ import { useState, useEffect } from 'react';
 import { projectService } from '../../services/project.service';
 const Project = () => {
     const { id } = useParams();
-    const projectURL = 'http://localhost:5000/api/Project/' + id;
-    // const sectionURL = 'http://localhost:5000/api/section/';
-    // const taskURL = 'http://localhost:5000/api/item/';
 
     const [project, setProject] = useState([]);
     const [sections] = useState([
@@ -37,14 +34,14 @@ const Project = () => {
         getProject(id);
         // getSections();
         // getTasks();
-    },[]);
+    }, []);
 
     const getProject = (id) => {
         projectService.getProject(id).then((data) => {
             setProject(data);
             console.log(data);
         });
-        };
+    };
 
     // const getSections = () => {
     //     if (id !== undefined) {

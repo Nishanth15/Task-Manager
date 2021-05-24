@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Modal, Select, Input } from 'antd';
-import { projectService } from '../../../services/project.service';
+import { projectService } from '../../services/project.service';
 
 const tagOptions = [
     {
@@ -78,7 +78,6 @@ const AddProjectModal = ({ open, close }) => {
     };
 
     const resetForm = async () => {
-        // console.log(projectModal);
         setProjectModal(initialProjectData);
         close();
     };
@@ -86,7 +85,7 @@ const AddProjectModal = ({ open, close }) => {
     const handleOk = () => {
         console.log(projectModal);
         projectService.addProject(projectModal);
-        close();
+        resetForm();
     };
 
     return (
