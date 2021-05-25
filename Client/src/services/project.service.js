@@ -1,5 +1,5 @@
 import { authHeader } from '../helpers/auth-header';
-import { handleResponse } from '../helpers/handle-response';
+// import { handleResponse } from '../helpers/handle-response';
 import http from '../services/http-client';
 
 const state = {
@@ -9,7 +9,7 @@ const state = {
 const getProjects = async () => {
     return await http
         .get('/Project', { headers: authHeader() })
-        .then((response) => (state.projects = response.data));
+        .then((response) => response.data);
 };
 
 const getProject = (id) => {
@@ -30,7 +30,4 @@ export const projectService = {
     getProjects,
     getProject,
     addProject,
-    get projects() {
-        return state.projects;
-    },
 };

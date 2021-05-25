@@ -11,7 +11,9 @@ module.exports = {
                 sidebar_active: '#F1F6FE',
             },
             boxShadow: {
-                topbar: '0px -5px 26px 10px #bfd5ff91',
+                primary:
+                    '0  5px 10px rgba(154,160,185,0.05), 0 15px 40px rgba(166,173,201,0.2)',
+                secondary: '0 7px 30px -10px rgba(150,170,180,0.5)',
             },
             screens: {
                 '-sm': { max: '639px' },
@@ -19,9 +21,6 @@ module.exports = {
                 '-lg': { max: '1023px' },
                 '-xl': { max: '1279px' },
                 '-2xl': { max: '1535px' },
-            },
-            margin: {
-                88: '22rem',
             },
             inset: {
                 54: '13.5rem',

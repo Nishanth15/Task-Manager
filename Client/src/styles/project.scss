@@ -2,14 +2,15 @@
     @apply h-full w-full box-border;
 
     .project_title {
-        @apply text-2xl font-bold;
+        @apply cursor-pointer text-2xl font-bold;
     }
 
     .section_list {
         @apply py-5 h-[80vh] w-full mt-2 rounded-md flex items-start gap-5;
 
         .section_item {
-            @apply p-3 pb-10 bg-white rounded-lg min-w-[260px] w-64 flex flex-col h-auto duration-150 transform;
+            @apply cursor-move p-3 bg-white rounded-lg min-w-[260px] w-64 flex
+                flex-col duration-150 transform;
 
             .section_name {
                 @apply p-1 text-lg font-semibold;
@@ -25,8 +26,65 @@
             }
 
             .task {
-                @apply mt-2 bg-white border-gray-300 shadow-sm border p-3 rounded-md text-left text-sm hover:shadow;
+                @apply cursor-pointer  mt-2 bg-white border-gray-300 
+                    shadow rounded-md text-sm hover:shadow-secondary;
+
+                .task_top {
+                    @apply flex items-center space-x-3 px-3 py-2;
+
+                    .task_checkbox {
+                        @apply cursor-pointer h-6 w-6;
+                    }
+
+                    .task_checkbox,
+                    .task_checkbox .task_checkbox_circle {
+                        @apply border-2 rounded-full flex items-center justify-center h-4 w-4;
+                    }
+
+                    .task_checkbox .task_checkbox_circle svg {
+                        @apply h-6 w-6 opacity-0;
+                    }
+
+                    .task_checkbox.checked .task_checkbox_circle {
+                        @apply border-2 h-4 w-4 bg-primary border-primary;
+                    }
+
+                    .task_checkbox.checked .task_checkbox_circle svg {
+                        @apply text-white;
+                    }
+
+                    .task_checkbox.checked svg,
+                    .task_checkbox:hover svg,
+                    .radio_option:hover svg {
+                        @apply opacity-100;
+                    }
+
+                    .task_content {
+                        @apply w-full;
+                    }
+
+                    .task_menu {
+                        @apply h-6 w-8 opacity-0;
+                    }
+
+                    &:hover .task_menu {
+                        @apply opacity-100;
+                    }
+                }
+
+                .task_bottom {
+                    @apply w-full flex justify-end items-center space-x-3 px-3 py-2;
+                }
             }
+
+            .add_task {
+                @apply cursor-pointer flex items-center p-3 text-sm space-x-1 text-primary;
+            }
+        }
+
+        .add_section_item {
+            @apply cursor-pointer py-3 px-5 text-text_color hover:text-primary bg-white space-x-3 
+                rounded-lg min-w-[260px] w-64 flex items-center duration-150 transform;
         }
     }
 }

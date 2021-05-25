@@ -11,23 +11,23 @@ const Layout = ({ children }) => {
     // State
     const [switchKey, setSwitchKey] = useState(true);
     const [projects, setProjects] = useState([]);
-    checkTokenAvailability();
 
     // LifeCycle Hooks
     useEffect(() => {
-        projectService.getProjects().then(() => {
-            setProjects(projectService.projects);
+        projectService.getProjects().then((data) => {
+            setProjects(data);
+            console.log(data);
         });
 
         return () => {
             setSwitchKey({});
             setProjects({});
         };
-    }, []);
+    }, [setProjects]);
 
     useEffect(() => {
-        setProjects(projectService.projects);
-    }, [projects]);
+        checkTokenAvailability();
+    });
 
     // Methods
     function checkTokenAvailability() {

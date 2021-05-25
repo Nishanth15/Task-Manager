@@ -46,31 +46,33 @@
                 @apply pr-3;
             }
 
-            .task_checkbox {
+            .view_checkbox {
                 @apply cursor-pointer h-6 w-6;
             }
 
-            .task_checkbox,
-            .task_checkbox .task_checkbox_circle {
-                @apply border-gray-300 border-solid rounded-full border flex items-center justify-center h-4 w-4;
+            .view_checkbox,
+            .view_checkbox .view_checkbox_circle {
+                @apply border-gray-400 border-solid rounded-full border flex 
+                    items-center justify-center h-4 w-4 hover:bg-gray-100;
             }
 
-            .task_checkbox .task_checkbox_circle svg {
-                @apply border-transparent border-solid border inline-block h-6 w-6 opacity-0 transition-opacity pointer-events-none;
+            .view_checkbox .view_checkbox_circle svg {
+                @apply h-6 w-6 opacity-0 text-gray-400;
             }
 
-            .task_checkbox.checked .task_checkbox_circle {
+            .view_checkbox.checked .view_checkbox_circle {
                 @apply border-2 h-4 w-4 bg-primary border-primary;
             }
 
-            .task_checkbox.checked .task_checkbox_circle svg {
+            .view_checkbox.checked .view_checkbox_circle svg {
                 @apply text-white;
             }
 
-            .task_checkbox.checked svg,
-            .task_checkbox:hover svg,
+            .view_checkbox.checked svg,
+            .view_checkbox:hover svg,
             .radio_option:hover svg {
                 @apply opacity-100;
+                background-color: pu;
             }
 
             .favorite_switch {

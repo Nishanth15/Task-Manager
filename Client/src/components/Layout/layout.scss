@@ -2,7 +2,7 @@
     @apply h-screen w-screen bg-layout_background;
 
     .main_content {
-        @apply fixed p-10 w-screen h-screen rounded-2xl duration-500  overflow-y-hidden;
+        @apply fixed p-10 w-screen h-screen rounded-2xl duration-500 overflow-auto;
 
         &::-webkit-scrollbar {
             @apply h-2 w-1.5 bg-none;
@@ -14,7 +14,7 @@
 
         // Main content shrink and expand
         &.main_content_expand {
-            @apply ml-80 -md:ml-10 -md:w-[90vw] w-[77vw];
+            @apply ml-80 -md:ml-10;
         }
 
         &.main_content_shrink {

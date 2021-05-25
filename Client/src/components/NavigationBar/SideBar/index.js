@@ -1,6 +1,7 @@
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import logo from '../../../assets/logo.svg';
-import user_icon from '../../../assets/user.png';
+import logo from '../../../assets/images/logo.svg';
+import user_icon from '../../../assets/images/user.png';
+import { colors } from '../../../assets/static/index';
 import { useState } from 'react';
 import AddProjectModal from '../../Modal/AddProjectModal';
 import { Menu, Dropdown } from 'antd';
@@ -74,7 +75,7 @@ const SideBar = ({ handleSwitchKey, projects }) => {
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="sidebar_list_item_svg h-6 w-6"
+                                className="sidebar_list_item_svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -200,7 +201,16 @@ const SideBar = ({ handleSwitchKey, projects }) => {
                                             }
                                         >
                                             <div className="div_color">
-                                                <div className="item_color"></div>
+                                                <div
+                                                    className="item_color"
+                                                    style={{
+                                                        background: `${
+                                                            colors[
+                                                                project.color
+                                                            ].color
+                                                        }`,
+                                                    }}
+                                                ></div>
                                             </div>
                                             <div className="item_name">
                                                 {project.name}
@@ -240,7 +250,7 @@ const SideBar = ({ handleSwitchKey, projects }) => {
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                                 strokeWidth={2}
-                                d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
                             />
                         </svg>
                         <p
@@ -304,7 +314,15 @@ const SideBar = ({ handleSwitchKey, projects }) => {
                                         }
                                     >
                                         <div className="div_color">
-                                            <div className="item_color"></div>
+                                            <div
+                                                className="item_color"
+                                                style={{
+                                                    background: `${
+                                                        colors[project.color]
+                                                            .color
+                                                    }`,
+                                                }}
+                                            ></div>
                                         </div>
                                         <div className="item_name">
                                             {project.name}

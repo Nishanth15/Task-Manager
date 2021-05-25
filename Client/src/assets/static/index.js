@@ -1,0 +1,58 @@
+export const colors = [
+    {
+        key: '0',
+        label: 'Red',
+        value: 0,
+        color: '#ff0a0a',
+        light_color: '#ffadad',
+    },
+    {
+        key: '1',
+        label: 'Green',
+        value: 1,
+        color: '#29F500',
+        light_color: '#CAFFBF',
+    },
+    {
+        key: '2',
+        label: 'Blue',
+        value: 2,
+        color: '#5C9AFF',
+        light_color: '#A0C4FF',
+    },
+    {
+        key: '3',
+        label: 'Orange',
+        value: 3,
+        color: '#FF910A',
+        light_color: '#FFD6A5',
+    },
+    {
+        key: '4',
+        label: 'Purple',
+        value: 4,
+        color: '#8670FF',
+        light_color: '#A899FF',
+    },
+    {
+        key: '5',
+        label: 'Black',
+        value: 5,
+        color: '#090A0C',
+        light_color: '#353D46',
+    },
+    {
+        key: '6',
+        label: 'Yellow',
+        value: 6,
+        color: '#F7FF0A',
+        light_color: '#FDFFB6',
+    },
+    {
+        key: '7',
+        label: 'Pink',
+        value: 7,
+        color: 'FF47FF',
+        light_color: '#FFC6FF',
+    },
+];
