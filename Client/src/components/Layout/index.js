@@ -11,24 +11,21 @@ const Layout = ({ children }) => {
     // State
     const [switchKey, setSwitchKey] = useState(true);
     const [projects, setProjects] = useState([]);
-    checkTokenAvailability();
 
+   
     // LifeCycle Hooks
     useEffect(() => {
-        projectService.getProjects().then(() => {
-            setProjects(projectService.projects);
-        });
-
-        return () => {
-            setSwitchKey({});
-            setProjects({});
-        };
-    }, []);
-
-    useEffect(() => {
-        setProjects(projectService.projects);
-    }, [projects]);
-
+        checkTokenAvailability();
+        if(projects.length === 0)
+        {
+            projectService.getProjects().then(() => {
+                projectService.projects.subscribe((value)=>{
+                    setProjects(value);
+                    console.log(value);
+                });
+            });
+        }
+}, [])
     // Methods
     function checkTokenAvailability() {
         if (

@@ -6,7 +6,7 @@ import AddProjectModal from '../../Modal/AddProjectModal';
 import { Menu, Dropdown } from 'antd';
 import { authenticationService } from '../../../services/auth.service';
 
-const SideBar = ({ handleSwitchKey, projects }) => {
+const SideBar = ({ handleSwitchKey, projects}) => {
     // State
     const router = useLocation();
     const history = useHistory();
@@ -15,6 +15,7 @@ const SideBar = ({ handleSwitchKey, projects }) => {
     const [labelCollapse, setLabelCollapse] = useState(false);
     const [userCollapse, setUserCollapse] = useState(false);
     const [openModal, setOpenModal] = useState(false);
+
 
     // Methods
     const logout = () => {
