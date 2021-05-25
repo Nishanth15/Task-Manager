@@ -14,21 +14,16 @@ const Layout = ({ children }) => {
 
     // LifeCycle Hooks
     useEffect(() => {
-        projectService.getProjects().then((data) => {
-            setProjects(data);
-            console.log(data);
-        });
-
-        return () => {
-            setSwitchKey({});
-            setProjects({});
-        };
-    }, [setProjects]);
-
-    useEffect(() => {
         checkTokenAvailability();
-    });
-
+        if (projects.length === 0) {
+            projectService.getProjects().then(() => {
+                projectService.projects.subscribe((value) => {
+                    setProjects(value);
+                    console.log(value);
+                });
+            });
+        }
+    }, []);
     // Methods
     function checkTokenAvailability() {
         if (
