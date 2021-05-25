@@ -1,41 +1,47 @@
 .project {
-    @apply h-full w-full box-border;
+    @apply w-full h-full;
 
     .project_title {
         @apply cursor-pointer text-2xl font-bold;
     }
 
     .section_list {
-        @apply py-5 h-[80vh] w-full mt-2 rounded-md flex items-start gap-5;
+        @apply py-5 mt-2 rounded-md flex items-start gap-4;
 
         .section_item {
-            @apply cursor-move p-3 bg-white rounded-lg min-w-[260px] w-64 flex
+            @apply cursor-move p-3 bg-white rounded-lg min-w-[260px] w-72 flex
                 flex-col duration-150 transform;
 
-            .section_name {
-                @apply p-1 text-lg font-semibold;
+            .section_header {
+                @apply flex flex-row items-center;
 
-                &::before {
-                    content: '';
-                    @apply fixed inset-0 pointer-events-none;
+                .section_name {
+                    @apply p-1 text-lg font-semibold w-full;
+
+                    &::before {
+                        content: '';
+                        @apply fixed inset-0 pointer-events-none;
+                    }
+
+                    &:hover::before {
+                        @apply shadow-md rounded-lg;
+                    }
                 }
 
-                &:hover::before {
-                    @apply shadow-md rounded-lg;
+                .section_menu {
+                    @apply h-6 w-8;
                 }
             }
-
             .task {
                 @apply cursor-pointer  mt-2 bg-white border-gray-300 
-                    shadow rounded-md text-sm hover:shadow-secondary;
+                    rounded-md px-3 text-sm hover:shadow;
 
                 .task_top {
-                    @apply flex items-center space-x-3 px-3 py-2;
+                    @apply flex items-center space-x-3 py-2;
 
                     .task_checkbox {
                         @apply cursor-pointer h-6 w-6;
                     }
-
                     .task_checkbox,
                     .task_checkbox .task_checkbox_circle {
                         @apply border-2 rounded-full flex items-center justify-center h-4 w-4;
@@ -73,7 +79,7 @@
                 }
 
                 .task_bottom {
-                    @apply w-full flex justify-end items-center space-x-3 px-3 py-2;
+                    @apply w-full text-primary flex justify-end items-center space-x-3 py-2;
                 }
             }
 

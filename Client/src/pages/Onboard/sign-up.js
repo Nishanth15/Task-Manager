@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import { Link, useHistory } from 'react-router-dom';
 import { authenticationService } from '../../services/auth.service';
 
-function SignUp() {
+const SignUp = () => {
     let history = useHistory();
     const formik = useFormik({
         initialValues: {

@@ -14,7 +14,6 @@ const Layout = ({ children }) => {
 
     // LifeCycle Hooks
     useEffect(() => {
-        checkTokenAvailability();
         if (projects.length === 0) {
             projectService.getProjects().then(() => {
                 projectService.projects.subscribe((value) => {
@@ -23,7 +22,12 @@ const Layout = ({ children }) => {
                 });
             });
         }
-    }, []);
+    }, [projects]);
+
+    useEffect(() => {
+        checkTokenAvailability();
+    });
+
     // Methods
     function checkTokenAvailability() {
         if (

@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import { authenticationService } from '../../services/auth.service';
 import { useHistory } from 'react-router-dom';
 
-function SignIn() {
+const SignIn = () => {
     let history = useHistory();
 
     useEffect(() => {

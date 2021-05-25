@@ -92,11 +92,11 @@ const SideBar = ({ handleSwitchKey, projects }) => {
                         </li>
                     </Link>
 
-                    <Link to="/calender">
+                    <Link to="/calendar">
                         <li
                             className={
-                                'item calender ' +
-                                (router.pathname === '/calender'
+                                'item calendar ' +
+                                (router.pathname === '/calendar'
                                     ? 'active'
                                     : '')
                             }
@@ -116,7 +116,7 @@ const SideBar = ({ handleSwitchKey, projects }) => {
                                 />
                             </svg>
 
-                            <p className="header_name">Calender</p>
+                            <p className="header_name">Calendar</p>
                         </li>
                     </Link>
                 </ul>

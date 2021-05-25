@@ -83,14 +83,32 @@ const Project = () => {
                 {sections.map((section) => {
                     return (
                         <div className="section_item" key={section.id}>
-                            <div className="section_name">{section.name}</div>
+                            <div className="section_header">
+                                <div className="section_name">
+                                    {section.name}
+                                </div>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="section_menu"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                                    />
+                                </svg>
+                            </div>
                             {tasks.map((task) => {
                                 return (
                                     <div key={task.id}>
                                         <div
                                             className="task"
                                             style={{
-                                                backgroundColor: `${
+                                                border: `1px solid ${
                                                     colors[task.priority]
                                                         .light_color
                                                 }`,
@@ -99,9 +117,9 @@ const Project = () => {
                                             <div
                                                 className="task_top"
                                                 style={{
-                                                    borderBottom: `1px dotted ${
+                                                    borderBottom: `1px solid ${
                                                         colors[task.priority]
-                                                            .color
+                                                            .light_color
                                                     }`,
                                                 }}
                                             >

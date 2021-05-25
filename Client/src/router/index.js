@@ -1,6 +1,9 @@
-import Calender from '../pages/Calender';
+import SignIn from '../pages/Onboard/sign-in';
+import SignUp from '../pages/Onboard/sign-up';
 import Inbox from '../pages/Inbox';
+import Calender from '../pages/Calendar';
 import Project from '../pages/Project';
+import PageNotFound from '../pages/404NotFound';
 
 const routes = [
     {

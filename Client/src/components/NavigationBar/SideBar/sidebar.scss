@@ -1,30 +1,13 @@
 .sidebar {
-    @apply fixed w-72 h-screen bg-white duration-500
-        overflow-hidden hover:overflow-y-auto;
-
-    &::-webkit-scrollbar {
-        @apply w-1.5 bg-none;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        @apply bg-gray-400 rounded-md;
-    }
+    @apply fixed w-72 h-screen bg-white duration-500 z-10 shadow;
 
     // Sidebar toggle
     &.sidebar_show {
-        @apply left-0 -md:-left-72;
-
-        .sidebar_switch {
-            @apply left-72 -md:left-0;
-        }
+        @apply -md:-ml-72;
     }
 
     &.sidebar_hide {
-        @apply -left-72 -md:left-0;
-
-        .sidebar_switch {
-            @apply left-0 -md:left-72;
-        }
+        @apply -ml-72 -md:ml-0;
     }
 
     // Sidebar logo
@@ -34,7 +17,7 @@
 
     // Sidebar list
     .sidebar_list {
-        @apply my-20 w-72 px-3;
+        @apply absolute my-20 w-72 px-3 h-4/5  overflow-hidden hover:overflow-y-auto;
 
         // Sidebar each single item
         .item {
@@ -82,7 +65,7 @@
 
                 // Sidebar each expandable item list
                 .expansion_panel_list {
-                    @apply ml-8 mt-2 text-sm h-52 w-60 hidden overflow-hidden hover:overflow-y-auto;
+                    @apply ml-8 mt-2 text-sm h-52 w-56 hidden overflow-hidden hover:overflow-y-auto;
 
                     &::-webkit-scrollbar {
                         @apply w-0 bg-none;
@@ -94,7 +77,7 @@
                     // Sidebar each expandable item list of each item
                     .expansion_panel_list_item {
                         @apply cursor-pointer tracking-wide flex
-                            items-center w-60 h-10 space-x-2 rounded-md font-normal 
+                            items-center w-56 h-10 space-x-2 rounded-md font-normal 
                             hover:text-primary px-3 transition-colors duration-75;
 
                         // Sidebar each expandable item list of each item colors
@@ -106,7 +89,7 @@
                         }
 
                         .item_name {
-                            @apply w-full;
+                            @apply w-52;
                         }
 
                         .item_menu {
@@ -137,10 +120,10 @@
 
     // Sidebar switch
     .sidebar_switch {
-        @apply fixed overflow-hidden w-10 h-24 top-10 left-72 text-primary duration-500;
+        @apply fixed ml-72 overflow-hidden w-10 h-24 top-10 text-primary duration-500;
 
         .arrow-right {
-            @apply absolute cursor-pointer w-20 h-20 right-5 bg-white transform rotate-135 rounded-lg;
+            @apply absolute cursor-pointer w-20 h-20 right-5 bg-white transform rotate-135 rounded-lg shadow;
 
             .menu_icon {
                 @apply absolute  h-5 w-5 transform rotate-45 top-2 left-2;
@@ -173,9 +156,6 @@
                     }
                 }
             }
-        }
-        .menu .item {
-            @apply flex;
         }
     }
 }
