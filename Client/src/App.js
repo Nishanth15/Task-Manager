@@ -18,7 +18,7 @@ const App = () => {
                 <Switch>
                     <Route exact path="/login" component={SignIn} />
                     <Route exact path="/signup" component={SignUp} />
-                    {/* <Route exact path="/notfound" component={PageNotFound} /> */}
+                    <Route exact path="/notfound" component={PageNotFound} />
                     <ProtectedRoute component={Layout}>
                         {routes.map((route, index) => (
                             <Switch key={index}>

@@ -1,47 +1,44 @@
 .project {
     @apply w-full h-full;
 
-    .project_title {
-        @apply cursor-pointer text-2xl font-bold;
+    .project_header {
+        @apply w-full flex items-center justify-between;
+        .project_title {
+            @apply cursor-text text-2xl font-bold;
+        }
+        .project_menu {
+            @apply h-6 w-6 cursor-pointer rounded-lg hover:text-primary;
+        }
     }
 
     .section_list {
-        @apply py-5 mt-2 rounded-md flex items-start gap-4;
+        @apply pt-5 mt-2 w-full h-full rounded-md flex items-start gap-4;
 
         .section_item {
-            @apply cursor-move p-3 bg-white rounded-lg min-w-[260px] w-72 flex
-                flex-col duration-150 transform;
+            @apply p-3 bg-white rounded-lg min-w-[260px] max-h-full w-72 flex
+                flex-col duration-150 transform overflow-hidden;
 
             .section_header {
-                @apply flex flex-row items-center;
+                @apply cursor-move w-full flex flex-row items-center justify-between;
 
                 .section_name {
-                    @apply p-1 text-lg font-semibold w-full overflow-hidden whitespace-nowrap overflow-ellipsis;
-
-                    &::before {
-                        content: '';
-                        @apply fixed inset-0 pointer-events-none;
-                    }
-
-                    &:hover::before {
-                        @apply shadow-md rounded-lg;
-                    }
+                    @apply p-1 text-lg font-semibold cursor-text  overflow-hidden whitespace-nowrap overflow-ellipsis;
                 }
 
                 .section_menu {
-                    @apply h-6 w-8;
+                    @apply h-7 w-8 p-0.5 cursor-pointer rounded-lg hover:bg-sidebar_active;
                 }
             }
             .task {
-                @apply relative cursor-pointer  mt-2 bg-white border-gray-300 
-                    rounded-md px-3 text-sm hover:shadow;
+                @apply relative cursor-pointer mt-2 bg-white border-gray-300
+                    rounded-md border p-2 text-sm hover:shadow;
+
+                .task_priority {
+                    @apply absolute top-5 -left-1.5 w-2.5 h-2.5 rounded-full;
+                }
 
                 .task_top {
-                    @apply flex items-center space-x-3 py-2;
-
-                    .task_priority {
-                        @apply absolute top-3 -right-1 w-2.5 h-2.5 rounded-full;
-                    }
+                    @apply flex items-center space-x-2 px-2 pb-1 border-b;
 
                     .task_checkbox {
                         @apply cursor-pointer h-6 w-6;
@@ -70,31 +67,36 @@
                     }
 
                     .task_content {
-                        @apply w-full overflow-hidden whitespace-nowrap overflow-ellipsis;
+                        @apply w-full font-medium overflow-hidden whitespace-nowrap overflow-ellipsis;
                     }
 
                     .task_menu {
-                        @apply h-6 w-8 opacity-0;
+                        @apply h-7 w-10 p-0.5 opacity-0;
                     }
 
                     &:hover .task_menu {
-                        @apply opacity-100;
+                        @apply opacity-100 hover:bg-sidebar_active rounded-lg;
                     }
                 }
 
                 .task_bottom {
-                    @apply w-full flex justify-end items-center space-x-3 py-2;
+                    @apply w-full flex justify-end items-center space-x-1 pt-1;
+
+                    .task_edit,
+                    .task_delete {
+                        @apply h-6 w-6 p-1 hover:text-primary hover:bg-sidebar_active rounded-lg;
+                    }
                 }
             }
 
             .add_task {
-                @apply cursor-pointer flex items-center p-3 text-sm space-x-1 text-primary;
+                @apply cursor-pointer flex justify-center mt-2 text-sm space-x-1 hover:text-primary;
             }
         }
 
         .add_section_item {
             @apply cursor-pointer py-3 px-5 text-text_color hover:text-primary bg-white space-x-3 
-                rounded-lg min-w-[260px] w-64 flex items-center duration-150 transform;
+                rounded-lg min-w-[260px] w-64 flex duration-150 transform;
         }
     }
 }

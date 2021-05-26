@@ -10,7 +10,7 @@ const SignIn = () => {
 
     useEffect(() => {
         checkAvailability();
-    }, []);
+    });
 
     function checkAvailability() {
         if (
@@ -109,6 +109,6 @@ const SignIn = () => {
             </div>
         </div>
     );
-}
+};
 
 export default SignIn;

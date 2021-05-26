@@ -26,6 +26,7 @@ const Project = () => {
             id: 32232,
             priority: 0,
             content: 'Todo',
+            time: '12.30 AM - 2.45 PM',
         },
         {
             id: 32233,
@@ -53,7 +54,6 @@ const Project = () => {
     const getProject = (id) => {
         projectService.getProject(id).then((data) => {
             setProject(data);
-            console.log(data);
         });
     };
 
@@ -75,8 +75,24 @@ const Project = () => {
 
     return (
         <div className="project">
-            <div>
+            <div className="project_header">
                 <h1 className="project_title">{project.name}</h1>
+                <div>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="project_menu"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                        />
+                    </svg>
+                </div>
             </div>
 
             <div className="section_list">
@@ -105,69 +121,34 @@ const Project = () => {
                             {tasks.map((task) => {
                                 return (
                                     <div key={task.id}>
-                                        <div
-                                            className="task"
-                                            style={{
-                                                // borderColor: `${
-                                                //     colors[task.priority].color
-                                                // }`,
-                                                backgroundColor: `${
-                                                    colors[task.priority]
-                                                        .light_color
-                                                }`,
-                                            }}
-                                        >
+                                        <div className="task">
                                             <div
-                                                className="task_top"
+                                                className="task_priority"
                                                 style={{
-                                                    borderBottom: `1px dotted ${
+                                                    // borderColor: `${
+                                                    //     colors[
+                                                    //         task.priority
+                                                    //     ].color
+                                                    // }`,
+                                                    backgroundColor: `${
                                                         colors[task.priority]
                                                             .color
                                                     }`,
                                                 }}
-                                            >
-                                                <div
-                                                    className="task_priority"
-                                                    style={{
-                                                        // borderColor: `${
-                                                        //     colors[
-                                                        //         task.priority
-                                                        //     ].color
-                                                        // }`,
-                                                        backgroundColor: `${
-                                                            colors[
-                                                                task.priority
-                                                            ].color
-                                                        }`,
-                                                    }}
-                                                ></div>
+                                            ></div>
+                                            <div className="task_top">
                                                 <div className="task_checkbox">
                                                     <div
                                                         className="task_checkbox_circle"
                                                         style={{
-                                                            borderColor: `${
-                                                                colors[
-                                                                    task
-                                                                        .priority
-                                                                ].color
-                                                            }`,
-                                                            backgroundColor: `${
-                                                                colors[
-                                                                    task
-                                                                        .priority
-                                                                ].light_color
-                                                            }`,
+                                                            borderColor: `${colors[2].color}`,
+                                                            backgroundColor: `${colors[2].light_color}`,
                                                         }}
                                                     >
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             style={{
-                                                                color: `${
-                                                                    colors[
-                                                                        task
-                                                                            .priority
-                                                                    ].color
-                                                                }`,
+                                                                color: `${colors[2].color}`,
                                                             }}
                                                             fill="none"
                                                             viewBox="0 0 24 24"
@@ -200,10 +181,11 @@ const Project = () => {
                                                     />
                                                 </svg>
                                             </div>
+
                                             <div className="task_bottom">
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
-                                                    className="h-4 w-4"
+                                                    className="task_edit"
                                                     viewBox="0 0 20 20"
                                                     fill="currentColor"
                                                 >
@@ -216,7 +198,7 @@ const Project = () => {
                                                 </svg>
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
-                                                    className="h-4 w-4"
+                                                    className="task_delete"
                                                     fill="none"
                                                     viewBox="0 0 24 24"
                                                     stroke="currentColor"

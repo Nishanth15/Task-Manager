@@ -46,7 +46,8 @@
             }
 
             &.projects,
-            &.labels {
+            &.labels,
+            &.filters {
                 @apply hover:text-text_color flex flex-col;
 
                 .expansion_panel_header {
@@ -55,8 +56,7 @@
                     .keys {
                         @apply flex flex-row space-x-2;
 
-                        .add_project,
-                        .add_label {
+                        .add_item {
                             @apply h-5 w-5 right-0 opacity-0 hover:bg-sidebar_active rounded-full 
                             duration-500;
                         }
@@ -65,7 +65,7 @@
 
                 // Sidebar each expandable item list
                 .expansion_panel_list {
-                    @apply ml-10 mt-2 text-sm h-50 w-56  hidden overflow-hidden hover:overflow-y-auto;
+                    @apply ml-10 text-sm max-h-50 w-56 hidden overflow-hidden hover:overflow-y-auto;
 
                     // Sidebar each expandable item list of each item
                     .expansion_panel_list_item {
@@ -101,14 +101,17 @@
                     &.active {
                         @apply block;
                     }
+
+                    .expansion_panel_list_item_empty {
+                        @apply mt-2 whitespace-nowrap;
+                    }
                 }
             }
         }
-    }
 
-    &:hover .sidebar_list .item.projects .keys .add_project,
-    &:hover .sidebar_list .item.labels .keys .add_label {
-        @apply opacity-100;
+        &:hover .item .expansion_panel_header .keys .add_item {
+            @apply opacity-100;
+        }
     }
 
     // Sidebar switch
@@ -119,7 +122,7 @@
             @apply absolute cursor-pointer w-20 h-20 right-5 bg-white transform rotate-135 rounded-lg shadow;
 
             .menu_icon {
-                @apply absolute  h-5 w-5 transform rotate-45 top-2 left-2;
+                @apply absolute h-5 w-5 transform rotate-45 top-2 left-2;
             }
         }
     }
@@ -142,10 +145,10 @@
                 }
 
                 .collapse_key {
-                    @apply cursor-pointer h-5 w-5 hover:bg-sidebar_active rounded-full duration-500;
+                    @apply cursor-pointer h-5 w-5 hover:bg-sidebar_active rounded-full duration-1000;
 
                     &.active {
-                        @apply transform rotate-90;
+                        @apply transform rotate-180;
                     }
                 }
             }

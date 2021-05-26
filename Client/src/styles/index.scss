@@ -6,7 +6,7 @@ $main_font: 'Poppins', 'Roboto', sans-serif;
 
 body {
     font-family: $main_font;
-    @apply text-text_color w-screen h-screen;
+    @apply text-text_color w-screen h-screen select-none;
 }
 
 button {

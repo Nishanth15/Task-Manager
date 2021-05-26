@@ -11,6 +11,8 @@ const Layout = ({ children }) => {
     // State
     const [switchKey, setSwitchKey] = useState(true);
     const [projects, setProjects] = useState([]);
+    const [labels] = useState([]);
+    const [filters] = useState([]);
 
     // LifeCycle Hooks
     useEffect(() => {
@@ -18,7 +20,6 @@ const Layout = ({ children }) => {
             projectService.getProjects().then(() => {
                 projectService.projects.subscribe((value) => {
                     setProjects(value);
-                    console.log(value);
                 });
             });
         }
@@ -57,7 +58,7 @@ const Layout = ({ children }) => {
                     'sidebar ' + (switchKey ? 'sidebar_show' : 'sidebar_hide')
                 }
             >
-                <SideBar handleSwitchKey={switchSideBar} projects={projects} />
+                <SideBar handleSwitchKey={switchSideBar} projects={projects} labels={labels} filters={filters} />
             </div>
 
             <div
