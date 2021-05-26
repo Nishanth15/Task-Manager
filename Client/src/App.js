@@ -28,10 +28,10 @@ const App = () => {
                                     path={route.path}
                                     component={route.component}
                                 />
-                                <Redirect path="*" to="/notfound" />
                             </Switch>
                         ))}
                     </ProtectedRoute>
+                    <Redirect path="*" to="/notfound" />
                 </Switch>
             </Router>
         </div>

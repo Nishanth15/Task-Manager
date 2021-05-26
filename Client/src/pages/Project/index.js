@@ -108,7 +108,10 @@ const Project = () => {
                                         <div
                                             className="task"
                                             style={{
-                                                border: `1px solid ${
+                                                // borderColor: `${
+                                                //     colors[task.priority].color
+                                                // }`,
+                                                backgroundColor: `${
                                                     colors[task.priority]
                                                         .light_color
                                                 }`,
@@ -117,12 +120,27 @@ const Project = () => {
                                             <div
                                                 className="task_top"
                                                 style={{
-                                                    borderBottom: `1px solid ${
+                                                    borderBottom: `1px dotted ${
                                                         colors[task.priority]
-                                                            .light_color
+                                                            .color
                                                     }`,
                                                 }}
                                             >
+                                                <div
+                                                    className="task_priority"
+                                                    style={{
+                                                        // borderColor: `${
+                                                        //     colors[
+                                                        //         task.priority
+                                                        //     ].color
+                                                        // }`,
+                                                        backgroundColor: `${
+                                                            colors[
+                                                                task.priority
+                                                            ].color
+                                                        }`,
+                                                    }}
+                                                ></div>
                                                 <div className="task_checkbox">
                                                     <div
                                                         className="task_checkbox_circle"

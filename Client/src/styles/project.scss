@@ -16,7 +16,7 @@
                 @apply flex flex-row items-center;
 
                 .section_name {
-                    @apply p-1 text-lg font-semibold w-full;
+                    @apply p-1 text-lg font-semibold w-full overflow-hidden whitespace-nowrap overflow-ellipsis;
 
                     &::before {
                         content: '';
@@ -33,11 +33,15 @@
                 }
             }
             .task {
-                @apply cursor-pointer  mt-2 bg-white border-gray-300 
+                @apply relative cursor-pointer  mt-2 bg-white border-gray-300 
                     rounded-md px-3 text-sm hover:shadow;
 
                 .task_top {
                     @apply flex items-center space-x-3 py-2;
+
+                    .task_priority {
+                        @apply absolute top-3 -right-1 w-2.5 h-2.5 rounded-full;
+                    }
 
                     .task_checkbox {
                         @apply cursor-pointer h-6 w-6;
@@ -66,7 +70,7 @@
                     }
 
                     .task_content {
-                        @apply w-full;
+                        @apply w-full overflow-hidden whitespace-nowrap overflow-ellipsis;
                     }
 
                     .task_menu {
@@ -79,7 +83,7 @@
                 }
 
                 .task_bottom {
-                    @apply w-full text-primary flex justify-end items-center space-x-3 py-2;
+                    @apply w-full flex justify-end items-center space-x-3 py-2;
                 }
             }
 

@@ -17,16 +17,16 @@
 
     // Sidebar list
     .sidebar_list {
-        @apply absolute my-20 w-72 px-3 h-4/5  overflow-hidden hover:overflow-y-auto;
+        @apply absolute my-20 w-72 px-3 h-4/5 overflow-hidden hover:overflow-y-auto;
 
         // Sidebar each single item
         .item {
-            @apply cursor-pointer tracking-wide flex items-center
-                    space-x-2 text-base font-semibold rounded-md mt-2 hover:text-primary 
+            @apply cursor-pointer w-64 tracking-wide flex items-center
+                    space-x-2 text-base font-medium rounded-md mt-2 hover:text-primary 
                     px-3 py-2 transition-colors duration-75;
 
             .sidebar_list_item_svg {
-                @apply h-7 w-7;
+                @apply h-6 w-6;
             }
 
             &.active {
@@ -65,19 +65,12 @@
 
                 // Sidebar each expandable item list
                 .expansion_panel_list {
-                    @apply ml-8 mt-2 text-sm h-52 w-56 hidden overflow-hidden hover:overflow-y-auto;
+                    @apply ml-10 mt-2 text-sm h-50 w-56  hidden overflow-hidden hover:overflow-y-auto;
 
-                    &::-webkit-scrollbar {
-                        @apply w-0 bg-none;
-                    }
-
-                    &::-webkit-scrollbar-thumb {
-                        @apply bg-gray-400 rounded-md;
-                    }
                     // Sidebar each expandable item list of each item
                     .expansion_panel_list_item {
                         @apply cursor-pointer tracking-wide flex
-                            items-center w-56 h-10 space-x-2 rounded-md font-normal 
+                            items-center w-52 h-10 space-x-2 rounded-md font-normal 
                             hover:text-primary px-3 transition-colors duration-75;
 
                         // Sidebar each expandable item list of each item colors
@@ -89,7 +82,7 @@
                         }
 
                         .item_name {
-                            @apply w-52;
+                            @apply w-52 overflow-hidden whitespace-nowrap overflow-ellipsis;
                         }
 
                         .item_menu {
@@ -134,7 +127,7 @@
     // User menu
     .user_menu {
         @apply fixed bottom-0 h-14 w-72 p-5 bg-white border-t 
-                flex items-center justify-start;
+                flex items-center justify-start z-10;
         span {
             @apply w-full flex items-center;
             .user_icon {

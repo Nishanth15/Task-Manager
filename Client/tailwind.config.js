@@ -22,7 +22,12 @@ module.exports = {
                 '-xl': { max: '1279px' },
                 '-2xl': { max: '1535px' },
             },
+            spacing: {
+                46: '11.5rem',
+                50: '12.5rem',
+            },
             inset: {
+                46: '11.5rem',
                 54: '13.5rem',
                 58: '14.5rem',
             },

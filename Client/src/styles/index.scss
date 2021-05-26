@@ -14,7 +14,7 @@ button {
 }
 
 *::-webkit-scrollbar {
-    @apply h-3 w-1.5 bg-none;
+    @apply h-3 w-1.5 bg-gray-100;
 }
 
 *::-webkit-scrollbar-thumb {

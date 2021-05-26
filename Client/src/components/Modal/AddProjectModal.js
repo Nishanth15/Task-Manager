@@ -68,6 +68,7 @@ const AddProjectModal = ({ open, close }) => {
                                 className="form_control"
                                 name="name"
                                 autoComplete="off"
+                                maxlength="100"
                                 value={projectModal.name}
                                 onChange={(event) => {
                                     setProjectModal({
