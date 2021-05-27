@@ -1,10 +1,22 @@
+import { useState } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Menu, Dropdown } from 'antd';
+import {
+    colors,
+    FaInbox,
+    FaRegCalendar,
+    IoFolderOpen,
+    FaTags,
+    ImFilter,
+    HiOutlinePlus,
+    HiChevronLeft,
+    HiOutlineDotsHorizontal,
+    HiCog,
+    HiOutlineLogout,
+} from '../../../assets/static';
 import logo from '../../../assets/images/logo.svg';
 import user_icon from '../../../assets/images/user.png';
-import { colors } from '../../../assets/static/index';
-import { useState } from 'react';
 import AddProjectModal from '../../Modal/AddProjectModal';
-import { Menu, Dropdown } from 'antd';
 import { authenticationService } from '../../../services/auth.service';
 
 const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
@@ -15,7 +27,6 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
     const [projectCollapse, setProjectCollapse] = useState(false);
     const [labelCollapse, setLabelCollapse] = useState(false);
     const [filterCollapse, setFilterCollapse] = useState(false);
-    const [userCollapse, setUserCollapse] = useState(false);
     const [openModal, setOpenModal] = useState(false);
 
     // Methods
@@ -42,20 +53,7 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
         <Menu>
             <Menu.Item>
                 <div className="flex" onClick={logout}>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 mr-3"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                        />
-                    </svg>
+                    <HiOutlineLogout className="h-5 w-5 mr-3" />
                     <span>Log Out</span>
                 </div>
             </Menu.Item>
@@ -77,20 +75,7 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                                 (router.pathname === '/inbox' ? 'active' : '')
                             }
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="sidebar_list_item_svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-                                />
-                            </svg>
+                            <FaInbox className="sidebar_list_item_svg" />
 
                             <p className="header_name">Inbox</p>
                         </li>
@@ -105,20 +90,12 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                                     : '')
                             }
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="sidebar_list_item_svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                                />
-                            </svg>
+                            <div className="relative">
+                                <FaRegCalendar className="sidebar_list_item_svg" />
+                                <span className="absolute w-4 h-4 font-extrabold flex justify-center top-1 left-1 text-xxs">
+                                    {new Date().getDate()}
+                                </span>
+                            </div>
 
                             <p className="header_name">Calendar</p>
                         </li>
@@ -132,21 +109,10 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                             (projectCollapse ? 'mb-4' : '')
                         }
                     >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
+                        <IoFolderOpen
                             className="sidebar_list_item_svg"
                             onClick={switch_projectCollapse}
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-                            />
-                        </svg>
+                        />
                         <p
                             className="header_name"
                             onClick={switch_projectCollapse}
@@ -154,37 +120,17 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                             Projects
                         </p>
                         <div className="keys">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
+                            <HiOutlinePlus
                                 className="add_item"
                                 onClick={onOpenModal}
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                                />
-                            </svg>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
+                            />
+                            <HiChevronLeft
                                 className={
                                     'collapse_key ' +
                                     (projectCollapse ? 'active' : '')
                                 }
                                 onClick={switch_projectCollapse}
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
+                            />
                         </div>
                     </div>
                     <ul
@@ -224,20 +170,7 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                                             <div className="item_name">
                                                 {project.name}
                                             </div>
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="item_menu"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth={2}
-                                                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                                                />
-                                            </svg>
+                                            <HiOutlineDotsHorizontal className="item_menu" />
                                         </li>
                                     </Link>
                                 );
@@ -257,21 +190,10 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                             (labelCollapse ? 'mb-4' : '')
                         }
                     >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
+                        <FaTags
                             className="sidebar_list_item_svg"
                             onClick={switch_labelCollapse}
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
-                            />
-                        </svg>
+                        />
                         <p
                             className="header_name"
                             onClick={switch_labelCollapse}
@@ -279,36 +201,14 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                             Labels
                         </p>
                         <div className="keys">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="add_item"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                                />
-                            </svg>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
+                            <HiOutlinePlus className="add_item" />
+                            <HiChevronLeft
                                 className={
                                     'collapse_key ' +
                                     (labelCollapse ? 'active' : '')
                                 }
                                 onClick={switch_labelCollapse}
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
+                            />
                         </div>
                     </div>
                     <ul
@@ -347,20 +247,7 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                                             <div className="item_name">
                                                 {label.name}
                                             </div>
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="item_menu"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth={2}
-                                                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                                                />
-                                            </svg>
+                                            <HiOutlineDotsHorizontal className="item_menu" />
                                         </li>
                                     </Link>
                                 );
@@ -380,21 +267,10 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                             (filterCollapse ? 'mb-4' : '')
                         }
                     >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
+                        <ImFilter
                             className="sidebar_list_item_svg"
                             onClick={switch_filterCollapse}
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
-                            />
-                        </svg>
+                        />
                         <p
                             className="header_name"
                             onClick={switch_filterCollapse}
@@ -402,36 +278,14 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                             Filters
                         </p>
                         <div className="keys">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="add_item"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                                />
-                            </svg>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
+                            <HiOutlinePlus className="add_item" />
+                            <HiChevronLeft
                                 className={
                                     'collapse_key ' +
                                     (filterCollapse ? 'active' : '')
                                 }
                                 onClick={switch_filterCollapse}
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
+                            />
                         </div>
                     </div>
                     <ul
@@ -470,20 +324,7 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                                             <div className="item_name">
                                                 {filter.name}
                                             </div>
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="item_menu"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth={2}
-                                                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                                                />
-                                            </svg>
+                                            <HiOutlineDotsHorizontal className="item_menu" />
                                         </li>
                                     </Link>
                                 );
@@ -521,7 +362,7 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
             </div>
 
             {/* User Menu */}
-            <div className="user_menu">
+            {/* <div className="user_menu">
                 <span>
                     <div className="user_icon">
                         <img
@@ -539,36 +380,13 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                             placement="topCenter"
                             arrow
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className={
-                                    'collapse_key ' +
-                                    (userCollapse ? 'active' : '')
-                                }
-                                onClick={() =>
-                                    setUserCollapse(userCollapse ? false : true)
-                                }
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                                />
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                />
-                            </svg>
+                            <button className="user_setting">
+                                <HiCog className="collapse_key" />
+                            </button>
                         </Dropdown>
                     </div>
                 </span>
-            </div>
+            </div> */}
         </div>
     );
 };

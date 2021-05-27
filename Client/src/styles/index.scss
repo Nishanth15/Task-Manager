@@ -26,11 +26,13 @@ button {
 
 @import 'antd/dist/antd.css';
 
-@import './onboard.scss';
-
 @import '../components/Layout/layout.scss';
 
-@import '../components/NavigationBar/SideBar/sidebar.scss';
 @import '../components/Modal/modal.scss';
+
+@import '../components/NavigationBar/SideBar/sidebar.scss';
+@import '../components/NavigationBar/Topbar/topbar.scss';
+
+@import './onboard.scss';
 
 @import './project.scss';

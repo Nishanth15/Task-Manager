@@ -1,7 +1,15 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import {
+    colors,
+    HiOutlineDotsHorizontal,
+    GiCheckMark,
+    FaEdit,
+    HiOutlineTrash,
+    HiOutlinePlus,
+    HiOutlineViewGridAdd,
+} from '../../assets/static';
 import { projectService } from '../../services/project.service';
-import { colors } from '../../assets/static/index';
 
 const Project = () => {
     const { id } = useParams();
@@ -21,27 +29,34 @@ const Project = () => {
             name: 'Done',
         },
     ]);
-    const [tasks] = useState([
+    const [tasks, setTask] = useState([
         {
-            id: 32232,
+            id: 32231,
             priority: 0,
             content: 'Todo',
             time: '12.30 AM - 2.45 PM',
+            checked: 0,
+        },
+        {
+            id: 32232,
+            priority: 1,
+            content: 'Barge',
+            time: '09.30 AM - 11.45 AM',
+            checked: 0,
         },
         {
             id: 32233,
-            priority: 1,
-            content: 'Barge',
+            priority: 2,
+            content: 'Katang',
+            time: '2.30 PM - 4.25 PM',
+            checked: 0,
         },
         {
             id: 32234,
-            priority: 2,
-            content: 'Katang',
-        },
-        {
-            id: 32236,
             priority: 3,
             content: 'Rabukya',
+            time: '06.40 AM - 8.15 PM',
+            checked: 0,
         },
     ]);
 
@@ -50,6 +65,18 @@ const Project = () => {
         // getSections();
         // getTasks();
     }, [id]);
+
+    const check_task = (index) => {
+        let prevTasks = tasks;
+        prevTasks.forEach((task, i) => {
+            if (i === index) {
+                task.checked = 1;
+                console.log(i);
+            }
+        });
+        setTask(prevTasks);
+        console.log(tasks);
+    };
 
     const getProject = (id) => {
         projectService.getProject(id).then((data) => {
@@ -78,20 +105,7 @@ const Project = () => {
             <div className="project_header">
                 <h1 className="project_title">{project.name}</h1>
                 <div>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="project_menu"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                        />
-                    </svg>
+                    <HiOutlineDotsHorizontal className="project_menu" />
                 </div>
             </div>
 
@@ -103,33 +117,15 @@ const Project = () => {
                                 <div className="section_name">
                                     {section.name}
                                 </div>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="section_menu"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                                    />
-                                </svg>
+                                <HiOutlineDotsHorizontal className="section_menu" />
                             </div>
-                            {tasks.map((task) => {
+                            {tasks.map((task, index) => {
                                 return (
                                     <div key={task.id}>
                                         <div className="task">
                                             <div
                                                 className="task_priority"
                                                 style={{
-                                                    // borderColor: `${
-                                                    //     colors[
-                                                    //         task.priority
-                                                    //     ].color
-                                                    // }`,
                                                     backgroundColor: `${
                                                         colors[task.priority]
                                                             .color
@@ -137,117 +133,44 @@ const Project = () => {
                                                 }}
                                             ></div>
                                             <div className="task_top">
-                                                <div className="task_checkbox">
-                                                    <div
-                                                        className="task_checkbox_circle"
-                                                        style={{
-                                                            borderColor: `${colors[2].color}`,
-                                                            backgroundColor: `${colors[2].light_color}`,
-                                                        }}
-                                                    >
-                                                        <svg
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            style={{
-                                                                color: `${colors[2].color}`,
-                                                            }}
-                                                            fill="none"
-                                                            viewBox="0 0 24 24"
-                                                            stroke="currentColor"
-                                                        >
-                                                            <path
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth={2}
-                                                                d="M5 13l4 4L19 7"
-                                                            />
-                                                        </svg>
+                                                <div
+                                                    className={
+                                                        'task_checkbox ' +
+                                                        (task.checked === 1
+                                                            ? 'checked'
+                                                            : '')
+                                                    }
+                                                    onClick={() =>
+                                                        check_task(index)
+                                                    }
+                                                >
+                                                    <div className="task_checkbox_circle">
+                                                        <GiCheckMark className="task_checkbox_checkmark" />
                                                     </div>
                                                 </div>
                                                 <div className="task_content">
                                                     {task.content}
                                                 </div>
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    className="task_menu"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={2}
-                                                        d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                                                    />
-                                                </svg>
+                                                <HiOutlineDotsHorizontal className="task_menu" />
                                             </div>
 
                                             <div className="task_bottom">
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    className="task_edit"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
-                                                    <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                        clipRule="evenodd"
-                                                    />
-                                                </svg>
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    className="task_delete"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={2}
-                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                                                    />
-                                                </svg>
+                                                <FaEdit className="task_edit" />
+                                                <HiOutlineTrash className="task_delete" />
                                             </div>
                                         </div>
                                     </div>
                                 );
                             })}
                             <div className="add_task">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-5 w-5"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                                    />
-                                </svg>
+                                <HiOutlinePlus className="h-5 w-5" />
                                 <div>Add Task</div>
                             </div>
                         </div>
                     );
                 })}
                 <div className="add_section_item">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                    >
-                        <path
-                            fillRule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
-                            clipRule="evenodd"
-                        />
-                    </svg>
+                    <HiOutlineViewGridAdd className="h-5 w-5" />
                     <div>Add Section</div>
                 </div>
             </div>

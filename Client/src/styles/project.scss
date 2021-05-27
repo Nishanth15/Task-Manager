@@ -26,11 +26,11 @@
                 }
 
                 .section_menu {
-                    @apply h-7 w-8 p-0.5 cursor-pointer rounded-lg hover:bg-sidebar_active;
+                    @apply h-7 w-8 p-0.5 cursor-pointer rounded-lg hover:bg-active_background;
                 }
             }
             .task {
-                @apply relative cursor-pointer mt-2 bg-white border-gray-300
+                @apply relative w-full cursor-pointer mt-2 bg-white border-gray-300
                     rounded-md border p-2 text-sm hover:shadow;
 
                 .task_priority {
@@ -45,24 +45,29 @@
                     }
                     .task_checkbox,
                     .task_checkbox .task_checkbox_circle {
-                        @apply border-2 rounded-full flex items-center justify-center h-4 w-4;
-                    }
-
-                    .task_checkbox .task_checkbox_circle svg {
-                        @apply h-6 w-6 opacity-0;
+                        @apply border-2 border-primary bg-layout_background rounded-full 
+                            flex items-center justify-center h-4 w-4;
                     }
 
                     .task_checkbox.checked .task_checkbox_circle {
                         @apply border-2 h-4 w-4 bg-primary border-primary;
                     }
 
-                    .task_checkbox.checked .task_checkbox_circle svg {
+                    .task_checkbox
+                        .task_checkbox_circle
+                        .task_checkbox_checkmark {
+                        @apply h-4 w-4 p-0.5 opacity-0 text-primary;
+                    }
+
+                    .task_checkbox.checked
+                        .task_checkbox_circle
+                        .task_checkbox_checkmark {
                         @apply text-white;
                     }
 
-                    .task_checkbox.checked svg,
-                    .task_checkbox:hover svg,
-                    .radio_option:hover svg {
+                    .task_checkbox.checked .task_checkbox_checkmark,
+                    .task_checkbox:hover .task_checkbox_checkmark,
+                    .radio_option:hover .task_checkbox_checkmark {
                         @apply opacity-100;
                     }
 
@@ -75,7 +80,7 @@
                     }
 
                     &:hover .task_menu {
-                        @apply opacity-100 hover:bg-sidebar_active rounded-lg;
+                        @apply opacity-100 hover:bg-active_background rounded-lg;
                     }
                 }
 
@@ -84,7 +89,7 @@
 
                     .task_edit,
                     .task_delete {
-                        @apply h-6 w-6 p-1 hover:text-primary hover:bg-sidebar_active rounded-lg;
+                        @apply h-6 w-6 p-1 hover:text-primary hover:bg-active_background rounded-lg;
                     }
                 }
             }

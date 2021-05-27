@@ -1,16 +1,41 @@
 .layout {
     @apply h-screen w-screen bg-layout_background;
 
+    .sidebar {
+        @apply fixed w-72 h-screen bg-white duration-500 z-10 shadow;
+
+        // Sidebar toggle
+        &.sidebar_show {
+            @apply -md:-ml-72;
+        }
+
+        &.sidebar_hide {
+            @apply -ml-72 -md:ml-0;
+        }
+    }
+
+    .topbar {
+        @apply h-14 duration-500 py-5 px-14;
+
+        &.topbar_expand {
+            @apply ml-72 -md:ml-0;
+        }
+
+        &.topbar_shrink {
+            @apply -md:ml-72;
+        }
+    }
+
     .main_content {
-        @apply h-full py-10 px-14 rounded-2xl duration-500 overflow-auto;
+        @apply p-10 rounded-2xl duration-500 overflow-auto;
 
         // Main content shrink and expand
         &.main_content_expand {
-            @apply ml-72 -md:ml-10;
+            @apply ml-72 -md:ml-0;
         }
 
         &.main_content_shrink {
-            @apply ml-10 -md:ml-80;
+            @apply ml-0 -md:ml-80;
         }
     }
 }

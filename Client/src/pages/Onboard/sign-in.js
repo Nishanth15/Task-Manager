@@ -10,7 +10,7 @@ const SignIn = () => {
 
     useEffect(() => {
         checkAvailability();
-    });
+    }, []);
 
     function checkAvailability() {
         if (

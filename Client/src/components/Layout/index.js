@@ -1,4 +1,5 @@
 import SideBar from '../NavigationBar/SideBar';
+import TopBar from '../NavigationBar/TopBar';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -16,6 +17,7 @@ const Layout = ({ children }) => {
 
     // LifeCycle Hooks
     useEffect(() => {
+        checkTokenAvailability();
         if (projects.length === 0) {
             projectService.getProjects().then(() => {
                 projectService.projects.subscribe((value) => {
@@ -24,10 +26,6 @@ const Layout = ({ children }) => {
             });
         }
     }, [projects]);
-
-    useEffect(() => {
-        checkTokenAvailability();
-    });
 
     // Methods
     function checkTokenAvailability() {
@@ -58,9 +56,20 @@ const Layout = ({ children }) => {
                     'sidebar ' + (switchKey ? 'sidebar_show' : 'sidebar_hide')
                 }
             >
-                <SideBar handleSwitchKey={switchSideBar} projects={projects} labels={labels} filters={filters} />
+                <SideBar
+                    handleSwitchKey={switchSideBar}
+                    projects={projects}
+                    labels={labels}
+                    filters={filters}
+                />
             </div>
-
+            <div
+                className={
+                    'topbar ' + (switchKey ? 'topbar_expand' : 'topbar_shrink')
+                }
+            >
+                <TopBar></TopBar>
+            </div>
             <div
                 className={
                     'main_content ' +

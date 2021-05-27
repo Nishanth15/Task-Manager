@@ -1,4 +1,19 @@
-export const colors = [
+import { FaInbox, FaRegCalendar, FaTags, FaEdit } from 'react-icons/fa';
+import { IoFolderOpen, IoNotifications } from 'react-icons/io5';
+import { ImFilter } from 'react-icons/im';
+import { GiCheckMark } from 'react-icons/gi';
+import {
+    HiOutlinePlus,
+    HiChevronLeft,
+    HiChevronDown,
+    HiOutlineDotsHorizontal,
+    HiCog,
+    HiOutlineLogout,
+    HiOutlineTrash,
+    HiOutlineViewGridAdd,
+} from 'react-icons/hi';
+
+const colors = [
     {
         key: '0',
         label: 'Red',
@@ -56,3 +71,23 @@ export const colors = [
         light_color: '#FFC6FF',
     },
 ];
+
+export {
+    colors,
+    FaInbox,
+    IoFolderOpen,
+    FaRegCalendar,
+    FaTags,
+    ImFilter,
+    HiOutlinePlus,
+    HiChevronLeft,
+    HiChevronDown,
+    HiOutlineDotsHorizontal,
+    HiCog,
+    HiOutlineLogout,
+    GiCheckMark,
+    FaEdit,
+    HiOutlineTrash,
+    HiOutlineViewGridAdd,
+    IoNotifications,
+};

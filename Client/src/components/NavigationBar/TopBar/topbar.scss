@@ -1,0 +1,19 @@
+.top_menu {
+    @apply flex items-center justify-between;
+}
+
+.right_menu {
+    @apply flex items-center space-x-3;
+
+    .user_button {
+        @apply flex items-center space-x-3;
+
+        .user_name {
+            @apply flex items-center font-semibold;
+        }
+
+        .user_image {
+            @apply w-10 h-10 rounded-full;
+        }
+    }
+}

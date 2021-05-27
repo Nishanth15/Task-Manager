@@ -10,19 +10,20 @@ const getProjects = async () => {
         .then((response) => projectsSubject.next(response.data));
 };
 
-const getProject = (id) => {
+const getProject = async (id) => {
     if (id !== undefined) {
-        return http
+        return await http
             .get('/Project/' + id, { headers: authHeader() })
             .then((response) => response.data);
     }
 };
 
-const addProject = (project) => {
-    http.post('/Project/', project, { headers: authHeader() }).then(
-        (response) =>
+const addProject = async (project) => {
+    await http
+        .post('/Project/', project, { headers: authHeader() })
+        .then((response) =>
             projectsSubject.next([...projectsSubject.getValue(), response.data])
-    );
+        );
 };
 
 export const projectService = {

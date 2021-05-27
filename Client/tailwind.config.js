@@ -8,12 +8,15 @@ module.exports = {
                 primary: '#2a8cff',
                 layout_background: '#edf5ff',
                 text_color: '#2e5284',
-                sidebar_active: '#F1F6FE',
+                active_background: '#F1F6FE',
             },
             boxShadow: {
                 primary:
                     '0  5px 10px rgba(154,160,185,0.05), 0 15px 40px rgba(166,173,201,0.2)',
                 secondary: '0 7px 30px -10px rgba(150,170,180,0.5)',
+            },
+            fontSize: {
+                xxs: '.65rem',
             },
             screens: {
                 '-sm': { max: '639px' },
