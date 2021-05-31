@@ -1,11 +1,11 @@
 // Sidebar logo
 .logo {
-    @apply fixed z-10 w-72 h-20 px-8 bg-white top-0;
+    @apply fixed z-10 w-72 h-20 px-8 bg-layout_background top-0;
 }
 
 // Sidebar list
 .sidebar_list {
-    @apply absolute my-20 w-72 px-3 h-4/5 overflow-hidden hover:overflow-y-auto;
+    @apply absolute my-20 w-72 px-5  h-4/5 overflow-hidden hover:overflow-y-auto;
 
     // Sidebar each single item
     .item {
@@ -14,11 +14,15 @@
                     px-3 py-2 transition-colors duration-75;
 
         &.active {
-            @apply bg-active_background text-primary;
+            @apply bg-white text-primary shadow;
         }
 
         .sidebar_list_item_svg {
             @apply w-6 h-6;
+        }
+
+        .calendar_date {
+            @apply absolute w-4 h-4 font-extrabold flex justify-center top-1 left-1 text-xxs;
         }
 
         .header_name {
@@ -53,7 +57,7 @@
 
             // Sidebar each expandable item list
             .expansion_panel_list {
-                @apply ml-10 text-sm max-h-50 w-56 hidden overflow-hidden hover:overflow-y-auto;
+                @apply ml-10 p-1 text-sm max-h-50 w-56 hidden overflow-hidden hover:overflow-y-auto;
 
                 // Sidebar each expandable item list of each item
                 .expansion_panel_list_item {
@@ -82,7 +86,7 @@
                     }
 
                     &.active {
-                        @apply bg-active_background text-primary;
+                        @apply bg-white text-primary shadow;
                     }
                 }
 
@@ -91,7 +95,7 @@
                 }
 
                 .expansion_panel_list_item_empty {
-                    @apply mt-2 p-2 cursor-default whitespace-nowrap;
+                    @apply p-2 cursor-default whitespace-nowrap;
                 }
             }
         }
@@ -104,10 +108,10 @@
 
 // Sidebar switch
 .sidebar_switch {
-    @apply fixed ml-72 overflow-hidden w-10 h-24 top-10 text-primary duration-500;
+    @apply fixed ml-72 overflow-hidden w-10 h-24 top-14 text-primary duration-500;
 
     .arrow-right {
-        @apply absolute cursor-pointer w-20 h-20 right-5 bg-white transform 
+        @apply absolute cursor-pointer w-20 h-20 right-5 bg-layout_background transform 
             rotate-135 rounded-lg shadow z-10;
 
         .menu_icon {

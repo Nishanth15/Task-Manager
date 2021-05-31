@@ -1,11 +1,14 @@
 import { useHistory } from 'react-router-dom';
-import { Menu, Dropdown } from 'antd';
+import { Input, Menu, Dropdown } from 'antd';
 import {
     HiOutlineLogout,
     HiChevronDown,
-    IoNotifications,
+    HiSearch,
+    FiBell,
+    FiActivity,
+    HiCog,
 } from '../../../assets/static';
-import user_image from '../../../assets/images/user.png';
+import user_image from '../../../assets/images/Ellipse.png';
 import { authenticationService } from '../../../services/auth.service';
 
 const TopBar = () => {
@@ -19,8 +22,20 @@ const TopBar = () => {
     const menu = (
         <Menu>
             <Menu.Item>
-                <div className="flex" onClick={logout}>
-                    <HiOutlineLogout className="h-5 w-5 mr-3" />
+                <div className="flex p-1">
+                    <HiCog className="topbar_svg mr-3" />
+                    <span>Setting</span>
+                </div>
+            </Menu.Item>
+            <Menu.Item>
+                <div className="flex p-1">
+                    <FiActivity className="topbar_svg mr-3" />
+                    <span>Activity log</span>
+                </div>
+            </Menu.Item>
+            <Menu.Item>
+                <div className="flex p-1" onClick={logout}>
+                    <HiOutlineLogout className="topbar_svg mr-3" />
                     <span>Log Out</span>
                 </div>
             </Menu.Item>
@@ -29,19 +44,27 @@ const TopBar = () => {
 
     return (
         <div className="top_menu">
-            <div className="left_menu">Search</div>
+            <div className="left_menu">
+                <Input
+                    type="text"
+                    className="searchbar"
+                    placeholder="Search"
+                    prefix={<HiSearch className="topbar_svg" />}
+                />
+            </div>
             <div className="right_menu">
-                <IoNotifications className="w-5 h-5" />
+                <FiBell className="topbar_svg" />
                 <Dropdown
                     overlay={menu}
                     trigger={['click']}
-                    placement="topCenter"
+                    overlayStyle={{ width: 200 }}
+                    placement="bottomRight"
                     arrow
                 >
                     <div className="user_button">
                         <div className="user_name">
                             Nishanth
-                            <HiChevronDown className="w-5 h-5" />
+                            <HiChevronDown className="topbar_svg" />
                         </div>
                         <div className="user_image">
                             <img

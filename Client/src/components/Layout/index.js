@@ -51,32 +51,45 @@ const Layout = ({ children }) => {
 
     return (
         <div className="layout">
-            <div
-                className={
-                    'sidebar ' + (switchKey ? 'sidebar_show' : 'sidebar_hide')
-                }
-            >
-                <SideBar
-                    handleSwitchKey={switchSideBar}
-                    projects={projects}
-                    labels={labels}
-                    filters={filters}
-                />
+            <div className="left_side">
+                <div
+                    className={
+                        'sidebar ' +
+                        (switchKey ? 'sidebar_show' : 'sidebar_hide')
+                    }
+                >
+                    <SideBar
+                        handleSwitchKey={switchSideBar}
+                        projects={projects}
+                        labels={labels}
+                        filters={filters}
+                    />
+                </div>
             </div>
             <div
                 className={
-                    'topbar ' + (switchKey ? 'topbar_expand' : 'topbar_shrink')
+                    'right_side ' +
+                    (switchKey ? 'right_side_expand' : 'right_side_shrink')
                 }
             >
-                <TopBar></TopBar>
-            </div>
-            <div
-                className={
-                    'main_content ' +
-                    (switchKey ? 'main_content_expand' : 'main_content_shrink')
-                }
-            >
-                {children}
+                <div
+                    className={
+                        'topbar ' +
+                        (switchKey ? 'topbar_expand' : 'topbar_shrink')
+                    }
+                >
+                    <TopBar></TopBar>
+                </div>
+                <div
+                    className={
+                        'main_content ' +
+                        (switchKey
+                            ? 'main_content_expand'
+                            : 'main_content_shrink')
+                    }
+                >
+                    {children}
+                </div>
             </div>
         </div>
     );

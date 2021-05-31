@@ -3,11 +3,10 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Menu, Dropdown } from 'antd';
 import {
     colors,
-    FaInbox,
-    FaRegCalendar,
-    IoFolderOpen,
-    FaTags,
-    ImFilter,
+    FiInbox,
+    FiCalendar,
+    CgFolder,
+    HiOutlineTag,
     HiOutlinePlus,
     HiChevronLeft,
     HiOutlineDotsHorizontal,
@@ -75,7 +74,7 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                                 (router.pathname === '/inbox' ? 'active' : '')
                             }
                         >
-                            <FaInbox className="sidebar_list_item_svg" />
+                            <FiInbox className="sidebar_list_item_svg" />
 
                             <p className="header_name">Inbox</p>
                         </li>
@@ -91,13 +90,13 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                             }
                         >
                             <div className="relative">
-                                <FaRegCalendar className="sidebar_list_item_svg" />
-                                <span className="absolute w-4 h-4 font-extrabold flex justify-center top-1 left-1 text-xxs">
+                                <FiCalendar className="sidebar_list_item_svg "></FiCalendar>
+                                <span className="calendar_date ">
                                     {new Date().getDate()}
                                 </span>
                             </div>
 
-                            <p className="header_name">Calendar</p>
+                            <p className="header_name">Calender</p>
                         </li>
                     </Link>
                 </ul>
@@ -109,7 +108,7 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                             (projectCollapse ? 'mb-4' : '')
                         }
                     >
-                        <IoFolderOpen
+                        <CgFolder
                             className="sidebar_list_item_svg"
                             onClick={switch_projectCollapse}
                         />
@@ -190,7 +189,7 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                             (labelCollapse ? 'mb-4' : '')
                         }
                     >
-                        <FaTags
+                        <HiOutlineTag
                             className="sidebar_list_item_svg"
                             onClick={switch_labelCollapse}
                         />
@@ -260,7 +259,7 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                     </ul>
                 </div>
 
-                <div className={'item filters'}>
+                {/* <div className={'item filters'}>
                     <div
                         className={
                             'expansion_panel_header ' +
@@ -335,7 +334,7 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                             </div>
                         )}
                     </ul>
-                </div>
+                </div> */}
             </div>
 
             {/* Modal */}

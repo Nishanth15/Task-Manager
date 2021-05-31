@@ -1,41 +1,39 @@
 .layout {
-    @apply h-screen w-screen bg-layout_background;
+    @apply h-screen w-screen bg-white;
 
-    .sidebar {
-        @apply fixed w-72 h-screen bg-white duration-500 z-10 shadow;
+    .left_side {
+        .sidebar {
+            @apply fixed w-72 h-screen bg-layout_background duration-500 z-10 shadow;
 
-        // Sidebar toggle
-        &.sidebar_show {
-            @apply -md:-ml-72;
-        }
+            // Sidebar toggle
+            &.sidebar_show {
+                @apply -md:-ml-72;
+            }
 
-        &.sidebar_hide {
-            @apply -ml-72 -md:ml-0;
-        }
-    }
-
-    .topbar {
-        @apply h-14 duration-500 py-5 px-14;
-
-        &.topbar_expand {
-            @apply ml-72 -md:ml-0;
-        }
-
-        &.topbar_shrink {
-            @apply -md:ml-72;
+            &.sidebar_hide {
+                @apply -ml-72 -md:ml-0;
+            }
         }
     }
 
-    .main_content {
-        @apply p-10 rounded-2xl duration-500 overflow-auto;
+    .right_side {
+        @apply fixed flex flex-col h-full w-full duration-500;
 
-        // Main content shrink and expand
-        &.main_content_expand {
-            @apply ml-72 -md:ml-0;
+        &.right_side_expand {
+            @apply pl-72 -md:pl-0;
         }
 
-        &.main_content_shrink {
-            @apply ml-0 -md:ml-80;
+        &.right_side_shrink {
+            @apply -md:pl-72;
+        }
+
+        .topbar {
+            @apply h-10 pt-5 px-10 duration-500;
+        }
+
+        .main_content {
+            @apply h-full mt-14 px-14 rounded-2xl
+                duration-500 overflow-hidden overflow-x-auto;
         }
     }
 }

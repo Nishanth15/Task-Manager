@@ -16,7 +16,7 @@ module.exports = {
                 secondary: '0 7px 30px -10px rgba(150,170,180,0.5)',
             },
             fontSize: {
-                xxs: '.65rem',
+                xxs: '.60rem',
             },
             screens: {
                 '-sm': { max: '639px' },
@@ -28,6 +28,7 @@ module.exports = {
             spacing: {
                 46: '11.5rem',
                 50: '12.5rem',
+                68: '16.5rem',
             },
             inset: {
                 46: '11.5rem',

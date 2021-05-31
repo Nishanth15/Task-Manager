@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { authenticationService } from '../../services/auth.service';
 import { useHistory } from 'react-router-dom';
+import { Input } from 'antd';
 
 const SignIn = () => {
     let history = useHistory();
@@ -55,7 +56,7 @@ const SignIn = () => {
                         </h1>
                         <div className="form_field">
                             <label>Email</label>
-                            <input
+                            <Input
                                 type="text"
                                 className="form_control"
                                 name="email"
@@ -67,7 +68,7 @@ const SignIn = () => {
                         </div>
                         <div className="form_field">
                             <label>Password</label>
-                            <input
+                            <Input.Password
                                 type="password"
                                 className="form_control"
                                 name="password"

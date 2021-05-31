@@ -3,6 +3,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { Link, useHistory } from 'react-router-dom';
 import { authenticationService } from '../../services/auth.service';
+import { Input } from 'antd';
 
 const SignUp = () => {
     let history = useHistory();
@@ -39,7 +40,7 @@ const SignUp = () => {
                         <h1 className="heading">Registration 🚀</h1>
                         <div className="form_field">
                             <label>First Name</label>
-                            <input
+                            <Input
                                 type="text"
                                 className="form_control"
                                 name="firstName"
@@ -53,7 +54,7 @@ const SignUp = () => {
                         <div className="form_field">
                             <label>Last Name</label>
 
-                            <input
+                            <Input
                                 type="text"
                                 className="form_control"
                                 name="lastName"
@@ -66,7 +67,7 @@ const SignUp = () => {
 
                         <div className="form_field">
                             <label>Email</label>
-                            <input
+                            <Input
                                 type="text"
                                 className="form_control"
                                 name="email"
@@ -79,7 +80,7 @@ const SignUp = () => {
 
                         <div className="form_field">
                             <label>Password</label>
-                            <input
+                            <Input.Password
                                 type="password"
                                 className="form_control"
                                 name="password"
@@ -91,7 +92,7 @@ const SignUp = () => {
                         ) : null}
                         <div className="form_field">
                             <label>Confirm Password</label>
-                            <input
+                            <Input.Password
                                 type="password"
                                 className="form_control"
                                 name="Vpassword"
@@ -131,6 +132,6 @@ const SignUp = () => {
             </div>
         </div>
     );
-}
+};
 
 export default SignUp;

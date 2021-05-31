@@ -1,16 +1,19 @@
-import { FaInbox, FaRegCalendar, FaTags, FaEdit } from 'react-icons/fa';
-import { IoFolderOpen, IoNotifications } from 'react-icons/io5';
+import { FiInbox, FiBell, FiCalendar, FiActivity } from 'react-icons/fi';
 import { ImFilter } from 'react-icons/im';
 import { GiCheckMark } from 'react-icons/gi';
+import { CgFolder } from 'react-icons/cg';
 import {
     HiOutlinePlus,
     HiChevronLeft,
     HiChevronDown,
+    HiOutlineTag,
+    HiOutlinePencilAlt,
     HiOutlineDotsHorizontal,
     HiCog,
     HiOutlineLogout,
     HiOutlineTrash,
     HiOutlineViewGridAdd,
+    HiSearch,
 } from 'react-icons/hi';
 
 const colors = [
@@ -74,20 +77,22 @@ const colors = [
 
 export {
     colors,
-    FaInbox,
-    IoFolderOpen,
-    FaRegCalendar,
-    FaTags,
-    ImFilter,
-    HiOutlinePlus,
+    CgFolder,
+    FiInbox,
+    FiCalendar,
+    FiBell,
+    FiActivity,
+    GiCheckMark,
+    HiCog,
+    HiSearch,
     HiChevronLeft,
     HiChevronDown,
-    HiOutlineDotsHorizontal,
-    HiCog,
-    HiOutlineLogout,
-    GiCheckMark,
-    FaEdit,
+    HiOutlineTag,
+    HiOutlinePlus,
     HiOutlineTrash,
+    HiOutlineLogout,
+    HiOutlinePencilAlt,
     HiOutlineViewGridAdd,
-    IoNotifications,
+    HiOutlineDotsHorizontal,
+    ImFilter,
 };

@@ -4,7 +4,7 @@ import {
     colors,
     HiOutlineDotsHorizontal,
     GiCheckMark,
-    FaEdit,
+    HiOutlinePencilAlt,
     HiOutlineTrash,
     HiOutlinePlus,
     HiOutlineViewGridAdd,
@@ -58,6 +58,76 @@ const Project = () => {
             time: '06.40 AM - 8.15 PM',
             checked: 0,
         },
+        // {
+        //     id: 32235,
+        //     priority: 3,
+        //     content: 'Rabukya',
+        //     time: '06.40 AM - 8.15 PM',
+        //     checked: 0,
+        // },
+        // {
+        //     id: 32236,
+        //     priority: 3,
+        //     content: 'Rabukya',
+        //     time: '06.40 AM - 8.15 PM',
+        //     checked: 0,
+        // },
+        // {
+        //     id: 32237,
+        //     priority: 3,
+        //     content: 'Rabukya',
+        //     time: '06.40 AM - 8.15 PM',
+        //     checked: 0,
+        // },
+        // {
+        //     id: 32238,
+        //     priority: 3,
+        //     content: 'Rabukya',
+        //     time: '06.40 AM - 8.15 PM',
+        //     checked: 0,
+        // },
+        // {
+        //     id: 32239,
+        //     priority: 3,
+        //     content: 'Rabukya',
+        //     time: '06.40 AM - 8.15 PM',
+        //     checked: 0,
+        // },
+        // {
+        //     id: 3223799,
+        //     priority: 3,
+        //     content: 'Rabukya',
+        //     time: '06.40 AM - 8.15 PM',
+        //     checked: 0,
+        // },
+        // {
+        //     id: 32237999,
+        //     priority: 3,
+        //     content: 'Rabukya',
+        //     time: '06.40 AM - 8.15 PM',
+        //     checked: 0,
+        // },
+        // {
+        //     id: 3223788,
+        //     priority: 3,
+        //     content: 'Rabukya',
+        //     time: '06.40 AM - 8.15 PM',
+        //     checked: 0,
+        // },
+        // {
+        //     id: 3223777,
+        //     priority: 3,
+        //     content: 'Rabukya',
+        //     time: '06.40 AM - 8.15 PM',
+        //     checked: 0,
+        // },
+        // {
+        //     id: 3223766,
+        //     priority: 3,
+        //     content: 'Rabukya',
+        //     time: '06.40 AM - 8.15 PM',
+        //     checked: 0,
+        // },
     ]);
 
     useEffect(() => {
@@ -65,6 +135,15 @@ const Project = () => {
         // getSections();
         // getTasks();
     }, [id]);
+
+    // const useScrollTop = () => {
+    //     const [scrollTop, setScrollTop] = useState(0);
+    //     const onScroll = (event) => setScrollTop(event.target.scrollTop);
+    //     console.log(scrollTop);
+    //     return [scrollTop, { onScroll }];
+    // };
+
+    // const [scrollTop, scrollProps] = useScrollTop();
 
     const check_task = (index) => {
         let prevTasks = tasks;
@@ -119,49 +198,64 @@ const Project = () => {
                                 </div>
                                 <HiOutlineDotsHorizontal className="section_menu" />
                             </div>
-                            {tasks.map((task, index) => {
-                                return (
-                                    <div key={task.id}>
-                                        <div className="task">
-                                            <div
-                                                className="task_priority"
-                                                style={{
-                                                    backgroundColor: `${
-                                                        colors[task.priority]
-                                                            .color
-                                                    }`,
-                                                }}
-                                            ></div>
-                                            <div className="task_top">
+                            <div
+                                className="tasks"
+                                // ref={(divelement) => {
+                                //     divElement = divelement;
+                                // }}
+                                // {...scrollProps}
+                                // style={{
+                                //     borderTop:
+                                //         scrollTop > 0
+                                //             ? 'solid 1px #ccc'
+                                //             : 'solid 1px transparent',
+                                // }}
+                            >
+                                {tasks.map((task, index) => {
+                                    return (
+                                        <div key={task.id}>
+                                            <div className="task">
                                                 <div
-                                                    className={
-                                                        'task_checkbox ' +
-                                                        (task.checked === 1
-                                                            ? 'checked'
-                                                            : '')
-                                                    }
-                                                    onClick={() =>
-                                                        check_task(index)
-                                                    }
-                                                >
-                                                    <div className="task_checkbox_circle">
-                                                        <GiCheckMark className="task_checkbox_checkmark" />
+                                                    className="task_priority"
+                                                    style={{
+                                                        backgroundColor: `${
+                                                            colors[
+                                                                task.priority
+                                                            ].color
+                                                        }`,
+                                                    }}
+                                                ></div>
+                                                <div className="task_top">
+                                                    <div
+                                                        className={
+                                                            'task_checkbox ' +
+                                                            (task.checked === 1
+                                                                ? 'checked'
+                                                                : '')
+                                                        }
+                                                        onClick={() =>
+                                                            check_task(index)
+                                                        }
+                                                    >
+                                                        <div className="task_checkbox_circle">
+                                                            <GiCheckMark className="task_checkbox_checkmark" />
+                                                        </div>
                                                     </div>
+                                                    <div className="task_content">
+                                                        {task.content}
+                                                    </div>
+                                                    <HiOutlineDotsHorizontal className="task_menu" />
                                                 </div>
-                                                <div className="task_content">
-                                                    {task.content}
-                                                </div>
-                                                <HiOutlineDotsHorizontal className="task_menu" />
-                                            </div>
 
-                                            <div className="task_bottom">
-                                                <FaEdit className="task_edit" />
-                                                <HiOutlineTrash className="task_delete" />
+                                                <div className="task_bottom">
+                                                    <HiOutlinePencilAlt className="task_edit" />
+                                                    <HiOutlineTrash className="task_delete" />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                );
-                            })}
+                                    );
+                                })}
+                            </div>
                             <div className="add_task">
                                 <HiOutlinePlus className="h-5 w-5" />
                                 <div>Add Task</div>
@@ -169,6 +263,7 @@ const Project = () => {
                         </div>
                     );
                 })}
+
                 <div className="add_section_item">
                     <HiOutlineViewGridAdd className="h-5 w-5" />
                     <div>Add Section</div>
