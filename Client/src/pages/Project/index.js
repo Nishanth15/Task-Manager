@@ -107,27 +107,6 @@ const Project = () => {
         //     time: '06.40 AM - 8.15 PM',
         //     checked: 0,
         // },
-        // {
-        //     id: 3223788,
-        //     priority: 3,
-        //     content: 'Rabukya',
-        //     time: '06.40 AM - 8.15 PM',
-        //     checked: 0,
-        // },
-        // {
-        //     id: 3223777,
-        //     priority: 3,
-        //     content: 'Rabukya',
-        //     time: '06.40 AM - 8.15 PM',
-        //     checked: 0,
-        // },
-        // {
-        //     id: 3223766,
-        //     priority: 3,
-        //     content: 'Rabukya',
-        //     time: '06.40 AM - 8.15 PM',
-        //     checked: 0,
-        // },
     ]);
 
     useEffect(() => {
@@ -257,8 +236,10 @@ const Project = () => {
                                 })}
                             </div>
                             <div className="add_task">
-                                <HiOutlinePlus className="h-5 w-5" />
-                                <div>Add Task</div>
+                                <div className="add_task_button">
+                                    <HiOutlinePlus className="h-5 w-5" />
+                                    <div>Add Task</div>
+                                </div>
                             </div>
                         </div>
                     );

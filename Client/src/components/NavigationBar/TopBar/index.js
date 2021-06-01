@@ -52,6 +52,7 @@ const TopBar = () => {
                     prefix={<HiSearch className="topbar_svg" />}
                 />
             </div>
+
             <div className="right_menu">
                 <FiBell className="topbar_svg" />
                 <Dropdown

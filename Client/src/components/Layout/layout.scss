@@ -17,7 +17,7 @@
     }
 
     .right_side {
-        @apply fixed flex flex-col h-full w-full duration-500;
+        @apply fixed flex flex-col h-full w-full  duration-500;
 
         &.right_side_expand {
             @apply pl-72 -md:pl-0;
@@ -28,11 +28,11 @@
         }
 
         .topbar {
-            @apply h-10 pt-5 px-10 duration-500;
+            @apply h-[6vh] py-5 px-10 bg-white duration-500;
         }
 
         .main_content {
-            @apply h-full mt-14 px-14 rounded-2xl
+            @apply h-[94vh] mt-8 px-16 rounded-2xl
                 duration-500 overflow-hidden overflow-x-auto;
         }
     }

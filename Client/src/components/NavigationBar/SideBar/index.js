@@ -216,8 +216,8 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                             (labelCollapse ? 'active' : '')
                         }
                     >
-                        {labels.length ? (
-                            labels.map((label) => {
+                        {projects.length ? (
+                            projects.map((label) => {
                                 return (
                                     <Link
                                         to={`/label/${label.id}`}

@@ -3,7 +3,7 @@
 }
 
 .topbar_svg {
-    @apply w-5 h-5;
+    @apply w-5 h-5 hover:animate-shake;
 }
 
 .left_menu {

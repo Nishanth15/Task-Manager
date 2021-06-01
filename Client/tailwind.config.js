@@ -49,6 +49,15 @@ module.exports = {
                 180: '180deg',
                 270: '270deg',
             },
+            animation: {
+                shake: 'shake 1s linear infinite',
+            },
+            keyframes: {
+                shake: {
+                    '0%, 100%': { transform: 'rotate(-20deg)' },
+                    '50%': { transform: 'rotate(20deg)' },
+                },
+            },
         },
     },
     variants: {
