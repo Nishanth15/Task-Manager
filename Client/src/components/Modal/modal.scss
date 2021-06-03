@@ -77,10 +77,10 @@
             }
 
             .favorite_switch {
-                @apply cursor-pointer relative bg-gray-300 rounded-xl inline-block h-5 mr-2 overflow-visible p-2  w-8;
+                @apply relative cursor-pointer bg-gray-300 rounded-xl inline-block h-5 mr-2 overflow-visible p-2 w-8;
 
                 .favorite_switch_circle {
-                    @apply bg-white block top-1 left-1 rounded-full h-3 p-0 absolute w-3 shadow-2xl;
+                    @apply absolute bg-white block top-1 left-1 rounded-full h-3 p-0  w-3 shadow-2xl;
                     transition: left 0.28s cubic-bezier(0.4, 0, 0.2, 1);
                 }
 

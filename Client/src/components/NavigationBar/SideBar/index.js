@@ -16,6 +16,7 @@ import {
 import logo from '../../../assets/images/logo.svg';
 import user_icon from '../../../assets/images/user.png';
 import AddProjectModal from '../../Modal/AddProjectModal';
+import AddLabelModal from '../../Modal/AddLabelModal';
 import { authenticationService } from '../../../services/auth.service';
 
 const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
@@ -26,16 +27,18 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
     const [projectCollapse, setProjectCollapse] = useState(false);
     const [labelCollapse, setLabelCollapse] = useState(false);
     const [filterCollapse, setFilterCollapse] = useState(false);
-    const [openModal, setOpenModal] = useState(false);
+    const [openProjectModal, setOpenProjectModal] = useState(false);
+    const [openLabelModal, setOpenLabelModal] = useState(false);
 
     // Methods
     const logout = () => {
         authenticationService.logout();
         history.push('/signin');
     };
-    const onOpenModal = () => setOpenModal(true);
+
     const onCloseModal = () => {
-        setOpenModal(false);
+        setOpenProjectModal(false);
+        setOpenLabelModal(false);
     };
 
     const switch_projectCollapse = () => {
@@ -121,7 +124,7 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                         <div className="keys">
                             <HiOutlinePlus
                                 className="add_item"
-                                onClick={onOpenModal}
+                                onClick={() => setOpenProjectModal(true)}
                             />
                             <HiChevronLeft
                                 className={
@@ -200,7 +203,10 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                             Labels
                         </p>
                         <div className="keys">
-                            <HiOutlinePlus className="add_item" />
+                            <HiOutlinePlus
+                                className="add_item"
+                                onClick={() => setOpenLabelModal(true)}
+                            />
                             <HiChevronLeft
                                 className={
                                     'collapse_key ' +
@@ -338,7 +344,8 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
             </div>
 
             {/* Modal */}
-            <AddProjectModal open={openModal} close={onCloseModal} />
+            <AddProjectModal open={openProjectModal} close={onCloseModal} />
+            <AddLabelModal open={openLabelModal} close={onCloseModal} />
 
             {/* SwitchKey */}
             <div className="sidebar_switch" onClick={handleSwitchKey}>

@@ -41,10 +41,10 @@
             }
 
             .tasks {
-                @apply px-3 overflow-hidden hover:overflow-y-auto;
+                @apply px-1.5 overflow-hidden hover:overflow-y-auto;
 
                 .task {
-                    @apply relative w-60 cursor-pointer mt-2 bg-white border-gray-300
+                    @apply relative  cursor-pointer mt-2 bg-white border-gray-300
                     rounded-md border p-2 text-sm hover:shadow;
 
                     .task_priority {
@@ -113,7 +113,8 @@
                 @apply py-3 px-5 mt-2 border-t;
 
                 .add_task_button {
-                    @apply cursor-pointer rounded-lg flex items-center h-10 bg-active_background justify-center text-sm space-x-1 hover:text-primary;
+                    @apply cursor-pointer rounded-lg flex items-center h-10 justify-center
+                        text-sm space-x-1 bg-active_background hover:text-primary;
                 }
             }
         }

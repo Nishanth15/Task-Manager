@@ -114,8 +114,8 @@ namespace TaskManager.API
 
             app.UseCors("CorsPolicy");
 
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
 
             // custom jwt auth middleware
             app.UseMiddleware<JwtMiddleware>();
