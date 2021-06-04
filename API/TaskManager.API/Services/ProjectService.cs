@@ -101,8 +101,12 @@ namespace TaskManager.API.Services
                     projectData.Items.Add(itemResponse);
                 }
             });
-
-            return null;
+            if (projectData.Items != null && projectData.Sections != null)
+            {
+                projectDataResponse.Success = true;
+                projectDataResponse.ProjectData = projectData;
+            }
+            return projectDataResponse;
         }
 
         private bool isValidUserForProject(Guid projectId, Guid userId)
