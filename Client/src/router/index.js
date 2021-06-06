@@ -1,6 +1,8 @@
-import Calender from '../pages/Calender';
 import Inbox from '../pages/Inbox';
+import Calendar from '../pages/Calendar';
 import Project from '../pages/Project';
+import Label from '../pages/Label';
+import Filter from '../pages/Filter';
 
 const routes = [
     {
@@ -9,14 +11,24 @@ const routes = [
         component: Inbox,
     },
     {
-        path: '/calender',
-        title: 'Calender',
-        component: Calender,
+        path: '/calendar',
+        title: 'Calendar',
+        component: Calendar,
     },
     {
         path: '/project/:id',
         title: 'Project',
         component: Project,
+    },
+    {
+        path: '/label/:id',
+        title: 'Label',
+        component: Label,
+    },
+    {
+        path: '/filter/:id',
+        title: 'Filter',
+        component: Filter,
     },
 ];
 

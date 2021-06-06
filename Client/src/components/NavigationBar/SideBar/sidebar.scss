@@ -1,174 +1,121 @@
-.sidebar {
-    @apply fixed w-72 h-full bg-white duration-500;
+// Sidebar logo
+.logo {
+    @apply fixed z-10 w-72 h-[10vh] pt-5 px-8 bg-layout_background top-0;
+}
 
-    // Sidebar toggle
-    &.sidebar_show {
-        @apply left-0 -md:-left-72;
-    }
+// Sidebar list
+.sidebar_list {
+    @apply absolute my-20 w-72 px-5 h-[90vh] overflow-hidden hover:overflow-y-auto;
 
-    &.sidebar_hide {
-        @apply -left-72 -md:left-0;
-    }
-
-    // Sidebar logo
-    .logo {
-        @apply mt-8 mx-auto;
-    }
-
-    // Sidebar list
-    .sidebar_list {
-        @apply mt-2 p-3;
-
-        // Sidebar each single item
-        .item {
-            @apply cursor-pointer tracking-wide flex items-center 
-                    space-x-2 text-base font-semibold rounded-md mt-2 hover:text-primary 
+    // Sidebar each single item
+    .item {
+        @apply cursor-pointer w-64 tracking-wide flex items-center
+                    space-x-2 text-base font-medium rounded-md mt-2 hover:text-primary 
                     px-3 py-2 transition-colors duration-75;
 
-            .sidebar_list_item_svg {
-                @apply h-8 w-8;
-            }
+        &.active {
+            @apply bg-white text-primary shadow;
+        }
+
+        .sidebar_list_item_svg {
+            @apply w-6 h-6;
+        }
+
+        .calendar_date {
+            @apply absolute w-4 h-4 font-extrabold flex justify-center top-1 left-1 text-xxs;
+        }
+
+        .header_name {
+            @apply px-2 w-36;
+        }
+
+        .collapse_key {
+            @apply h-5 w-5 duration-200 transform;
 
             &.active {
-                @apply bg-sidebar_active text-primary;
+                @apply -rotate-90;
+            }
+        }
+
+        &.projects,
+        &.labels,
+        &.filters {
+            @apply hover:text-text_color flex flex-col;
+
+            .expansion_panel_header {
+                @apply w-full flex items-center space-x-2;
+
+                .keys {
+                    @apply flex flex-row space-x-2;
+
+                    .add_item {
+                        @apply h-5 w-5 right-0 opacity-0 hover:bg-active_background rounded-full 
+                            duration-500;
+                    }
+                }
             }
 
-            .header_name {
-                @apply px-2 w-full;
-            }
+            // Sidebar each expandable item list
+            .expansion_panel_list {
+                @apply ml-8 p-1 text-sm max-h-50 w-56 hidden overflow-hidden hover:overflow-y-auto;
 
-            .collapse_key {
-                @apply h-5 w-5 duration-200;
+                // Sidebar each expandable item list of each item
+                .expansion_panel_list_item {
+                    @apply cursor-pointer tracking-wide flex
+                            items-center w-52 h-10 space-x-2 rounded-md font-normal 
+                            hover:text-primary px-3 ease-out duration-200 transition-all;
+
+                    // Sidebar each expandable item list of each item colors
+                    .div_color {
+                        @apply w-5 h-5 flex justify-center items-center;
+                        .item_color {
+                            @apply w-2.5 h-2.5 rounded-full;
+                        }
+                    }
+
+                    .item_name {
+                        @apply w-52 overflow-hidden whitespace-nowrap overflow-ellipsis;
+                    }
+
+                    .item_menu {
+                        @apply h-8 w-8 opacity-0;
+                    }
+
+                    &:hover .item_menu {
+                        @apply opacity-100;
+                    }
+
+                    &.active {
+                        @apply bg-white text-primary shadow;
+                    }
+                }
 
                 &.active {
-                    @apply transform -rotate-90;
-                }
-            }
-
-            &.projects,
-            &.labels {
-                @apply hover:text-text_color flex flex-col;
-
-                .expansion_panel_header {
-                    @apply w-full flex items-center;
-
-                    .sidebar_list_item_svg {
-                        @apply h-10 w-10;
-                    }
-
-                    .header_name {
-                        @apply px-3 w-full;
-                    }
-
-                    .keys {
-                        @apply flex flex-row space-x-2;
-
-                        .add_project,
-                        .add_label {
-                            @apply h-5 w-5 opacity-0 hover:bg-sidebar_active rounded-full 
-                            duration-500;
-                        }
-                    }
+                    @apply block;
                 }
 
-                // Sidebar each expandable item list
-                .expansion_panel_list {
-                    @apply ml-5 mt-2 text-sm hidden w-64 max-h-56 overflow-hidden 
-                        hover:overflow-auto;
-
-                    &::-webkit-scrollbar {
-                        @apply w-1.5 bg-none;
-                    }
-
-                    &::-webkit-scrollbar-thumb {
-                        @apply bg-gray-400 rounded-md;
-                    }
-
-                    // Sidebar each expandable item list of each item
-                    .expansion_panel_list_item {
-                        @apply cursor-pointer tracking-wide flex
-                            items-center w-56 h-10 space-x-2 rounded-md font-normal 
-                            hover:text-primary p-2 pl-3 transition-colors duration-75;
-
-                        // Sidebar each expandable item list of each item colors
-                        .div_color {
-                            @apply w-5 h-5 flex justify-center items-center;
-                            .item_color {
-                                @apply w-2.5 h-2.5 rounded-full bg-red-600;
-                            }
-                        }
-
-                        .item_name {
-                            @apply w-full;
-                        }
-
-                        .item_menu {
-                            @apply h-8 w-8 opacity-0;
-                        }
-
-                        &:hover .item_menu {
-                            @apply opacity-100;
-                        }
-
-                        &.active {
-                            @apply bg-sidebar_active text-primary;
-                        }
-                    }
-
-                    &.active {
-                        @apply block;
-                    }
+                .expansion_panel_list_item_empty {
+                    @apply p-2 cursor-default whitespace-nowrap;
                 }
             }
         }
     }
 
-    &:hover .sidebar_list .item.projects .keys .add_project,
-    &:hover .sidebar_list .item.labels .keys .add_label {
+    &:hover .item .expansion_panel_header .keys .add_item {
         @apply opacity-100;
     }
+}
 
-    // Sidebar switch
-    .sidebar_switch {
-        @apply absolute overflow-hidden w-10 h-24 top-10 left-72 text-primary;
+// Sidebar switch
+.sidebar_switch {
+    @apply fixed ml-72 overflow-hidden w-10 h-24 top-14 text-primary duration-500;
 
-        .arrow-right {
-            @apply absolute cursor-pointer w-20 h-20 right-5 bg-white transform rotate-135 rounded-lg;
+    .arrow-right {
+        @apply absolute cursor-pointer w-20 h-20 right-5 bg-layout_background transform 
+            rotate-135 rounded-lg shadow z-10;
 
-            .menu_icon {
-                @apply absolute  h-5 w-5 transform rotate-45 top-2 left-2;
-            }
-        }
-    }
-
-    // User menu
-    .user_menu {
-        @apply absolute bottom-0 h-14 w-full p-5 bg-white border-t 
-                flex items-center justify-start;
-        span {
-            @apply w-full flex items-center;
-            .user_icon {
-                @apply w-10 h-10 rounded-full;
-            }
-
-            .user_button {
-                @apply flex w-full justify-between;
-
-                .user_name {
-                    @apply pl-2;
-                }
-
-                .collapse_key {
-                    @apply cursor-pointer h-5 w-5 hover:bg-sidebar_active rounded-full duration-500;
-
-                    &.active {
-                        @apply transform rotate-90;
-                    }
-                }
-            }
-        }
-        .menu .item {
-            @apply flex;
+        .menu_icon {
+            @apply absolute h-5 w-5 transform rotate-45 top-2 left-2;
         }
     }
 }

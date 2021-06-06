@@ -84,25 +84,35 @@ namespace TaskManager.API.Services
             ProjectData projectData = new ProjectData();
             var sections = await _repo.GetSectionsByProjectId(projectId);
             projectData.Sections = new List<SectionResponse>();
-            sections.ToList().ForEach(section => {
-                if (section != null)
-                {
-                    var sectionResponse = _mapper.Map<Section, SectionResponse>(section);
-                    projectData.Sections.Add(sectionResponse);
-                }
-            });
+            if(sections != null)
+            {
+                sections.ToList().ForEach(section => {
+                    if (section != null)
+                    {
+                        var sectionResponse = _mapper.Map<Section, SectionResponse>(section);
+                        projectData.Sections.Add(sectionResponse);
+                    }
+                });
+            }
 
             var items = await _repo.GetItemsByProjectIdAsync(projectId);
             projectData.Items = new List<ItemResponse>();
-            items.ToList().ForEach(item => {
-                if (item != null)
-                {
-                    var itemResponse = _mapper.Map<Item, ItemResponse>(item);
-                    projectData.Items.Add(itemResponse);
-                }
-            });
-
-            return null;
+            if(items != null)
+            {
+                items.ToList().ForEach(item => {
+                    if (item != null)
+                    {
+                        var itemResponse = _mapper.Map<Item, ItemResponse>(item);
+                        projectData.Items.Add(itemResponse);
+                    }
+                });
+            }
+            if (projectData.Items != null && projectData.Sections != null)
+            {
+                projectDataResponse.Success = true;
+                projectDataResponse.ProjectData = projectData;
+            }
+            return projectDataResponse;
         }
 
         private bool isValidUserForProject(Guid projectId, Guid userId)

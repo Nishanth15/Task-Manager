@@ -1,4 +1,6 @@
+import './layout.scss';
 import SideBar from '../NavigationBar/SideBar';
+import TopBar from '../NavigationBar/TopBar';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -11,22 +13,11 @@ const Layout = ({ children }) => {
     // State
     const [switchKey, setSwitchKey] = useState(true);
     const [projects, setProjects] = useState([]);
+    const [labels] = useState([]);
+    const [filters] = useState([]);
 
     // LifeCycle Hooks
     useEffect(() => {
-        checkTokenAvailability();
-        projectService.getProjects().then((data) => {
-            setProjects(data);
-        });
-
-        return () => {
-            setSwitchKey({});
-            setProjects({});
-        };
-    }, []);
-
-    // Methods
-    function checkTokenAvailability() {
         if (
             localStorage.getItem('accessToken') !== '' &&
             localStorage.getItem('accessToken') != null
@@ -38,12 +29,19 @@ const Layout = ({ children }) => {
             if (tokenExpiresAt <= currentTime) {
                 history.push('/login');
             }
-        }
-        else
-        {
+        } else {
             authenticationService.logout();
         }
-    }
+        if (projects.length === 0) {
+            projectService.getProjects().then(() => {
+                projectService.projects.subscribe((value) => {
+                    setProjects(value);
+                });
+            });
+        }
+    }, [projects, history]);
+
+    // Methods
 
     const switchSideBar = () => {
         setSwitchKey(switchKey ? false : true);
@@ -51,21 +49,45 @@ const Layout = ({ children }) => {
 
     return (
         <div className="layout">
-            <div
-                className={
-                    'sidebar ' + (switchKey ? 'sidebar_show' : 'sidebar_hide')
-                }
-            >
-                <SideBar handleSwitchKey={switchSideBar} projects={projects} />
+            <div className="left_side">
+                <div
+                    className={
+                        'sidebar ' +
+                        (switchKey ? 'sidebar_show' : 'sidebar_hide')
+                    }
+                >
+                    <SideBar
+                        handleSwitchKey={switchSideBar}
+                        projects={projects}
+                        labels={labels}
+                        filters={filters}
+                    />
+                </div>
             </div>
-
             <div
                 className={
-                    'main_content ' +
-                    (switchKey ? 'main_content_expand' : 'main_content_shrink')
+                    'right_side ' +
+                    (switchKey ? 'right_side_expand' : 'right_side_shrink')
                 }
             >
-                {children}
+                <div
+                    className={
+                        'topbar ' +
+                        (switchKey ? 'topbar_expand' : 'topbar_shrink')
+                    }
+                >
+                    <TopBar></TopBar>
+                </div>
+                <div
+                    className={
+                        'main_content ' +
+                        (switchKey
+                            ? 'main_content_expand'
+                            : 'main_content_shrink')
+                    }
+                >
+                    {children}
+                </div>
             </div>
         </div>
     );

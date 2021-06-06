@@ -66,24 +66,24 @@ namespace TaskManager.API
                 });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-      {
-        {
-          new OpenApiSecurityScheme
-          {
-            Reference = new OpenApiReference
-              {
-                Type = ReferenceType.SecurityScheme,
-                Id = "Bearer"
-              },
-              Scheme = "oauth2",
-              Name = "Bearer",
-              In = ParameterLocation.Header,
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                            },
+                            Scheme = "oauth2",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
 
-            },
-            new List<string>()
-          }
-        });
-            });
+                        },
+                        new List<string>()
+                    }
+                });
+             });
 
             services.AddDbContext<UserDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -114,8 +114,8 @@ namespace TaskManager.API
 
             app.UseCors("CorsPolicy");
 
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
 
             // custom jwt auth middleware
             app.UseMiddleware<JwtMiddleware>();

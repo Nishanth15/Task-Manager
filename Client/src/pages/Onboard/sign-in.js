@@ -1,18 +1,16 @@
-import React, { useEffect } from 'react';
+import '../../styles/onboard.scss';
 // import validate from './validate';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { authenticationService } from '../../services/auth.service';
 import { useHistory } from 'react-router-dom';
+import { Input } from 'antd';
 
-function SignIn() {
+const SignIn = () => {
     let history = useHistory();
 
     useEffect(() => {
-        checkAvailability();
-    });
-
-    function checkAvailability() {
         if (
             localStorage.getItem('accessToken') !== '' &&
             localStorage.getItem('accessToken') != null
@@ -25,7 +23,7 @@ function SignIn() {
                 history.push('/login');
             }
         }
-    }
+    }, [history]);
 
     const formik = useFormik({
         initialValues: {
@@ -55,7 +53,7 @@ function SignIn() {
                         </h1>
                         <div className="form_field">
                             <label>Email</label>
-                            <input
+                            <Input
                                 type="text"
                                 className="form_control"
                                 name="email"
@@ -67,7 +65,7 @@ function SignIn() {
                         </div>
                         <div className="form_field">
                             <label>Password</label>
-                            <input
+                            <Input.Password
                                 type="password"
                                 className="form_control"
                                 name="password"
@@ -109,6 +107,6 @@ function SignIn() {
             </div>
         </div>
     );
-}
+};
 
 export default SignIn;

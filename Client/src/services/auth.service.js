@@ -45,7 +45,7 @@ function logout() {
 }
 
 function register(registerDetails) {
-    return http.post(`/User/Register`, registerDetails).then((response) => {
+    return http.post('/User/Register', registerDetails).then((response) => {
         return response.data;
     });
 }

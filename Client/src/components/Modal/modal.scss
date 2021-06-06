@@ -7,10 +7,6 @@
     @apply font-bold;
 }
 
-.ant-btn {
-    @apply rounded-full shadow-sm text-xs;
-}
-
 .ant-btn[disabled],
 .ant-btn[disabled]:hover {
     @apply bg-primary text-white opacity-50;
@@ -31,7 +27,11 @@
             }
 
             .form_control {
-                @apply rounded text-sm m-1 w-auto;
+                @apply rounded-md text-sm m-1 w-auto;
+            }
+
+            .ant-select-selector {
+                @apply rounded-md;
             }
 
             .radio_group {
@@ -46,38 +46,41 @@
                 @apply pr-3;
             }
 
-            .task_checkbox {
+            .view_checkbox {
                 @apply cursor-pointer h-6 w-6;
             }
 
-            .task_checkbox,
-            .task_checkbox .task_checkbox_circle {
-                @apply border-gray-300 border-solid rounded-full border flex items-center justify-center h-4 w-4;
+            .view_checkbox,
+            .view_checkbox .view_checkbox_circle {
+                @apply border-gray-400 border-solid rounded-full border flex 
+                    items-center justify-center h-4 w-4 hover:bg-gray-100;
             }
 
-            .task_checkbox .task_checkbox_circle svg {
-                @apply border-transparent border-solid border inline-block h-6 w-6 opacity-0 transition-opacity pointer-events-none;
-            }
-
-            .task_checkbox.checked .task_checkbox_circle {
+            .view_checkbox.checked .view_checkbox_circle {
                 @apply border-2 h-4 w-4 bg-primary border-primary;
             }
 
-            .task_checkbox.checked .task_checkbox_circle svg {
+            .view_checkbox .view_checkbox_circle .view_checkbox_checkmark {
+                @apply h-4 w-4 p-0.5 opacity-0 text-gray-400;
+            }
+
+            .view_checkbox.checked
+                .view_checkbox_circle
+                .view_checkbox_checkmark {
                 @apply text-white;
             }
 
-            .task_checkbox.checked svg,
-            .task_checkbox:hover svg,
-            .radio_option:hover svg {
+            .view_checkbox.checked .view_checkbox_checkmark,
+            .view_checkbox:hover .view_checkbox_checkmark,
+            .radio_option:hover .view_checkbox_checkmark {
                 @apply opacity-100;
             }
 
             .favorite_switch {
-                @apply cursor-pointer relative bg-gray-300 rounded-xl inline-block h-5 mr-2 overflow-visible p-2  w-8;
+                @apply relative cursor-pointer bg-gray-300 rounded-xl inline-block h-5 mr-2 overflow-visible p-2 w-8;
 
                 .favorite_switch_circle {
-                    @apply bg-white block top-1 left-1 rounded-full h-3 p-0 absolute w-3 shadow-2xl;
+                    @apply absolute bg-white block top-1 left-1 rounded-full h-3 p-0  w-3 shadow-2xl;
                     transition: left 0.28s cubic-bezier(0.4, 0, 0.2, 1);
                 }
 

@@ -1,0 +1,35 @@
+.top_menu {
+    @apply flex items-center justify-between;
+}
+
+.topbar_svg {
+    @apply w-5 h-5;
+}
+
+.left_menu {
+    @apply flex items-center space-x-3;
+
+    .ant-input-affix-wrapper {
+        @apply border-none shadow-none text-base outline-none space-x-2;
+
+        .ant-input-prefix {
+            @apply text-text_color;
+        }
+    }
+}
+
+.right_menu {
+    @apply flex items-center space-x-3;
+
+    .user_button {
+        @apply flex items-center space-x-3;
+
+        .user_name {
+            @apply cursor-pointer flex items-center font-semibold;
+        }
+
+        .user_image {
+            @apply cursor-pointer w-6 h-6 rounded-full;
+        }
+    }
+}

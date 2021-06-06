@@ -1,62 +1,14 @@
+import './modal.scss';
 import { useState } from 'react';
 import { Button, Modal, Select, Input } from 'antd';
-import { projectService } from '../../../services/project.service';
-
-const tagOptions = [
-    {
-        key: '0',
-        label: 'Red',
-        value: 0,
-        color: 'red',
-    },
-    {
-        key: '1',
-        label: 'Blue',
-        value: 1,
-        color: 'blue',
-    },
-    {
-        key: '2',
-        label: 'Green',
-        value: 2,
-        color: 'green',
-    },
-    {
-        key: '3',
-        label: 'Black',
-        value: 3,
-        color: 'black',
-    },
-    {
-        key: '4',
-        label: 'Purple',
-        value: 4,
-        color: 'purple',
-    },
-    {
-        key: '5',
-        label: 'Orange',
-        value: 5,
-        color: 'orange',
-    },
-    {
-        key: '6',
-        label: 'Yellow',
-        value: 6,
-        color: 'yellow',
-    },
-    {
-        key: '7',
-        label: 'Pink',
-        value: 7,
-        color: 'pink',
-    },
-];
+import { GiCheckMark } from '../../assets/static';
+import { projectService } from '../../services/project.service';
+import { colors } from '../../assets/static/index';
 
 const AddProjectModal = ({ open, close }) => {
     const initialProjectData = {
         name: '',
-        color: tagOptions[0].value,
+        color: colors[0].value,
         viewType: 0,
         isFavorite: false,
     };
@@ -78,7 +30,6 @@ const AddProjectModal = ({ open, close }) => {
     };
 
     const resetForm = async () => {
-        // console.log(projectModal);
         setProjectModal(initialProjectData);
         close();
     };
@@ -86,7 +37,7 @@ const AddProjectModal = ({ open, close }) => {
     const handleOk = () => {
         console.log(projectModal);
         projectService.addProject(projectModal);
-        close();
+        resetForm();
     };
 
     return (
@@ -119,6 +70,7 @@ const AddProjectModal = ({ open, close }) => {
                                 className="form_control"
                                 name="name"
                                 autoComplete="off"
+                                maxLength="100"
                                 value={projectModal.name}
                                 onChange={(event) => {
                                     setProjectModal({
@@ -142,7 +94,7 @@ const AddProjectModal = ({ open, close }) => {
                                     });
                                 }}
                             >
-                                {tagOptions.map((option) => {
+                                {colors.map((option) => {
                                     return (
                                         <Option
                                             key={option.key}
@@ -173,26 +125,14 @@ const AddProjectModal = ({ open, close }) => {
                                     <span className="radio_button">
                                         <div
                                             className={
-                                                'task_checkbox ' +
+                                                'view_checkbox ' +
                                                 (projectModal.viewType === 0
                                                     ? 'checked'
                                                     : '')
                                             }
                                         >
-                                            <div className="task_checkbox_circle">
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={2}
-                                                        d="M5 13l4 4L19 7"
-                                                    />
-                                                </svg>
+                                            <div className="view_checkbox_circle">
+                                                <GiCheckMark className="view_checkbox_checkmark" />
                                             </div>
                                         </div>
                                     </span>
@@ -205,27 +145,14 @@ const AddProjectModal = ({ open, close }) => {
                                     <span className="radio_button">
                                         <div
                                             className={
-                                                'task_checkbox ' +
+                                                'view_checkbox ' +
                                                 (projectModal.viewType === 1
                                                     ? 'checked'
                                                     : '')
                                             }
                                         >
-                                            <div className="task_checkbox_circle">
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    className="h-6 w-6"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={2}
-                                                        d="M5 13l4 4L19 7"
-                                                    />
-                                                </svg>
+                                            <div className="view_checkbox_circle">
+                                                <GiCheckMark className="view_checkbox_checkmark" />
                                             </div>
                                         </div>
                                     </span>

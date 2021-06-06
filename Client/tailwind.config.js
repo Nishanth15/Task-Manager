@@ -8,10 +8,15 @@ module.exports = {
                 primary: '#2a8cff',
                 layout_background: '#edf5ff',
                 text_color: '#2e5284',
-                sidebar_active: '#F1F6FE',
+                active_background: '#F1F6FE',
             },
             boxShadow: {
-                topbar: '0px -5px 26px 10px #bfd5ff91',
+                primary:
+                    '0  5px 10px rgba(154,160,185,0.05), 0 15px 40px rgba(166,173,201,0.2)',
+                secondary: '0 7px 30px -10px rgba(150,170,180,0.5)',
+            },
+            fontSize: {
+                xxs: '.60rem',
             },
             screens: {
                 '-sm': { max: '639px' },
@@ -20,10 +25,13 @@ module.exports = {
                 '-xl': { max: '1279px' },
                 '-2xl': { max: '1535px' },
             },
-            margin: {
-                88: '22rem',
+            spacing: {
+                46: '11.5rem',
+                50: '12.5rem',
+                68: '16.5rem',
             },
             inset: {
+                46: '11.5rem',
                 54: '13.5rem',
                 58: '14.5rem',
             },
@@ -40,6 +48,15 @@ module.exports = {
                 135: '135deg',
                 180: '180deg',
                 270: '270deg',
+            },
+            animation: {
+                shake: 'shake 1s linear infinite',
+            },
+            keyframes: {
+                shake: {
+                    '0%, 100%': { transform: 'rotate(-20deg)' },
+                    '50%': { transform: 'rotate(20deg)' },
+                },
             },
         },
     },

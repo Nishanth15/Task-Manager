@@ -86,6 +86,12 @@ namespace TaskManager.API.Services
                         };
                         return response;
                     }
+                    else 
+                    {
+                        response.ErrorMessage = Constants.PasswordDoesNotMatchWithEmailId;
+                        response.Success = false;
+                        return response;
+                    }
                 }
             }
             else

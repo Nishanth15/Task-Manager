@@ -129,6 +129,9 @@
   <data name="ItemNotFound" xml:space="preserve">
     <value>Item not found!!!</value>
   </data>
+  <data name="PasswordDoesNotMatchWithEmailId" xml:space="preserve">
+    <value>Password doesn't match with the Email Id</value>
+  </data>
   <data name="ProjectAddedSuccessfully" xml:space="preserve">
     <value>Project added successfully!!!</value>
   </data>

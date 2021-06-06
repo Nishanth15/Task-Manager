@@ -27,11 +27,12 @@ namespace TaskManager.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProjectResponse>> Get(Guid id)
+        public async Task<ActionResult<ProjectResponse>> GetProjectData(Guid id)
         {
-            var project = await _service.GetProjectAsync(id, CurrentUser.Id);
-            return Ok(project);
+            var projectDataResponse = await _service.GetProjectDataAsync(id, CurrentUser.Id);
+            return Ok(projectDataResponse);
         }
+
         [HttpPost]
         public async Task<ActionResult<ProjectResponse>> Post(ProjectRequest projectRequest)
         {
@@ -53,8 +54,7 @@ namespace TaskManager.API.Controllers
             return Ok(project);
         }
 
-        [Route("Collapse")]
-        [HttpPut]
+        [HttpPut("Collapse")]
         public async Task<ActionResult<ProjectResponse>> CollapseProject(Guid id, int Collapsed)
         {
             var project = await _service.CollapseProjectAsync(id, Collapsed);

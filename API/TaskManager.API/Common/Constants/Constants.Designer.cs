@@ -97,6 +97,15 @@ namespace TaskManager.API.Common.Constants {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password doesn&apos;t match with the Email Id.
+        /// </summary>
+        public static string PasswordDoesNotMatchWithEmailId {
+            get {
+                return ResourceManager.GetString("PasswordDoesNotMatchWithEmailId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project added successfully!!!.
         /// </summary>
         public static string ProjectAddedSuccessfully {

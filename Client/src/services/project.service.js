@@ -1,29 +1,34 @@
 import { authHeader } from '../helpers/auth-header';
-// import { handleResponse } from '../helpers/handle-response';
+import { BehaviorSubject } from 'rxjs';
 import http from '../services/http-client';
 
+const projectsSubject = new BehaviorSubject([]);
+
 const getProjects = async () => {
-    return http
+    return await http
         .get('/Project', { headers: authHeader() })
-        .then((response) => response.data);
+        .then((response) => projectsSubject.next(response.data));
 };
 
-const getProject = (id) => {
+const getProjectData = async (id) => {
     if (id !== undefined) {
-        return http
+        return await http
             .get('/Project/' + id, { headers: authHeader() })
             .then((response) => response.data);
     }
 };
 
-const addProject = (project) => {
-    http.post('/Project/', project, { headers: authHeader() }).then(
-        (response) => console.log(response.data)
-    );
+const addProject = async (project) => {
+    await http
+        .post('/Project/', project, { headers: authHeader() })
+        .then((response) =>
+            projectsSubject.next([...projectsSubject.getValue(), response.data])
+        );
 };
 
 export const projectService = {
     getProjects,
-    getProject,
+    getProjectData,
     addProject,
+    projects: projectsSubject.asObservable(),
 };

@@ -53,8 +53,7 @@ namespace TaskManager.API.Controllers
             return Ok(item);
         }
 
-        [Route("Collapse")]
-        [HttpPut]
+        [HttpPut("Collapse")]
         public async Task<ActionResult<ItemResponse>> CollapseItem(Guid id, int Collapsed)
         {
             var project = await _service.CollapseItemAsync(id, Collapsed);
