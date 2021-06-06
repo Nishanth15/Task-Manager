@@ -10,7 +10,7 @@ const getProjects = async () => {
         .then((response) => projectsSubject.next(response.data));
 };
 
-const getProject = async (id) => {
+const getProjectData = async (id) => {
     if (id !== undefined) {
         return await http
             .get('/Project/' + id, { headers: authHeader() })
@@ -28,7 +28,7 @@ const addProject = async (project) => {
 
 export const projectService = {
     getProjects,
-    getProject,
+    getProjectData,
     addProject,
     projects: projectsSubject.asObservable(),
 };

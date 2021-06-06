@@ -121,7 +121,23 @@
 
         .add_section_item {
             @apply cursor-pointer py-3 px-5 text-text_color hover:text-primary bg-active_background space-x-3
-                rounded-lg min-w-[256px] w-64 flex duration-150 transform;
+                rounded-lg min-w-[256px] w-64 flex;
+        }
+
+        .add_section_form {
+            @apply min-w-[256px] w-64 flex flex-col mb-5;
+
+            .form_control {
+                @apply rounded-md p-2.5 text-base m-1 w-auto;
+            }
+
+            .add_section_form_button {
+                @apply flex p-1 space-x-1;
+
+                .add_section_button {
+                    @apply rounded-md shadow-sm text-xs bg-primary text-white border-none;
+                }
+            }
         }
     }
 }

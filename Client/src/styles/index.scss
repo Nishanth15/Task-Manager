@@ -13,6 +13,10 @@ button {
     @apply focus:outline-none;
 }
 
+.ant-btn {
+    @apply rounded-full text-xs;
+}
+
 *::-webkit-scrollbar {
     @apply h-2.5 w-1.5 bg-gray-100;
 }
@@ -25,14 +29,3 @@ button {
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 @import 'antd/dist/antd.css';
-
-@import '../components/Layout/layout.scss';
-
-@import '../components/Modal/modal.scss';
-
-@import '../components/NavigationBar/SideBar/sidebar.scss';
-@import '../components/NavigationBar/Topbar/topbar.scss';
-
-@import './onboard.scss';
-
-@import './project.scss';

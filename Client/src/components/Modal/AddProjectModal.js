@@ -1,3 +1,4 @@
+import './modal.scss';
 import { useState } from 'react';
 import { Button, Modal, Select, Input } from 'antd';
 import { GiCheckMark } from '../../assets/static';
@@ -69,7 +70,7 @@ const AddProjectModal = ({ open, close }) => {
                                 className="form_control"
                                 name="name"
                                 autoComplete="off"
-                                maxlength="100"
+                                maxLength="100"
                                 value={projectModal.name}
                                 onChange={(event) => {
                                     setProjectModal({

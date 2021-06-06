@@ -22,8 +22,7 @@ namespace TaskManager.API.Controllers
         }
 
         // GET: api/User/Register
-        [Route("Register")]
-        [HttpPost]
+        [HttpPost("Register")]
         public async Task<IActionResult> RegisterUser([FromBody] SignUpRequest signUpRequest)
         {
             try

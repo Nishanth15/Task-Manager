@@ -1,6 +1,4 @@
-import { useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import { Menu, Dropdown } from 'antd';
+import './sidebar.scss';
 import {
     colors,
     FiInbox,
@@ -10,31 +8,21 @@ import {
     HiOutlinePlus,
     HiChevronLeft,
     HiOutlineDotsHorizontal,
-    HiCog,
-    HiOutlineLogout,
 } from '../../../assets/static';
-import logo from '../../../assets/images/logo.svg';
-import user_icon from '../../../assets/images/user.png';
 import AddProjectModal from '../../Modal/AddProjectModal';
 import AddLabelModal from '../../Modal/AddLabelModal';
-import { authenticationService } from '../../../services/auth.service';
+import logo from '../../../assets/images/logo.svg';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
     // State
     const router = useLocation();
-    const history = useHistory();
 
     const [projectCollapse, setProjectCollapse] = useState(false);
     const [labelCollapse, setLabelCollapse] = useState(false);
-    const [filterCollapse, setFilterCollapse] = useState(false);
     const [openProjectModal, setOpenProjectModal] = useState(false);
     const [openLabelModal, setOpenLabelModal] = useState(false);
-
-    // Methods
-    const logout = () => {
-        authenticationService.logout();
-        history.push('/signin');
-    };
 
     const onCloseModal = () => {
         setOpenProjectModal(false);
@@ -47,20 +35,6 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
     const switch_labelCollapse = () => {
         setLabelCollapse(labelCollapse ? false : true);
     };
-    const switch_filterCollapse = () => {
-        setFilterCollapse(filterCollapse ? false : true);
-    };
-
-    const menu = (
-        <Menu>
-            <Menu.Item>
-                <div className="flex" onClick={logout}>
-                    <HiOutlineLogout className="h-5 w-5 mr-3" />
-                    <span>Log Out</span>
-                </div>
-            </Menu.Item>
-        </Menu>
-    );
 
     return (
         <div>
@@ -264,83 +238,6 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                         )}
                     </ul>
                 </div>
-
-                {/* <div className={'item filters'}>
-                    <div
-                        className={
-                            'expansion_panel_header ' +
-                            (filterCollapse ? 'mb-4' : '')
-                        }
-                    >
-                        <ImFilter
-                            className="sidebar_list_item_svg"
-                            onClick={switch_filterCollapse}
-                        />
-                        <p
-                            className="header_name"
-                            onClick={switch_filterCollapse}
-                        >
-                            Filters
-                        </p>
-                        <div className="keys">
-                            <HiOutlinePlus className="add_item" />
-                            <HiChevronLeft
-                                className={
-                                    'collapse_key ' +
-                                    (filterCollapse ? 'active' : '')
-                                }
-                                onClick={switch_filterCollapse}
-                            />
-                        </div>
-                    </div>
-                    <ul
-                        className={
-                            'expansion_panel_list ' +
-                            (filterCollapse ? 'active' : '')
-                        }
-                    >
-                        {filters.length ? (
-                            filters.map((filter) => {
-                                return (
-                                    <Link
-                                        to={`/filter/${filter.id}`}
-                                        key={filter.id}
-                                    >
-                                        <li
-                                            className={
-                                                'expansion_panel_list_item ' +
-                                                (router.pathname ===
-                                                '/filter/' + filter.id
-                                                    ? 'active'
-                                                    : '')
-                                            }
-                                        >
-                                            <div className="div_color">
-                                                <div
-                                                    className="item_color"
-                                                    style={{
-                                                        background: `${
-                                                            colors[filter.color]
-                                                                .color
-                                                        }`,
-                                                    }}
-                                                ></div>
-                                            </div>
-                                            <div className="item_name">
-                                                {filter.name}
-                                            </div>
-                                            <HiOutlineDotsHorizontal className="item_menu" />
-                                        </li>
-                                    </Link>
-                                );
-                            })
-                        ) : (
-                            <div className="expansion_panel_list_item_empty">
-                                Filter list is empty.
-                            </div>
-                        )}
-                    </ul>
-                </div> */}
             </div>
 
             {/* Modal */}
@@ -366,33 +263,6 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                     </svg>
                 </div>
             </div>
-
-            {/* User Menu */}
-            {/* <div className="user_menu">
-                <span>
-                    <div className="user_icon">
-                        <img
-                            src={user_icon}
-                            alt=""
-                            width={100}
-                            height={100}
-                        ></img>
-                    </div>
-                    <div className="user_button">
-                        <div className="user_name">Nishanth</div>
-                        <Dropdown
-                            overlay={menu}
-                            trigger={['click']}
-                            placement="topCenter"
-                            arrow
-                        >
-                            <button className="user_setting">
-                                <HiCog className="collapse_key" />
-                            </button>
-                        </Dropdown>
-                    </div>
-                </span>
-            </div> */}
         </div>
     );
 };

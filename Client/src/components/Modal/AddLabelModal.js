@@ -1,6 +1,7 @@
+import './modal.scss';
+import { colors } from '../../assets/static/index';
 import { useState } from 'react';
 import { Button, Modal, Select, Input } from 'antd';
-import { colors } from '../../assets/static/index';
 
 const AddLabelModal = ({ open, close }) => {
     const initialLabelData = {
@@ -59,7 +60,7 @@ const AddLabelModal = ({ open, close }) => {
                                 className="form_control"
                                 name="name"
                                 autoComplete="off"
-                                maxlength="100"
+                                maxLength="100"
                                 value={labelModal.name}
                                 onChange={(event) => {
                                     setLabelModal({

@@ -1,5 +1,4 @@
-import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import '../../styles/project.scss';
 import {
     colors,
     HiOutlineDotsHorizontal,
@@ -9,120 +8,23 @@ import {
     HiOutlinePlus,
     HiOutlineViewGridAdd,
 } from '../../assets/static';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { projectService } from '../../services/project.service';
+import { Button, Input } from 'antd';
 
 const Project = () => {
     const { id } = useParams();
 
     const [project, setProject] = useState([]);
-    const [sections] = useState([
-        {
-            id: 1,
-            name: 'To Do',
-        },
-        {
-            id: 2,
-            name: 'On Going',
-        },
-        {
-            id: 3,
-            name: 'Done',
-        },
-    ]);
-    const [tasks, setTask] = useState([
-        {
-            id: 32231,
-            priority: 0,
-            content: 'Todo',
-            time: '12.30 AM - 2.45 PM',
-            checked: 0,
-        },
-        {
-            id: 32232,
-            priority: 1,
-            content: 'Barge',
-            time: '09.30 AM - 11.45 AM',
-            checked: 0,
-        },
-        {
-            id: 32233,
-            priority: 2,
-            content: 'Katang',
-            time: '2.30 PM - 4.25 PM',
-            checked: 0,
-        },
-        {
-            id: 32234,
-            priority: 3,
-            content: 'Rabukya',
-            time: '06.40 AM - 8.15 PM',
-            checked: 0,
-        },
-        // {
-        //     id: 32235,
-        //     priority: 3,
-        //     content: 'Rabukya',
-        //     time: '06.40 AM - 8.15 PM',
-        //     checked: 0,
-        // },
-        // {
-        //     id: 32236,
-        //     priority: 3,
-        //     content: 'Rabukya',
-        //     time: '06.40 AM - 8.15 PM',
-        //     checked: 0,
-        // },
-        // {
-        //     id: 32237,
-        //     priority: 3,
-        //     content: 'Rabukya',
-        //     time: '06.40 AM - 8.15 PM',
-        //     checked: 0,
-        // },
-        // {
-        //     id: 32238,
-        //     priority: 3,
-        //     content: 'Rabukya',
-        //     time: '06.40 AM - 8.15 PM',
-        //     checked: 0,
-        // },
-        // {
-        //     id: 32239,
-        //     priority: 3,
-        //     content: 'Rabukya',
-        //     time: '06.40 AM - 8.15 PM',
-        //     checked: 0,
-        // },
-        // {
-        //     id: 3223799,
-        //     priority: 3,
-        //     content: 'Rabukya',
-        //     time: '06.40 AM - 8.15 PM',
-        //     checked: 0,
-        // },
-        // {
-        //     id: 32237999,
-        //     priority: 3,
-        //     content: 'Rabukya',
-        //     time: '06.40 AM - 8.15 PM',
-        //     checked: 0,
-        // },
-    ]);
+    const [sections, setSections] = useState([]);
+    const [tasks, setTasks] = useState([]);
+    const [addSection, setAddSection] = useState(false);
 
     useEffect(() => {
-        getProject(id);
-        // getSections();
-        // getTasks();
+        getProject();
+        getProjectData();
     }, [id]);
-
-    // const useScrollTop = () => {
-    //     const [scrollTop, setScrollTop] = useState(0);
-    //     const onScroll = (event) => setScrollTop(event.target.scrollTop);
-    //     console.log(scrollTop);
-    //     return [scrollTop, { onScroll }];
-    // };
-
-    // const [scrollTop, scrollProps] = useScrollTop();
 
     const check_task = (index) => {
         let prevTasks = tasks;
@@ -132,31 +34,27 @@ const Project = () => {
                 console.log(i);
             }
         });
-        setTask(prevTasks);
+        setTasks(prevTasks);
         console.log(tasks);
     };
 
-    const getProject = (id) => {
-        projectService.getProject(id).then((data) => {
-            setProject(data);
+    const getProject = () => {
+        projectService.projects.subscribe((projects) => {
+            if (projects.length !== 0) {
+                var data = projects.find((project) => project.id === id);
+                console.log(data);
+                setProject(data);
+            }
         });
     };
 
-    // const getSections = () => {
-    //     if (id !== undefined) {
-    //         fetch(sectionURL)
-    //             .then((response) => response.json())
-    //             .then((data) => setSections(data));
-    //     }
-    // };
-
-    // const getTasks = () => {
-    //     if (id !== undefined) {
-    //         fetch(taskURL)
-    //             .then((response) => response.json())
-    //             .then((data) => setTasks(data));
-    //     }
-    // };
+    const getProjectData = () => {
+        projectService.getProjectData(id).then((data) => {
+            setSections(data.projectData.sections);
+            setTasks(data.projectData.items);
+            console.log(sections, tasks);
+        });
+    };
 
     return (
         <div className="project">
@@ -177,19 +75,7 @@ const Project = () => {
                                 </div>
                                 <HiOutlineDotsHorizontal className="section_menu" />
                             </div>
-                            <div
-                                className="tasks"
-                                // ref={(divelement) => {
-                                //     divElement = divelement;
-                                // }}
-                                // {...scrollProps}
-                                // style={{
-                                //     borderTop:
-                                //         scrollTop > 0
-                                //             ? 'solid 1px #ccc'
-                                //             : 'solid 1px transparent',
-                                // }}
-                            >
+                            <div className="tasks">
                                 {tasks.map((task, index) => {
                                     return (
                                         <div key={task.id}>
@@ -244,11 +130,34 @@ const Project = () => {
                         </div>
                     );
                 })}
-
-                <div className="add_section_item">
-                    <HiOutlineViewGridAdd className="h-5 w-5" />
-                    <div>Add Section</div>
-                </div>
+                {addSection ? (
+                    <div className="add_section_form">
+                        <Input className="form_control"></Input>
+                        <div className="add_section_form_button">
+                            <Button className="add_section_button">
+                                Add Section
+                            </Button>
+                            <Button
+                                type="link"
+                                onClick={() => {
+                                    setAddSection(false);
+                                }}
+                            >
+                                Cancel
+                            </Button>
+                        </div>
+                    </div>
+                ) : (
+                    <div
+                        className="add_section_item"
+                        onClick={() => {
+                            setAddSection(true);
+                        }}
+                    >
+                        <HiOutlineViewGridAdd className="h-5 w-5" />
+                        <div>Add Section</div>
+                    </div>
+                )}
             </div>
         </div>
     );

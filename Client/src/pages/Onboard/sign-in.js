@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import '../../styles/onboard.scss';
 // import validate from './validate';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { authenticationService } from '../../services/auth.service';
@@ -10,10 +11,6 @@ const SignIn = () => {
     let history = useHistory();
 
     useEffect(() => {
-        checkAvailability();
-    }, []);
-
-    function checkAvailability() {
         if (
             localStorage.getItem('accessToken') !== '' &&
             localStorage.getItem('accessToken') != null
@@ -26,7 +23,7 @@ const SignIn = () => {
                 history.push('/login');
             }
         }
-    }
+    }, [history]);
 
     const formik = useFormik({
         initialValues: {

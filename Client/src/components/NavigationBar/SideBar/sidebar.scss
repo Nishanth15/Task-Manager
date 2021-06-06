@@ -119,30 +119,3 @@
         }
     }
 }
-
-// User menu
-// .user_menu {
-//     @apply fixed bottom-0 h-14 w-72 p-5 bg-white border-t
-//                 flex items-center justify-start z-10;
-//     span {
-//         @apply w-full flex items-center;
-//         .user_icon {
-//             @apply w-10 h-10 rounded-full;
-//         }
-
-//         .user_button {
-//             @apply flex w-full justify-between;
-
-//             .user_name {
-//                 @apply pl-2;
-//             }
-//             .user_setting {
-//                 @apply outline-none duration-500 transform
-//                         focus:rotate-90;
-//                 .collapse_key {
-//                     @apply cursor-pointer h-6 w-6 hover:bg-active_background rounded-full;
-//                 }
-//             }
-//         }
-//     }
-// }

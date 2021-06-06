@@ -7,10 +7,6 @@
     @apply font-bold;
 }
 
-.ant-btn {
-    @apply rounded-full shadow-sm text-xs;
-}
-
 .ant-btn[disabled],
 .ant-btn[disabled]:hover {
     @apply bg-primary text-white opacity-50;
@@ -31,7 +27,11 @@
             }
 
             .form_control {
-                @apply rounded text-sm m-1 w-auto;
+                @apply rounded-md text-sm m-1 w-auto;
+            }
+
+            .ant-select-selector {
+                @apply rounded-md;
             }
 
             .radio_group {

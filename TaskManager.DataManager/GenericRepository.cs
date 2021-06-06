@@ -132,8 +132,7 @@ namespace TaskManager.DataManager
         {
             try
             {
-                return null;
-                    //await _userDbContext.Set<Item>().Where(obj => obj.ProjectId == projectId).SingleOrDefaultAsync();
+                return await _userDbContext.Set<Item>().Where(obj => obj.ProjectId == projectId).ToListAsync();
             }
             catch (Exception)
             {
@@ -148,8 +147,7 @@ namespace TaskManager.DataManager
         {
             try
             {
-                return null; 
-                    //await _userDbContext.Set<Section>().Where(obj => obj.ProjectId == projectId).SingleOrDefaultAsync();
+                return await _userDbContext.Set<Section>().Where(obj => obj.ProjectId == projectId).ToListAsync();
             }
             catch (Exception)
             {

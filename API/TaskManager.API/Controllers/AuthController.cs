@@ -12,7 +12,7 @@ using TaskManager.API.Services.Interfaces;
 
 namespace TaskManager.API.Controllers
 {
-    [Route("api/Auth")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -22,9 +22,7 @@ namespace TaskManager.API.Controllers
             _authService = authService;
         }
 
-        // POST api/Auth/Token
-        [Route("Token")]
-        [HttpPost]
+        [HttpPost("Token")]
         public async Task<IActionResult> GenerateToken([FromBody] TokenRequest tokenRequest)
         {
             try

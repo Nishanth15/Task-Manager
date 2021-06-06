@@ -1,5 +1,4 @@
-import { useHistory } from 'react-router-dom';
-import { Input, Menu, Dropdown } from 'antd';
+import './topbar.scss';
 import {
     HiOutlineLogout,
     HiChevronDown,
@@ -10,6 +9,8 @@ import {
 } from '../../../assets/static';
 import user_image from '../../../assets/images/Ellipse.png';
 import { authenticationService } from '../../../services/auth.service';
+import { useHistory } from 'react-router-dom';
+import { Input, Menu, Dropdown } from 'antd';
 
 const TopBar = () => {
     const history = useHistory();
