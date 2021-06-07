@@ -29,12 +29,12 @@ const AddProjectModal = ({ open, close }) => {
         });
     };
 
-    const resetForm = async () => {
+    const resetForm = () => {
         setProjectModal(initialProjectData);
         close();
     };
 
-    const handleOk = () => {
+    const addProject = () => {
         console.log(projectModal);
         projectService.addProject(projectModal);
         resetForm();
@@ -45,7 +45,7 @@ const AddProjectModal = ({ open, close }) => {
             <Modal
                 title="Add Project"
                 visible={open}
-                onOk={handleOk}
+                onOk={addProject}
                 closable={false}
                 width={400}
                 footer={[
@@ -56,7 +56,7 @@ const AddProjectModal = ({ open, close }) => {
                         key="submit"
                         disabled={projectModal.name.length < 1}
                         type="primary"
-                        onClick={handleOk}
+                        onClick={addProject}
                     >
                         Add
                     </Button>,

@@ -25,12 +25,11 @@ namespace TaskManager.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("AddedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("AddedBy")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("AssignedBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("AssignedBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Checked")
                         .HasColumnType("bit");
@@ -51,7 +50,7 @@ namespace TaskManager.Database.Migrations
                     b.Property<int>("DayOrder")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Due")
+                    b.Property<DateTime?>("Due")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("InHistory")
@@ -75,8 +74,8 @@ namespace TaskManager.Database.Migrations
                     b.Property<Guid>("ProjectId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ResponsibleTo")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("ResponsibleTo")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("SectionId")
                         .HasColumnType("uniqueidentifier");

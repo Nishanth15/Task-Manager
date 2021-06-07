@@ -1,6 +1,6 @@
 // Sidebar logo
 .logo {
-    @apply fixed z-10 w-72 h-[10vh] pt-5 px-8 bg-layout_background top-0;
+    @apply fixed z-10 w-72 h-[10vh] pt-5 px-8 bg-white top-0;
 }
 
 // Sidebar list
@@ -14,7 +14,7 @@
                     px-3 py-2 transition-colors duration-75;
 
         &.active {
-            @apply bg-white text-primary shadow;
+            @apply bg-active_background text-primary shadow;
         }
 
         .sidebar_list_item_svg {
@@ -53,6 +53,10 @@
                             duration-500;
                     }
                 }
+
+                &.active {
+                    @apply bg-layout_background;
+                }
             }
 
             // Sidebar each expandable item list
@@ -86,7 +90,7 @@
                     }
 
                     &.active {
-                        @apply bg-white text-primary shadow;
+                        @apply bg-active_background text-primary shadow;
                     }
                 }
 
@@ -111,7 +115,7 @@
     @apply fixed ml-72 overflow-hidden w-10 h-24 top-14 text-primary duration-500;
 
     .arrow-right {
-        @apply absolute cursor-pointer w-20 h-20 right-5 bg-layout_background transform 
+        @apply absolute cursor-pointer w-20 h-20 right-5 bg-white transform 
             rotate-135 rounded-lg shadow z-10;
 
         .menu_icon {

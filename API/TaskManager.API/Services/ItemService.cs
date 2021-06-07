@@ -60,10 +60,10 @@ namespace TaskManager.API.Services
             var item = _mapper.Map<ItemRequest, Item>(itemRequest);
             if(item.Priority == 0)
             {
-                item.Priority = 4;
+                item.Priority = 3;
             }
             item.IsDeleted = false;
-            item.AddedBy = "Vasanth";
+            item.AddedBy = itemRequest.UserId;
             item.UserId = itemRequest.UserId;
             item.CreatedAt = DateTime.Now;
             item.Modified = DateTime.Now;

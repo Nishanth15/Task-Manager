@@ -1,9 +1,9 @@
 .layout {
-    @apply h-screen w-screen bg-white;
+    @apply h-screen w-screen bg-layout_background;
 
     .left_side {
         .sidebar {
-            @apply fixed w-72 h-screen bg-layout_background duration-500 z-10 shadow;
+            @apply fixed w-72 h-screen bg-white duration-500 z-10 shadow;
 
             // Sidebar toggle
             &.sidebar_show {
@@ -28,7 +28,7 @@
         }
 
         .topbar {
-            @apply h-[6vh] py-5 px-10 bg-white duration-500;
+            @apply h-[6vh] py-5 px-10 duration-500;
         }
 
         .main_content {

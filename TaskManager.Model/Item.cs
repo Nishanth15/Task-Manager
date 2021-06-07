@@ -15,11 +15,11 @@ namespace TaskManager.Model
         public bool Checked { get; set; }
         public bool InHistory { get; set; }
         public bool IsDeleted { get; set; }
-        public string AddedBy { get; set; }
-        public string AssignedBy { get; set; }
-        public string ResponsibleTo { get; set; }
+        public Guid AddedBy { get; set; }
+        public Guid AssignedBy { get; set; }
+        public Guid ResponsibleTo { get; set; }
         public int Collapsed { get; set; }
-        public DateTime Due { get; set; }
+        public DateTime? Due { get; set; }
         public DateTime CompletedAt{ get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime Modified { get; set; }

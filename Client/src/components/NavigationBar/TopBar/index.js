@@ -46,12 +46,8 @@ const TopBar = () => {
     return (
         <div className="top_menu">
             <div className="left_menu">
-                <Input
-                    type="text"
-                    className="searchbar"
-                    placeholder="Search"
-                    prefix={<HiSearch className="topbar_svg" />}
-                />
+                <HiSearch className="topbar_svg" />
+                <input type="text" className="searchbar" placeholder="Search" />
             </div>
 
             <div className="right_menu">

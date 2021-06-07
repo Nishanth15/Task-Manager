@@ -1,5 +1,7 @@
 import { FiInbox, FiBell, FiCalendar, FiActivity } from 'react-icons/fi';
 import { ImFilter } from 'react-icons/im';
+import { RiFireFill } from 'react-icons/ri';
+import { TiFlowChildren } from 'react-icons/ti';
 import { GiCheckMark } from 'react-icons/gi';
 import { CgFolder } from 'react-icons/cg';
 import {
@@ -10,6 +12,8 @@ import {
     HiOutlinePencilAlt,
     HiOutlineDotsHorizontal,
     HiCog,
+    HiOutlineClock,
+    HiOutlineUserAdd,
     HiOutlineLogout,
     HiOutlineTrash,
     HiOutlineViewGridAdd,
@@ -40,36 +44,43 @@ const colors = [
     },
     {
         key: '3',
-        label: 'Orange',
+        label: 'Grey',
         value: 3,
+        color: '#ADB5BD',
+        light_color: '#DEE2E6',
+    },
+    {
+        key: '4',
+        label: 'Orange',
+        value: 4,
         color: '#FF910A',
         light_color: '#FFEDD6',
     },
     {
-        key: '4',
+        key: '5',
         label: 'Purple',
-        value: 4,
+        value: 5,
         color: '#8670FF',
         light_color: '#DCD6FF',
     },
     {
-        key: '5',
+        key: '6',
         label: 'Black',
-        value: 5,
+        value: 6,
         color: '#090A0C',
         light_color: '#353D46',
     },
     {
-        key: '6',
+        key: '7',
         label: 'Yellow',
-        value: 6,
+        value: 7,
         color: '#F7FF0A',
         light_color: '#FEFFD6',
     },
     {
-        key: '7',
+        key: '8',
         label: 'Pink',
-        value: 7,
+        value: 8,
         color: '#FF47FF',
         light_color: '#FFC6FF',
     },
@@ -78,21 +89,25 @@ const colors = [
 export {
     colors,
     CgFolder,
-    FiInbox,
-    FiCalendar,
     FiBell,
+    FiInbox,
     FiActivity,
+    FiCalendar,
     GiCheckMark,
     HiCog,
     HiSearch,
-    HiChevronLeft,
     HiChevronDown,
+    HiChevronLeft,
     HiOutlineTag,
     HiOutlinePlus,
     HiOutlineTrash,
+    HiOutlineClock,
     HiOutlineLogout,
+    HiOutlineUserAdd,
     HiOutlinePencilAlt,
     HiOutlineViewGridAdd,
     HiOutlineDotsHorizontal,
     ImFilter,
+    RiFireFill,
+    TiFlowChildren,
 };

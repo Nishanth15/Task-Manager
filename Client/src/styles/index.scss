@@ -4,6 +4,14 @@ $main_font: 'Poppins', 'Roboto', sans-serif;
 @tailwind components;
 @tailwind utilities;
 
+*::-webkit-scrollbar {
+    @apply h-2.5 w-1.5 bg-gray-100;
+}
+
+*::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 rounded-md;
+}
+
 body {
     font-family: $main_font;
     @apply text-text_color w-screen h-screen select-none;
@@ -17,12 +25,18 @@ button {
     @apply rounded-full text-xs;
 }
 
-*::-webkit-scrollbar {
-    @apply h-2.5 w-1.5 bg-gray-100;
+.ant-modal-content,
+.ant-modal-header {
+    @apply rounded-lg;
 }
 
-*::-webkit-scrollbar-thumb {
-    @apply bg-gray-400 rounded-md;
+.ant-modal-title {
+    @apply font-bold;
+}
+
+.ant-btn[disabled],
+.ant-btn[disabled]:hover {
+    @apply bg-primary text-white opacity-50;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');

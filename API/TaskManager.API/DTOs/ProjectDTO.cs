@@ -48,9 +48,10 @@ namespace TaskManager.API.DTOs
         Red,
         Green,
         Blue,
+        Grey,
         Orange,
-        Black,
         Purple,
+        Black,
         Yellow,
         Pink
     }

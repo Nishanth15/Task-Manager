@@ -9,12 +9,8 @@
 .left_menu {
     @apply flex items-center space-x-3;
 
-    .ant-input-affix-wrapper {
-        @apply border-none shadow-none text-base outline-none space-x-2;
-
-        .ant-input-prefix {
-            @apply text-text_color;
-        }
+    .searchbar {
+        @apply w-72 -md:w-20 bg-layout_background outline-none;
     }
 }
 

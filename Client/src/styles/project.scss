@@ -7,7 +7,7 @@
         }
 
         .project_menu {
-            @apply h-8 w-8 p-1 hover:border-2 cursor-pointer rounded-lg;
+            @apply h-8 w-8 p-1 hover:bg-blue-100 cursor-pointer rounded-lg;
         }
     }
 
@@ -19,7 +19,7 @@
                 flex-col duration-150 transform;
 
             .section_header {
-                @apply cursor-move border-b px-3 pt-3 w-full flex flex-row items-center justify-between;
+                @apply cursor-move px-3 pt-3 w-full flex flex-row items-center justify-between;
 
                 .section_name {
                     @apply p-1 text-lg font-semibold cursor-text overflow-hidden whitespace-nowrap
@@ -27,7 +27,7 @@
                 }
 
                 .section_menu {
-                    @apply h-8 w-8 p-1 hover:border-2 cursor-pointer rounded-lg;
+                    @apply h-7 w-7 p-1 hover:bg-layout_background cursor-pointer rounded-lg;
                 }
 
                 &::before {
@@ -41,10 +41,10 @@
             }
 
             .tasks {
-                @apply px-1.5 overflow-hidden hover:overflow-y-auto;
+                @apply overflow-hidden hover:overflow-y-auto;
 
                 .task {
-                    @apply relative  cursor-pointer mt-2 bg-white border-gray-300
+                    @apply relative cursor-pointer m-2 bg-white border-gray-300
                     rounded-md border p-2 text-sm hover:shadow;
 
                     .task_priority {
@@ -52,69 +52,120 @@
                     }
 
                     .task_top {
-                        @apply flex items-center space-x-2 px-2 pb-1 border-b;
+                        @apply flex items-center justify-between px-2 pb-1 border-b;
 
-                        .task_checkbox {
-                            @apply cursor-pointer h-6 w-6;
-                        }
-                        .task_checkbox,
-                        .task_checkbox .task_checkbox_circle {
-                            @apply border-2 border-primary bg-layout_background rounded-full
+                        .task_top_left {
+                            @apply flex items-center space-x-2;
+
+                            .task_checkbox {
+                                @apply cursor-pointer h-6 w-6;
+                            }
+
+                            .task_checkbox,
+                            .task_checkbox .task_checkbox_circle {
+                                @apply border-2 border-primary bg-layout_background rounded-full
                             flex items-center justify-center h-4 w-4;
-                        }
+                            }
 
-                        .task_checkbox.checked .task_checkbox_circle {
-                            @apply border-2 h-4 w-4 bg-primary border-primary;
-                        }
+                            .task_checkbox.checked .task_checkbox_circle {
+                                @apply border-2 h-4 w-4 bg-primary border-primary;
+                            }
 
-                        .task_checkbox
-                            .task_checkbox_circle
-                            .task_checkbox_checkmark {
-                            @apply h-4 w-4 p-0.5 opacity-0 text-primary;
-                        }
+                            .task_checkbox
+                                .task_checkbox_circle
+                                .task_checkbox_checkmark {
+                                @apply h-4 w-4 p-0.5 opacity-0 text-primary;
+                            }
 
-                        .task_checkbox.checked
-                            .task_checkbox_circle
-                            .task_checkbox_checkmark {
-                            @apply text-white;
-                        }
+                            .task_checkbox.checked
+                                .task_checkbox_circle
+                                .task_checkbox_checkmark {
+                                @apply text-white;
+                            }
 
-                        .task_checkbox.checked .task_checkbox_checkmark,
-                        .task_checkbox:hover .task_checkbox_checkmark,
-                        .radio_option:hover .task_checkbox_checkmark {
-                            @apply opacity-100;
-                        }
+                            .task_checkbox.checked .task_checkbox_checkmark,
+                            .task_checkbox:hover .task_checkbox_checkmark,
+                            .radio_option:hover .task_checkbox_checkmark {
+                                @apply opacity-100;
+                            }
 
-                        .task_content {
-                            @apply w-full font-medium overflow-hidden whitespace-nowrap overflow-ellipsis;
+                            .task_content {
+                                @apply font-medium overflow-hidden whitespace-nowrap overflow-ellipsis;
+                            }
+
+                            .task_bottom_icon {
+                                @apply h-6 w-6 p-1 rounded-lg hover:text-primary hover:bg-active_background;
+                            }
                         }
 
                         .task_menu {
-                            @apply h-7 w-10 p-0.5 opacity-0;
+                            @apply h-7 w-7 p-1 opacity-0;
                         }
 
                         &:hover .task_menu {
-                            @apply opacity-100 hover:border-2 rounded-lg;
+                            @apply opacity-100 hover:bg-layout_background rounded-lg;
                         }
                     }
 
                     .task_bottom {
-                        @apply w-full flex justify-end items-center space-x-1 pt-1;
+                        @apply w-full flex justify-between items-center pt-1;
 
-                        .task_edit,
-                        .task_delete {
-                            @apply h-6 w-6 p-1 hover:text-primary hover:bg-active_background rounded-lg;
+                        .task_bottom_left,
+                        .task_bottom_right {
+                            @apply flex flex-row text-xxs font-bold text-gray-400;
+
+                            .task_bottom_icon {
+                                @apply h-6 w-6 p-1 rounded-lg hover:text-primary hover:bg-active_background;
+                            }
+
+                            .subtask_icon,
+                            .priority_icon,
+                            .due_icon {
+                                @apply flex items-center rounded-lg hover:text-primary hover:bg-active_background;
+
+                                .task_bottom_text {
+                                    @apply pr-1;
+                                }
+                            }
                         }
                     }
                 }
             }
 
             .add_task {
-                @apply py-3 px-5 mt-2 border-t;
+                @apply py-3 mt-2 mx-auto;
 
-                .add_task_button {
-                    @apply cursor-pointer rounded-lg flex items-center h-10 justify-center
+                .add_task_item {
+                    @apply cursor-pointer rounded-lg w-56 flex items-center h-10 justify-center
                         text-sm space-x-1 bg-active_background hover:text-primary;
+                }
+
+                .add_task_form {
+                    @apply min-w-[256px] w-64 flex flex-col mb-5;
+
+                    .add_task_form_top {
+                        @apply border rounded-md p-1 flex flex-col;
+
+                        .form_control {
+                            @apply rounded-md p-2 text-base m-1 w-auto border-none shadow-none outline-none;
+                        }
+
+                        .add_task_actions {
+                            @apply px-2 flex text-gray-400;
+
+                            .add_task_icon {
+                                @apply cursor-pointer w-6 h-6 p-1 rounded-lg hover:text-primary 
+                                    hover:bg-active_background;
+                            }
+                        }
+                    }
+                    .add_task_form_button {
+                        @apply flex p-2;
+
+                        .add_task_button {
+                            @apply rounded-md shadow-sm text-xs bg-primary text-white border-none;
+                        }
+                    }
                 }
             }
         }
@@ -128,11 +179,11 @@
             @apply min-w-[256px] w-64 flex flex-col mb-5;
 
             .form_control {
-                @apply rounded-md p-2.5 text-base m-1 w-auto;
+                @apply rounded-md p-2 text-base m-1 w-auto;
             }
 
             .add_section_form_button {
-                @apply flex p-1 space-x-1;
+                @apply flex p-1;
 
                 .add_section_button {
                     @apply rounded-md shadow-sm text-xs bg-primary text-white border-none;

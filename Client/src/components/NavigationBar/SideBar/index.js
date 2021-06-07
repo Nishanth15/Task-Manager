@@ -78,7 +78,7 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
                     </Link>
                 </ul>
 
-                <div className={'item projects'}>
+                <div className={'item projects '}>
                     <div
                         className={
                             'expansion_panel_header ' +
