@@ -17,6 +17,7 @@ module.exports = {
             },
             fontSize: {
                 xxs: '.60rem',
+                '2.5xl': '1.7rem',
             },
             screens: {
                 '-sm': { max: '639px' },
@@ -26,11 +27,14 @@ module.exports = {
                 '-2xl': { max: '1535px' },
             },
             spacing: {
+                26: '6.5rem',
                 46: '11.5rem',
                 50: '12.5rem',
+                62: '15.5rem',
                 68: '16.5rem',
             },
             inset: {
+                26: '6.5rem',
                 46: '11.5rem',
                 54: '13.5rem',
                 58: '14.5rem',

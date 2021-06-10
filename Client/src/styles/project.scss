@@ -44,7 +44,7 @@
                 @apply overflow-hidden hover:overflow-y-auto;
 
                 .task {
-                    @apply relative cursor-pointer m-2 bg-white border-gray-300
+                    @apply relative w-62 cursor-pointer m-2 bg-white border-gray-300
                     rounded-md border p-2 text-sm hover:shadow;
 
                     .task_priority {
@@ -112,7 +112,7 @@
 
                         .task_bottom_left,
                         .task_bottom_right {
-                            @apply flex flex-row text-xxs font-bold text-gray-400;
+                            @apply flex flex-row text-gray-400 hover:text-primary;
 
                             .task_bottom_icon {
                                 @apply h-6 w-6 p-1 rounded-lg hover:text-primary hover:bg-active_background;
@@ -124,7 +124,31 @@
                                 @apply flex items-center rounded-lg hover:text-primary hover:bg-active_background;
 
                                 .task_bottom_text {
-                                    @apply pr-1;
+                                    @apply pr-1 text-xxs font-bold text-gray-400 hover:text-primary;
+                                }
+                                .ant-select-selector {
+                                    @apply p-0;
+
+                                    .ant-select-selection-search-input {
+                                        display: none;
+                                    }
+                                }
+                                .ant-select-dropdown {
+                                    @apply w-96;
+                                }
+                                .ant-picker {
+                                    @apply p-0;
+                                    .ant-picker-input {
+                                        @apply hover:text-primary;
+
+                                        input {
+                                            @apply hidden w-0;
+                                        }
+
+                                        .ant-picker-suffix {
+                                            @apply m-0;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -171,7 +195,7 @@
         }
 
         .add_section_item {
-            @apply cursor-pointer py-3 px-5 text-text_color hover:text-primary bg-active_background space-x-3
+            @apply cursor-pointer py-3 px-5 text-text_color hover:text-primary bg-white space-x-3
                 rounded-lg min-w-[256px] w-64 flex;
         }
 

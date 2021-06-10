@@ -58,10 +58,6 @@ namespace TaskManager.API.Services
         public async Task<ItemResponse> AddItemAsync(ItemRequest itemRequest)
         {
             var item = _mapper.Map<ItemRequest, Item>(itemRequest);
-            if(item.Priority == 0)
-            {
-                item.Priority = 3;
-            }
             item.IsDeleted = false;
             item.AddedBy = itemRequest.UserId;
             item.UserId = itemRequest.UserId;

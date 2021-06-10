@@ -28,7 +28,7 @@ namespace TaskManager.Database.Migrations
                     b.Property<Guid>("AddedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AssignedBy")
+                    b.Property<Guid?>("AssignedBy")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Checked")
@@ -37,7 +37,7 @@ namespace TaskManager.Database.Migrations
                     b.Property<int>("Collapsed")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CompletedAt")
+                    b.Property<DateTime?>("CompletedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Content")
@@ -65,19 +65,19 @@ namespace TaskManager.Database.Migrations
                     b.Property<int>("Order")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("ParentId")
+                    b.Property<Guid?>("ParentId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Priority")
+                    b.Property<int?>("Priority")
                         .HasColumnType("int");
 
                     b.Property<Guid>("ProjectId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ResponsibleTo")
+                    b.Property<Guid?>("ResponsibleTo")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("SectionId")
+                    b.Property<Guid?>("SectionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("UserId")
@@ -145,7 +145,7 @@ namespace TaskManager.Database.Migrations
                     b.Property<int>("Order")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("ParentId")
+                    b.Property<Guid?>("ParentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("ViewType")
@@ -168,7 +168,7 @@ namespace TaskManager.Database.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateArchived")
+                    b.Property<DateTime?>("DateArchived")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsArchived")

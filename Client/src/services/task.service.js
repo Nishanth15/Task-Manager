@@ -9,7 +9,18 @@ const addTask = async (task) => {
             return response.data;
         });
 };
+const editTask = async (task) => {
+    console.log(task);
+
+    return await http
+        .put('/Item/' + task.id, (task.id, task), { headers: authHeader() })
+        .then((response) => {
+            console.log(response.data);
+            return response.data;
+        });
+};
 
 export const taskService = {
     addTask,
+    editTask,
 };

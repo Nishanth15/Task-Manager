@@ -1,5 +1,5 @@
 import './modal.scss';
-import { colors } from '../../assets/static/index';
+import { colors, GiCheckMark } from '../../assets/static/index';
 import { useState } from 'react';
 import { Button, Modal, Select, Input } from 'antd';
 
@@ -77,6 +77,7 @@ const AddLabelModal = ({ open, close }) => {
                                 showArrow={false}
                                 placeholder="Select one color"
                                 value={labelModal.color}
+                                menuItemSelectedIcon={<GiCheckMark />}
                                 onChange={(value) => {
                                     setLabelModal({
                                         ...labelModal,

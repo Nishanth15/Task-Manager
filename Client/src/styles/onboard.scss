@@ -1,14 +1,32 @@
 .onboard {
-    @apply bg-gray-100 min-h-screen flex flex-col  items-center justify-center;
+    background-color: rgb(242, 242, 242);
+    background-image: url(../assets/images/bg.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    @apply bg-gray-100 h-screen w-screen px-36 flex items-center justify-between -lg:justify-center -lg:p-4;
+
+    .onboard_image_left {
+        @apply w-2/3 -lg:w-0 flex justify-center;
+
+        .onboard_image {
+            @apply w-[450px];
+        }
+    }
 
     .onboard_frame {
-        @apply container max-w-sm mx-auto;
+        @apply w-1/3 -lg:w-[400px] flex flex-col;
 
         .onboard_form {
-            @apply bg-white px-6 py-8 rounded shadow-md text-black w-full;
+            @apply bg-white w-full px-6 py-8 -md:py-3 rounded shadow-md text-black overflow-hidden;
 
             .heading {
-                @apply mb-8 text-3xl text-center;
+                font-family: 'Roboto', sans-serif;
+                @apply mb-8 text-3xl text-center font-bold flex flex-col items-center;
+
+                .onboard_logo {
+                    @apply mb-5;
+                }
             }
 
             .form_field {
@@ -41,7 +59,7 @@
             @apply mt-3;
 
             .terms {
-                @apply text-center text-sm text-gray-500 mt-4;
+                @apply text-center text-sm text-gray-500;
 
                 .link {
                     @apply mx-1 hover:underline text-blue-500;

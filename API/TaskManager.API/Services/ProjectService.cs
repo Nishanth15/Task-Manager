@@ -102,6 +102,7 @@ namespace TaskManager.API.Services
                 items.ToList().ForEach(item => {
                     if (item != null)
                     {
+
                         var itemResponse = _mapper.Map<Item, ItemResponse>(item);
                         projectData.Items.Add(itemResponse);
                     }

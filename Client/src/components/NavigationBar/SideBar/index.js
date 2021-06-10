@@ -39,7 +39,7 @@ const SideBar = ({ handleSwitchKey, projects, labels, filters }) => {
     return (
         <div>
             {/* logo */}
-            <img className="logo" src={logo} alt="taskManager" width="200" />
+            <img className="sidebar_logo" src={logo} alt="taskManager" width="200" />
 
             {/* List */}
             <div className="sidebar_list">

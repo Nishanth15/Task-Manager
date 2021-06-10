@@ -14,29 +14,36 @@ import {
 } from '../../assets/static';
 import { projectService } from '../../services/project.service';
 import { sectionService } from '../../services/section.service';
+import { taskService } from '../../services/task.service';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Dropdown, Input, Menu } from 'antd';
-import { taskService } from '../../services/task.service';
+import moment from 'moment';
+import { Button, DatePicker, Dropdown, Input, Menu, Select } from 'antd';
 
 const Project = () => {
+    const { id } = useParams();
+    const { Option } = Select;
+    const menuItem = [];
+
     const initialSectionData = {
         name: '',
         order: 0,
-        projectId: '',
+        projectId: null,
     };
     const initialTaskData = {
+        userId: '00000000-0000-0000-0000-000000000000',
         content: '',
         order: 0,
-        userId: '00000000-0000-0000-0000-000000000000',
-        projectId: '',
-        sectionId: '',
-        parentId: '00000000-0000-0000-0000-000000000000',
+        projectId: id,
+        sectionId: null,
+        parentId: null,
         priority: 3,
+        checked: false,
+        addedby: '00000000-0000-0000-0000-000000000000',
+        assignedBy: null,
+        responsibleTo: null,
         due: null,
     };
-
-    const { id } = useParams();
     const [project, setProject] = useState([]);
     const [sections, setSections] = useState([]);
     const [tasks, setTasks] = useState([]);
@@ -44,36 +51,21 @@ const Project = () => {
     const [addTaskForm, setAddTaskForm] = useState();
     const [newSection, setNewSection] = useState(initialSectionData);
     const [newTask, setNewTask] = useState(initialTaskData);
+    const [priorityCheck, setPriorityCheck] = useState({
+        mode: '',
+        task: newTask,
+        index: 0,
+    });
 
     useEffect(() => {
         getProject();
         getProjectData();
     }, [id]);
 
-    const check_task = (index) => {
-        let prevTasks = tasks;
-        prevTasks.forEach((task, i) => {
-            if (i === index) {
-                task.checked = 1;
-                // console.log(i);
-            }
-        });
-        setTasks(prevTasks);
-        // console.log(tasks);
-    };
-
-    const handleMenuClick = (e) => {
-        setNewTask({
-            ...newTask,
-            priority: e.key,
-        });
-    };
-
     const getProject = () => {
         projectService.projects.subscribe((projects) => {
             if (projects.length !== 0) {
                 var data = projects.find((project) => project.id === id);
-                // console.log(data);
                 setProject(data);
             }
         });
@@ -83,90 +75,101 @@ const Project = () => {
         projectService.getProjectData(id).then((data) => {
             setSections(data.projectData.sections);
             setTasks(data.projectData.items);
-            // console.log(sections, tasks);
         });
     };
 
     const addSection = () => {
-        // console.log(newSection);
         sectionService.addSection(newSection).then((section) => {
-            console.log(section);
             setSections((sections) => [...sections, section]);
         });
-        setNewSection(initialSectionData);
         setAddSectionForm(false);
     };
 
     const addTask = () => {
-        console.log(newTask);
         taskService.addTask(newTask).then((task) => {
-            console.log(task);
             setTasks((tasks) => [...tasks, task]);
         });
-        setNewTask(initialTaskData);
         setAddTaskForm();
     };
 
-    const menu = (
-        <Menu onClick={handleMenuClick}>
+    const editTask = (task, index, condition, param) => {
+        if (condition === 'check') task.checked = param;
+        if (condition === 'priority') task.priority = param;
+        if (condition === 'due') task.due = param;
+        console.log(task);
+        taskService.editTask(task).then((task) => {
+            tasks[index] = task;
+            setTasks(tasks);
+            getProjectData();
+        });
+    };
+
+    const handleMenuClick = (e) => {
+        if (priorityCheck.mode === 'add') {
+            setNewTask((prev) => ({
+                ...prev,
+                priority: e.key,
+            }));
+            console.log(newTask);
+        } else if (
+            priorityCheck.mode === 'edit' &&
+            priorityCheck.task.priority !== e.key
+        ) {
+            editTask(
+                priorityCheck.task,
+                priorityCheck.index,
+                'priority',
+                e.key
+            );
+        }
+    };
+
+    const disabledDate = (current) => {
+        return current && current < moment().subtract(1, 'days');
+    };
+
+    const UTCtoIST = (date) => {
+        console.log(date);
+        var d = new Date(date);
+        d.setHours(d.getHours() + 5);
+        d.setMinutes(d.getMinutes() + 30);
+        return d.toString().split(' ')[1] + ' ' + d.toString().split(' ')[2];
+    };
+
+    for (let i = 0; i < 4; i++) {
+        menuItem.push(
             <Menu.Item
-                key="0"
-                className="flex items-center space-x-2"
+                key={i}
+                className={
+                    'flex items-center space-x-2 ' +
+                    (priorityCheck.task.priority === i
+                        ? 'bg-active_background'
+                        : '')
+                }
                 icon={
                     <RiFireFill
                         className="add_task_icon"
                         style={{
-                            color: `${colors[0].color}`,
+                            color: `${colors[i].color}`,
                         }}
                     />
                 }
             >
-                Priority 1
-            </Menu.Item>
-            <Menu.Item
-                key="1"
-                className="flex items-center space-x-2"
-                icon={
-                    <RiFireFill
-                        className="add_task_icon"
-                        style={{
-                            color: `${colors[1].color}`,
-                        }}
+                <div className="w-26 flex items-center justify-between">
+                    <div>Priority {i + 1}</div>
+                    <GiCheckMark
+                        className={
+                            priorityCheck.task.priority === i
+                                ? 'text-primary'
+                                : 'hidden '
+                        }
                     />
-                }
-            >
-                Priority 2
+                </div>
             </Menu.Item>
-            <Menu.Item
-                key="2"
-                className="flex items-center space-x-2"
-                icon={
-                    <RiFireFill
-                        className="add_task_icon"
-                        style={{
-                            color: `${colors[2].color}`,
-                        }}
-                    />
-                }
-            >
-                Priority 3
-            </Menu.Item>
-            <Menu.Item
-                key="3"
-                className="flex items-center space-x-2"
-                icon={
-                    <RiFireFill
-                        className="add_task_icon"
-                        style={{
-                            color: `${colors[3].color}`,
-                        }}
-                    />
-                }
-            >
-                Priority 4
-            </Menu.Item>
-        </Menu>
-    );
+        );
+    }
+
+    const menu = <Menu onClick={handleMenuClick}>{menuItem}</Menu>;
 
     return (
         <div className="project">
@@ -197,8 +200,9 @@ const Project = () => {
                                 {tasks.map((task, index) => {
                                     return (
                                         <div key={task.id}>
-                                            <div className="task">
-                                                {/* <div
+                                            {task.sectionId === section.id ? (
+                                                <div className="task">
+                                                    {/* <div
                                                     className="task_priority"
                                                     style={{
                                                         backgroundColor: `${
@@ -208,79 +212,159 @@ const Project = () => {
                                                         }`,
                                                     }}
                                                 ></div> */}
-                                                <div className="task_top">
-                                                    <div className="task_top_left">
-                                                        <div
-                                                            className={
-                                                                'task_checkbox ' +
-                                                                (task.checked ===
-                                                                1
-                                                                    ? 'checked'
-                                                                    : '')
-                                                            }
-                                                            onClick={() =>
-                                                                check_task(
-                                                                    index
-                                                                )
-                                                            }
-                                                        >
-                                                            <div className="task_checkbox_circle">
-                                                                <GiCheckMark className="task_checkbox_checkmark" />
-                                                            </div>
-                                                        </div>
-                                                        <div className="task_content">
-                                                            {task.content}
-                                                        </div>
-                                                    </div>
-
-                                                    <HiOutlineDotsHorizontal className="task_menu" />
-                                                </div>
-
-                                                <div className="task_bottom">
-                                                    <div className="task_bottom_left">
-                                                        <div className="subtask_icon">
-                                                            <TiFlowChildren className="task_bottom_icon" />
-                                                            <div className="task_bottom_text">
-                                                                0/3
-                                                            </div>
-                                                        </div>
-                                                        <div className="priority_icon">
-                                                            <RiFireFill
-                                                                className="task_bottom_icon"
-                                                                style={{
-                                                                    color: `${
-                                                                        colors[
-                                                                            task
-                                                                                .priority
-                                                                        ].color
-                                                                    }`,
+                                                    <div className="task_top">
+                                                        <div className="task_top_left">
+                                                            <div
+                                                                className={
+                                                                    'task_checkbox ' +
+                                                                    (task.checked ===
+                                                                    true
+                                                                        ? 'checked'
+                                                                        : '')
+                                                                }
+                                                                onClick={() => {
+                                                                    editTask(
+                                                                        task,
+                                                                        index,
+                                                                        'check',
+                                                                        !task.checked
+                                                                    );
                                                                 }}
-                                                            />
-                                                        </div>
-                                                        <div className="due_icon">
-                                                            <HiOutlineClock className="task_bottom_icon" />
-                                                            <div className="task_bottom_text">
-                                                                {Date(
-                                                                    task.due
-                                                                ).split(
-                                                                    ' '
-                                                                )[2] +
-                                                                    ' ' +
-                                                                    Date(
-                                                                        task.due
-                                                                    ).split(
-                                                                        ' '
-                                                                    )[1]}
+                                                            >
+                                                                <div className="task_checkbox_circle">
+                                                                    <GiCheckMark className="task_checkbox_checkmark" />
+                                                                </div>
+                                                            </div>
+                                                            <div className="task_content">
+                                                                {task.content}
                                                             </div>
                                                         </div>
+
+                                                        <HiOutlineDotsHorizontal className="task_menu" />
                                                     </div>
-                                                    <div className="task_bottom_right">
-                                                        <HiOutlineUserAdd className="task_bottom_icon mr-1" />
-                                                        {/* <HiOutlinePencilAlt className="task_bottom_icon" />
+
+                                                    <div className="task_bottom">
+                                                        <div className="task_bottom_left">
+                                                            <div className="subtask_icon">
+                                                                <TiFlowChildren className="task_bottom_icon" />
+                                                                <div className="task_bottom_text">
+                                                                    0/3
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                className="priority_icon"
+                                                                onClick={() => {
+                                                                    setPriorityCheck(
+                                                                        {
+                                                                            mode: 'edit',
+                                                                            task: task,
+                                                                            index: index,
+                                                                        }
+                                                                    );
+                                                                }}
+                                                            >
+                                                                <Dropdown
+                                                                    overlay={
+                                                                        menu
+                                                                    }
+                                                                    trigger={[
+                                                                        'click',
+                                                                    ]}
+                                                                    overlayStyle={{
+                                                                        width: 150,
+                                                                    }}
+                                                                    placement="bottomCenter"
+                                                                >
+                                                                    <RiFireFill
+                                                                        className="task_bottom_icon"
+                                                                        style={{
+                                                                            color: `${
+                                                                                colors[
+                                                                                    task
+                                                                                        .priority
+                                                                                ]
+                                                                                    .color
+                                                                            }`,
+                                                                        }}
+                                                                    />
+                                                                </Dropdown>
+                                                            </div>
+                                                            <div className="due_icon">
+                                                                <DatePicker
+                                                                    bordered={
+                                                                        false
+                                                                    }
+                                                                    allowClear={
+                                                                        false
+                                                                    }
+                                                                    disabledDate={
+                                                                        disabledDate
+                                                                    }
+                                                                    onChange={(
+                                                                        date
+                                                                    ) => {
+                                                                        console.log(
+                                                                            date
+                                                                        );
+                                                                        editTask(
+                                                                            task,
+                                                                            index,
+                                                                            'due',
+                                                                            new Date(
+                                                                                date
+                                                                            ).toISOString()
+                                                                        );
+                                                                    }}
+                                                                    defaultValue={
+                                                                        task.due !==
+                                                                        null
+                                                                            ? moment(
+                                                                                  task.due
+                                                                              )
+                                                                            : ''
+                                                                    }
+                                                                    renderExtraFooter={() => (
+                                                                        <div
+                                                                            className="cursor-pointer flex justify-center text-gray-400"
+                                                                            onClick={() => {
+                                                                                editTask(
+                                                                                    task,
+                                                                                    index,
+                                                                                    'due',
+                                                                                    null
+                                                                                );
+                                                                            }}
+                                                                        >
+                                                                            No
+                                                                            Date
+                                                                        </div>
+                                                                    )}
+                                                                    suffixIcon={
+                                                                        <div className="flex items-center hover:text-primary">
+                                                                            <HiOutlineClock className="task_bottom_icon" />
+                                                                            {task.due !==
+                                                                                null && (
+                                                                                <div className="task_bottom_text">
+                                                                                    {UTCtoIST(
+                                                                                        task.due.toString()
+                                                                                    )}
+                                                                                </div>
+                                                                            )}
+                                                                        </div>
+                                                                    }
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div className="task_bottom_right">
+                                                            <HiOutlineUserAdd className="task_bottom_icon mr-1" />
+                                                            {/* <HiOutlinePencilAlt className="task_bottom_icon" />
                                                         <HiOutlineTrash className="task_bottom_icon" /> */}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            ) : (
+                                                ''
+                                            )}
                                         </div>
                                     );
                                 })}
@@ -298,21 +382,26 @@ const Project = () => {
                                                         ...newTask,
                                                         content:
                                                             event.target.value,
-                                                        projectId: id,
-                                                        sectionId: addTaskForm,
-                                                        priority:
-                                                            newTask.priority,
                                                     });
                                                 }}
                                             ></Input>
                                             <div className="add_task_">
                                                 <div className="add_task_assign"></div>
-                                                <div className="add_task_actions">
+                                                <div
+                                                    className="add_task_actions"
+                                                    onClick={() => {
+                                                        setPriorityCheck({
+                                                            mode: 'add',
+                                                            task: newTask,
+                                                            index: 0,
+                                                        });
+                                                    }}
+                                                >
                                                     <Dropdown
                                                         overlay={menu}
                                                         trigger={['click']}
                                                         overlayStyle={{
-                                                            width: 110,
+                                                            width: 150,
                                                         }}
                                                         placement="bottomCenter"
                                                     >
@@ -335,7 +424,10 @@ const Project = () => {
                                         <div className="add_task_form_button">
                                             <Button
                                                 className="add_task_button"
-                                                onClick={addTask}
+                                                onClick={() => {
+                                                    addTask(addTaskForm);
+                                                    setNewTask(initialTaskData);
+                                                }}
                                                 disabled={
                                                     newTask.content.length < 1
                                                 }
@@ -345,8 +437,8 @@ const Project = () => {
                                             <Button
                                                 type="link"
                                                 onClick={() => {
-                                                    setNewTask(initialTaskData);
                                                     setAddTaskForm();
+                                                    setNewTask(initialTaskData);
                                                 }}
                                             >
                                                 Cancel
@@ -358,6 +450,10 @@ const Project = () => {
                                         className="add_task_item"
                                         onClick={() => {
                                             setAddTaskForm(section.id);
+                                            setNewTask({
+                                                ...newTask,
+                                                sectionId: section.id,
+                                            });
                                         }}
                                     >
                                         <HiOutlinePlus className="h-5 w-5" />
@@ -393,7 +489,6 @@ const Project = () => {
                                 <Button
                                     type="link"
                                     onClick={() => {
-                                        setNewSection(initialSectionData);
                                         setAddSectionForm(false);
                                     }}
                                 >
@@ -406,6 +501,7 @@ const Project = () => {
                             className="add_section_item"
                             onClick={() => {
                                 setAddSectionForm(true);
+                                setNewSection(initialSectionData);
                             }}
                         >
                             <HiOutlineViewGridAdd className="h-5 w-5" />

@@ -1,4 +1,6 @@
 import React from 'react';
+import logo from '../../assets/images/shortlogo.svg';
+import onboard from '../../assets/images/onboard.svg';
 // import validate from './validate';
 import { useFormik } from 'formik';
 import { Link, useHistory } from 'react-router-dom';
@@ -34,37 +36,54 @@ const SignUp = () => {
     });
     return (
         <div className="onboard">
+            <div className="onboard_image_left">
+                <img
+                    className="onboard_image"
+                    src={onboard}
+                    alt="taskManager"
+                />
+            </div>
             <div className="onboard_frame">
                 <form onSubmit={formik.handleSubmit}>
                     <div className="onboard_form">
-                        <h1 className="heading">Registration 🚀</h1>
-                        <div className="form_field">
-                            <label>First Name</label>
-                            <Input
-                                type="text"
-                                className="form_control"
-                                name="firstName"
-                                {...formik.getFieldProps('firstName')}
+                        <h1 className="heading">
+                            <img
+                                className="onboard_logo"
+                                src={logo}
+                                alt="taskManager"
                             />
+                            Welcome to Task Manager
+                        </h1>
+                        <div className="flex space-x-2 justify-between">
+                            <div className="form_field">
+                                <label>First Name</label>
+                                <Input
+                                    type="text"
+                                    className="form_control"
+                                    name="firstName"
+                                    {...formik.getFieldProps('firstName')}
+                                />
+                            </div>
+                            {formik.touched.firstName &&
+                            formik.errors.firstName ? (
+                                <div>{formik.errors.firstName}</div>
+                            ) : null}
+
+                            <div className="form_field">
+                                <label>Last Name</label>
+
+                                <Input
+                                    type="text"
+                                    className="form_control"
+                                    name="lastName"
+                                    {...formik.getFieldProps('lastName')}
+                                />
+                            </div>
+                            {formik.touched.lastName &&
+                            formik.errors.lastName ? (
+                                <div>{formik.errors.lastName}</div>
+                            ) : null}
                         </div>
-                        {formik.touched.firstName && formik.errors.firstName ? (
-                            <div>{formik.errors.firstName}</div>
-                        ) : null}
-
-                        <div className="form_field">
-                            <label>Last Name</label>
-
-                            <Input
-                                type="text"
-                                className="form_control"
-                                name="lastName"
-                                {...formik.getFieldProps('lastName')}
-                            />
-                        </div>
-                        {formik.touched.lastName && formik.errors.lastName ? (
-                            <div>{formik.errors.lastName}</div>
-                        ) : null}
-
                         <div className="form_field">
                             <label>Email</label>
                             <Input
@@ -104,7 +123,7 @@ const SignUp = () => {
                         ) : null}
 
                         <button type="submit" className="form_button">
-                            Create Account 🚀
+                            Sign up
                         </button>
 
                         <div className="terms">

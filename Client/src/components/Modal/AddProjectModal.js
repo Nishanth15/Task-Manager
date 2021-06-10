@@ -87,6 +87,7 @@ const AddProjectModal = ({ open, close }) => {
                                 showArrow={false}
                                 placeholder="Select one color"
                                 value={projectModal.color}
+                                menuItemSelectedIcon={<GiCheckMark />}
                                 onChange={(value) => {
                                     setProjectModal({
                                         ...projectModal,

@@ -1,9 +1,11 @@
 import '../../styles/onboard.scss';
+import logo from '../../assets/images/shortlogo.svg';
+import onboard from '../../assets/images/onboard.svg';
+import { authenticationService } from '../../services/auth.service';
 // import validate from './validate';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { authenticationService } from '../../services/auth.service';
 import { useHistory } from 'react-router-dom';
 import { Input } from 'antd';
 
@@ -43,13 +45,23 @@ const SignIn = () => {
     });
     return (
         <div className="onboard">
+            <div className="onboard_image_left">
+                <img
+                    className="onboard_image"
+                    src={onboard}
+                    alt="taskManager"
+                />
+            </div>
             <div className="onboard_frame">
                 <form onSubmit={formik.handleSubmit}>
                     <div className="onboard_form">
                         <h1 className="heading">
-                            <span>Log In</span>
-                            <br />
-                            <span>Task Manager</span>
+                            <img
+                                className="onboard_logo"
+                                src={logo}
+                                alt="taskManager"
+                            />
+                            Welcome to Task Manager
                         </h1>
                         <div className="form_field">
                             <label>Email</label>
@@ -78,7 +90,7 @@ const SignIn = () => {
                         </div>
 
                         <button type="submit" className="form_button">
-                            Sign in 🚀
+                            Log in
                         </button>
 
                         <div className="terms">
@@ -97,9 +109,9 @@ const SignIn = () => {
 
                     <div className="change_onboard">
                         <div className="terms">
-                            Don't you have an account?
+                            Not on taskManager yet?
                             <Link className="link" to="/signup">
-                                Sign up now!
+                                Sign up
                             </Link>
                         </div>
                     </div>
