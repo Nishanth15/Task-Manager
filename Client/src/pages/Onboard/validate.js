@@ -1,50 +1,91 @@
-const validate = (values) => {
+export const validateSignUp = (values) => {
     const errors = {};
-  /* validating first name */
+
+    // console.log(values);
+    /* validating first name */
     if (!values.firstName) {
-      errors.firstName = "First name is required";
+        errors.firstName = (
+            <div className="field_wrong"> First name is required</div>
+        );
     } else if (values.firstName.length < 1) {
-      errors.firstName = "Invalid First name";
-    } else {
-      errors.firstName = "Nice first name 😃";
+        errors.firstName = (
+            <div className="field_wrong">Invalid First name </div>
+        );
     }
-  
-  /* validating last name */
+
+    /* validating last name */
     if (!values.lastName) {
-      errors.lastName = "Last name is required";
+        errors.lastName = (
+            <div className="field_wrong"> Last name is required</div>
+        );
     } else if (values.lastName.length < 1) {
-      errors.lastName = "Invalid Last name";
-    } else {
-      errors.lastName = "Awesome last name 😁";
+        errors.lastName = <div className="field_wrong"> Invalid Last name</div>;
     }
-  
-  /* validating email using regex to pass email */
+
+    /* validating email using regex to pass email */
     if (!values.email) {
-      errors.email = "Email address is required";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-      errors.email = "Invalid email address";
+        errors.email = (
+            <div className="field_wrong"> Email address is required</div>
+        );
+    } else if (
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+    ) {
+        errors.email = (
+            <div className="field_wrong"> Invalid email address</div>
+        );
     }
-  
-  /* validating passwords */
+
+    /* validating passwords */
     if (!values.password) {
-      errors.password = "Password is required";
+        errors.password = (
+            <div className="field_wrong"> Password is required</div>
+        );
     } else if (values.password.length <= 6) {
-      errors.password = "Password length is weak 😩";
-    } else {
-      errors.password = "Password strength is ok 💪";
+        errors.password = (
+            <div className="field_wrong"> Password length is weak 😩</div>
+        );
     }
-  
-  /* validating password verification with initial */
+
+    /* validating password verification with initial */
     if (!values.Vpassword) {
-      errors.Vpassword = "Invalid password verification";
+        errors.Vpassword = (
+            <div className="field_wrong"> Invalid password verification</div>
+        );
     } else if (values.Vpassword !== values.password) {
-      errors.Vpassword = "Passwords don't match 😟";
-    } else {
-      errors.Vpassword = "Passwords match 👏";
+        errors.Vpassword = (
+            <div className="field_wrong"> Passwords don't match 😟</div>
+        );
     }
-  
+
     return errors;
-  };
-  
-  export default validate;
-  
+};
+
+export const validateSignIn = (values) => {
+    const errors = {};
+
+    /* validating email using regex to pass email */
+    if (!values.email) {
+        errors.email = (
+            <div className="field_wrong"> Email address is required</div>
+        );
+    } else if (
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+    ) {
+        errors.email = (
+            <div className="field_wrong"> Invalid email address</div>
+        );
+    }
+
+    /* validating passwords */
+    if (!values.password) {
+        errors.password = (
+            <div className="field_wrong"> Password is required</div>
+        );
+    } else if (values.password.length <= 6) {
+        errors.password = (
+            <div className="field_wrong"> Password length is weak 😩</div>
+        );
+    }
+
+    return errors;
+};

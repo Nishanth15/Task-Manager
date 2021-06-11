@@ -1,11 +1,11 @@
 // Sidebar logo
 .sidebar_logo {
-    @apply fixed z-10 w-72 h-[10vh] pt-5 px-8 bg-white top-0;
+    @apply fixed z-10 w-72 h-[50px] pt-5 px-8 bg-white top-0;
 }
 
 // Sidebar list
 .sidebar_list {
-    @apply absolute my-20 w-72 px-5 h-[90vh] overflow-hidden hover:overflow-y-auto;
+    @apply absolute my-20 w-72 px-5 h-[90%] overflow-hidden hover:overflow-y-auto;
 
     // Sidebar each single item
     .item {
@@ -14,7 +14,7 @@
                     px-3 py-2 transition-colors duration-75;
 
         &.active {
-            @apply bg-active_background text-primary shadow;
+            @apply bg-active_background text-primary;
         }
 
         .sidebar_list_item_svg {
@@ -61,7 +61,7 @@
 
             // Sidebar each expandable item list
             .expansion_panel_list {
-                @apply ml-8 p-1 text-sm max-h-50 w-56 hidden overflow-hidden hover:overflow-y-auto;
+                @apply ml-5 p-1 text-sm max-h-50 w-56 hidden overflow-hidden hover:overflow-y-auto;
 
                 // Sidebar each expandable item list of each item
                 .expansion_panel_list_item {
@@ -90,7 +90,7 @@
                     }
 
                     &.active {
-                        @apply bg-active_background text-primary shadow;
+                        @apply bg-active_background text-primary;
                     }
                 }
 
@@ -116,7 +116,7 @@
 
     .arrow-right {
         @apply absolute cursor-pointer w-20 h-20 right-5 bg-white transform 
-            rotate-135 rounded-lg shadow z-10;
+            rotate-135 rounded-lg z-10;
 
         .menu_icon {
             @apply absolute h-5 w-5 transform rotate-45 top-2 left-2;

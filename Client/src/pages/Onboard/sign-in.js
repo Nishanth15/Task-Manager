@@ -2,7 +2,7 @@ import '../../styles/onboard.scss';
 import logo from '../../assets/images/shortlogo.svg';
 import onboard from '../../assets/images/onboard.svg';
 import { authenticationService } from '../../services/auth.service';
-// import validate from './validate';
+import { validateSignIn as validate } from './validate';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -32,8 +32,8 @@ const SignIn = () => {
             email: '',
             password: '',
         },
-        // validate,
-        onSubmit: (values) => {
+        validate,
+        onSubmit: (values, { validate }) => {
             authenticationService
                 .login(values.email, values.password)
                 .then((response) => {
@@ -53,7 +53,14 @@ const SignIn = () => {
                 />
             </div>
             <div className="onboard_frame">
-                <form onSubmit={formik.handleSubmit}>
+                <form
+                    onSubmit={formik.handleSubmit}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            formik.handleSubmit();
+                        }
+                    }}
+                >
                     <div className="onboard_form">
                         <h1 className="heading">
                             <img
@@ -61,7 +68,7 @@ const SignIn = () => {
                                 src={logo}
                                 alt="taskManager"
                             />
-                            Welcome to Task Manager
+                            Log in to TaskManager
                         </h1>
                         <div className="form_field">
                             <label>Email</label>
@@ -72,7 +79,9 @@ const SignIn = () => {
                                 {...formik.getFieldProps('email')}
                             />
                             {formik.touched.email && formik.errors.email ? (
-                                <div>{formik.errors.email}</div>
+                                <div className="field_error">
+                                    {formik.errors.email}
+                                </div>
                             ) : null}
                         </div>
                         <div className="form_field">
@@ -81,20 +90,27 @@ const SignIn = () => {
                                 type="password"
                                 className="form_control"
                                 name="password"
+                                placeholder="6+ characters"
                                 {...formik.getFieldProps('password')}
                             />
                             {formik.touched.password &&
                             formik.errors.password ? (
-                                <div>{formik.errors.password}</div>
+                                <div className="field_error">
+                                    {formik.errors.password}
+                                </div>
                             ) : null}
                         </div>
 
-                        <button type="submit" className="form_button">
+                        <button
+                            disabled={!(formik.isValid && formik.dirty)}
+                            type="submit"
+                            className="form_button"
+                        >
                             Log in
                         </button>
 
                         <div className="terms">
-                            By signing up, you agree to the
+                            By continuing, you agree to TaskManager's
                             <br />
                             <a className="link" href="/">
                                 Terms of Service
@@ -106,10 +122,9 @@ const SignIn = () => {
                             .
                         </div>
                     </div>
-
                     <div className="change_onboard">
                         <div className="terms">
-                            Not on taskManager yet?
+                            Not on TaskManager yet?
                             <Link className="link" to="/signup">
                                 Sign up
                             </Link>

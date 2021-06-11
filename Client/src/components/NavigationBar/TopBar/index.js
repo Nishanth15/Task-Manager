@@ -17,7 +17,7 @@ const TopBar = () => {
 
     const logout = () => {
         authenticationService.logout();
-        history.push('/signin');
+        history.push('/login');
     };
 
     const menu = (

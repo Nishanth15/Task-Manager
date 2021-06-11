@@ -1,14 +1,21 @@
-import React, { useHistory } from 'react-router-dom';
+import React, { Redirect, Route } from 'react-router-dom';
 import { authenticationService } from '../services/auth.service';
 
 function ProtectedRoute({ component: Component, ...rest }) {
-    const history = useHistory();
     let accessToken = authenticationService.accessToken;
 
-    if (accessToken === '' || accessToken === null) {
-        history.push('/login');
-    }
-    return <Component {...rest} />;
+    return (
+        <Route
+            {...rest}
+            render={(props) =>
+                accessToken === null ? (
+                    <Redirect to={'/login'} />
+                ) : (
+                    <Component {...props} />
+                )
+            }
+        />
+    );
 }
 
 export default ProtectedRoute;

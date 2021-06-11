@@ -7,7 +7,7 @@
 }
 
 .left_menu {
-    @apply flex items-center space-x-3;
+    @apply flex h-full items-center space-x-3;
 
     .searchbar {
         @apply w-72 -md:w-20 bg-layout_background outline-none;

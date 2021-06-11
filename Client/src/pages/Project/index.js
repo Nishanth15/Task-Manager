@@ -18,11 +18,10 @@ import { taskService } from '../../services/task.service';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
-import { Button, DatePicker, Dropdown, Input, Menu, Select } from 'antd';
+import { Button, DatePicker, Dropdown, Input, Menu } from 'antd';
 
 const Project = () => {
     const { id } = useParams();
-    const { Option } = Select;
     const menuItem = [];
 
     const initialSectionData = {
@@ -51,6 +50,7 @@ const Project = () => {
     const [addTaskForm, setAddTaskForm] = useState();
     const [newSection, setNewSection] = useState(initialSectionData);
     const [newTask, setNewTask] = useState(initialTaskData);
+    const [openDatePickerIdx, setOpenDatePickerIdx] = useState('');
     const [priorityCheck, setPriorityCheck] = useState({
         mode: '',
         task: newTask,
@@ -93,14 +93,13 @@ const Project = () => {
     };
 
     const editTask = (task, index, condition, param) => {
-        if (condition === 'check') task.checked = param;
+        if (condition === 'checked') task.checked = param;
         if (condition === 'priority') task.priority = param;
         if (condition === 'due') task.due = param;
-        console.log(task);
         taskService.editTask(task).then((task) => {
-            tasks[index] = task;
-            setTasks(tasks);
-            getProjectData();
+            let newTasks = [...tasks];
+            newTasks[index] = task;
+            setTasks(newTasks);
         });
     };
 
@@ -110,7 +109,6 @@ const Project = () => {
                 ...prev,
                 priority: e.key,
             }));
-            console.log(newTask);
         } else if (
             priorityCheck.mode === 'edit' &&
             priorityCheck.task.priority !== e.key
@@ -129,7 +127,6 @@ const Project = () => {
     };
 
     const UTCtoIST = (date) => {
-        console.log(date);
         var d = new Date(date);
         d.setHours(d.getHours() + 5);
         d.setMinutes(d.getMinutes() + 30);
@@ -226,7 +223,7 @@ const Project = () => {
                                                                     editTask(
                                                                         task,
                                                                         index,
-                                                                        'check',
+                                                                        'checked',
                                                                         !task.checked
                                                                     );
                                                                 }}
@@ -297,15 +294,24 @@ const Project = () => {
                                                                     allowClear={
                                                                         false
                                                                     }
+                                                                    showToday={
+                                                                        false
+                                                                    }
                                                                     disabledDate={
                                                                         disabledDate
+                                                                    }
+                                                                    open={
+                                                                        openDatePickerIdx ===
+                                                                        index
+                                                                    }
+                                                                    onClick={() =>
+                                                                        setOpenDatePickerIdx(
+                                                                            index
+                                                                        )
                                                                     }
                                                                     onChange={(
                                                                         date
                                                                     ) => {
-                                                                        console.log(
-                                                                            date
-                                                                        );
                                                                         editTask(
                                                                             task,
                                                                             index,
@@ -314,7 +320,15 @@ const Project = () => {
                                                                                 date
                                                                             ).toISOString()
                                                                         );
+                                                                        setOpenDatePickerIdx(
+                                                                            false
+                                                                        );
                                                                     }}
+                                                                    onOpenChange={() =>
+                                                                        setOpenDatePickerIdx(
+                                                                            false
+                                                                        )
+                                                                    }
                                                                     defaultValue={
                                                                         task.due !==
                                                                         null
@@ -332,6 +346,9 @@ const Project = () => {
                                                                                     index,
                                                                                     'due',
                                                                                     null
+                                                                                );
+                                                                                setOpenDatePickerIdx(
+                                                                                    false
                                                                                 );
                                                                             }}
                                                                         >
