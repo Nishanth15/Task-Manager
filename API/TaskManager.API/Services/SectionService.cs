@@ -63,6 +63,7 @@ namespace TaskManager.API.Services
             section.IsDeleted = false;
             section.CreatedAt = DateTime.Now;
             section.Modified = DateTime.Now;
+            section.DateArchived = new DateTime();
 
             section = await _repo.AddAsync(section);
 

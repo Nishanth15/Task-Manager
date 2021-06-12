@@ -53,11 +53,25 @@ namespace TaskManager.API.Controllers
             return Ok(item);
         }
 
-        [HttpPut("Collapse")]
+        [HttpPut("Collapse/{id}")]
         public async Task<ActionResult<ItemResponse>> CollapseItem(Guid id, int Collapsed)
         {
-            var project = await _service.CollapseItemAsync(id, Collapsed);
-            return Ok(project);
+            var item = await _service.CollapseItemAsync(id, Collapsed);
+            return Ok(item);
+        }
+
+        [HttpPut("Complete/{id}")]
+        public async Task<ActionResult<ItemResponse>> CompleteItem(Guid id)
+        {
+            var item = await _service.CompleteItemAsync(id);
+            return Ok(item);
+        }
+
+        [HttpPut("UnComplete/{id}")]
+        public async Task<ActionResult<ItemResponse>> UnCompleteItem(Guid id)
+        {
+            var item = await _service.UnCompleteItemAsync(id);
+            return Ok(item);
         }
     }
 }

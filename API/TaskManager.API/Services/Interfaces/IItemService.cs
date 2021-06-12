@@ -13,6 +13,8 @@ namespace TaskManager.API.Services.Interfaces
         Task<ItemResponse> UpdateItemAsync(Guid id, ItemRequest itemRequest);
         Task<BaseResponse> RemoveItemAsync(Guid id);
         Task<ItemResponse> CollapseItemAsync(Guid id, int Collapsed);
+        Task<ItemResponse> UnCompleteItemAsync(Guid itemId);
+        Task<ItemResponse> CompleteItemAsync(Guid itemId);
 
     }
 }

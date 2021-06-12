@@ -25,6 +25,8 @@ namespace TaskManager.DataManager.Interfaces
 
         #region Items
         Task<IEnumerable<Item>> GetItemsByProjectIdAsync(Guid projectId);
+        Task<Item> CompleteItemAsync(Guid itemId);
+        Task<Item> UnCompleteItemAsync(Guid itemId);
         #endregion
 
         #region Section

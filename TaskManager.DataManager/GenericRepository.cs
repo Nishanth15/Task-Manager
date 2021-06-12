@@ -140,6 +140,51 @@ namespace TaskManager.DataManager
                 throw;
             }
         }
+        
+        public async Task<Item> CompleteItemAsync(Guid itemId) 
+        {
+            try
+            {
+                var item = await _userDbContext.Set<Item>().Where(obj => obj.Id == itemId).SingleOrDefaultAsync();
+                if(item!=null)
+                {
+                    item.Checked = true;
+                    await _userDbContext.SaveChangesAsync();
+                    return item;
+                }
+                else
+                {
+                    return null;
+                }
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+       
+        public async Task<Item> UnCompleteItemAsync(Guid itemId)
+        {
+            try
+            {
+                var item = await _userDbContext.Set<Item>().Where(obj => obj.Id == itemId).SingleOrDefaultAsync();
+                if(item!=null)
+                {
+                item.Checked = false;
+                await _userDbContext.SaveChangesAsync();
+                return item;
+                }
+                else
+                { return null; }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         #endregion
 
         #region Section

@@ -109,6 +109,46 @@ namespace TaskManager.API.Services
             return itemResponse;
         }
 
+        public async Task<ItemResponse> CompleteItemAsync(Guid itemId)
+        {
+            ItemResponse itemResponse = new ItemResponse()
+            {
+                Success = false
+            };
+            var item = await _repo.CompleteItemAsync(itemId);
+
+            if(item!=null)
+            {
+                itemResponse = _mapper.Map<Item,ItemResponse>(item);
+            }
+            else
+            {
+                itemResponse.Message = Constants.CannotCompleteTask;
+            }
+
+            return itemResponse;
+        }
+
+        public async Task<ItemResponse> UnCompleteItemAsync(Guid itemId)
+        {
+            ItemResponse itemResponse = new ItemResponse()
+            {
+                Success = false
+            };
+            var item = await _repo.UnCompleteItemAsync(itemId);
+
+            if (item != null)
+            {
+                itemResponse = _mapper.Map<Item, ItemResponse>(item);
+            }
+            else
+            {
+                itemResponse.Message = Constants.CannotUnCompleteTask;
+            }
+
+            return itemResponse;
+        }
+
         private async Task<bool> MarkItemAsDeleted(Guid id)
         {
             var item = await _repo.GetAsync(id);
