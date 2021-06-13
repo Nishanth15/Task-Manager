@@ -1,23 +1,49 @@
 .onboard {
-    @apply bg-gray-100 min-h-screen flex flex-col  items-center justify-center;
+    @apply bg-gray-100 h-screen w-screen px-36 flex items-center justify-evenly -lg:justify-center -lg:p-0;
+
+    .onboard_image_left {
+        background-image: url(../assets/images/bg.png);
+        @apply w-1/2 -lg:hidden;
+
+        .onboard_image {
+            @apply w-[450px];
+        }
+    }
 
     .onboard_frame {
-        @apply container max-w-sm mx-auto;
+        @apply w-[380px] flex flex-col;
 
         .onboard_form {
-            @apply bg-white px-6 py-8 rounded shadow-md text-black w-full;
+            @apply -lg:bg-gray-100 -lg:shadow-none bg-white w-full px-6 py-6 
+                rounded-md shadow-md text-black overflow-hidden;
 
             .heading {
-                @apply mb-8 text-3xl text-center;
+                @apply mb-5 text-2xl space-x-2 font-bold flex flex-col items-center justify-center;
+
+                .onboard_logo {
+                    @apply mb-3 h-8;
+                }
             }
 
             .form_field {
-                @apply flex flex-col mb-3;
+                @apply flex flex-col mb-3 -md:mb-1;
+
+                .field_error {
+                    @apply text-xs mt-1;
+
+                    .field_wrong {
+                        @apply text-red-500;
+                    }
+
+                    .field_correct {
+                        @apply text-primary;
+                    }
+                }
             }
 
             .form_field label,
             .form_field p {
-                @apply flex font-semibold text-sm mx-2 my-1;
+                @apply flex font-semibold text-sm mx-1 my-1;
             }
 
             .form_control {
@@ -25,12 +51,16 @@
             }
 
             .form_button {
-                @apply mt-3 w-full text-center py-3 rounded bg-primary 
+                @apply mt-2 w-full text-center py-3 rounded bg-primary 
                     text-white hover:bg-blue-500 transform active:translate-y-0.5;
+
+                &:disabled {
+                    @apply bg-blue-200;
+                }
             }
 
             .terms {
-                @apply text-center text-sm text-gray-500 mt-4;
+                @apply text-center text-xs text-gray-500 mt-4;
 
                 .link {
                     @apply mx-1 hover:underline text-blue-500;
@@ -41,7 +71,7 @@
             @apply mt-3;
 
             .terms {
-                @apply text-center text-sm text-gray-500 mt-4;
+                @apply text-center text-sm text-gray-500;
 
                 .link {
                     @apply mx-1 hover:underline text-blue-500;

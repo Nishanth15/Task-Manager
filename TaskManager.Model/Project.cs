@@ -8,7 +8,7 @@ namespace TaskManager.Model
         public int Color { get; set; }
         public int ViewType { get; set; }
         public int Order { get; set; }
-        public Guid ParentId { get; set; }
+        public Guid? ParentId { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsArchived { get; set; }
         public bool IsFavorite { get; set; }

@@ -1,5 +1,5 @@
 import './modal.scss';
-import { colors } from '../../assets/static/index';
+import { colors, GiCheckMark } from '../../assets/static/index';
 import { useState } from 'react';
 import { Button, Modal, Select, Input } from 'antd';
 
@@ -25,7 +25,7 @@ const AddLabelModal = ({ open, close }) => {
         close();
     };
 
-    const handleOk = () => {
+    const addLabel = () => {
         console.log(labelModal);
         resetForm();
     };
@@ -35,7 +35,7 @@ const AddLabelModal = ({ open, close }) => {
             <Modal
                 title="Add Label"
                 visible={open}
-                onOk={handleOk}
+                onOk={addLabel}
                 closable={false}
                 width={400}
                 footer={[
@@ -46,7 +46,7 @@ const AddLabelModal = ({ open, close }) => {
                         key="submit"
                         disabled={labelModal.name.length < 1}
                         type="primary"
-                        onClick={handleOk}
+                        onClick={addLabel}
                     >
                         Add
                     </Button>,
@@ -77,6 +77,7 @@ const AddLabelModal = ({ open, close }) => {
                                 showArrow={false}
                                 placeholder="Select one color"
                                 value={labelModal.color}
+                                menuItemSelectedIcon={<GiCheckMark />}
                                 onChange={(value) => {
                                     setLabelModal({
                                         ...labelModal,

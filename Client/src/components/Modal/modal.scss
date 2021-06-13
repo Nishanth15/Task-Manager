@@ -1,17 +1,3 @@
-.ant-modal-content,
-.ant-modal-header {
-    @apply rounded-lg;
-}
-
-.ant-modal-title {
-    @apply font-bold;
-}
-
-.ant-btn[disabled],
-.ant-btn[disabled]:hover {
-    @apply bg-primary text-white opacity-50;
-}
-
 .modal_form {
     @apply flex flex-col overflow-auto;
 

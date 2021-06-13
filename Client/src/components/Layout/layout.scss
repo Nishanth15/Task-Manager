@@ -1,9 +1,9 @@
 .layout {
-    @apply h-screen w-screen bg-white;
+    @apply h-screen w-screen bg-layout_background;
 
     .left_side {
         .sidebar {
-            @apply fixed w-72 h-screen bg-layout_background duration-500 z-10 shadow;
+            @apply fixed w-72 h-full bg-white duration-500 z-10;
 
             // Sidebar toggle
             &.sidebar_show {
@@ -17,7 +17,7 @@
     }
 
     .right_side {
-        @apply fixed flex flex-col h-full w-full  duration-500;
+        @apply fixed flex flex-col h-full w-full duration-500;
 
         &.right_side_expand {
             @apply pl-72 -md:pl-0;
@@ -28,11 +28,11 @@
         }
 
         .topbar {
-            @apply h-[6vh] py-5 px-10 bg-white duration-500;
+            @apply h-[14px] py-5 px-10 duration-500;
         }
 
         .main_content {
-            @apply h-[94vh] mt-8 px-16 rounded-2xl
+            @apply h-[94%] mt-8 px-16 rounded-2xl
                 duration-500 overflow-hidden overflow-x-auto;
         }
     }

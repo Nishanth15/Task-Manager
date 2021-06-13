@@ -77,6 +77,25 @@ namespace TaskManager.DataManager
             return obj;
         }
 
+        public async Task<T> MoveAsync(T obj)
+        {
+            try
+            {
+                _userDbContext.Set<T>().Attach(obj);
+                _userDbContext.Entry(obj).Property("ProjectId").IsModified = true;
+                _userDbContext.Entry(obj).Property("SectionId").IsModified = true;
+                _userDbContext.Entry(obj).Property("ParentId").IsModified = true;
+
+                await _userDbContext.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return obj;
+        }
+
         public async Task<bool> RemoveAsync(Guid id)
         {
             var obj = await _userDbContext.Set<T>().FindAsync(id);
@@ -133,6 +152,51 @@ namespace TaskManager.DataManager
             try
             {
                 return await _userDbContext.Set<Item>().Where(obj => obj.ProjectId == projectId).ToListAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        
+        public async Task<Item> CompleteItemAsync(Guid itemId) 
+        {
+            try
+            {
+                var item = await _userDbContext.Set<Item>().Where(obj => obj.Id == itemId).SingleOrDefaultAsync();
+                if(item!=null)
+                {
+                    item.Checked = true;
+                    await _userDbContext.SaveChangesAsync();
+                    return item;
+                }
+                else
+                {
+                    return null;
+                }
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+       
+        public async Task<Item> UnCompleteItemAsync(Guid itemId)
+        {
+            try
+            {
+                var item = await _userDbContext.Set<Item>().Where(obj => obj.Id == itemId).SingleOrDefaultAsync();
+                if(item!=null)
+                {
+                item.Checked = false;
+                await _userDbContext.SaveChangesAsync();
+                return item;
+                }
+                else
+                { return null; }
             }
             catch (Exception)
             {

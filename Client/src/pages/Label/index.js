@@ -1,6 +1,6 @@
 const Label = () => {
     return (
-        <div>
+        <div className="h-full">
             <h1 className="text-2xl">Label</h1>
         </div>
     );

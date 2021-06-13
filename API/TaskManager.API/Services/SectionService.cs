@@ -63,6 +63,7 @@ namespace TaskManager.API.Services
             section.IsDeleted = false;
             section.CreatedAt = DateTime.Now;
             section.Modified = DateTime.Now;
+            section.DateArchived = new DateTime();
 
             section = await _repo.AddAsync(section);
 
@@ -81,6 +82,25 @@ namespace TaskManager.API.Services
             section = await _repo.UpdateAsync(section);
 
             return _mapper.Map<Section, SectionResponse>(section);
+        }
+
+        public async Task<SectionResponse> MoveSectionAsync(MoveSectionRequest moveSectionRequest)
+        {
+            SectionResponse sectionResponse = new SectionResponse()
+            {
+                Success = false
+            };
+            Section section = await _repo.GetAsync(moveSectionRequest.Id);
+            section.ProjectId = moveSectionRequest.ProjectId;
+
+            section = await _repo.MoveAsync(section);
+
+            if (section != null)
+            {
+                sectionResponse = _mapper.Map<Section, SectionResponse>(section);
+            }
+
+            return sectionResponse;
         }
 
         public async Task<SectionResponse> CollapseSectionAsync(Guid id, int Collapsed)

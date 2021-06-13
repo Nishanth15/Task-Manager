@@ -61,6 +61,24 @@ namespace TaskManager.API.Common.Constants {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot complete the Task!!!.
+        /// </summary>
+        public static string CannotCompleteTask {
+            get {
+                return ResourceManager.GetString("CannotCompleteTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot uncomplete the Task!!!.
+        /// </summary>
+        public static string CannotUnCompleteTask {
+            get {
+                return ResourceManager.GetString("CannotUnCompleteTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Inbox cannot be deleted!!!.
         /// </summary>
         public static string InboxCannotBeDeleted {

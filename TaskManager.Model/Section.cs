@@ -12,6 +12,6 @@ namespace TaskManager.Model
         public int Collapsed { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime Modified { get; set; }
-        public DateTime DateArchived{ get; set; }
+        public DateTime? DateArchived{ get; set; }
     }
 }

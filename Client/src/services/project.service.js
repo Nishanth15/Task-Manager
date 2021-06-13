@@ -1,6 +1,6 @@
+import http from '../services/http-client';
 import { authHeader } from '../helpers/auth-header';
 import { BehaviorSubject } from 'rxjs';
-import http from '../services/http-client';
 
 const projectsSubject = new BehaviorSubject([]);
 

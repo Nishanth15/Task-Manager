@@ -1,6 +1,6 @@
 const Inbox = () => {
     return (
-        <div>
+        <div className="h-full">
             <h1 className="text-2xl">Inbox</h1>
         </div>
     );

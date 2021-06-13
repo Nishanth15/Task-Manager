@@ -13,6 +13,7 @@ namespace TaskManager.DataManager.Interfaces
         Task<T> AddAsync(T model);
         Task<T> UpdateAsync(T model);
         Task<T> UpdateCollapseAsync(T obj);
+        Task<T> MoveAsync(T obj);
         Task<bool> RemoveAsync(Guid id);
         #endregion
 
@@ -25,6 +26,8 @@ namespace TaskManager.DataManager.Interfaces
 
         #region Items
         Task<IEnumerable<Item>> GetItemsByProjectIdAsync(Guid projectId);
+        Task<Item> CompleteItemAsync(Guid itemId);
+        Task<Item> UnCompleteItemAsync(Guid itemId);
         #endregion
 
         #region Section

@@ -14,5 +14,6 @@ namespace TaskManager.API.Services.Interfaces
         Task<ProjectResponse> UpdateProjectAsync(Guid id, ProjectRequest projectRequest);
         Task<BaseResponse> RemoveProjectAsync(Guid id);
         Task<ProjectResponse> CollapseProjectAsync(Guid id, int Collapsed);
+        Task<ProjectResponse> MoveProjectAsync(MoveProjectRequest moveProjectRequest);
     }
 }

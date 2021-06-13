@@ -10,7 +10,7 @@ using TaskManager.Database;
 namespace TaskManager.Database.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20210523143537_Initial Create")]
+    [Migration("20210608173954_Initial Create")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,12 +27,11 @@ namespace TaskManager.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("AddedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("AddedBy")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("AssignedBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("AssignedBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Checked")
                         .HasColumnType("bit");
@@ -40,7 +39,7 @@ namespace TaskManager.Database.Migrations
                     b.Property<int>("Collapsed")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CompletedAt")
+                    b.Property<DateTime?>("CompletedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Content")
@@ -53,7 +52,7 @@ namespace TaskManager.Database.Migrations
                     b.Property<int>("DayOrder")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Due")
+                    b.Property<DateTime?>("Due")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("InHistory")
@@ -68,19 +67,19 @@ namespace TaskManager.Database.Migrations
                     b.Property<int>("Order")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("ParentId")
+                    b.Property<Guid?>("ParentId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Priority")
+                    b.Property<int?>("Priority")
                         .HasColumnType("int");
 
                     b.Property<Guid>("ProjectId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ResponsibleTo")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("ResponsibleTo")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("SectionId")
+                    b.Property<Guid?>("SectionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("UserId")
@@ -148,7 +147,7 @@ namespace TaskManager.Database.Migrations
                     b.Property<int>("Order")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("ParentId")
+                    b.Property<Guid?>("ParentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("ViewType")
@@ -171,7 +170,7 @@ namespace TaskManager.Database.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateArchived")
+                    b.Property<DateTime?>("DateArchived")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsArchived")

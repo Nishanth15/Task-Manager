@@ -102,6 +102,7 @@ namespace TaskManager.API.Services
                 items.ToList().ForEach(item => {
                     if (item != null)
                     {
+
                         var itemResponse = _mapper.Map<Item, ItemResponse>(item);
                         projectData.Items.Add(itemResponse);
                     }
@@ -203,6 +204,25 @@ namespace TaskManager.API.Services
             }
             return projectResponse;
             
+        }
+
+        public async Task<ProjectResponse> MoveProjectAsync(MoveProjectRequest moveProjectRequest)
+        {
+            ProjectResponse projectResponse = new ProjectResponse()
+            {
+                Success = false
+            };
+            Project project = await _repo.GetAsync(moveProjectRequest.Id);
+            project.ParentId = moveProjectRequest.ParentId;
+
+            project = await _repo.MoveAsync(project);
+
+            if (project != null)
+            {
+                projectResponse = _mapper.Map<Project,ProjectResponse>(project);
+            }
+
+            return projectResponse;
         }
 
         private async Task<bool> MarkProjectAsDeleted(Guid id)

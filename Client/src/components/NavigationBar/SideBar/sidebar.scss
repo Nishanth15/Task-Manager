@@ -1,11 +1,11 @@
 // Sidebar logo
-.logo {
-    @apply fixed z-10 w-72 h-[10vh] pt-5 px-8 bg-layout_background top-0;
+.sidebar_logo {
+    @apply fixed z-10 w-72 h-[50px] pt-5 px-8 bg-white top-0;
 }
 
 // Sidebar list
 .sidebar_list {
-    @apply absolute my-20 w-72 px-5 h-[90vh] overflow-hidden hover:overflow-y-auto;
+    @apply absolute my-20 w-72 px-5 h-[90%] overflow-hidden hover:overflow-y-auto;
 
     // Sidebar each single item
     .item {
@@ -14,7 +14,7 @@
                     px-3 py-2 transition-colors duration-75;
 
         &.active {
-            @apply bg-white text-primary shadow;
+            @apply bg-active_background text-primary;
         }
 
         .sidebar_list_item_svg {
@@ -53,11 +53,15 @@
                             duration-500;
                     }
                 }
+
+                &.active {
+                    @apply bg-layout_background;
+                }
             }
 
             // Sidebar each expandable item list
             .expansion_panel_list {
-                @apply ml-8 p-1 text-sm max-h-50 w-56 hidden overflow-hidden hover:overflow-y-auto;
+                @apply ml-5 p-1 text-sm max-h-50 w-56 hidden overflow-hidden hover:overflow-y-auto;
 
                 // Sidebar each expandable item list of each item
                 .expansion_panel_list_item {
@@ -86,7 +90,7 @@
                     }
 
                     &.active {
-                        @apply bg-white text-primary shadow;
+                        @apply bg-active_background text-primary;
                     }
                 }
 
@@ -111,8 +115,8 @@
     @apply fixed ml-72 overflow-hidden w-10 h-24 top-14 text-primary duration-500;
 
     .arrow-right {
-        @apply absolute cursor-pointer w-20 h-20 right-5 bg-layout_background transform 
-            rotate-135 rounded-lg shadow z-10;
+        @apply absolute cursor-pointer w-20 h-20 right-5 bg-white transform 
+            rotate-135 rounded-lg z-10;
 
         .menu_icon {
             @apply absolute h-5 w-5 transform rotate-45 top-2 left-2;

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Interfaces\IGenericRepository.cs~RF3845151c.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Linq" Version="4.3.0" />
   </ItemGroup>
 

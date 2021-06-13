@@ -1,9 +1,11 @@
 import '../../styles/onboard.scss';
-// import validate from './validate';
+import logo from '../../assets/images/shortlogo.svg';
+import onboard from '../../assets/images/onboard.svg';
+import { authenticationService } from '../../services/auth.service';
+import { validateSignIn as validate } from './validate';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { authenticationService } from '../../services/auth.service';
 import { useHistory } from 'react-router-dom';
 import { Input } from 'antd';
 
@@ -30,8 +32,8 @@ const SignIn = () => {
             email: '',
             password: '',
         },
-        // validate,
-        onSubmit: (values) => {
+        validate,
+        onSubmit: (values, { validate }) => {
             authenticationService
                 .login(values.email, values.password)
                 .then((response) => {
@@ -43,13 +45,30 @@ const SignIn = () => {
     });
     return (
         <div className="onboard">
+            <div className="onboard_image_left">
+                <img
+                    className="onboard_image"
+                    src={onboard}
+                    alt="taskManager"
+                />
+            </div>
             <div className="onboard_frame">
-                <form onSubmit={formik.handleSubmit}>
+                <form
+                    onSubmit={formik.handleSubmit}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            formik.handleSubmit();
+                        }
+                    }}
+                >
                     <div className="onboard_form">
                         <h1 className="heading">
-                            <span>Log In</span>
-                            <br />
-                            <span>Task Manager</span>
+                            <img
+                                className="onboard_logo"
+                                src={logo}
+                                alt="taskManager"
+                            />
+                            Log in to TaskManager
                         </h1>
                         <div className="form_field">
                             <label>Email</label>
@@ -60,7 +79,9 @@ const SignIn = () => {
                                 {...formik.getFieldProps('email')}
                             />
                             {formik.touched.email && formik.errors.email ? (
-                                <div>{formik.errors.email}</div>
+                                <div className="field_error">
+                                    {formik.errors.email}
+                                </div>
                             ) : null}
                         </div>
                         <div className="form_field">
@@ -69,20 +90,27 @@ const SignIn = () => {
                                 type="password"
                                 className="form_control"
                                 name="password"
+                                placeholder="6+ characters"
                                 {...formik.getFieldProps('password')}
                             />
                             {formik.touched.password &&
                             formik.errors.password ? (
-                                <div>{formik.errors.password}</div>
+                                <div className="field_error">
+                                    {formik.errors.password}
+                                </div>
                             ) : null}
                         </div>
 
-                        <button type="submit" className="form_button">
-                            Sign in 🚀
+                        <button
+                            disabled={!(formik.isValid && formik.dirty)}
+                            type="submit"
+                            className="form_button"
+                        >
+                            Log in
                         </button>
 
                         <div className="terms">
-                            By signing up, you agree to the
+                            By continuing, you agree to TaskManager's
                             <br />
                             <a className="link" href="/">
                                 Terms of Service
@@ -94,12 +122,11 @@ const SignIn = () => {
                             .
                         </div>
                     </div>
-
                     <div className="change_onboard">
                         <div className="terms">
-                            Don't you have an account?
+                            Not on TaskManager yet?
                             <Link className="link" to="/signup">
-                                Sign up now!
+                                Sign up
                             </Link>
                         </div>
                     </div>

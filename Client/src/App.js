@@ -18,20 +18,17 @@ const App = () => {
                 <Switch>
                     <Route exact path="/login" component={SignIn} />
                     <Route exact path="/signup" component={SignUp} />
-                    <Route exact path="/notfound" component={PageNotFound} />
-                    <ProtectedRoute component={Layout}>
+                    <Redirect exact path="/" to="/inbox" />
+                    <Layout>
                         {routes.map((route, index) => (
-                            <Switch key={index}>
-                                <Redirect exact path="/" to="/inbox" />
-                                <Route
-                                    exact
-                                    path={route.path}
-                                    component={route.component}
-                                />
-                            </Switch>
+                            <ProtectedRoute
+                                exact
+                                key={index}
+                                path={route.path}
+                                component={route.component}
+                            ></ProtectedRoute>
                         ))}
-                    </ProtectedRoute>
-                    <Redirect path="*" to="/notfound" />
+                    </Layout>
                 </Switch>
             </Router>
         </div>
