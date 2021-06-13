@@ -1,4 +1,4 @@
 # Task_Manager
 
-A Task Management App built with Next.Js, .NET, SQL SERVER
+A Task Management App built with React.Js, .NET, SQL SERVER
 
