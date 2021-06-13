@@ -21,5 +21,10 @@ namespace TaskManager.API.DTOs
 
     }
 
+    public class MoveSectionRequest
+    {
+        public Guid Id { get; set; }
+        public Guid ProjectId { get; set; }
+    }
 
 }

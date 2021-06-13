@@ -60,5 +60,12 @@ namespace TaskManager.API.Controllers
             var project = await _service.CollapseSectionAsync(id, Collapsed);
             return Ok(project);
         }
+
+        [HttpPost("Move")]
+        public async Task<ActionResult<SectionResponse>> MoveProjectAsync(MoveSectionRequest moveSectionRequest)
+        {
+            var section = await _service.MoveSectionAsync(moveSectionRequest);
+            return Ok(section);
+        }
     }
 }

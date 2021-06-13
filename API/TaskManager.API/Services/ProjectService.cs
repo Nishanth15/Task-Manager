@@ -206,6 +206,25 @@ namespace TaskManager.API.Services
             
         }
 
+        public async Task<ProjectResponse> MoveProjectAsync(MoveProjectRequest moveProjectRequest)
+        {
+            ProjectResponse projectResponse = new ProjectResponse()
+            {
+                Success = false
+            };
+            Project project = await _repo.GetAsync(moveProjectRequest.Id);
+            project.ParentId = moveProjectRequest.ParentId;
+
+            project = await _repo.MoveAsync(project);
+
+            if (project != null)
+            {
+                projectResponse = _mapper.Map<Project,ProjectResponse>(project);
+            }
+
+            return projectResponse;
+        }
+
         private async Task<bool> MarkProjectAsDeleted(Guid id)
         {
             var project = await _repo.GetAsync(id);

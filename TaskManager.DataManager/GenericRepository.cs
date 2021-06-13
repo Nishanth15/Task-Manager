@@ -77,6 +77,25 @@ namespace TaskManager.DataManager
             return obj;
         }
 
+        public async Task<T> MoveAsync(T obj)
+        {
+            try
+            {
+                _userDbContext.Set<T>().Attach(obj);
+                _userDbContext.Entry(obj).Property("ProjectId").IsModified = true;
+                _userDbContext.Entry(obj).Property("SectionId").IsModified = true;
+                _userDbContext.Entry(obj).Property("ParentId").IsModified = true;
+
+                await _userDbContext.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return obj;
+        }
+
         public async Task<bool> RemoveAsync(Guid id)
         {
             var obj = await _userDbContext.Set<T>().FindAsync(id);

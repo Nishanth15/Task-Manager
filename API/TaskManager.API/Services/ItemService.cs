@@ -109,6 +109,28 @@ namespace TaskManager.API.Services
             return itemResponse;
         }
 
+        public async Task<ItemResponse> MoveItemAsync(MoveItemRequest moveItemRequest)
+        {
+            ItemResponse itemResponse = new ItemResponse()
+            {
+                Success = false
+            };
+            Item item = await _repo.GetAsync(moveItemRequest.Id);
+
+            item.SectionId = moveItemRequest.SectionId;
+            item.ProjectId = moveItemRequest.ProjectId == null ? Guid.Empty:moveItemRequest.ProjectId.Value;
+            item.ParentId = moveItemRequest.ParentId;
+
+            item = await _repo.MoveAsync(item);
+
+            if(item!=null)
+            {
+                itemResponse = _mapper.Map<Item, ItemResponse>(item);
+            }
+
+            return itemResponse;
+        }
+
         public async Task<ItemResponse> CompleteItemAsync(Guid itemId)
         {
             ItemResponse itemResponse = new ItemResponse()

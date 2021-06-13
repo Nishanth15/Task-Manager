@@ -60,6 +60,13 @@ namespace TaskManager.API.Controllers
             return Ok(item);
         }
 
+        [HttpPost("Move")]
+        public async Task<ActionResult<ItemResponse>> MoveItemAsync(MoveItemRequest moveItemRequest)
+        {
+            var item = await _service.MoveItemAsync(moveItemRequest);
+            return Ok(item);
+        }
+
         [HttpPut("Complete/{id}")]
         public async Task<ActionResult<ItemResponse>> CompleteItem(Guid id)
         {

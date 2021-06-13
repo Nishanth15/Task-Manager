@@ -41,4 +41,12 @@ namespace TaskManager.API.DTOs
         public int Collapsed { get; set; }
 
     }
+
+    public class MoveItemRequest
+    {
+        public Guid Id { get; set; }
+        public Guid? ProjectId { get; set; }
+        public Guid? SectionId { get; set; }
+        public Guid? ParentId { get; set; }
+    }
 }

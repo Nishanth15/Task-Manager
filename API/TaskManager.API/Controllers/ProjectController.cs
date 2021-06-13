@@ -60,5 +60,12 @@ namespace TaskManager.API.Controllers
             var project = await _service.CollapseProjectAsync(id, Collapsed);
             return Ok(project);
         }
+
+        [HttpPost("Move")]
+        public async Task<ActionResult<ProjectResponse>> MoveProjectAsync(MoveProjectRequest moveProjectRequest)
+        {
+            var project = await _service.MoveProjectAsync(moveProjectRequest);
+            return Ok(project);
+        }
     }
 }

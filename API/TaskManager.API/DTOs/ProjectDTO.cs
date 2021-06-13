@@ -56,4 +56,10 @@ namespace TaskManager.API.DTOs
         Pink
     }
 
+    public class MoveProjectRequest
+    {
+        public Guid Id { get; set; }
+        public Guid ParentId { get; set; }
+    }
+
 }
