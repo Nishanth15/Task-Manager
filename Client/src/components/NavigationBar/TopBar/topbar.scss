@@ -21,7 +21,7 @@
         @apply flex items-center space-x-3;
 
         .user_name {
-            @apply cursor-pointer flex items-center font-semibold;
+            @apply cursor-pointer flex items-center font-semibold space-x-2;
         }
 
         .user_image {

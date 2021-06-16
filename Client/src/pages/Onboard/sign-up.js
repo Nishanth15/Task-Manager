@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/images/logo.svg';
+import logo from '../../assets/images/shortlogo.svg';
 import onboard from '../../assets/images/onboard.svg';
 import { validateSignUp as validate } from './validate';
 import { Form, useFormik } from 'formik';

@@ -14,7 +14,10 @@ const getProjectData = async (id) => {
     if (id !== undefined) {
         return await http
             .get('/Project/' + id, { headers: authHeader() })
-            .then((response) => response.data);
+            .then((response) => {
+                console.log(response.data);
+                return response.data;
+            });
     }
 };
 

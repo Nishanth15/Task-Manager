@@ -27,7 +27,7 @@ namespace TaskManager.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProjectResponse>> GetProjectData(Guid id)
+        public async Task<ActionResult<ProjectDataResponse>> GetProjectData(Guid id)
         {
             var projectDataResponse = await _service.GetProjectDataAsync(id, CurrentUser.Id);
             return Ok(projectDataResponse);
