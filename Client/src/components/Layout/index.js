@@ -28,6 +28,7 @@ const Layout = ({ children }) => {
             if (tokenExpiresAt <= currentTime) {
                 history.push('/login');
             }
+            setUserData(JSON.parse(atob(token.split('.')[1])));
         } else {
             authenticationService.logout();
         }
@@ -38,7 +39,6 @@ const Layout = ({ children }) => {
                 });
             });
         }
-        setUserData(JSON.parse(atob(token.split('.')[1])));
     }, [token, history, projects]);
 
     // Methods

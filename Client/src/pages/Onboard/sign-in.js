@@ -3,7 +3,7 @@ import logo from '../../assets/images/shortlogo.svg';
 import onboard from '../../assets/images/onboard.svg';
 import { authenticationService } from '../../services/auth.service';
 import { validateSignIn as validate } from './validate';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useHistory } from 'react-router-dom';
@@ -11,6 +11,8 @@ import { Input } from 'antd';
 
 const SignIn = () => {
     let history = useHistory();
+
+    const [formValid, setFormValid] = useState(false);
 
     useEffect(() => {
         if (
@@ -39,6 +41,8 @@ const SignIn = () => {
                 .then((response) => {
                     if (response.success) {
                         history.push('/inbox');
+                    } else {
+                        setFormValid(true);
                     }
                 });
         },
@@ -76,6 +80,13 @@ const SignIn = () => {
                                 type="text"
                                 className="form_control"
                                 name="email"
+                                style={{
+                                    borderColor:
+                                        formik.touched.email &&
+                                        formik.errors.email
+                                            ? 'red'
+                                            : 'lightGrey',
+                                }}
                                 {...formik.getFieldProps('email')}
                             />
                             {formik.touched.email && formik.errors.email ? (
@@ -91,6 +102,13 @@ const SignIn = () => {
                                 className="form_control"
                                 name="password"
                                 placeholder="6+ characters"
+                                style={{
+                                    borderColor:
+                                        formik.touched.password &&
+                                        formik.errors.password
+                                            ? 'red'
+                                            : 'lightGrey',
+                                }}
                                 {...formik.getFieldProps('password')}
                             />
                             {formik.touched.password &&
@@ -100,7 +118,11 @@ const SignIn = () => {
                                 </div>
                             ) : null}
                         </div>
-
+                        {formValid ? (
+                            <div className="user_error">
+                                Invalid email or password. Please try again.
+                            </div>
+                        ) : null}
                         <button
                             disabled={!(formik.isValid && formik.dirty)}
                             type="submit"

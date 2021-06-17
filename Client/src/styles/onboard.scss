@@ -1,5 +1,5 @@
 .onboard {
-    @apply bg-gray-100 h-screen w-screen px-36 flex items-center justify-evenly -lg:justify-center -lg:p-0;
+    @apply bg-layout_background h-screen w-screen px-36 flex items-center justify-evenly -lg:justify-center -lg:p-0;
 
     .onboard_image_left {
         background-image: url(../assets/images/bg.png);
@@ -14,7 +14,7 @@
         @apply w-[380px] flex flex-col;
 
         .onboard_form {
-            @apply -lg:bg-gray-100 -lg:shadow-none bg-white w-full px-6 py-6 
+            @apply -lg:bg-layout_background -lg:shadow-none bg-white w-full px-6 pt-6 pb-2 
                 rounded-md shadow-md text-black overflow-hidden;
 
             .heading {
@@ -39,6 +39,10 @@
                         @apply text-primary;
                     }
                 }
+            }
+
+            .user_error {
+                @apply text-xs mt-1 text-red-500;
             }
 
             .form_field label,

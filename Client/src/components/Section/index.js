@@ -2,7 +2,9 @@ import './section.scss';
 import Task from '../Task';
 import AddNewSection from './AddSection';
 import { projectService } from '../../services/project.service';
+import { sectionService } from '../../services/section.service';
 import { taskService } from '../../services/task.service';
+import { sortBySectionOrder } from '../../helpers/sortby-section-order';
 import {
     colors,
     GiCheckMark,
@@ -15,7 +17,6 @@ import {
 import { useState, useEffect } from 'react';
 import { Button, DatePicker, Dropdown, Input, Menu } from 'antd';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import { sectionService } from '../../services/section.service';
 
 const Section = ({ id }) => {
     const menuItem = [];
@@ -51,25 +52,23 @@ const Section = ({ id }) => {
     const getProjectData = () => {
         projectService.getProjectData(id).then((data) => {
             setSections(data.projectData.sections);
-            var items = data.projectData.items;
-            var sortedItems = items.sort((a, b) =>
-                a.order !== b.order ? (a.order < b.order ? -1 : 1) : 0
-            );
-            setTasks(sortedItems);
+            setTasks(data.projectData.items);
         });
     };
 
     const addTask = (sectionId) => {
-        console.log(tasks);
         var sortItem = tasks
             .slice()
             .reverse()
             .find((item) => item.sectionId === sectionId);
-        if (sortItem !== null) {
+        if (sortItem !== undefined) {
             newTask.order = sortItem.order + 1;
         }
         taskService.addTask(newTask).then((task) => {
-            setTasks((tasks) => [...tasks, task]);
+            let newTasks = [...tasks];
+            newTasks.push(task);
+            var newSortedTasks = sortBySectionOrder(sections, newTasks);
+            setTasks(newSortedTasks);
         });
         setAddTaskForm();
     };
@@ -86,13 +85,30 @@ const Section = ({ id }) => {
         });
     };
 
-    const reorder = (list, listIdx, startIndex, endIndex) => {
+    const reorder = (list, sectionListIdx, startIndex, endIndex) => {
         const result = list;
-        console.log(result);
+        // console.log(result);
         console.log(startIndex, endIndex);
         const [removed] = result.splice(startIndex, 1);
         result.splice(endIndex, 0, removed);
-
+        if (startIndex !== endIndex) {
+            var start, end, lastOrder;
+            if (sectionListIdx.indexOf(endIndex) >= sectionListIdx.length / 2) {
+                start = endIndex;
+                end = sectionListIdx[sectionListIdx.length - 1];
+                lastOrder = result[endIndex - 1].order;
+                for (let i = start; i <= end; i++) {
+                    result[i].order = ++lastOrder;
+                }
+            } else {
+                start = endIndex;
+                end = sectionListIdx[0];
+                lastOrder = result[endIndex + 1].order;
+                for (let i = start; i >= end; i--) {
+                    result[i].order = --lastOrder;
+                }
+            }
+        }
         return result;
     };
 
@@ -121,35 +137,25 @@ const Section = ({ id }) => {
         if (!destination) return;
 
         // console.log(result);
-        console.log(source);
-        console.log(destination);
-        // console.log(tasks);
-        var sectionSourceItems = [];
+        // console.log(source);
+        // console.log(destination);
         var sectionSourceIdx = [];
         tasks.forEach((task, index) => {
             if (task.sectionId === source.droppableId) {
-                sectionSourceItems.push(task);
                 sectionSourceIdx.push(index);
             }
         });
-        console.log(sectionSourceItems);
         if (
             type === 'tasks' &&
             source.droppableId === destination.droppableId
         ) {
             const items = reorder(
-                sectionSourceItems,
+                tasks,
                 sectionSourceIdx,
                 source.index,
                 destination.index
             );
             console.log(items);
-            // console.log(source.droppableId);
-            // let state = { items };
-            // if (source.droppableId === 'droppable2') {
-            //     state = { selected: items };
-            // }
-            // setState(state);
         } else {
             // const result = move(
             //     getList(source.droppableId),
@@ -162,73 +168,6 @@ const Section = ({ id }) => {
             //     selected: result.droppable2,
             // });
         }
-
-        // if (
-        //     type === 'tasks' &&
-        //     source.droppableId !== destination.droppableId
-        // ) {
-        //     var sourceTask = tasks.find((task) => task.id === draggableId);
-        //     var sourceIdx = tasks.indexOf(sourceTask);
-
-        //     var task1 = tasks[source.index];
-        //     task1.sectionId = destination.droppableId;
-        //     var task2 = tasks[destination.index];
-        //     let newTasks = [...tasks];
-        //     newTasks[destination.index] = task1;
-        //     newTasks[source.index] = task2;
-        //     // console.log(newTasks);
-        //     setTasks(newTasks);
-        //     console.log(task1);
-        //     console.log(task2);
-        //     editTask(sourceTask, sourceIdx, 'drag', destination.droppableId);
-
-        //     // const sourceColumn = sections.find(
-        //     //     (section) => section.id === source.droppableId
-        //     // );
-        //     // console.log(sourceColumn);
-
-        //     // const destColumn = sections.find(
-        //     //     (section) => section.id === destination.droppableId
-        //     // );
-        //     // console.log(destColumn);
-        //     // const sourceItems = [...sourceColumn.items];
-        //     // const destItems = [...destColumn.items];
-        //     // const [removed] = tasks.splice(source.index, 1);
-        //     // tasks.splice(destination.index, 0, removed);
-        //     // setSections({
-        //     //     ...sections,
-        //     //     [source.droppableId]: {
-        //     //         ...sourceColumn,
-        //     //         items: sourceItems,
-        //     //     },
-        //     //     [destination.droppableId]: {
-        //     //         ...destColumn,
-        //     //         items: destItems,
-        //     //     },
-        //     // });
-        // } else {
-        //     var task1 = tasks[source.index];
-        //     task1.sectionId = destination.droppableId;
-        //     var task2 = tasks[destination.index];
-        //     let newTasks = [...tasks];
-        //     newTasks[destination.index] = task1;
-        //     newTasks[source.index] = task2;
-        //     // console.log(newTasks);
-        //     setTasks(newTasks);
-        //     // editTask(sourceTask, sourceIdx, 'drag', destination.droppableId);
-
-        //     // const column = sections[source.droppableId];
-        //     // const copiedItems = [...column.items];
-        //     // const [removed] = copiedItems.splice(source.index, 1);
-        //     // copiedItems.splice(destination.index, 0, removed);
-        //     // setSections({
-        //     //     ...sections,
-        //     //     [source.droppableId]: {
-        //     //         ...column,
-        //     //         items: copiedItems,
-        //     //     },
-        //     // });
-        // }
     };
 
     const handleMenuClick = (e) => {

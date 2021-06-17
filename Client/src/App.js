@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import Layout from './components/Layout';
 import {
     BrowserRouter as Router,
@@ -5,15 +6,33 @@ import {
     Route,
     Switch,
 } from 'react-router-dom';
+import Preloader from './components/Preloader';
 import routes from './router/';
-import ProtectedRoute from './helpers/ProtectedRoute';
-import SignUp from './pages/Onboard/sign-up';
-import SignIn from './pages/Onboard/sign-in';
-import PageNotFound from './pages/404NotFound';
+import { withRouter } from 'react-router-dom';
+const SignUp = lazy(
+    () =>
+        new Promise((resolve, reject) =>
+            setTimeout(() => resolve(import('./pages/Onboard/sign-up')), 1500)
+        )
+);
+const PageNotFound = lazy(() => import('./pages/404NotFound'));
+
+const SignIn = lazy(
+    () =>
+        new Promise((resolve, reject) =>
+            setTimeout(() => resolve(import('./pages/Onboard/sign-in')), 1500)
+        )
+);
+const ProtectedRoute = lazy(
+    () =>
+        new Promise((resolve, reject) =>
+            setTimeout(() => resolve(import('./helpers/ProtectedRoute')), 1500)
+        )
+);
 
 const App = () => {
     return (
-        <div>
+        <Suspense fallback={<Preloader />}>
             <Router>
                 <Switch>
                     <Route exact path="/login" component={SignIn} />
@@ -41,8 +60,8 @@ const App = () => {
                     </Route>
                 </Switch>
             </Router>
-        </div>
+        </Suspense>
     );
 };
 
-export default App;
+export default withRouter(App);

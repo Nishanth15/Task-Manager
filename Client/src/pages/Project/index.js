@@ -12,31 +12,38 @@ const Project = () => {
 
     useEffect(() => {
         getProject();
-        getProjectData();
-    }, [id]);
+        console.log(project);
+        if (project.length !== 0) document.title = project.name;
+    }, [id, project]);
 
     const getProject = () => {
         projectService.projects.subscribe((projects) => {
             if (projects.length !== 0) {
                 var data = projects.find((project) => project.id === id);
-                setProject(data);
+                if (data !== undefined) {
+                    setProject(data);
+                }
             }
         });
     };
 
-    const getProjectData = () => {
-        projectService.getProjectData(id).then((data) => {});
-    };
-
     return (
         <div className="project">
-            <div className="project_header">
-                <h1 className="project_title">{project.name}</h1>
+            {project.length !== 0 ? (
                 <div>
-                    <HiOutlineDotsHorizontal className="project_menu" />
+                    <div className="project_header">
+                        <h1 className="project_title">{project.name}</h1>
+                        <div>
+                            <HiOutlineDotsHorizontal className="project_menu" />
+                        </div>
+                    </div>
+                    <Section id={id}></Section>
                 </div>
-            </div>
-            <Section id={id}></Section>
+            ) : (
+                <div className="project_header">
+                    <h1 className="project_title">Project Not Found</h1>
+                </div>
+            )}
         </div>
     );
 };
