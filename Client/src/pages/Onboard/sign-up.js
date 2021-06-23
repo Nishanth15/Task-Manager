@@ -1,5 +1,6 @@
 import React from 'react';
-import logo from '../../assets/images/logo.svg';
+import '../../styles/onboard.scss';
+import logo from '../../assets/images/shortlogo.svg';
 import onboard from '../../assets/images/onboard.svg';
 import { validateSignUp as validate } from './validate';
 import { Form, useFormik } from 'formik';
@@ -62,6 +63,13 @@ const SignUp = () => {
                                     type="text"
                                     className="form_control"
                                     name="firstName"
+                                    style={{
+                                        borderColor:
+                                            formik.touched.firstName &&
+                                            formik.errors.firstName
+                                                ? 'red'
+                                                : 'lightGrey',
+                                    }}
                                     {...formik.getFieldProps('firstName')}
                                 />
                                 {formik.touched.firstName &&
@@ -77,6 +85,13 @@ const SignUp = () => {
                                     type="text"
                                     className="form_control"
                                     name="lastName"
+                                    style={{
+                                        borderColor:
+                                            formik.touched.lastName &&
+                                            formik.errors.lastName
+                                                ? 'red'
+                                                : 'lightGrey',
+                                    }}
                                     {...formik.getFieldProps('lastName')}
                                 />
                                 {formik.touched.lastName &&
@@ -93,6 +108,13 @@ const SignUp = () => {
                                 type="text"
                                 className="form_control"
                                 name="email"
+                                style={{
+                                    borderColor:
+                                        formik.touched.email &&
+                                        formik.errors.email
+                                            ? 'red'
+                                            : 'lightGrey',
+                                }}
                                 {...formik.getFieldProps('email')}
                             />
                             {formik.touched.email && formik.errors.email ? (
@@ -108,6 +130,13 @@ const SignUp = () => {
                                 className="form_control"
                                 name="password"
                                 placeholder="6+ characters"
+                                style={{
+                                    borderColor:
+                                        formik.touched.password &&
+                                        formik.errors.password
+                                            ? 'red'
+                                            : 'lightGrey',
+                                }}
                                 {...formik.getFieldProps('password')}
                             />
                             {formik.touched.password &&
@@ -124,6 +153,13 @@ const SignUp = () => {
                                 className="form_control"
                                 name="Vpassword"
                                 placeholder="6+ characters"
+                                style={{
+                                    borderColor:
+                                        formik.touched.Vpassword &&
+                                        formik.errors.Vpassword
+                                            ? 'red'
+                                            : 'lightGrey',
+                                }}
                                 {...formik.getFieldProps('Vpassword')}
                             />
                             {formik.touched.Vpassword &&

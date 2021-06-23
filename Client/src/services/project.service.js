@@ -1,6 +1,7 @@
 import http from '../services/http-client';
 import { authHeader } from '../helpers/auth-header';
 import { BehaviorSubject } from 'rxjs';
+import { sortBySectionOrder } from '../helpers/sortby-section-order';
 
 const projectsSubject = new BehaviorSubject([]);
 
@@ -14,7 +15,13 @@ const getProjectData = async (id) => {
     if (id !== undefined) {
         return await http
             .get('/Project/' + id, { headers: authHeader() })
-            .then((response) => response.data);
+            .then((response) => {
+                response.data.projectData.items = sortBySectionOrder(
+                    response.data.projectData.sections,
+                    response.data.projectData.items
+                );
+                return response.data;
+            });
     }
 };
 

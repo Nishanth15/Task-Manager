@@ -10,18 +10,17 @@ import { authenticationService } from '../../services/auth.service';
 
 const Layout = ({ children }) => {
     let history = useHistory();
+    const token = localStorage.getItem('accessToken');
     // State
     const [switchKey, setSwitchKey] = useState(true);
     const [projects, setProjects] = useState([]);
     const [labels] = useState([]);
     const [filters] = useState([]);
+    const [userData, setUserData] = useState({});
 
     // LifeCycle Hooks
     useEffect(() => {
-        if (
-            localStorage.getItem('accessToken') !== '' &&
-            localStorage.getItem('accessToken') != null
-        ) {
+        if (token !== '' && token != null) {
             let tokenExpiresAt = new Date(
                 localStorage.getItem('tokenExpiresAt')
             );
@@ -29,6 +28,7 @@ const Layout = ({ children }) => {
             if (tokenExpiresAt <= currentTime) {
                 history.push('/login');
             }
+            setUserData(JSON.parse(atob(token.split('.')[1])));
         } else {
             authenticationService.logout();
         }
@@ -39,10 +39,9 @@ const Layout = ({ children }) => {
                 });
             });
         }
-    }, [projects, history]);
+    }, [token, history, projects]);
 
     // Methods
-
     const switchSideBar = () => {
         setSwitchKey(switchKey ? false : true);
     };
@@ -76,7 +75,7 @@ const Layout = ({ children }) => {
                         (switchKey ? 'topbar_expand' : 'topbar_shrink')
                     }
                 >
-                    <TopBar></TopBar>
+                    <TopBar userData={userData}></TopBar>
                 </div>
                 <div
                     className={

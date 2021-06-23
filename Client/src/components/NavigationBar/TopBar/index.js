@@ -10,9 +10,9 @@ import {
 import user_image from '../../../assets/images/Ellipse.png';
 import { authenticationService } from '../../../services/auth.service';
 import { useHistory } from 'react-router-dom';
-import { Input, Menu, Dropdown } from 'antd';
+import { Menu, Dropdown } from 'antd';
 
-const TopBar = () => {
+const TopBar = ({ userData }) => {
     const history = useHistory();
 
     const logout = () => {
@@ -61,7 +61,11 @@ const TopBar = () => {
                 >
                     <div className="user_button">
                         <div className="user_name">
-                            Nishanth
+                            <div>
+                                {Object.entries(userData).length !== 0
+                                    ? userData.given_name.split(' ')[0]
+                                    : ''}
+                            </div>
                             <HiChevronDown className="topbar_svg" />
                         </div>
                         <div className="user_image">

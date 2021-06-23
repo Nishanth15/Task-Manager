@@ -12,7 +12,7 @@ const PageNotFound = () => {
                         <p className="font-semibold text-red-500 text-9xl dark:text-red-600">
                             404
                         </p>
-                        <div className="space-y-2">
+                        <div className="space-y-2 text-center">
                             <h1
                                 id="pageTitle"
                                 className="flex items-center space-x-2"
@@ -46,8 +46,8 @@ const PageNotFound = () => {
                                     className="text-blue-600 hover:underline dark:text-blue-500"
                                 >
                                     home page
-                                </a>{' '}
-                                or try using the search form.
+                                </a>
+                                .
                             </p>
                         </div>
                     </div>
