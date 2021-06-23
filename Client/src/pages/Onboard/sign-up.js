@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/onboard.scss';
 import logo from '../../assets/images/shortlogo.svg';
 import onboard from '../../assets/images/onboard.svg';
 import { validateSignUp as validate } from './validate';

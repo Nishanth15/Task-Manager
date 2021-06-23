@@ -12,7 +12,6 @@ const Project = () => {
 
     useEffect(() => {
         getProject();
-        console.log(project);
         if (project.length !== 0) document.title = project.name;
     }, [id, project]);
 

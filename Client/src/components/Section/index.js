@@ -34,9 +34,14 @@ const Section = ({ id }) => {
         responsibleTo: null,
         due: null,
     };
+    const initialReOrderTask = {
+        id: '',
+        order: null,
+    };
 
     const [sections, setSections] = useState([]);
     const [tasks, setTasks] = useState([]);
+    const [reOrderedTasks] = useState([]);
     const [addTaskForm, setAddTaskForm] = useState();
     const [newTask, setNewTask] = useState(initialTaskData);
     const [priorityCheck, setPriorityCheck] = useState({
@@ -88,7 +93,6 @@ const Section = ({ id }) => {
     const reorder = (list, sectionListIdx, startIndex, endIndex) => {
         const result = list;
         // console.log(result);
-        console.log(startIndex, endIndex);
         const [removed] = result.splice(startIndex, 1);
         result.splice(endIndex, 0, removed);
         if (startIndex !== endIndex) {
@@ -99,6 +103,9 @@ const Section = ({ id }) => {
                 lastOrder = result[endIndex - 1].order;
                 for (let i = start; i <= end; i++) {
                     result[i].order = ++lastOrder;
+                    initialReOrderTask.id = result[i].id;
+                    initialReOrderTask.order = result[i].order;
+                    reOrderedTasks.push(initialReOrderTask);
                 }
             } else {
                 start = endIndex;
@@ -106,68 +113,111 @@ const Section = ({ id }) => {
                 lastOrder = result[endIndex + 1].order;
                 for (let i = start; i >= end; i--) {
                     result[i].order = --lastOrder;
+                    initialReOrderTask.id = result[i].id;
+                    initialReOrderTask.order = result[i].order;
+                    reOrderedTasks.push(initialReOrderTask);
                 }
             }
         }
-        return result;
+        return reOrderedTasks;
     };
 
     const move = (
-        source,
-        destination,
-        droppableSource,
-        droppableDestination
+        list,
+        sectionListIdx,
+        destinationSectionId,
+        startIndex,
+        endIndex
     ) => {
-        const sourceClone = Array.from(source);
-        const destClone = Array.from(destination);
-        const [removed] = sourceClone.splice(droppableSource.index, 1);
+        const result = list;
+        sectionListIdx.push(sectionListIdx[sectionListIdx.length - 1] + 1);
+        // console.log(list.length);
+        // console.log(sectionListIdx);
+        console.log(startIndex);
+        console.log(endIndex);
+        const [removed] = result.splice(startIndex, 1);
+        removed.sectionId = destinationSectionId;
+        if (startIndex < endIndex) {
+            result.splice(endIndex - 1, 0, removed);
+            console.log('a');
+        } else {
+            result.splice(endIndex, 0, removed);
+            console.log('b');
+        }
+        var start, end, lastOrder;
+        if (sectionListIdx.indexOf(endIndex) >= sectionListIdx.length / 2) {
+            if (
+                startIndex < endIndex &&
+                endIndex === sectionListIdx[sectionListIdx.length - 1]
+            ) {
+                start = endIndex - 1;
+                end = sectionListIdx[sectionListIdx.length - 1] - 1;
+                lastOrder = result[endIndex - 2].order;
+                console.log(lastOrder);
+            } else {
+                start = endIndex;
+                end = sectionListIdx[sectionListIdx.length - 1];
+                lastOrder = result[endIndex - 1].order;
+            }
+            for (let i = start; i <= end; i++) {
+                result[i].order = ++lastOrder;
+                initialReOrderTask.id = result[i].id;
+                initialReOrderTask.order = result[i].order;
+                reOrderedTasks.push(initialReOrderTask);
+                console.log(1);
+            }
+        } else {
+            start = endIndex;
+            end = sectionListIdx[0];
+            lastOrder = result[endIndex + 1].order;
+            for (let i = start; i >= end; i--) {
+                result[i].order = --lastOrder;
+                initialReOrderTask.id = result[i].id;
+                initialReOrderTask.order = result[i].order;
+                reOrderedTasks.push(initialReOrderTask);
+                console.log(2);
+            }
+        }
 
-        destClone.splice(droppableDestination.index, 0, removed);
-
-        const result = {};
-        result[droppableSource.droppableId] = sourceClone;
-        result[droppableDestination.droppableId] = destClone;
-
-        return result;
+        return reOrderedTasks;
     };
 
-    console.log(tasks);
+    // console.log(tasks);
     const onDragEnd = (result) => {
         const { source, destination, type } = result;
         if (!destination) return;
 
         // console.log(result);
-        // console.log(source);
-        // console.log(destination);
-        var sectionSourceIdx = [];
+        console.log(source);
+        console.log(destination);
+        var sectionDestinationIdx = [];
+        var items = {};
         tasks.forEach((task, index) => {
-            if (task.sectionId === source.droppableId) {
-                sectionSourceIdx.push(index);
+            if (task.sectionId === destination.droppableId) {
+                sectionDestinationIdx.push(index);
             }
         });
         if (
             type === 'tasks' &&
             source.droppableId === destination.droppableId
         ) {
-            const items = reorder(
+            items = reorder(
                 tasks,
-                sectionSourceIdx,
+                sectionDestinationIdx,
                 source.index,
                 destination.index
             );
-            console.log(items);
         } else {
-            // const result = move(
-            //     getList(source.droppableId),
-            //     getList(destination.droppableId),
-            //     source,
-            //     destination
-            // );
-            // setState({
-            //     items: result.droppable,
-            //     selected: result.droppable2,
-            // });
+            items = move(
+                tasks,
+                sectionDestinationIdx,
+                destination.droppableId,
+                source.index,
+                destination.index
+            );
         }
+        console.log(items);
+        // setTasks(items);
     };
 
     const handleMenuClick = (e) => {

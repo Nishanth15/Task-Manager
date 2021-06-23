@@ -1,31 +1,3 @@
-// .preloader {
-//     @apply fixed inset-0 w-full h-full z-10 bg-layout_background flex justify-center items-center;
-
-//     .spinner {
-//         @apply w-16 h-16 bg-primary mx-auto  top-1/2 -mt-16;
-
-//         -webkit-animation: sk-rotateplane 1.2s infinite alternate;
-//         animation: sk-rotateplane 1.2s infinite alternate;
-//     }
-// }
-
-// @keyframes sk-rotateplane {
-//     0% {
-//         -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-//         transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-//     }
-
-//     50% {
-//         -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-//         transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-//     }
-
-//     100% {
-//         -webkit-transform: perspective(120px) rotateX(-180deg)
-//             rotateY(-179.9deg);
-//         transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-//     }
-// }
 .preloader {
     @apply h-screen flex justify-center items-center;
 }
@@ -37,14 +9,11 @@
     stroke-miterlimit: 10;
     stroke: #2a8cff;
     fill: none;
-    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    animation: stroke 0.8s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }
 
 .checkmark {
-    @apply w-14 h-14 rounded-full block stroke-2 stroke-[white];
-    box-shadow: inset 0px 0px 0px #2a8cff;
-    animation: fill 0.4s ease-in-out 0.4s forwards,
-        scale 0.3s ease-in-out 0.9s both;
+    @apply w-14 h-14 stroke-2 stroke-[#2a8cff];
 }
 
 .checkmark__check {
@@ -66,10 +35,5 @@
     }
     50% {
         transform: scale3d(1.1, 1.1, 1);
-    }
-}
-@keyframes fill {
-    100% {
-        box-shadow: inset 0px 0px 0px 30px #2a8cff;
     }
 }

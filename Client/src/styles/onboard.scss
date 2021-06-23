@@ -1,5 +1,5 @@
 .onboard {
-    @apply bg-layout_background h-screen w-screen px-36 flex items-center justify-evenly -lg:justify-center -lg:p-0;
+    @apply bg-layout_background -lg:bg-white h-screen w-screen px-36 flex items-center justify-evenly -lg:justify-center -lg:p-0;
 
     .onboard_image_left {
         background-image: url(../assets/images/bg.png);
@@ -14,7 +14,7 @@
         @apply w-[380px] flex flex-col;
 
         .onboard_form {
-            @apply -lg:bg-layout_background -lg:shadow-none bg-white w-full px-6 pt-6 pb-2 
+            @apply -lg:shadow-none bg-white w-full px-6 py-6 -lg:pb-2
                 rounded-md shadow-md text-black overflow-hidden;
 
             .heading {
