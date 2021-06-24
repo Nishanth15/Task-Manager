@@ -1,21 +1,18 @@
 import './section.scss';
 import Task from '../Task';
 import AddNewSection from './AddSection';
+import AddNewTask from '../Task/AddTask';
 import { projectService } from '../../services/project.service';
-import { sectionService } from '../../services/section.service';
 import { taskService } from '../../services/task.service';
 import { sortBySectionOrder } from '../../helpers/sortby-section-order';
 import {
     colors,
     GiCheckMark,
     HiOutlineDotsHorizontal,
-    HiOutlinePlus,
-    HiOutlineClock,
-    HiOutlineUserAdd,
     RiFireFill,
 } from '../../assets/static';
 import { useState, useEffect } from 'react';
-import { Button, DatePicker, Dropdown, Input, Menu } from 'antd';
+import { Menu } from 'antd';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
 const Section = ({ id }) => {
@@ -38,17 +35,17 @@ const Section = ({ id }) => {
         id: '',
         order: null,
     };
+    const initialPriorityCheck = {
+        mode: '',
+        task: initialTaskData,
+        index: 0,
+    };
 
     const [sections, setSections] = useState([]);
     const [tasks, setTasks] = useState([]);
     const [reOrderedTasks] = useState([]);
-    const [addTaskForm, setAddTaskForm] = useState();
     const [newTask, setNewTask] = useState(initialTaskData);
-    const [priorityCheck, setPriorityCheck] = useState({
-        mode: '',
-        task: newTask,
-        index: 0,
-    });
+    const [priorityCheck, setPriorityCheck] = useState(initialPriorityCheck);
 
     useEffect(() => {
         getProjectData();
@@ -75,7 +72,6 @@ const Section = ({ id }) => {
             var newSortedTasks = sortBySectionOrder(sections, newTasks);
             setTasks(newSortedTasks);
         });
-        setAddTaskForm();
     };
 
     const editTask = (task, index, condition, param) => {
@@ -92,7 +88,6 @@ const Section = ({ id }) => {
 
     const reorder = (list, sectionListIdx, startIndex, endIndex) => {
         const result = list;
-        // console.log(result);
         const [removed] = result.splice(startIndex, 1);
         result.splice(endIndex, 0, removed);
         if (startIndex !== endIndex) {
@@ -131,18 +126,12 @@ const Section = ({ id }) => {
     ) => {
         const result = list;
         sectionListIdx.push(sectionListIdx[sectionListIdx.length - 1] + 1);
-        // console.log(list.length);
-        // console.log(sectionListIdx);
-        console.log(startIndex);
-        console.log(endIndex);
         const [removed] = result.splice(startIndex, 1);
         removed.sectionId = destinationSectionId;
         if (startIndex < endIndex) {
             result.splice(endIndex - 1, 0, removed);
-            console.log('a');
         } else {
             result.splice(endIndex, 0, removed);
-            console.log('b');
         }
         var start, end, lastOrder;
         if (sectionListIdx.indexOf(endIndex) >= sectionListIdx.length / 2) {
@@ -153,7 +142,6 @@ const Section = ({ id }) => {
                 start = endIndex - 1;
                 end = sectionListIdx[sectionListIdx.length - 1] - 1;
                 lastOrder = result[endIndex - 2].order;
-                console.log(lastOrder);
             } else {
                 start = endIndex;
                 end = sectionListIdx[sectionListIdx.length - 1];
@@ -164,7 +152,6 @@ const Section = ({ id }) => {
                 initialReOrderTask.id = result[i].id;
                 initialReOrderTask.order = result[i].order;
                 reOrderedTasks.push(initialReOrderTask);
-                console.log(1);
             }
         } else {
             start = endIndex;
@@ -175,21 +162,15 @@ const Section = ({ id }) => {
                 initialReOrderTask.id = result[i].id;
                 initialReOrderTask.order = result[i].order;
                 reOrderedTasks.push(initialReOrderTask);
-                console.log(2);
             }
         }
 
         return reOrderedTasks;
     };
 
-    // console.log(tasks);
     const onDragEnd = (result) => {
         const { source, destination, type } = result;
         if (!destination) return;
-
-        // console.log(result);
-        console.log(source);
-        console.log(destination);
         var sectionDestinationIdx = [];
         var items = {};
         tasks.forEach((task, index) => {
@@ -217,7 +198,6 @@ const Section = ({ id }) => {
             );
         }
         console.log(items);
-        // setTasks(items);
     };
 
     const handleMenuClick = (e) => {
@@ -388,215 +368,28 @@ const Section = ({ id }) => {
                                                                     );
                                                                 }}
                                                             </Droppable>
-
                                                             <div className="add_task">
-                                                                {addTaskForm ===
-                                                                section.id ? (
-                                                                    <div className="add_task_form">
-                                                                        <div className="add_task_form_top">
-                                                                            <Input
-                                                                                className="form_control"
-                                                                                value={
-                                                                                    newTask.content
-                                                                                }
-                                                                                placeholder="Enter a task"
-                                                                                onChange={(
-                                                                                    event
-                                                                                ) => {
-                                                                                    setNewTask(
-                                                                                        {
-                                                                                            ...newTask,
-                                                                                            content:
-                                                                                                event
-                                                                                                    .target
-                                                                                                    .value,
-                                                                                        }
-                                                                                    );
-                                                                                }}
-                                                                            ></Input>
-                                                                            <div className="add_task_">
-                                                                                <div className="add_task_assign"></div>
-                                                                                <div
-                                                                                    className="add_task_actions"
-                                                                                    onClick={() => {
-                                                                                        setPriorityCheck(
-                                                                                            {
-                                                                                                mode: 'add',
-                                                                                                task: newTask,
-                                                                                                index: 0,
-                                                                                            }
-                                                                                        );
-                                                                                    }}
-                                                                                >
-                                                                                    <Dropdown
-                                                                                        overlay={
-                                                                                            menu
-                                                                                        }
-                                                                                        trigger={[
-                                                                                            'click',
-                                                                                        ]}
-                                                                                        overlayStyle={{
-                                                                                            width: 150,
-                                                                                        }}
-                                                                                        placement="bottomCenter"
-                                                                                    >
-                                                                                        <RiFireFill
-                                                                                            className="add_task_icon"
-                                                                                            style={{
-                                                                                                color: `${
-                                                                                                    colors[
-                                                                                                        newTask
-                                                                                                            .priority
-                                                                                                    ]
-                                                                                                        .color
-                                                                                                }`,
-                                                                                            }}
-                                                                                        />
-                                                                                    </Dropdown>
-                                                                                    <div className="due_icon">
-                                                                                        <DatePicker
-                                                                                            bordered={
-                                                                                                false
-                                                                                            }
-                                                                                            allowClear={
-                                                                                                false
-                                                                                            }
-                                                                                            showToday={
-                                                                                                false
-                                                                                            }
-                                                                                            // disabledDate={
-                                                                                            //     disabledDate
-                                                                                            // }
-                                                                                            // open={
-                                                                                            //     openDatePickerIdx ===
-                                                                                            //     index
-                                                                                            // }
-                                                                                            // onClick={() =>
-                                                                                            //     setOpenDatePickerIdx(
-                                                                                            //         index
-                                                                                            //     )
-                                                                                            // }
-                                                                                            // onChange={(date) => {
-                                                                                            //     editTask(
-                                                                                            //         task,
-                                                                                            //         index,
-                                                                                            //         'due',
-                                                                                            //         new Date(
-                                                                                            //             date
-                                                                                            //         ).toISOString()
-                                                                                            //     );
-                                                                                            // setOpenDatePickerIdx(
-                                                                                            //     false
-                                                                                            // );
-                                                                                            // }}
-                                                                                            // onOpenChange={() =>
-                                                                                            //     setOpenDatePickerIdx(
-                                                                                            //         false
-                                                                                            //     )
-                                                                                            // }
-                                                                                            // defaultValue={
-                                                                                            //     task.due !== null
-                                                                                            //         ? moment(
-                                                                                            //               task.due
-                                                                                            //           )
-                                                                                            //         : ''
-                                                                                            // }
-                                                                                            renderExtraFooter={() => (
-                                                                                                <div
-                                                                                                    className="cursor-pointer flex justify-center text-gray-400"
-                                                                                                    // onClick={() => {
-                                                                                                    //     editTask(
-                                                                                                    //         task,
-                                                                                                    //         index,
-                                                                                                    //         'due',
-                                                                                                    //         null
-                                                                                                    //     );
-                                                                                                    //     setOpenDatePickerIdx(
-                                                                                                    //         false
-                                                                                                    //     );
-                                                                                                    // }}
-                                                                                                >
-                                                                                                    No
-                                                                                                    Date
-                                                                                                </div>
-                                                                                            )}
-                                                                                            suffixIcon={
-                                                                                                <div className="flex items-center hover:text-primary">
-                                                                                                    <HiOutlineClock className="add_task_icon" />
-                                                                                                    {/* {task.due !==
-                                                                    null && (
-                                                                    <div className="task_bottom_text">
-                                                                        {UTCtoIST(
-                                                                            task.due.toString()
-                                                                        )}
-                                                                    </div>
-                                                                )} */}
-                                                                                                </div>
-                                                                                            }
-                                                                                        />
-                                                                                    </div>
-
-                                                                                    <HiOutlineUserAdd className="add_task_icon " />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="add_task_form_button">
-                                                                            <Button
-                                                                                className="add_task_button"
-                                                                                onClick={() => {
-                                                                                    addTask(
-                                                                                        addTaskForm
-                                                                                    );
-                                                                                    setNewTask(
-                                                                                        initialTaskData
-                                                                                    );
-                                                                                }}
-                                                                                disabled={
-                                                                                    newTask
-                                                                                        .content
-                                                                                        .length <
-                                                                                    1
-                                                                                }
-                                                                            >
-                                                                                Add
-                                                                                Task
-                                                                            </Button>
-                                                                            <Button
-                                                                                type="link"
-                                                                                onClick={() => {
-                                                                                    setAddTaskForm();
-                                                                                    setNewTask(
-                                                                                        initialTaskData
-                                                                                    );
-                                                                                }}
-                                                                            >
-                                                                                Cancel
-                                                                            </Button>
-                                                                        </div>
-                                                                    </div>
-                                                                ) : (
-                                                                    <div
-                                                                        className="add_task_item"
-                                                                        onClick={() => {
-                                                                            setAddTaskForm(
-                                                                                section.id
-                                                                            );
-                                                                            setNewTask(
-                                                                                {
-                                                                                    ...newTask,
-                                                                                    sectionId:
-                                                                                        section.id,
-                                                                                }
-                                                                            );
-                                                                        }}
-                                                                    >
-                                                                        <HiOutlinePlus className="h-5 w-5" />
-                                                                        <div>
-                                                                            Add
-                                                                            Task
-                                                                        </div>
-                                                                    </div>
-                                                                )}
+                                                                <AddNewTask
+                                                                    sectionId={
+                                                                        section.id
+                                                                    }
+                                                                    newTask={
+                                                                        newTask
+                                                                    }
+                                                                    setNewTask={
+                                                                        setNewTask
+                                                                    }
+                                                                    setPriorityCheck={
+                                                                        setPriorityCheck
+                                                                    }
+                                                                    menu={menu}
+                                                                    addTask={
+                                                                        addTask
+                                                                    }
+                                                                    initialTaskData={
+                                                                        initialTaskData
+                                                                    }
+                                                                />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -608,8 +401,7 @@ const Section = ({ id }) => {
                                 <AddNewSection
                                     id={id}
                                     setSections={setSections}
-                                ></AddNewSection>
-                                {/* </DragDropContext> */}
+                                />
                                 {provided.placeholder}
                             </div>
                         );

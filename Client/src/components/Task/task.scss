@@ -65,7 +65,7 @@
 
         .task_bottom_left,
         .task_bottom_right {
-            @apply flex flex-row text-gray-400 hover:text-primary;
+            @apply flex flex-row text-gray-400;
 
             .task_bottom_icon {
                 @apply h-6 w-6 p-1 rounded-lg hover:text-primary hover:bg-active_background;

@@ -3,7 +3,7 @@ import '../../styles/onboard.scss';
 import logo from '../../assets/images/shortlogo.svg';
 import onboard from '../../assets/images/onboard.svg';
 import { validateSignUp as validate } from './validate';
-import { Form, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import { Link, useHistory } from 'react-router-dom';
 import { authenticationService } from '../../services/auth.service';
 import { Input } from 'antd';

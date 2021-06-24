@@ -1,5 +1,6 @@
 import { FiInbox, FiBell, FiCalendar, FiActivity } from 'react-icons/fi';
 import { ImFilter } from 'react-icons/im';
+import { IoClose } from 'react-icons/io5';
 import { RiFireFill } from 'react-icons/ri';
 import { TiFlowChildren } from 'react-icons/ti';
 import { GiCheckMark } from 'react-icons/gi';
@@ -108,6 +109,7 @@ export {
     HiOutlineViewGridAdd,
     HiOutlineDotsHorizontal,
     ImFilter,
+    IoClose,
     RiFireFill,
     TiFlowChildren,
 };

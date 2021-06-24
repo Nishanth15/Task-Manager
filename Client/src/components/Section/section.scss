@@ -48,33 +48,43 @@
                     .form_control {
                         @apply rounded-md p-2 text-base m-1 w-auto border-none shadow-none outline-none;
                     }
-
-                    .add_task_actions {
-                        @apply px-2 flex text-gray-400;
+                    .add_task_bottom {
+                        @apply flex items-center justify-between;
 
                         .add_task_icon {
                             @apply cursor-pointer w-6 h-6 p-1 rounded-lg hover:text-primary 
-                                    hover:bg-active_background;
+                                hover:bg-active_background;
                         }
 
-                        .due_icon {
-                            @apply flex items-center justify-center cursor-pointer w-6 h-6 p-1 rounded-lg hover:text-primary 
+                        .add_task_actions {
+                            @apply px-2 flex text-gray-400;
+
+                            .due_icon {
+                                @apply flex items-center justify-center cursor-pointer rounded-lg hover:text-primary 
                                     hover:bg-active_background;
-                        }
 
-                        .ant-picker {
-                            @apply p-0 cursor-pointer;
-                            .ant-picker-input {
-                                @apply hover:text-primary;
-
-                                input {
-                                    @apply hidden w-0;
-                                }
-
-                                .ant-picker-suffix {
-                                    @apply m-0;
+                                .task_bottom_text {
+                                    @apply pr-1 text-xxs font-bold text-gray-400 hover:text-primary;
                                 }
                             }
+
+                            .ant-picker {
+                                @apply p-0 cursor-pointer;
+                                .ant-picker-input {
+                                    @apply hover:text-primary;
+
+                                    input {
+                                        @apply hidden w-0;
+                                    }
+
+                                    .ant-picker-suffix {
+                                        @apply m-0;
+                                    }
+                                }
+                            }
+                        }
+                        .add_task_assign {
+                            @apply px-2 flex text-gray-400;
                         }
                     }
                 }

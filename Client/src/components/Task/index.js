@@ -9,6 +9,7 @@ import {
     HiOutlineUserAdd,
     HiOutlineClock,
     RiFireFill,
+    IoClose,
 } from '../../assets/static';
 import { useState } from 'react';
 import moment from 'moment';
@@ -16,7 +17,7 @@ import { DatePicker, Dropdown } from 'antd';
 import { Draggable } from 'react-beautiful-dnd';
 
 const Task = ({ index, task, menu, editTask, setPriorityCheck }) => {
-    const [openDatePickerIdx, setOpenDatePickerIdx] = useState('');
+    const [openDatePickerIdx, setOpenDatePickerIdx] = useState(false);
 
     const disabledDate = (current) => {
         return current && current < moment().subtract(1, 'days');
@@ -122,7 +123,11 @@ const Task = ({ index, task, menu, editTask, setPriorityCheck }) => {
                                             disabledDate={disabledDate}
                                             open={openDatePickerIdx === index}
                                             onClick={() =>
-                                                setOpenDatePickerIdx(index)
+                                                setOpenDatePickerIdx(
+                                                    openDatePickerIdx === false
+                                                        ? index
+                                                        : false
+                                                )
                                             }
                                             onChange={(date) => {
                                                 editTask(
@@ -161,7 +166,12 @@ const Task = ({ index, task, menu, editTask, setPriorityCheck }) => {
                                             )}
                                             suffixIcon={
                                                 <div className="flex items-center hover:text-primary">
-                                                    <HiOutlineClock className="task_bottom_icon" />
+                                                    {openDatePickerIdx ===
+                                                    index ? (
+                                                        <IoClose className="task_bottom_icon" />
+                                                    ) : (
+                                                        <HiOutlineClock className="task_bottom_icon" />
+                                                    )}
                                                     {task.due !== null && (
                                                         <div className="task_bottom_text">
                                                             {UTCtoIST(
